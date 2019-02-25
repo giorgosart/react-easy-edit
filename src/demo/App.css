@@ -1,0 +1,9 @@
+.App {
+  background-color: #282c34;
+  padding: 20px;
+}
+
+.App-header {
+  color: white;
+  font-size: calc(10px + 2vmin);
+}
