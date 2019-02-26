@@ -1,17 +1,28 @@
 {
-  "name": "react-inline-edit",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-scripts": "^2.1.5"
-  },
+  "name": "react-easy-edit",
+  "version": "0.0.1",
+  "description": "A react library for inline editing",
+  "homepage": "https://github.com/giorgosart/react-easy-edit#readme",
+  "keywords": [],
+  "author": "George Artemiou <giorgosart@hotmail.com>",
+  "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --coverage",
-    "eject": "react-scripts eject"
+    "build": "rollup -c -o build/react-easy-edit.min.js",
+    "test": "react-scripts test --coverage"
+  },
+  "main": "build/react-easy-edit.min.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giorgosart/react-easy-edit"
+  },
+  "bugs": {
+    "url": "https://github.com/giorgosart/react-easy-edit/issues"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -23,6 +34,18 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "prop-types": "latest"
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-scripts": "^2.1.5",
+    "rollup": "^1.3.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-uglify": "^6.0.2"
   }
 }
