@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9854bbbf-11c4-49b1-b683-d5320de747ae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/Editable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/Editable.jsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +17,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/demo/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+            <state relative-caret-position="255">
+              <caret line="15" column="45" lean-forward="true" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -27,11 +26,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+            <state relative-caret-position="307">
+              <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/lib/Editable.test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="33" column="8" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="33" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -49,7 +60,7 @@
         <entry file="file://$PROJECT_DIR$/rollup.config.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="4" column="16" lean-forward="true" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+              <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -69,11 +80,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lib/Editable.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="97" column="16" lean-forward="true" selection-start-line="97" selection-start-column="16" selection-end-line="97" selection-end-column="16" />
+            <state relative-caret-position="180">
+              <caret line="163" column="58" selection-start-line="163" selection-start-column="58" selection-end-line="163" selection-end-column="58" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/demo/App.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="16" lean-forward="true" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -86,6 +106,8 @@
       <find>onSave</find>
       <find>App</find>
       <find>babel-preset-react</find>
+      <find>dist</find>
+      <find>hoverOn</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -99,18 +121,19 @@
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/Editable.jsx" />
         <option value="$PROJECT_DIR$/src/lib/Editable.css" />
-        <option value="$PROJECT_DIR$/src/lib/Editable.jsx" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/src/demo/App.js" />
         <option value="$PROJECT_DIR$/.npmignore" />
         <option value="$PROJECT_DIR$/.babelrc" />
         <option value="$PROJECT_DIR$/rollup.config.js" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/lib/Editable.jsx" />
+        <option value="$PROJECT_DIR$/src/lib/Editable.test.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1928" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
@@ -139,6 +162,12 @@
               <item name="react-inline-edit" type="b2602c69:ProjectViewProjectNode" />
               <item name="react-inline-edit" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-inline-edit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-inline-edit" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -153,22 +182,24 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551198712902" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551223240579" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../react-easy-edit/react-easy-edit" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="C:\Users\george.artemiou\Desktop\react-inline-edit\react-inline-edit\node_modules\eslint" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/react-scripts" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\george.artemiou\Desktop\react-inline-edit\react-inline-edit\src\lib" />
+      <recent name="C:\Users\george.artemiou\Desktop\react-inline-edit\react-inline-edit\src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\george.artemiou\Desktop\react-inline-edit\react-inline-edit\src\lib" />
       <recent name="C:\Users\george.artemiou\Desktop\react-inline-edit\react-inline-edit\src\demo" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\george.artemiou\Desktop\react-inline-edit\react-inline-edit\src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -183,20 +214,83 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
+  <component name="RunManager" selected="Jest.Editable">
+    <configuration name="Editable" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
       <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/lib/Editable.test.js" />
+      <test-names>
+        <test-name value="Editable" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Editable.hover off" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/lib/Editable.test.js" />
+      <test-names>
+        <test-name value="Editable" />
+        <test-name value="hover off" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Editable.hover on" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/lib/Editable.test.js" />
+      <test-names>
+        <test-name value="Editable" />
+        <test-name value="hover on" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Editable.should trigger the onSave fn when the &quot;cancel&quot; button is clicked" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/lib/Editable.test.js" />
+      <test-names>
+        <test-name value="Editable" />
+        <test-name value="should trigger the onSave fn when the &quot;cancel&quot; button is clicked" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Editable.should trigger the onSave fn when the &quot;save&quot; button is clicked" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/lib/Editable.test.js" />
+      <test-names>
+        <test-name value="Editable" />
+        <test-name value="should trigger the onSave fn when the &quot;save&quot; button is clicked" />
+      </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build" />
+        <item itemvalue="Jest.Editable" />
+        <item itemvalue="Jest.Editable.should trigger the onSave fn when the &quot;cancel&quot; button is clicked" />
+        <item itemvalue="Jest.Editable.should trigger the onSave fn when the &quot;save&quot; button is clicked" />
+        <item itemvalue="Jest.Editable.hover off" />
+        <item itemvalue="Jest.Editable.hover on" />
       </list>
     </recent_temporary>
   </component>
@@ -222,12 +316,44 @@
       <workItem from="1549883669823" duration="4247000" />
       <workItem from="1550481066268" duration="2575000" />
       <workItem from="1551095457900" duration="16413000" />
-      <workItem from="1551195902356" duration="2748000" />
+      <workItem from="1551195902356" duration="12215000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Editable_hover_off - 2019.02.26 at 23h 12m 34s.xml">
+      <configuration name="Editable.hover off" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="Editable_hover_on - 2019.02.26 at 23h 12m 46s.xml">
+      <configuration name="Editable.hover on" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="Editable_hover_off - 2019.02.26 at 23h 13m 57s.xml">
+      <configuration name="Editable.hover off" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="Editable_should_trigger_the_onSave_fn_when_the__save__button_is_clicked - 2019.02.26 at 23h 14m 33s.xml">
+      <configuration name="Editable.should trigger the onSave fn when the &quot;save&quot; button is clicked" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="Editable_should_trigger_the_onSave_fn_when_the__save__button_is_clicked - 2019.02.26 at 23h 14m 47s.xml">
+      <configuration name="Editable.should trigger the onSave fn when the &quot;save&quot; button is clicked" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="Editable_should_trigger_the_onSave_fn_when_the__save__button_is_clicked - 2019.02.26 at 23h 19m 32s.xml">
+      <configuration name="Editable.should trigger the onSave fn when the &quot;save&quot; button is clicked" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="Editable_should_trigger_the_onSave_fn_when_the__save__button_is_clicked - 2019.02.26 at 23h 19m 50s.xml">
+      <configuration name="Editable.should trigger the onSave fn when the &quot;save&quot; button is clicked" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="Editable_should_trigger_the_onSave_fn_when_the__cancel__button_is_clicked - 2019.02.26 at 23h 20m 23s.xml">
+      <configuration name="Editable.should trigger the onSave fn when the &quot;cancel&quot; button is clicked" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="Editable_should_trigger_the_onSave_fn_when_the__cancel__button_is_clicked - 2019.02.26 at 23h 20m 49s.xml">
+      <configuration name="Editable.should trigger the onSave fn when the &quot;cancel&quot; button is clicked" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="Editable - 2019.02.26 at 23h 21m 03s.xml">
+      <configuration name="Editable" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69010000" />
+    <option name="totallyTimeSpent" value="78477000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -239,9 +365,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16897655" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16897655" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -251,15 +378,15 @@
       <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.283857" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.283857" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -274,6 +401,50 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>wrapper.find('[name=&quot;save&quot;]')</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>wrapper.find('[name=save]')</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>wrapper.find('#save')</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>wrapper.find('button')</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>wrapper.find('button&gt;save')</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>wrapper.find('div')</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>wrapper</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>wrapper.find('.editable-hover-on')</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/logo.svg" />
@@ -306,23 +477,6 @@
     <entry file="file://$PROJECT_DIR$/dist/demo/App.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo/App.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="16" lean-forward="true" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@babel/core/lib/config/config-descriptors.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -337,16 +491,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/Editable.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="97" column="16" lean-forward="true" selection-start-line="97" selection-start-column="16" selection-end-line="97" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -367,7 +511,7 @@
     <entry file="file://$PROJECT_DIR$/rollup.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="16" lean-forward="true" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
           </folding>
@@ -381,10 +525,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/demo/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="16" lean-forward="true" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/demo/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="45" lean-forward="true" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        <state relative-caret-position="307">
+          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/Editable.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="163" column="58" selection-start-line="163" selection-start-column="58" selection-end-line="163" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/Editable.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="33" column="8" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="33" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

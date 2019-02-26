@@ -72,83 +72,103 @@ export default class Editable extends React.Component {
       case 'time':
       case 'month':
       case 'week':
-        return <input
-            ref={this.inputBox}
-            type={type}
-            value={this.state.value}
-            onChange={this.onChange}
-            placeholder={placeholder}
-        />;
+        return this.getInput(type, placeholder);
       case 'textarea':
-        return <textarea
-            ref={this.inputBox}
-            value={this.state.value}
-            onChange={this.onChange}
-            placeholder={placeholder}
-        />;
+        return this.getTextarea(placeholder);
       case 'select':
-        let opt = options.map(option => (
-            <option
-                value={option.value}
-                selected={option.value === this.state.value}
-            >
-              {option.label}
-            </option>
-        ));
-        return (
-            <select
-                onChange={this.onChange}
-                ref={this.inputBox}
-            >
-              {opt}
-            </select>
-        );
+        return this.getSelect(options);
       case 'radio':
-        return options.map(option => (
-            <label className="editable-radio-label">
-              <input
-                  key={option.value}
-                  ref={this.inputBox}
-                  type={type}
-                  className="editable-radio-button"
-                  value={option.value}
-                  name={name}
-                  onChange={this.onChange}
-                  checked={option.value === this.state.value}
-              />{option.label}
-            </label>
-        ));
+        return this.getRadio(options, type, name);
       case 'checkbox':
-        return options.map(option => (
-            <label className="editable-checkbox-label">
-              <input
-                  type={type}
-                  className="editable-radio-button"
-                  value={option.value}
-                  name={name}
-                  onChange={this.onCheckboxChange}
-                  checked={this.state.value.includes(option.value)}
-              />{option.label}
-            </label>
-        ))
+        return this.getCheckbox(options, type, name);
     }
   }
 
+  getCheckbox(options, type, name) {
+    return options.map(option => (
+        <label className="editable-checkbox-label">
+          <input
+              type={type}
+              className="editable-radio-button"
+              value={option.value}
+              name={name}
+              onChange={this.onCheckboxChange}
+              checked={this.state.value.includes(option.value)}
+          />{option.label}
+        </label>
+    ));
+  }
+
+  getRadio(options, type, name) {
+    return options.map(option => (
+        <label className="editable-radio-label">
+          <input
+              key={option.value}
+              ref={this.inputBox}
+              type={type}
+              className="editable-radio-button"
+              value={option.value}
+              name={name}
+              onChange={this.onChange}
+              checked={option.value === this.state.value}
+          />{option.label}
+        </label>
+    ));
+  }
+
+  getSelect(options) {
+    let opt = options.map(option => (
+        <option
+            value={option.value}
+            selected={option.value === this.state.value}
+        >
+          {option.label}
+        </option>
+    ));
+    return (
+        <select
+            onChange={this.onChange}
+            ref={this.inputBox}
+        >
+          {opt}
+        </select>
+    );
+  }
+
+  getTextarea(placeholder) {
+    return <textarea
+        ref={this.inputBox}
+        value={this.state.value}
+        onChange={this.onChange}
+        placeholder={placeholder}
+    />;
+  }
+
+  getInput(type, placeholder) {
+    return <input
+        ref={this.inputBox}
+        type={type}
+        value={this.state.value}
+        onChange={this.onChange}
+        placeholder={placeholder}
+    />;
+  }
+
   renderButtons() {
-    const {saveButtonLabel, cancelButtonLabel} = this.props;
+    const {saveButtonLabel, saveButtonStyle, cancelButtonLabel, cancelButtonStyle} = this.props;
     return (
         <>
           {Editable.generateButton(this.saveButton, this._onSave,
-              saveButtonLabel)}
+              saveButtonLabel, saveButtonStyle, "save")}
           {Editable.generateButton(this.cancelButton, this._onCancel,
-              cancelButtonLabel)}
+              cancelButtonLabel, cancelButtonStyle,"cancel")}
         </>
     )
   }
 
-  static generateButton(ref, onClick, label) {
+  static generateButton(ref, onClick, label, cssClass, name) {
     return (
-        <button ref={ref} onClick={onClick} className="editable-button">
+        <button ref={ref} onClick={onClick} className={cssClass} name={name}>
           {label}
         </button>
     )
@@ -175,8 +195,7 @@ export default class Editable extends React.Component {
                 onMouseEnter={this.hoverOn}
                 onMouseLeave={this.hoverOff}
             >
-              {this.state.value ? this.state.value : "Click to add "
-                  + placeholder}
+              {this.state.value ? this.state.value : placeholder}
             </div>
         );
       case 'color':
@@ -226,7 +245,9 @@ Editable.propTypes = {
   ]),
   options: PropTypes.array,
   saveButtonLabel: PropTypes.string,
+  saveButtonStyle: PropTypes.string,
   cancelButtonLabel: PropTypes.string,
+  cancelButtonStyle: PropTypes.string,
   placeholder: PropTypes.string,
   onCancel: PropTypes.func,
   onSave: PropTypes.func.isRequired,
@@ -236,8 +257,10 @@ Editable.propTypes = {
 Editable.defaultProps = {
   value: null,
   saveButtonLabel: 'Save',
+  saveButtonStyle: 'editable-button',
   cancelButtonLabel: 'Cancel',
-  placeholder: 'value',
+  cancelButtonStyle: 'editable-button',
+  placeholder: 'Click to edit',
   onCancel: () => {
   }
 };
