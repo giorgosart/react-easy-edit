@@ -5,7 +5,7 @@ import Editable from "./Editable";
 
 configure({adapter: new Adapter()});
 
-describe('Editable', () => {
+describe('Editable - Save and Cancel buttons', () => {
   let wrapper;
   const saveFn = jest.fn();
   const cancelFn = jest.fn();
@@ -17,6 +17,10 @@ describe('Editable', () => {
             onSave={saveFn}
             onCancel={cancelFn}
             name="test"
+            saveButtonLabel="Save Test"
+            saveButtonStyle="save-style"
+            cancelButtonLabel="Cancel Test"
+            cancelButtonStyle="cancel-style"
         />);
   });
 
@@ -35,13 +39,36 @@ describe('Editable', () => {
 
   it('should show two buttons when the user clicks on the component', () => {
     wrapper.simulate('click');
+    expect((wrapper.state().editing)).toEqual(true);
     expect(wrapper.find('button')).toHaveLength(2);
   });
 
-  it('should trigger the onSave fn when the "save" button is clicked', () => {
+  //-------------------------- SAVE BUTTON --------------------------
+  it('should use the prop value for the "Save" button label', () => {
+    wrapper.simulate('click');
+    expect(wrapper.find('button[name="save"]').text()).toEqual("Save Test")
+  });
+
+  it('should use the prop value for the "Save" button style', () => {
+    wrapper.simulate('click');
+    expect(wrapper.find('button[name="save"].save-style')).toHaveLength(1);
+  });
+
+  it('should trigger the onSave fn when the "Save" button is clicked', () => {
     wrapper.simulate('click');
     wrapper.find('button[name="save"]').simulate('click');
     expect(saveFn).toBeCalled();
+  });
+
+  //-------------------------- CANCEL BUTTON -------------------------
+  it('should use the prop value for the "Cancel" button label', () => {
+    wrapper.simulate('click');
+    expect(wrapper.find('button[name="cancel"]').text()).toEqual("Cancel Test")
+  });
+
+  it('should use the prop value for the "Cancel" button style', () => {
+    wrapper.simulate('click');
+    expect(wrapper.find('button[name="cancel"].cancel-style')).toHaveLength(1);
   });
 
   it('should trigger the onSave fn when the "cancel" button is clicked', () => {
