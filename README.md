@@ -1,3 +1,4 @@
+![Test](https://img.shields.io/npm/v/react-easy-edit.svg?style=flat)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
