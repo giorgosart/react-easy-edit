@@ -49,4 +49,4 @@ class App extends Component {
 export default App;
 ```
 ## Licence
-react-easy-edit is an open source library licensed as MIT.. 
+react-easy-edit is an open source library licensed as MIT.
