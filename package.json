@@ -3,7 +3,20 @@
   "version": "0.0.2",
   "description": "A react library for inline editing",
   "homepage": "https://github.com/giorgosart/react-easy-edit#readme",
-  "keywords": [],
+  "keywords": [
+    "react",
+    "reactjs",
+    "react-easy-edit",
+    "easy edit",
+    "inline",
+    "input",
+    "edit",
+    "editable",
+    "text",
+    "editable text",
+    "editable content",
+    "inline edit"
+  ],
   "author": "George Artemiou <giorgosart@hotmail.com>",
   "license": "MIT",
   "scripts": {

@@ -78,7 +78,7 @@ export default class Editable extends React.Component {
       case 'select':
         return this.getSelect(options);
       case 'radio':
-        return this.getRadio(options, type, name);
+        return this.getRadio(options, type);
       case 'checkbox':
         return this.getCheckbox(options, type, name);
     }
@@ -99,7 +99,7 @@ export default class Editable extends React.Component {
     ));
   }
 
-  getRadio(options, type, name) {
+  getRadio(options, type) {
     return options.map(option => (
         <label className="editable-radio-label">
           <input
@@ -108,7 +108,6 @@ export default class Editable extends React.Component {
               type={type}
               className="editable-radio-button"
               value={option.value}
-              name={name}
               onChange={this.onChange}
               checked={option.value === this.state.value}
           />{option.label}

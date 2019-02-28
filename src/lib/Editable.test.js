@@ -24,23 +24,48 @@ describe('Editable - Save and Cancel buttons', () => {
         />);
   });
 
-  // it('hover on', () => {
-  //   wrapper.simulate('mouseOver');
-  //   expect((wrapper.state().hover)).toEqual(true);
-  //   expect(wrapper.find('div.editable-hover-on')).toHaveLength(1);
-  // });
-  //
-  // it('hover off', () => {
-  //   wrapper.simulate('mouseOver');
-  //   wrapper.simulate('mouseleave');
-  //   expect((wrapper.state().hover)).toEqual(false);
-  //   expect(wrapper.find('.editable-hover-on')).toHaveLength(0);
-  // });
+  it('on click', () => {
+    wrapper.simulate('click');
+    expect((wrapper.state().editing)).toEqual(true);
+  });
+
+  it('hover on', () => {
+    wrapper.simulate('mouseEnter');
+    expect((wrapper.state().hover)).toEqual(true);
+    expect(wrapper.find('div.editable-hover-on')).toHaveLength(1);
+  });
+
+  it('hover off', () => {
+    wrapper.simulate('mouseEnter');
+    wrapper.simulate('mouseLeave');
+    expect((wrapper.state().hover)).toEqual(false);
+    expect(wrapper.find('.editable-hover-on')).toHaveLength(0);
+  });
 
   it('should show two buttons when the user clicks on the component', () => {
     wrapper.simulate('click');
     expect((wrapper.state().editing)).toEqual(true);
     expect(wrapper.find('button')).toHaveLength(2);
+  });
+
+  //-------------------------- PLACEHOLDER -------------------------
+  it('should use the default placeholder if none provided', () => {
+    wrapper.simulate('click');
+    expect(wrapper.find('input').props().placeholder).toEqual('Click to edit');
+  });
+
+  it('should use the provided placeholder', () => {
+    wrapper.setProps({placeholder: 'TEST'});
+    wrapper.simulate('click');
+    expect(wrapper.find('input').props().placeholder).toEqual('TEST');
+  });
+
+  it('should not show a placeholder if there is already a value available', () => {
+    wrapper.setState({
+      value: 'Test'
+    });
+    wrapper.simulate('click');
+    expect(wrapper.find('input').props().value).toEqual('Test');
   });
 
   //-------------------------- SAVE BUTTON --------------------------
@@ -77,3 +102,56 @@ describe('Editable - Save and Cancel buttons', () => {
     expect(cancelFn).toBeCalled();
   });
 });
+
+describe('Editable - Textarea', () => {
+
+  let wrapper;
+  const saveFn = jest.fn();
+  const cancelFn = jest.fn();
+
+  beforeEach(() => {
+    wrapper = shallow(
+        <Editable
+            type="textarea"
+            onSave={saveFn}
+            onCancel={cancelFn}
+            name="test"
+        />);
+  });
+
+  it('should render a textarea based on props', () => {
+    wrapper.simulate('click');
+    expect(wrapper.find('textarea')).toBeTruthy();
+  });
+});
+
+describe('Editable - Select', () => {
+  let wrapper;
+  const saveFn = jest.fn();
+  const cancelFn = jest.fn();
+  const options = [{label: 'Test One', value: 1},
+    {label: 'Test Two', value: 2}];
+
+  beforeEach(() => {
+    wrapper = shallow(
+        <Editable
+            type="select"
+            onSave={saveFn}
+            onCancel={cancelFn}
+            name="test"
+            options={options}
+        />);
+  });
+
+  it('should render a select based on props', () => {
+    wrapper.simulate('click');
+    expect(wrapper.find('select')).toBeTruthy();
+  });
+
+  it('when simulating a change, select should update its value', () => {
+    wrapper.simulate('click');
+    wrapper.find('select').simulate('change', {target: {value: 1}});
+    expect(wrapper.state().value).toBe(1);
+  });
+});
+
