@@ -205,7 +205,6 @@ export default class Editable extends React.Component {
             placeholder={placeholder}
         />;
       case 'checkbox':
-        console.log(this.state.value);
         return this.state.value.map(value => (
             <div
                 className={this.state.hover ? 'editable-hover-on' : ''}
