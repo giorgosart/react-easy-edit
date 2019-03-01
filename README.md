@@ -1,4 +1,4 @@
-![Test](https://img.shields.io/npm/v/react-easy-edit.svg?style=flat)
+[![Test](https://img.shields.io/npm/v/react-easy-edit.svg?style=flat)](https://www.npmjs.com/package/react-easy-edit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
