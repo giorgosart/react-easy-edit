@@ -69,7 +69,7 @@ export default class EasyEdit extends React.Component {
   }
 
   renderInput() {
-    const {name, type, options, placeholder} = this.props;
+    const {name, type, options, placeholder, min, max, disabled} = this.props;
     switch (type) {
       case 'text':
       case 'number':
@@ -85,6 +85,9 @@ export default class EasyEdit extends React.Component {
                 onChange={this.onChange}
                 type={type}
                 name={name}
+                min={min}
+                max={max}
+                disabled={disabled}
             />
         );
       case 'color':
@@ -93,6 +96,7 @@ export default class EasyEdit extends React.Component {
                 value={this.state.value}
                 onChange={this.onChange}
                 name={name}
+                disabled={disabled}
             />
         );
       case 'textarea':
@@ -102,6 +106,7 @@ export default class EasyEdit extends React.Component {
                 placeholder={placeholder}
                 onChange={this.onChange}
                 name={name}
+                disabled={disabled}
             />);
       case 'select':
         return (
@@ -112,6 +117,7 @@ export default class EasyEdit extends React.Component {
                 name={name}
                 placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER
                     ? Globals.DEFAULT_SELECT_PLACEHOLDER : placeholder}
+                disabled={disabled}
             />
         );
       case 'radio':
@@ -120,6 +126,7 @@ export default class EasyEdit extends React.Component {
                 value={this.state.value}
                 onChange={this.onChange}
                 options={options}
+                disabled={disabled}
             />
         );
       case 'checkbox':
@@ -128,6 +135,7 @@ export default class EasyEdit extends React.Component {
                 value={this.state.value}
                 onChange={this.onCheckboxChange}
                 options={options}
+                disabled={disabled}
             />
         );
     }
@@ -270,7 +278,8 @@ EasyEdit.propTypes = {
   max: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
-  ])
+  ]),
+  disabled: PropTypes.bool
 };
 
 EasyEdit.defaultProps = {
@@ -280,6 +289,7 @@ EasyEdit.defaultProps = {
   cancelButtonLabel: Globals.DEFAULT_CANCEL_BUTTON_LABEL,
   cancelButtonStyle: 'easy-edit-button',
   placeholder: Globals.DEFAULT_PLACEHOLDER,
+  disabled: false,
   onCancel: () => {
   }
 };

@@ -23,7 +23,8 @@ const EasyCheckbox = (props) => {
 EasyCheckbox.propTypes = {
   onChange: PropTypes.func,
   options: PropTypes.array.isRequired,
-  value: PropTypes.array
+  value: PropTypes.array,
+  disabled: PropTypes.bool
 };
 
 export default EasyCheckbox;

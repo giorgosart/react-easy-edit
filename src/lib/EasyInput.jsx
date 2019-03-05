@@ -4,7 +4,7 @@ import './EasyEdit.css';
 import Globals from "./globals";
 
 const EasyInput = (props) => {
-  const {name, type, value, placeholder, onChange, min, max} = props;
+  const {name, type, value, placeholder, onChange, min, max, disabled} = props;
 
   return (
       <input
@@ -15,6 +15,7 @@ const EasyInput = (props) => {
           max={max}
           onChange={onChange}
           placeholder={placeholder}
+          disabled={disabled}
           autoComplete="off"
       />
   );
@@ -32,7 +33,8 @@ EasyInput.propTypes = {
   max: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number]
-  )
+  ),
+  disabled: PropTypes.bool
 };
 
 EasyInput.defaultProps = {

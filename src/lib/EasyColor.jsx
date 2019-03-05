@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './EasyEdit.css';
-import Globals from "./globals";
 
 const EasyColor = (props) => {
-  const {name, value, onChange} = props;
+  const {name, value, onChange, disabled} = props;
 
   return (
       <input
@@ -12,6 +11,7 @@ const EasyColor = (props) => {
           type="color"
           defaultValue={value}
           onChange={onChange}
+          disabled={disabled}
       />
   );
 };
@@ -19,7 +19,8 @@ const EasyColor = (props) => {
 EasyColor.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  value: PropTypes.string
+  value: PropTypes.string,
+  disabled: PropTypes.bool
 };
 
 export default EasyColor;

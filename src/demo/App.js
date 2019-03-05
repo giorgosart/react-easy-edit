@@ -34,6 +34,7 @@ class App extends Component {
                   value="Test Input Field"
                   onSave={App.onTest}
                   name="name-one"
+                  disabled={true}
               />
               <EasyEdit
                   type="text"
@@ -51,7 +52,31 @@ class App extends Component {
               <EasyEdit
                   type="date"
                   onSave={App.onTest}
-                  name="name-one"
+                  name="date-one"
+              />
+              <h4>type "datetime-local"</h4>
+              <EasyEdit
+                  type="datetime-local"
+                  onSave={App.onTest}
+                  name="date-two"
+              />
+              <h4>type "time"</h4>
+              <EasyEdit
+                  type="time"
+                  onSave={App.onTest}
+                  name="date-three"
+              />
+              <h4>type "week"</h4>
+              <EasyEdit
+                  type="week"
+                  onSave={App.onTest}
+                  name="date-three"
+              />
+              <h4>type "month"</h4>
+              <EasyEdit
+                  type="month"
+                  onSave={App.onTest}
+                  name="date-three"
               />
               <h4>type "number"</h4>
               <EasyEdit
@@ -59,6 +84,7 @@ class App extends Component {
                   value={1}
                   onSave={App.onTest}
                   name="name-one"
+                  min={0}
               />
               <EasyEdit
                   type="number"
