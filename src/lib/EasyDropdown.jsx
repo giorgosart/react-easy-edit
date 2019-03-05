@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './EasyEdit.css';
+import Globals from './globals';
 
 const EasyDropdown = (props) => {
-  const {name, options, value, onChange} = props;
+  const {name, options, value, onChange, placeholder} = props;
 
   return (
       <select
@@ -11,6 +12,7 @@ const EasyDropdown = (props) => {
           onChange={onChange}
           name={name}
       >
+        <option key="" value="" disabled="disabled">{placeholder}</option>
         {options.map(option => (
             <option value={option.value} key={option.value}>
               {option.label}
@@ -27,7 +29,12 @@ EasyDropdown.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
-  ])
+  ]),
+  placeholder: PropTypes.string
+};
+
+EasyDropdown.defaultProps ={
+  placeholder: Globals.DEFAULT_SELECT_PLACEHOLDER
 };
 
 export default EasyDropdown;

@@ -110,6 +110,8 @@ export default class EasyEdit extends React.Component {
                 onChange={this.onChange}
                 options={options}
                 name={name}
+                placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER
+                    ? Globals.DEFAULT_SELECT_PLACEHOLDER : placeholder}
             />
         );
       case 'radio':
@@ -205,7 +207,6 @@ export default class EasyEdit extends React.Component {
                 type={type}
                 value={this.state.value}
                 onClick={this.onClick}
-                placeholder={placeholder}
                 readOnly
             />
         );
@@ -279,5 +280,6 @@ EasyEdit.defaultProps = {
   cancelButtonLabel: Globals.DEFAULT_CANCEL_BUTTON_LABEL,
   cancelButtonStyle: 'easy-edit-button',
   placeholder: Globals.DEFAULT_PLACEHOLDER,
-  onCancel: () => {}
+  onCancel: () => {
+  }
 };

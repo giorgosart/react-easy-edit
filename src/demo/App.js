@@ -90,7 +90,14 @@ class App extends Component {
                   type="select"
                   options={App.generateOptions()}
                   onSave={App.onTest}
-                  name="test"
+                  name="select-one"
+              />
+              <EasyEdit
+                  type="select"
+                  options={App.generateOptions()}
+                  onSave={App.onTest}
+                  name="select-two"
+                  placeholder="My Placeholder"
               />
               <h3>Checkbox</h3>
               <EasyEdit
