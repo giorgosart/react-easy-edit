@@ -1,23 +1,23 @@
 import React, {Component} from 'react';
 import './App.css';
-import Editable from "../lib/Editable";
+import EasyEdit from "../lib/EasyEdit";
 
 class App extends Component {
 
-  static onTest(value){
+  static onTest(value) {
     alert(value);
   }
 
-  static generateOptions(){
+  static generateOptions() {
     return [
-        {label:'Test One', value: 'testone'},
-        {label:'Test Two', value: 'testtwo'},
-        {label:'Test Three', value: 'testthree'},
-        {label:'Test Four',value: 'testfour'}
-      ]
+      {label: 'Test One', value: 'testone'},
+      {label: 'Test Two', value: 'testtwo'},
+      {label: 'Test Three', value: 'testthree'},
+      {label: 'Test Four', value: 'testfour'}
+    ]
   }
 
-  static generateValues(){
+  static generateValues() {
     return ['testone', 'testtwo'];
   }
 
@@ -26,20 +26,74 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <div>
-              <Editable
-                type="text"
-                value="Text fieadsld"
-                onSave={App.onTest}
-                name="ads"
+              <h1>React Easy Edit</h1>
+              <h3>Input Field</h3>
+              <h4>type "text"</h4>
+              <EasyEdit
+                  type="text"
+                  value="Test Input Field"
+                  onSave={App.onTest}
+                  name="name-one"
               />
-              <Editable
+              <EasyEdit
+                  type="text"
+                  onSave={App.onTest}
+                  name="name-two"
+              />
+              <h4>type "color"</h4>
+              <EasyEdit
+                  type="color"
+                  value="#ff00ff"
+                  onSave={App.onTest}
+                  name="name-one"
+              />
+              <h4>type "date"</h4>
+              <EasyEdit
+                  type="date"
+                  onSave={App.onTest}
+                  name="name-one"
+              />
+              <h4>type "number"</h4>
+              <EasyEdit
+                  type="number"
+                  value={1}
+                  onSave={App.onTest}
+                  name="name-one"
+              />
+              <EasyEdit
+                  type="number"
+                  onSave={App.onTest}
+                  name="name-two"
+              />
+              <h4>type "radio"</h4>
+              <EasyEdit
+                  type="radio"
+                  value="testone"
+                  onSave={App.onTest}
+                  options={App.generateOptions()}
+                  name="long"
+              />
+              <h3>Textarea</h3>
+              <EasyEdit
+                  type="textarea"
+                  value="Test Textarea"
+                  onSave={App.onTest}
+                  name="name0three"
+              />
+              <EasyEdit
+                  type="textarea"
+                  onSave={App.onTest}
+                  name="name0three"
+              />
+              <h3>Select</h3>
+              <EasyEdit
                   type="select"
                   options={App.generateOptions()}
                   onSave={App.onTest}
                   name="test"
-                  value="asd"
               />
-              <Editable
+              <h3>Checkbox</h3>
+              <EasyEdit
                   type="checkbox"
                   options={App.generateOptions()}
                   onSave={App.onTest}

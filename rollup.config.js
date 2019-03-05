@@ -3,7 +3,7 @@ import babel from 'rollup-plugin-babel';
 import postcss from 'rollup-plugin-postcss'
 
 export default {
-  input: 'src/lib/Editable.jsx',
+  input: 'src/lib/EasyEdit.jsx',
   external: ['react', 'prop-types'],
   plugins: [
     babel({

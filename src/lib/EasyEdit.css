@@ -1,0 +1,37 @@
+.easy-edit-wrapper {
+
+}
+
+.easy-edit-button-wrapper {
+  display: inline;
+}
+
+.easy-edit-hover-on {
+  cursor: pointer;
+  font-style: italic;
+}
+
+.easy-edit-radio-label {
+  display: block;
+}
+
+.easy-edit-radio-button {
+
+}
+
+.easy-edit-checkbox-label {
+  display: block;
+}
+
+.easy-edit-textarea {
+  min-height: 40px;
+}
+
+.easy-edit-button {
+  border: none;
+  padding: 4px;
+  margin: 0 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
