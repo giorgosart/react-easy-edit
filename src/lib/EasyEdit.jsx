@@ -225,7 +225,7 @@ export default class EasyEdit extends React.Component {
                 onMouseLeave={this.hoverOff}
             >
               {this.state.value && this.state.value.length !== 0 ? selected.map(
-                  checkbox => checkbox.label) : placeholder}
+                  checkbox => checkbox.label).join(', ') : placeholder}
             </div>);
       }
     }
