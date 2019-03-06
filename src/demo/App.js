@@ -131,7 +131,6 @@ class App extends Component {
                   options={App.generateOptions()}
                   onSave={App.onTest}
                   name="testfour"
-                  value={App.generateValues()}
               />
             </div>
           </header>

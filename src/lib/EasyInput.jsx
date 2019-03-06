@@ -5,7 +5,6 @@ import Globals from "./globals";
 
 const EasyInput = (props) => {
   const {name, type, value, placeholder, onChange, min, max, disabled} = props;
-
   return (
       <input
           name={name}

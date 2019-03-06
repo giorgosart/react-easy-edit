@@ -17,7 +17,8 @@ export default class EasyEdit extends React.Component {
     this.state = {
       editing: false,
       hover: false,
-      value: props.value
+      value: props.value,
+      tempValue: null
     };
 
     this.saveButton = React.createRef();
@@ -32,20 +33,24 @@ export default class EasyEdit extends React.Component {
 
   _onSave = () => {
     const {onSave} = this.props;
-    this.setState({editing: false}, () => onSave(this.state.value));
+    const tempValue = this.state.tempValue;
+    this.setState({editing: false, value: tempValue},
+        () => onSave(this.state.value));
   };
 
   _onCancel = () => {
     const {onCancel} = this.props;
-    this.setState({editing: false}, () => onCancel());
+    const value = this.state.value;
+    this.setState({editing: false, tempValue: value}, () => onCancel());
   };
 
   onChange = e => {
-    this.setState({value: e.target.value});
+    debugger;
+    this.setState({tempValue: e.target.value});
   };
 
   onCheckboxChange = e => {
-    let values = this.state.value;
+    let values = this.state.tempValue || [];
     if (e.target.checked) {
       if (!values.includes(e.target.value)) {
         values.push(e.target.value);
@@ -53,7 +58,7 @@ export default class EasyEdit extends React.Component {
     } else {
       values.splice(values.indexOf(e.target.value), 1);
     }
-    this.setState({value: values});
+    this.setState({tempValue: values});
   };
 
   onClick() {
@@ -70,6 +75,7 @@ export default class EasyEdit extends React.Component {
 
   renderInput() {
     const {name, type, options, placeholder, min, max, disabled} = this.props;
+    const editing = this.state.editing;
     switch (type) {
       case 'text':
       case 'number':
@@ -80,7 +86,7 @@ export default class EasyEdit extends React.Component {
       case 'week':
         return (
             <EasyInput
-                value={this.state.value}
+                value={editing ? this.state.tempValue : this.state.value}
                 placeholder={placeholder}
                 onChange={this.onChange}
                 type={type}
@@ -93,7 +99,7 @@ export default class EasyEdit extends React.Component {
       case 'color':
         return (
             <EasyColor
-                value={this.state.value}
+                value={editing ? this.state.tempValue : this.state.value}
                 onChange={this.onChange}
                 name={name}
                 disabled={disabled}
@@ -102,7 +108,7 @@ export default class EasyEdit extends React.Component {
       case 'textarea':
         return (
             <EasyParagraph
-                value={this.state.value}
+                value={editing ? this.state.tempValue : this.state.value}
                 placeholder={placeholder}
                 onChange={this.onChange}
                 name={name}
@@ -111,7 +117,7 @@ export default class EasyEdit extends React.Component {
       case 'select':
         return (
             <EasyDropdown
-                value={this.state.value}
+                value={editing ? this.state.tempValue : this.state.value}
                 onChange={this.onChange}
                 options={options}
                 name={name}
@@ -123,7 +129,7 @@ export default class EasyEdit extends React.Component {
       case 'radio':
         return (
             <EasyRadio
-                value={this.state.value}
+                value={editing ? this.state.tempValue : this.state.value}
                 onChange={this.onChange}
                 options={options}
                 disabled={disabled}
@@ -132,7 +138,7 @@ export default class EasyEdit extends React.Component {
       case 'checkbox':
         return (
             <EasyCheckbox
-                value={this.state.value}
+                value={editing ? this.state.tempValue : this.state.value}
                 onChange={this.onCheckboxChange}
                 options={options}
                 disabled={disabled}
