@@ -121,6 +121,21 @@ describe('EasyEdit', () => {
     expect(wrapper.find(EasyCheckbox)).toHaveLength(1);
   });
 
+  it('should show multiple selected checkbox values separated with ", ".', () => {
+    wrapper.setProps({
+      type: 'checkbox',
+      options: options
+    });
+    wrapper.setState({
+      value: [options[0].value]
+    });
+    expect(wrapper.text()).toEqual(options[0].label);
+    wrapper.setState({
+      value: [options[0].value, options[1].value]
+    });
+    expect(wrapper.text()).toEqual(options[0].label + `, ` + options[1].label);
+  })
+
   it('type select', () => {
     wrapper.setProps({type: 'select'});
     wrapper.simulate('click');
