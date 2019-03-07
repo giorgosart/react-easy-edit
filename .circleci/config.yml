@@ -11,6 +11,5 @@ jobs:
           command: yarn test
       - store_artifacts:
           path: coverage
-          destination: prefix
       - store_test_results:
           path: coverage
