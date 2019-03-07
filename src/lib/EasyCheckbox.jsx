@@ -4,9 +4,7 @@ import './EasyEdit.css';
 
 const EasyCheckbox = (props) => {
   let {options, value, onChange} = props;
-  if (value === null) {
-    value = [];
-  }
+  value = value || [];
   return (
       options.map(option => (
               <label key={option.value} className="easy-edit-checkbox-label">
