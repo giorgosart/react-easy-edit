@@ -3,15 +3,35 @@
   <component name="ChangeListManager">
     <list default="true" id="9854bbbf-11c4-49b1-b683-d5320de747ae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/EasyEdit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/EasyEdit.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/EasyEdit.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/EasyEdit.test.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DockManager">
+    <window id="6">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/lib/EasyEdit.jsx">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="340">
+                    <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
+                    <folding>
+                      <element signature="e#0#26#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -24,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/lib/EasyEdit.test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+            <state relative-caret-position="340">
+              <caret line="29" column="44" lean-forward="true" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -37,18 +57,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lib/EasyEdit.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/demo/App.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="274">
@@ -148,9 +156,9 @@
         <option value="$PROJECT_DIR$/src/lib/EasyCheckbox.jsx" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/lib/EasyEdit.css" />
+        <option value="$PROJECT_DIR$/src/demo/App.js" />
         <option value="$PROJECT_DIR$/src/lib/EasyEdit.test.js" />
         <option value="$PROJECT_DIR$/src/lib/EasyEdit.jsx" />
-        <option value="$PROJECT_DIR$/src/demo/App.js" />
       </list>
     </option>
   </component>
@@ -220,7 +228,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551972866018" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551973625208" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../react-easy-edit/react-easy-edit" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -252,31 +260,31 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Jest.EasyEdit.on click - non editable">
-    <configuration name="EasyDropdown" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Jest.EasyEdit.hover on">
+    <configuration name="EasyEdit" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/src/lib/EasyDropdown.test.js" />
+      <test-file value="$PROJECT_DIR$/src/lib/EasyEdit.test.js" />
       <test-names>
-        <test-name value="EasyDropdown" />
+        <test-name value="EasyEdit" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="EasyDropdown.should render the option label and values based on props" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="EasyEdit.hover on" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/lib/EasyDropdown.test.js" />
+      <test-file value="$PROJECT_DIR$/src/lib/EasyEdit.test.js" />
       <test-names>
-        <test-name value="EasyDropdown" />
-        <test-name value="should render the option label and values based on props" />
+        <test-name value="EasyEdit" />
+        <test-name value="hover on" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -319,11 +327,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.EasyEdit.hover on" />
+        <item itemvalue="Jest.EasyEdit" />
         <item itemvalue="Jest.EasyEdit.on click - non editable" />
         <item itemvalue="Jest.EasyParagraph" />
         <item itemvalue="npm.test" />
-        <item itemvalue="Jest.EasyDropdown" />
-        <item itemvalue="Jest.EasyDropdown.should render the option label and values based on props" />
       </list>
     </recent_temporary>
   </component>
@@ -356,18 +364,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="EasyDropdown_should_render_2_+_1_options - 2019.03.05 at 16h 37m 56s.xml">
-      <configuration name="EasyDropdown.should render 2 + 1 options" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="EasyDropdown_should_render_2_+_1_options - 2019.03.05 at 16h 38m 26s.xml">
-      <configuration name="EasyDropdown.should render 2 + 1 options" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="EasyDropdown_should_render_2_+_1_options - 2019.03.05 at 16h 41m 53s.xml">
-      <configuration name="EasyDropdown.should render 2 + 1 options" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="EasyDropdown - 2019.03.05 at 16h 43m 58s.xml">
-      <configuration name="EasyDropdown" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
     <history-entry file="EasyDropdown_should_render_the_option_label_and_values_based_on_props - 2019.03.05 at 16h 44m 20s.xml">
       <configuration name="EasyDropdown.should render the option label and values based on props" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
@@ -386,9 +382,21 @@
     <history-entry file="EasyEdit_on_click_-_non_editable - 2019.03.07 at 15h 33m 21s.xml">
       <configuration name="EasyEdit.on click - non editable" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
+    <history-entry file="EasyEdit_hover_on - 2019.03.07 at 15h 43m 02s.xml">
+      <configuration name="EasyEdit.hover on" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="EasyEdit_hover_on - 2019.03.07 at 15h 44m 56s.xml">
+      <configuration name="EasyEdit.hover on" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="EasyEdit - 2019.03.07 at 15h 45m 06s.xml">
+      <configuration name="EasyEdit" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="EasyEdit_hover_on - 2019.03.07 at 15h 48m 05s.xml">
+      <configuration name="EasyEdit.hover on" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164654000" />
+    <option name="totallyTimeSpent" value="165498000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -412,8 +420,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33152762" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.33044422" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33152762" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.33044422" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
@@ -447,6 +455,21 @@
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>wrapper</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>wrapper.state().hover</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>wrapper.state.hover</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>wrapper.find('select&gt;option:not([disabled])')</expression-string>
         <language-id>JavaScript</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -473,21 +496,6 @@
       </expression>
       <expression>
         <expression-string>wrapper.find('select&gt;option[disabled]')</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>wrapper.find('select&gt;option[!disabled]')</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>wrapper.find('select&gt;option[:disabled]')</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>wrapper.find('select&gt;option[:disable]')</expression-string>
         <language-id>JavaScript</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -726,10 +734,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/demo/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/EasyEdit.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+        <state relative-caret-position="340">
+          <caret line="29" column="44" lean-forward="true" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -738,20 +756,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/EasyEdit.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
+        <state relative-caret-position="340">
+          <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>

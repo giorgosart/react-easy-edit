@@ -68,7 +68,8 @@ export default class EasyEdit extends React.Component {
   }
 
   hoverOn() {
-    if (this.state.allowEdit) {
+    const {allowEdit} = this.props;
+    if (allowEdit) {
       this.setState({hover: true});
     }
   }
