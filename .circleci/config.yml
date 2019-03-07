@@ -13,4 +13,4 @@ jobs:
           path: coverage
           destination: prefix
       - store_test_results:
-          path: test-results
+          path: coverage
