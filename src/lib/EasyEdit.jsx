@@ -45,7 +45,6 @@ export default class EasyEdit extends React.Component {
   };
 
   onChange = e => {
-    debugger;
     this.setState({tempValue: e.target.value});
   };
 
@@ -62,11 +61,17 @@ export default class EasyEdit extends React.Component {
   };
 
   onClick() {
-    this.setState({editing: true});
+    const {allowEdit} = this.props;
+    if (allowEdit) {
+      this.setState({editing: true});
+    }
   }
 
   hoverOn() {
-    this.setState({hover: true});
+    const {allowEdit} = this.props;
+    if (allowEdit) {
+      this.setState({hover: true});
+    }
   }
 
   hoverOff() {
@@ -285,7 +290,8 @@ EasyEdit.propTypes = {
     PropTypes.string,
     PropTypes.number
   ]),
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  allowEdit: PropTypes.bool
 };
 
 EasyEdit.defaultProps = {
@@ -296,6 +302,7 @@ EasyEdit.defaultProps = {
   cancelButtonStyle: 'easy-edit-button',
   placeholder: Globals.DEFAULT_PLACEHOLDER,
   disabled: false,
+  allowEdit: true,
   onCancel: () => {
   }
 };

@@ -34,7 +34,7 @@ class App extends Component {
                   value="Test Input Field"
                   onSave={App.onTest}
                   name="name-one"
-                  disabled={true}
+                  allowEdit={false}
               />
               <EasyEdit
                   type="text"
