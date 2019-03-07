@@ -149,7 +149,11 @@ export default class EasyEdit extends React.Component {
                 disabled={disabled}
             />
         );
+      default: {
+        throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
+      }
     }
+
   }
 
   renderButtons() {
@@ -247,7 +251,11 @@ export default class EasyEdit extends React.Component {
                   checkbox => checkbox.label).join(', ') : placeholder}
             </div>);
       }
+      default: {
+        throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
+      }
     }
+
   }
 
   render() {
