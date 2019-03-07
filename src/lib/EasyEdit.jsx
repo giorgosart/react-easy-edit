@@ -18,8 +18,7 @@ export default class EasyEdit extends React.Component {
       editing: false,
       hover: false,
       value: props.value,
-      tempValue: null,
-      allowEdit: props.allowEdit
+      tempValue: null
     };
 
     this.saveButton = React.createRef();
@@ -62,7 +61,8 @@ export default class EasyEdit extends React.Component {
   };
 
   onClick() {
-    if (this.state.allowEdit) {
+    const {allowEdit} = this.props;
+    if (allowEdit) {
       this.setState({editing: true});
     }
   }

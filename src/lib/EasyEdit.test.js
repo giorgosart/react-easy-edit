@@ -37,7 +37,7 @@ describe('EasyEdit', () => {
   });
 
   it('on click - non editable', () => {
-    wrapper.setState({allowEdit: false});
+    wrapper.setProps({allowEdit: false});
     wrapper.simulate('click');
     expect((wrapper.state().editing)).toEqual(false);
   });
