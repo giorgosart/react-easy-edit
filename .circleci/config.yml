@@ -14,4 +14,3 @@ jobs:
           destination: prefix
       - store_test_results:
           path: test-results
-      - run: yarn coverall
