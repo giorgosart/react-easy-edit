@@ -26,6 +26,7 @@ A simple react library for input inline editing
 | min               | string or number          | No       |                 |                                                                                                                                                                                               |
 | max               | string or number          | No       |                 |                                                                                                                                                                                               |
 | disabled          | boolean                   | No       | false           |                                                                                                                                                                                               |
+| allowEdit         | boolean                   | No       | true            |                                                                                                                                                                                               |
 
 ## Installation
 ```npm i react-easy-edit```

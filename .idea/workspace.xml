@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9854bbbf-11c4-49b1-b683-d5320de747ae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/EasyCheckbox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/EasyCheckbox.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/EasyEdit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/EasyEdit.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/EasyEdit.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/EasyEdit.test.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,28 +18,55 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="54" selection-start-line="54" selection-end-line="54" />
+            <state relative-caret-position="192">
+              <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
+        <entry file="file://$PROJECT_DIR$/src/lib/EasyEdit.test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+            <state relative-caret-position="1283">
+              <caret line="88" column="79" lean-forward="true" selection-start-line="88" selection-start-column="79" selection-end-line="88" selection-end-column="79" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lib/EasyCheckbox.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lib/EasyEdit.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1173">
+              <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/lib/EasyCheckbox.jsx">
+        <entry file="file://$PROJECT_DIR$/src/demo/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+            <state relative-caret-position="274">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#0#39#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -47,7 +76,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>hoverOn</find>
       <find>console</find>
       <find>select</find>
       <find>onChange</find>
@@ -77,6 +105,7 @@
       <find>easy-edit-hover-on</find>
       <find>tem</find>
       <find>cove</find>
+      <find>deb</find>
     </findStrings>
     <replaceStrings>
       <replace>easyedit-hover-on</replace>
@@ -116,24 +145,24 @@
         <option value="$PROJECT_DIR$/src/lib/EasyInput.test.js" />
         <option value="$PROJECT_DIR$/src/lib/EasyRadio.test.js" />
         <option value="$PROJECT_DIR$/src/lib/EasyCheckbox.test.js" />
-        <option value="$PROJECT_DIR$/src/lib/EasyEdit.test.js" />
         <option value="$PROJECT_DIR$/src/demo/App.css" />
         <option value="$PROJECT_DIR$/src/lib/EasyColor.test.js" />
-        <option value="$PROJECT_DIR$/src/lib/EasyEdit.css" />
         <option value="$PROJECT_DIR$/src/lib/globals.js" />
         <option value="$PROJECT_DIR$/src/lib/EasyDropdown.test.js" />
-        <option value="$PROJECT_DIR$/src/demo/App.js" />
         <option value="$PROJECT_DIR$/src/lib/EasyInput.jsx" />
-        <option value="$PROJECT_DIR$/src/lib/EasyEdit.jsx" />
         <option value="$PROJECT_DIR$/src/lib/EasyParagraph.jsx" />
         <option value="$PROJECT_DIR$/src/lib/EasyDropdown.jsx" />
         <option value="$PROJECT_DIR$/src/lib/EasyRadio.jsx" />
         <option value="$PROJECT_DIR$/src/lib/EasyColor.jsx" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/.circleci/config.yml" />
         <option value="$PROJECT_DIR$/src/lib/EasyCheckbox.jsx" />
+        <option value="$PROJECT_DIR$/src/lib/EasyEdit.test.js" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/lib/EasyEdit.css" />
+        <option value="$PROJECT_DIR$/src/lib/EasyEdit.jsx" />
+        <option value="$PROJECT_DIR$/src/demo/App.js" />
       </list>
     </option>
   </component>
@@ -171,7 +200,19 @@
             <path>
               <item name="react-inline-edit" type="b2602c69:ProjectViewProjectNode" />
               <item name="react-inline-edit" type="462c0819:PsiDirectoryNode" />
+              <item name="coverage" type="462c0819:PsiDirectoryNode" />
+              <item name="lcov-report" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-inline-edit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-inline-edit" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-inline-edit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-inline-edit" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="react-inline-edit" type="b2602c69:ProjectViewProjectNode" />
@@ -191,7 +232,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551953907495" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551972154474" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../react-easy-edit/react-easy-edit" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -223,7 +264,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Jest.EasyParagraph">
+  <component name="RunManager" selected="Jest.EasyEdit.on click - non editable">
     <configuration name="EasyDropdown" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -234,20 +275,6 @@
       <test-file value="$PROJECT_DIR$/src/lib/EasyDropdown.test.js" />
       <test-names>
         <test-name value="EasyDropdown" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="EasyDropdown.should render 2 + 1 options" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/lib/EasyDropdown.test.js" />
-      <test-names>
-        <test-name value="EasyDropdown" />
-        <test-name value="should render 2 + 1 options" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -262,6 +289,20 @@
       <test-names>
         <test-name value="EasyDropdown" />
         <test-name value="should render the option label and values based on props" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="EasyEdit.on click - non editable" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/lib/EasyEdit.test.js" />
+      <test-names>
+        <test-name value="EasyEdit" />
+        <test-name value="on click - non editable" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -290,11 +331,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.EasyEdit.on click - non editable" />
         <item itemvalue="Jest.EasyParagraph" />
         <item itemvalue="npm.test" />
         <item itemvalue="Jest.EasyDropdown" />
         <item itemvalue="Jest.EasyDropdown.should render the option label and values based on props" />
-        <item itemvalue="Jest.EasyDropdown.should render 2 + 1 options" />
       </list>
     </recent_temporary>
   </component>
@@ -327,9 +368,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="EasyDropdown_should_use_the_placeholder_provided - 2019.03.05 at 16h 34m 06s.xml">
-      <configuration name="EasyDropdown.should use the placeholder provided" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
     <history-entry file="EasyDropdown_should_render_2_+_1_options - 2019.03.05 at 16h 35m 49s.xml">
       <configuration name="EasyDropdown.should render 2 + 1 options" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
@@ -357,9 +395,12 @@
     <history-entry file="EasyParagraph - 2019.03.06 at 23h 48m 04s.xml">
       <configuration name="EasyParagraph" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
+    <history-entry file="EasyEdit_on_click_-_non_editable - 2019.03.07 at 15h 00m 18s.xml">
+      <configuration name="EasyEdit.on click - non editable" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158877000" />
+    <option name="totallyTimeSpent" value="163943000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -371,7 +412,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17430703" />
@@ -571,23 +612,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/EasyEdit.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/EasyEdit.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/globals.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -652,36 +676,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="126" column="16" selection-start-line="126" selection-start-column="16" selection-end-line="126" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-167">
-            <caret line="18" selection-start-line="18" selection-end-line="18" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/EasyEdit.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-658">
-          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.css" />
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -705,8 +699,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="54" selection-start-line="54" selection-end-line="54" />
+        <state relative-caret-position="192">
+          <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -719,10 +713,57 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/EasyCheckbox.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        <state relative-caret-position="357">
+          <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/EasyEdit.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="25" column="21" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="476">
+            <caret line="28" column="66" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/EasyEdit.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1283">
+          <caret line="88" column="79" lean-forward="true" selection-start-line="88" selection-start-column="79" selection-end-line="88" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/EasyEdit.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1173">
+          <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/demo/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>

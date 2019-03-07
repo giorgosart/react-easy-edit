@@ -36,6 +36,12 @@ describe('EasyEdit', () => {
     expect((wrapper.state().editing)).toEqual(true);
   });
 
+  it('on click - non editable', () => {
+    wrapper.setState({allowEdit: false});
+    wrapper.simulate('click');
+    expect((wrapper.state().editing)).toEqual(false);
+  });
+
   it('hover on', () => {
     wrapper.simulate('mouseEnter');
     expect((wrapper.state().hover)).toEqual(true);
@@ -121,20 +127,22 @@ describe('EasyEdit', () => {
     expect(wrapper.find(EasyCheckbox)).toHaveLength(1);
   });
 
-  it('should show multiple selected checkbox values separated with ", ".', () => {
-    wrapper.setProps({
-      type: 'checkbox',
-      options: options
-    });
-    wrapper.setState({
-      value: [options[0].value]
-    });
-    expect(wrapper.text()).toEqual(options[0].label);
-    wrapper.setState({
-      value: [options[0].value, options[1].value]
-    });
-    expect(wrapper.text()).toEqual(options[0].label + `, ` + options[1].label);
-  })
+  it('should show multiple selected checkbox values separated with ", ".',
+      () => {
+        wrapper.setProps({
+          type: 'checkbox',
+          options: options
+        });
+        wrapper.setState({
+          value: [options[0].value]
+        });
+        expect(wrapper.text()).toEqual(options[0].label);
+        wrapper.setState({
+          value: [options[0].value, options[1].value]
+        });
+        expect(wrapper.text()).toEqual(
+            options[0].label + `, ` + options[1].label);
+      })
 
   it('type select', () => {
     wrapper.setProps({type: 'select'});
