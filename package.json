@@ -22,7 +22,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "rollup -c -o build/react-easy-edit.min.js",
-    "test": "react-scripts test --coverage"
+    "test": "react-scripts test --coverage",
+    "coverall": "react-scripts test --coverage --coverageReporters=text-lcov | coveralls"
   },
   "main": "build/react-easy-edit.min.js",
   "repository": {
@@ -52,6 +53,7 @@
     "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
+    "coveralls": "^3.0.3",
     "enzyme": "3.9.0",
     "enzyme-adapter-react-16": "1.10.0",
     "prop-types": "^15.7.2",
