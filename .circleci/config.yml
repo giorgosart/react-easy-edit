@@ -8,6 +8,6 @@ jobs:
       - run: npm install
       - run:
           name: "Run Jest and Collect Coverage Reports"
-          command: jest --collectCoverage=true
+          command: yarn test
       - store_artifacts:
           path: coverage
