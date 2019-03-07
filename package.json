@@ -23,7 +23,7 @@
     "start": "react-scripts start",
     "build": "rollup -c -o build/react-easy-edit.min.js",
     "test": "react-scripts test --coverage",
-    "coverall": "react-scripts test --coverage --coverageReporters=text-lcov | coveralls"
+    "coverall": "react-scripts test --coverage --coverageReporters=text-lcov | coveralls && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "main": "build/react-easy-edit.min.js",
   "repository": {
