@@ -41,6 +41,22 @@ describe('EasyEdit', () => {
     wrapper.simulate('click');
     expect((wrapper.state().editing)).toEqual(false);
   });
+  
+  it('should populate the tempValue with the passed in value prop', () => {
+    wrapper = shallow(
+      <EasyEdit
+          type="text"
+          onSave={saveFn}
+          onCancel={cancelFn}
+          name="test"
+          value="Test Value"
+          saveButtonLabel="Save Test"
+          saveButtonStyle="save-style"
+          cancelButtonLabel="Cancel Test"
+          cancelButtonStyle="cancel-style"
+      />);
+    expect((wrapper.state().tempValue)).toEqual('Test Value');
+  })
 
   it('hover on', () => {
     wrapper.simulate('mouseEnter');

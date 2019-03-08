@@ -18,7 +18,7 @@ export default class EasyEdit extends React.Component {
       editing: false,
       hover: false,
       value: props.value,
-      tempValue: null
+      tempValue: props.value
     };
 
     this.saveButton = React.createRef();
