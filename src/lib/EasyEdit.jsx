@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './EasyEdit.css';
 
+// local modules
 import Globals from './globals';
-import EasyDropdown from './EasyDropdown';
-import EasyInput from "./EasyInput";
-import EasyParagraph from "./EasyParagraph";
-import EasyRadio from "./EasyRadio";
-import EasyCheckbox from "./EasyCheckbox";
-import EasyColor from "./EasyColor";
+import EasyDropdown from './EasyDropdown.jsx';
+import EasyInput from "./EasyInput.jsx";
+import EasyParagraph from "./EasyParagraph.jsx";
+import EasyRadio from "./EasyRadio.jsx";
+import EasyCheckbox from "./EasyCheckbox.jsx";
+import EasyColor from "./EasyColor.jsx";
 
 export default class EasyEdit extends React.Component {
 
@@ -23,7 +24,6 @@ export default class EasyEdit extends React.Component {
 
     this.saveButton = React.createRef();
     this.cancelButton = React.createRef();
-    this.inputBox = React.createRef();
 
     this.onClick = this.onClick.bind(this);
     this.hoverOn = this.hoverOn.bind(this);
