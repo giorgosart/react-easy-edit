@@ -40,13 +40,14 @@ class App extends Component {
                   type="text"
                   onSave={App.onTest}
                   name="name-two"
+                  onValidate={()=> false}
               />
               <h4>type "color"</h4>
               <EasyEdit
                   type="color"
                   value="#ff00ff"
                   onSave={App.onTest}
-                  name="name-one"
+                  name="name-three"
               />
               <h4>type "date"</h4>
               <EasyEdit
@@ -70,26 +71,26 @@ class App extends Component {
               <EasyEdit
                   type="week"
                   onSave={App.onTest}
-                  name="date-three"
+                  name="date-four"
               />
               <h4>type "month"</h4>
               <EasyEdit
                   type="month"
                   onSave={App.onTest}
-                  name="date-three"
+                  name="date-five"
               />
               <h4>type "number"</h4>
               <EasyEdit
                   type="number"
                   value={1}
                   onSave={App.onTest}
-                  name="name-one"
+                  name="name-four"
                   min={0}
               />
               <EasyEdit
                   type="number"
                   onSave={App.onTest}
-                  name="name-two"
+                  name="name-five"
               />
               <h4>type "radio"</h4>
               <EasyEdit
@@ -97,19 +98,19 @@ class App extends Component {
                   value="testone"
                   onSave={App.onTest}
                   options={App.generateOptions()}
-                  name="long"
+                  name="name-six"
               />
               <h3>Textarea</h3>
               <EasyEdit
                   type="textarea"
                   value="Test Textarea"
                   onSave={App.onTest}
-                  name="name0three"
+                  name="name-seven"
               />
               <EasyEdit
                   type="textarea"
                   onSave={App.onTest}
-                  name="name0three"
+                  name="name-eight"
               />
               <h3>Select</h3>
               <EasyEdit
@@ -130,7 +131,14 @@ class App extends Component {
                   type="checkbox"
                   options={App.generateOptions()}
                   onSave={App.onTest}
-                  name="testfour"
+                  name="checkbox-one"
+              />
+              <EasyEdit
+                  type="checkbox"
+                  options={App.generateOptions()}
+                  onSave={App.onTest}
+                  name="checkbox-one"
+                  value={App.generateValues()}
               />
             </div>
           </header>

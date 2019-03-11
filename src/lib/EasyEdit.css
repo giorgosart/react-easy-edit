@@ -35,3 +35,11 @@
   text-decoration: none;
   display: inline-block;
 }
+
+.easy-edit-component-wrapper{
+  display: inline;
+}
+
+.easy-edit-validation-error {
+  color: red;
+}

@@ -19,7 +19,8 @@ export default class EasyEdit extends React.Component {
       editing: false,
       hover: false,
       value: props.value,
-      tempValue: props.value
+      tempValue: props.value,
+      isValid: true
     };
 
     this.saveButton = React.createRef();
@@ -32,10 +33,14 @@ export default class EasyEdit extends React.Component {
   }
 
   _onSave = () => {
-    const {onSave} = this.props;
+    const {onSave, onValidate} = this.props;
     const tempValue = this.state.tempValue;
-    this.setState({editing: false, value: tempValue},
-        () => onSave(this.state.value));
+    if (onValidate(tempValue)) {
+      this.setState({editing: false, value: tempValue},
+          () => onSave(this.state.value));
+    } else {
+      this.setState({isValid: false});
+    }
   };
 
   _onCancel = () => {
@@ -168,6 +173,15 @@ export default class EasyEdit extends React.Component {
     )
   }
 
+  renderInstruction() {
+    const {validationMessage} = this.props;
+    if(!this.state.isValid){
+      return(
+          <div className="easy-edit-validation-error">{validationMessage}</div>
+      )
+    }
+  }
+
   setCssClasses(existingClasses) {
     return this.state.hover ?
         'easy-edit-hover-on ' + existingClasses :
@@ -264,6 +278,7 @@ export default class EasyEdit extends React.Component {
           <div className="easy-edit-inline-wrapper">
             {this.renderInput()}
             {this.renderButtons()}
+            {this.renderInstruction()}
           </div>)
     } else {
       return this.renderPlaceholder()
@@ -288,6 +303,8 @@ EasyEdit.propTypes = {
   cancelButtonStyle: PropTypes.string,
   placeholder: PropTypes.string,
   onCancel: PropTypes.func,
+  onValidate: PropTypes.func,
+  validationMessage: PropTypes.string,
   onSave: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   min: PropTypes.oneOfType([
@@ -312,5 +329,7 @@ EasyEdit.defaultProps = {
   disabled: false,
   allowEdit: true,
   onCancel: () => {
-  }
+  },
+  onValidate: value => true,
+  validationMessage: Globals.FAILED_VALIDATION_MESSAGE
 };
