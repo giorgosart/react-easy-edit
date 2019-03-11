@@ -7,6 +7,8 @@ import EasyParagraph from "./EasyParagraph";
 import EasyRadio from "./EasyRadio";
 import EasyCheckbox from "./EasyCheckbox";
 import EasyDropdown from "./EasyDropdown";
+import EasyColor from "./EasyColor";
+import Globals from './globals';
 
 configure({adapter: new Adapter()});
 
@@ -41,20 +43,20 @@ describe('EasyEdit', () => {
     wrapper.simulate('click');
     expect((wrapper.state().editing)).toEqual(false);
   });
-  
+
   it('should populate the tempValue with the passed in value prop', () => {
     wrapper = shallow(
-      <EasyEdit
-          type="text"
-          onSave={saveFn}
-          onCancel={cancelFn}
-          name="test"
-          value="Test Value"
-          saveButtonLabel="Save Test"
-          saveButtonStyle="save-style"
-          cancelButtonLabel="Cancel Test"
-          cancelButtonStyle="cancel-style"
-      />);
+        <EasyEdit
+            type="text"
+            onSave={saveFn}
+            onCancel={cancelFn}
+            name="test"
+            value="Test Value"
+            saveButtonLabel="Save Test"
+            saveButtonStyle="save-style"
+            cancelButtonLabel="Cancel Test"
+            cancelButtonStyle="cancel-style"
+        />);
     expect((wrapper.state().tempValue)).toEqual('Test Value');
   })
 
@@ -128,6 +130,12 @@ describe('EasyEdit', () => {
     expect(wrapper.find(EasyParagraph)).toHaveLength(1);
   });
 
+  it('type color', () => {
+    wrapper.setProps({type: 'color'});
+    wrapper.simulate('click');
+    expect(wrapper.find(EasyColor)).toHaveLength(1);
+  });
+
   it('type radio', () => {
     wrapper.setProps({type: 'radio'});
     wrapper.simulate('click');
@@ -158,11 +166,20 @@ describe('EasyEdit', () => {
         });
         expect(wrapper.text()).toEqual(
             options[0].label + `, ` + options[1].label);
-      })
+      });
 
   it('type select', () => {
     wrapper.setProps({type: 'select'});
     wrapper.simulate('click');
     expect(wrapper.find(EasyDropdown)).toHaveLength(1);
+  });
+
+  it('type error', () => {
+    try {
+      wrapper.setProps({type: 'error'});
+      wrapper.simulate('click');
+    } catch (e) {
+      expect(e.message).toBe(Globals.ERROR_UNSUPPORTED_TYPE);
+    }
   });
 });

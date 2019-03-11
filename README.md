@@ -3,11 +3,12 @@
 [![CircleCI](https://circleci.com/gh/giorgosart/react-easy-edit.svg?style=shield)](https://circleci.com/gh/giorgosart/react-easy-edit)
 
 # react-easy-edit
-A simple react library for input inline editing
+A wrapper component library that allows inline editing on HTML5 input components.
 
 ## Features
-- Supports most of the HTML5 input components
-- Highly customisable!
+- Currently supports `input` (most of the types, even `color`), `textarea`,`radio`, `checkbox` and `select`
+- Validates user input
+- Allows customisation on all elements including the save and cancel buttons
 
 ## Props
 | Prop              | Type                      | Required | Default         | Description                                                                                                                                                                                   |
@@ -22,6 +23,8 @@ A simple react library for input inline editing
 | placeholder       | string                    | No       | Click to edit   | The text to be shown as a hint that describes the expected value of the input element                                                                                                         |
 | onCancel          | function                  | No       | () => {}        | A function that will be called when editing is cancelled                                                                                                                                      |
 | onSave            | function                  | Yes      |                 | A function that will be called when editing is saved                                                                                                                                          |
+| onValidate        | function                  | No       | () => {}        | A function that will be called before the onSave() event. It must return true or false and has one parameter which is the value of the component being edited                                 |
+| validationMessage | string                    | No       |                 | The text to be displayed if validation fails                                 |
 | name              | string                    | Yes      |                 |                                                                                                                                                                                               |
 | min               | string or number          | No       |                 |                                                                                                                                                                                               |
 | max               | string or number          | No       |                 |                                                                                                                                                                                               |
@@ -53,4 +56,4 @@ class App extends Component {
 export default App;
 ```
 ## Licence
-react-easy-edit is an open source library licensed as MIT.
+react-easy-edit is an open source library licensed as MIT
