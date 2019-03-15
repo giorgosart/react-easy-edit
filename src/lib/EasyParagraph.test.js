@@ -12,9 +12,9 @@ describe('EasyParagraph', () => {
   beforeEach(() => {
     wrapper = shallow(
         <EasyParagraph
-            name="test"
             onChange={onChange}
             value="TEST VALUE"
+            attributes={{name: 'test'}}
         />
     );
   });

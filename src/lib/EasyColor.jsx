@@ -3,23 +3,25 @@ import PropTypes from 'prop-types';
 import './EasyEdit.css';
 
 const EasyColor = (props) => {
-  const {name, value = '', onChange, disabled} = props;
+  const {value = '', onChange, attributes} = props;
   return (
       <input
-          name={name}
           type="color"
           defaultValue={value}
           onChange={onChange}
-          disabled={disabled}
+          {...attributes}
       />
   );
 };
 
 EasyColor.propTypes = {
-  name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   value: PropTypes.string,
-  disabled: PropTypes.bool
+  attributes: PropTypes.object
+};
+
+EasyColor.defaultProps = {
+  attributes: {}
 };
 
 export default EasyColor;

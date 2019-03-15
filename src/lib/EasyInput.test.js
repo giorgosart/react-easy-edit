@@ -13,9 +13,9 @@ describe('EasyInput', () => {
     wrapper = shallow(
         <EasyInput
             type="text"
-            name="test"
             onChange={onChange}
             value="TEST VALUE"
+            attributes={{name: 'test'}}
         />
     );
   });

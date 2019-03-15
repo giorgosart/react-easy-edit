@@ -12,9 +12,9 @@ describe('EasyColor', () => {
   beforeEach(() => {
     wrapper = shallow(
         <EasyColor
-            name="test"
             onChange={onChange}
             value="#ff00ff"
+            attributes={{name: 'test'}}
         />
     );
   });

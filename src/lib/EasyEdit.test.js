@@ -25,11 +25,11 @@ describe('EasyEdit', () => {
             type="text"
             onSave={saveFn}
             onCancel={cancelFn}
-            name="test"
             saveButtonLabel="Save Test"
             saveButtonStyle="save-style"
             cancelButtonLabel="Cancel Test"
             cancelButtonStyle="cancel-style"
+            attributes={{name: 'test'}}
         />);
   });
 
@@ -50,15 +50,15 @@ describe('EasyEdit', () => {
             type="text"
             onSave={saveFn}
             onCancel={cancelFn}
-            name="test"
             value="Test Value"
             saveButtonLabel="Save Test"
             saveButtonStyle="save-style"
             cancelButtonLabel="Cancel Test"
             cancelButtonStyle="cancel-style"
+            attributes={{name: 'test'}}
         />);
     expect((wrapper.state().tempValue)).toEqual('Test Value');
-  })
+  });
 
   it('hover on', () => {
     wrapper.simulate('mouseEnter');

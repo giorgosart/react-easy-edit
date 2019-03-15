@@ -22,6 +22,12 @@ class App extends Component {
   }
 
   render() {
+    let attributes = {
+      name: 'name-two',
+      id: 'name-two',
+      disabled: true
+    };
+
     return (
         <div className="App">
           <header className="App-header">
@@ -39,8 +45,8 @@ class App extends Component {
               <EasyEdit
                   type="text"
                   onSave={App.onTest}
-                  name="name-two"
-                  onValidate={()=> false}
+                  onValidate={() => true}
+                  attributes={attributes}
               />
               <h4>type "color"</h4>
               <EasyEdit

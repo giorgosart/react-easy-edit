@@ -4,16 +4,16 @@ import './EasyEdit.css';
 import Globals from './globals'
 
 const EasyParagraph = (props) => {
-  const {name, value, placeholder, onChange, disabled} = props;
+  const {value, placeholder, onChange, attributes} = props;
 
   return (
       <textarea
+          autoFocus={attributes["autoFocus"] || true}
           className="easy-edit-textarea"
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          name={name}
-          disabled={disabled}
+          {...attributes}
       />);
 };
 
@@ -21,10 +21,11 @@ EasyParagraph.propTypes = {
   onChange: PropTypes.func,
   value: PropTypes.string,
   placeholder: PropTypes.string,
-  disabled: PropTypes.bool
+  attributes: PropTypes.object
 };
 
 EasyParagraph.defaultProps = {
+  attributes: {},
   placeholder: Globals.DEFAULT_PLACEHOLDER
 };
 

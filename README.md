@@ -24,12 +24,9 @@ A wrapper component library that allows inline editing on HTML5 input components
 | onCancel          | function                  | No       | () => {}        | A function that will be called when editing is cancelled                                                                                                                                      |
 | onSave            | function                  | Yes      |                 | A function that will be called when editing is saved                                                                                                                                          |
 | onValidate        | function                  | No       | () => {}        | A function that will be called before the onSave() event. It must return true or false and has one parameter which is the value of the component being edited                                 |
-| validationMessage | string                    | No       |                 | The text to be displayed if validation fails                                 |
-| name              | string                    | Yes      |                 |                                                                                                                                                                                               |
-| min               | string or number          | No       |                 |                                                                                                                                                                                               |
-| max               | string or number          | No       |                 |                                                                                                                                                                                               |
-| disabled          | boolean                   | No       | false           |                                                                                                                                                                                               |
-| allowEdit         | boolean                   | No       | true            |                                                                                                                                                                                               |
+| validationMessage | string                    | No       |                 | The text to be displayed if validation fails                                                                                                                                                  |
+| allowEdit         | boolean                   | No       | true            | Determines whether the component itself should be editable or not                                                                                                                             |
+| attributes        | object                    | No       | {}              | A key value pair of HTML attributes to be applied on the element                                                                                                                              |
 
 ## Installation
 ```npm i react-easy-edit```
@@ -41,13 +38,20 @@ import React, { Component } from 'react';
 import EasyEdit from 'react-easy-edit';
 
 class App extends Component {
+
+const attributes = {
+    name: 'name-two',
+    id: 'name-two',
+    disabled: true
+  };
+    
   render() {
     return (
         <EasyEdit
           type="text"
-          value="My test field"
-          onSave={()=>{}}
-          name="test"
+          onSave={()={}}
+          onValidate={() => true}
+          attributes={attributes}
         />
     );
   }

@@ -15,15 +15,15 @@ describe('EasyDropdown', () => {
   beforeEach(() => {
     wrapper = shallow(
         <EasyDropdown
-            name="Test"
             options={options}
             onChange={onChange}
+            attributes={{name: 'test'}}
         />
     );
   });
 
   it('should set the name provided as a prop', () => {
-    expect(wrapper.find('select[name="Test"]')).toHaveLength(1);
+    expect(wrapper.find('select[name="test"]')).toHaveLength(1);
   });
 
   it('should use the default placeholder', () => {
