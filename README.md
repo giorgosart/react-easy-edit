@@ -2,6 +2,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CircleCI](https://circleci.com/gh/giorgosart/react-easy-edit.svg?style=shield)](https://circleci.com/gh/giorgosart/react-easy-edit)
 
+![](https://i.imgur.com/vwqcqeD.gif)
+
 # react-easy-edit
 A wrapper component library that allows inline editing on HTML5 input components.
 
