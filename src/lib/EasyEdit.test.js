@@ -44,6 +44,12 @@ describe('EasyEdit', () => {
     expect((wrapper.state().editing)).toEqual(false);
   });
 
+  it('on hover - non editable should show a not-allowed cursor', () => {
+    wrapper.setProps({allowEdit: false});
+    wrapper.simulate('mouseEnter');
+    expect(wrapper.find('div.easy-edit-not-allowed')).toHaveLength(1);
+  });
+
   it('should populate the tempValue with the passed in value prop', () => {
     wrapper = shallow(
         <EasyEdit
