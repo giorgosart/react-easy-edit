@@ -32,6 +32,14 @@ export default class EasyEdit extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.value !== prevProps.value) {
+      this.setState({
+        value: this.props.value
+      });
+    }
+  }
+
   _onSave = () => {
     const {onSave, onValidate} = this.props;
     const tempValue = this.state.tempValue;
