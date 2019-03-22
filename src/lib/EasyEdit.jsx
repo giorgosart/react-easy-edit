@@ -177,9 +177,13 @@ export default class EasyEdit extends React.Component {
   }
 
   setCssClasses(existingClasses) {
-    return this.state.hover ?
-        'easy-edit-hover-on ' + existingClasses :
-        existingClasses;
+    if (!this.props.allowEdit) {
+      return'easy-edit-not-allowed ' + existingClasses;
+    } else if (this.state.hover) {
+      return 'easy-edit-hover-on ' + existingClasses;
+    } else {
+      return existingClasses;
+    }
   }
 
   static generateButton(ref, onClick, label, cssClass, name) {

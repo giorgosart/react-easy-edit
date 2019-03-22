@@ -19,6 +19,10 @@
 
 }
 
+.easy-edit-not-allowed{
+  cursor: not-allowed;
+}
+
 .easy-edit-checkbox-label {
   display: block;
 }

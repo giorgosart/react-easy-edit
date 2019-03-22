@@ -23,7 +23,6 @@ class App extends Component {
 
   render() {
     let attributes = {
-      name: 'name-two',
       id: 'name-two',
       disabled: true
     };
@@ -37,16 +36,23 @@ class App extends Component {
               <h4>type "text"</h4>
               <EasyEdit
                   type="text"
-                  value="Test Input Field"
+                  value="Can't click this"
                   onSave={App.onTest}
                   name="name-one"
                   allowEdit={false}
               />
               <EasyEdit
                   type="text"
+                  placeholder="I'm disabled!"
                   onSave={App.onTest}
                   onValidate={() => true}
                   attributes={attributes}
+              />
+              <EasyEdit
+                  type="text"
+                  value="Edit me!"
+                  onSave={App.onTest}
+                  name="name-one"
               />
               <h4>type "color"</h4>
               <EasyEdit
