@@ -5,10 +5,10 @@
 ![](https://i.imgur.com/vwqcqeD.gif)
 
 # react-easy-edit
-A wrapper component library that allows inline editing on HTML5 input components.
+A React library that allows inline editing on HTML5 input components.
 
 ## Features
-- Currently supports `input` (most of the types, even `color`), `textarea`,`radio`, `checkbox` and `select`
+- Supports `input` (most of the types, even `color`), `textarea`,`radio`, `checkbox` and `select`
 - Validates user input
 - Allows customisation on all elements including the save and cancel buttons
 
@@ -39,9 +39,9 @@ A simple example
 import React, { Component } from 'react';
 import EasyEdit from 'react-easy-edit';
 
-class App extends Component {
+export default class App extends Component {
 
-const attributes = {
+  const attributes = {
     name: 'name-two',
     id: 'name-two',
     disabled: true
@@ -51,15 +51,13 @@ const attributes = {
     return (
         <EasyEdit
           type="text"
-          onSave={()={}}
+          onSave={() => {}}
           onValidate={() => true}
           attributes={attributes}
         />
     );
   }
 }
-
-export default App;
 ```
 ## Licence
 react-easy-edit is an open source library licensed as MIT
