@@ -102,6 +102,7 @@ export default class EasyEdit extends React.Component {
       case 'time':
       case 'month':
       case 'week':
+      case 'range':
         return (
             <EasyInput
                 value={editing ? this.state.tempValue : this.state.value}
@@ -213,7 +214,8 @@ export default class EasyEdit extends React.Component {
       case 'datetime-local':
       case 'time':
       case 'month':
-      case 'week': {
+      case 'week':
+      case 'range': {
         return (
             <div
                 className={this.setCssClasses('easy-edit-wrapper')}
@@ -295,7 +297,7 @@ export default class EasyEdit extends React.Component {
 EasyEdit.propTypes = {
   type: PropTypes.oneOf([
     'text', 'number', 'color', 'textarea', 'date', 'datetime-local',
-    'time', 'month', 'week', 'radio', 'checkbox', 'select'
+    'time', 'month', 'week', 'radio', 'checkbox', 'select', 'range'
   ]).isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
