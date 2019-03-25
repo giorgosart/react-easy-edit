@@ -52,7 +52,11 @@ class App extends Component {
                   type="text"
                   value="Edit me!"
                   onSave={App.onTest}
-                  name="name-one"
+              />
+              <h4>type "range"</h4>
+              <EasyEdit
+                  type="range"
+                  onSave={App.onTest}
               />
               <h4>type "color"</h4>
               <EasyEdit
