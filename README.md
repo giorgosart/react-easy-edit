@@ -2,10 +2,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CircleCI](https://circleci.com/gh/giorgosart/react-easy-edit.svg?style=shield)](https://circleci.com/gh/giorgosart/react-easy-edit)
 
-![](https://i.imgur.com/vwqcqeD.gif)
+[](https://i.imgur.com/vwqcqeD.gif)
 
 # react-easy-edit
 A React library that allows inline editing on HTML5 input components.
+
+- If you would like to see what the next release looks like, visit our [Dev 0.4.0](https://github.com/giorgosart/react-easy-edit/projects/11) project
 
 ## Features
 - Supports `input` (most of the types, even `color`), `textarea`,`radio`, `checkbox` and `select`
