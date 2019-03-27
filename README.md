@@ -7,7 +7,7 @@
 # react-easy-edit
 A React library that allows inline editing on HTML5 input components.
 
-- If you would like to see what the next release looks like, visit our [Dev 0.4.0](https://github.com/giorgosart/react-easy-edit/projects/11) project
+If you would like to see what the next release looks like, visit our [Dev 0.4.0](https://github.com/giorgosart/react-easy-edit/projects/11) project :rocket:
 
 ## Features
 - Supports `input` (most of the types, even `color`), `textarea`,`radio`, `checkbox` and `select`
