@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './App.css';
 import EasyEdit from "../lib/EasyEdit";
 
+import CustomInput from './CustomInput';
+
 class App extends Component {
 
   static onTest(value) {
@@ -23,6 +25,7 @@ class App extends Component {
 
   render() {
     let attributes = {
+      name: 'name-two',
       id: 'name-two',
       disabled: true
     };
@@ -36,13 +39,12 @@ class App extends Component {
               <h4>type "text"</h4>
               <EasyEdit
                   type="text"
-                  value="Can't click this"
+                  value="Test Input Field"
                   onSave={App.onTest}
                   allowEdit={false}
               />
               <EasyEdit
                   type="text"
-                  placeholder="I'm disabled!"
                   onSave={App.onTest}
                   onValidate={() => true}
                   attributes={attributes}
@@ -147,6 +149,20 @@ class App extends Component {
                   options={App.generateOptions()}
                   onSave={App.onTest}
                   value={App.generateValues()}
+              />
+              <h3>Custom components</h3>
+              <EasyEdit
+                  type="custom"
+                  onSave={App.onTest}
+                  name="custom-one"
+                  editComponent={<CustomInput />}
+              />
+              <EasyEdit
+                  type="custom"
+                  onSave={App.onTest}
+                  name="custom-two"
+                  value={App.generateValues()}
+                  editComponent={<CustomInput />}
               />
             </div>
           </header>

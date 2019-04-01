@@ -157,6 +157,12 @@ export default class EasyEdit extends React.Component {
                 attributes={attributes}
             />
         );
+      case 'custom':
+        return React.cloneElement(this.props.editComponent, {
+          onChange: newValue => {
+            this.onChange(newValue);
+          }
+        });
       default: {
         throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
       }
@@ -224,7 +230,8 @@ export default class EasyEdit extends React.Component {
       case 'time':
       case 'month':
       case 'week':
-      case 'range': {
+      case 'range':
+      case 'custom': {
         return (
             <div
                 className={this.setCssClasses('easy-edit-wrapper')}
