@@ -92,7 +92,7 @@ export default class EasyEdit extends React.Component {
   }
 
   renderInput() {
-    const {type, options, placeholder, attributes, instructions} = this.props;
+    const {type, options, placeholder, attributes} = this.props;
     const editing = this.state.editing;
     switch (type) {
       case 'text':
@@ -110,7 +110,6 @@ export default class EasyEdit extends React.Component {
                 onChange={this.onChange}
                 type={type}
                 attributes={attributes}
-                instructions={instructions}
             />
         );
       case 'color':
@@ -119,7 +118,6 @@ export default class EasyEdit extends React.Component {
                 value={editing ? this.state.tempValue : this.state.value}
                 onChange={this.onChange}
                 attributes={attributes}
-                instructions={instructions}
             />
         );
       case 'textarea':
@@ -129,7 +127,6 @@ export default class EasyEdit extends React.Component {
                 placeholder={placeholder}
                 onChange={this.onChange}
                 attributes={attributes}
-                instructions={instructions}
             />);
       case 'select':
         return (
@@ -140,7 +137,6 @@ export default class EasyEdit extends React.Component {
                 placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER
                     ? Globals.DEFAULT_SELECT_PLACEHOLDER : placeholder}
                 attributes={attributes}
-                instructions={instructions}
             />
         );
       case 'radio':
@@ -150,7 +146,6 @@ export default class EasyEdit extends React.Component {
                 onChange={this.onChange}
                 options={options}
                 attributes={attributes}
-                instructions={instructions}
             />
         );
       case 'checkbox':
@@ -160,7 +155,6 @@ export default class EasyEdit extends React.Component {
                 onChange={this.onCheckboxChange}
                 options={options}
                 attributes={attributes}
-                instructions={instructions}
             />
         );
       default: {
