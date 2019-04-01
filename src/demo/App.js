@@ -51,26 +51,26 @@ class App extends Component {
                   type="text"
                   value="Edit me!"
                   onSave={App.onTest}
-                  instructions="TETEWWEEWETWET"
+                  instructions="Custom instructions"
               />
               <h4>type "range"</h4>
               <EasyEdit
                   type="range"
                   onSave={App.onTest}
-                  instructions="TETEWWEEWETWET"
+                  instructions="Custom instructions"
               />
               <h4>type "color"</h4>
               <EasyEdit
                   type="color"
                   value="#ff00ff"
                   onSave={App.onTest}
-                  instructions="TETEWWEEWETWET"
+                  instructions="Custom instructions"
               />
               <h4>type "date"</h4>
               <EasyEdit
                   type="date"
                   onSave={App.onTest}
-                  instructions="TETEWWEEWETWET"
+                  instructions="Custom instructions"
               />
               <h4>type "datetime-local"</h4>
               <EasyEdit
@@ -109,14 +109,14 @@ class App extends Component {
                   value="testone"
                   onSave={App.onTest}
                   options={App.generateOptions()}
-                  instructions="TETEWWEEWETWET"
+                  instructions="Custom instructions"
               />
               <h3>Textarea</h3>
               <EasyEdit
                   type="textarea"
                   value="Test Textarea"
                   onSave={App.onTest}
-                  instructions="TETEWWEEWETWET"
+                  instructions="Custom instructions"
               />
               <EasyEdit
                   type="textarea"
@@ -133,14 +133,14 @@ class App extends Component {
                   options={App.generateOptions()}
                   onSave={App.onTest}
                   placeholder="My Placeholder"
-                  instructions="TETEWWEEWETWET"
+                  instructions="Custom instructions"
               />
               <h3>Checkbox</h3>
               <EasyEdit
                   type="checkbox"
                   options={App.generateOptions()}
                   onSave={App.onTest}
-                  instructions="TETEWWEEWETWET"
+                  instructions="Custom instructions"
               />
               <EasyEdit
                   type="checkbox"

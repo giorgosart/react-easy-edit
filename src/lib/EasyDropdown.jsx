@@ -4,7 +4,7 @@ import './EasyEdit.css';
 import Globals from './globals';
 
 const EasyDropdown = (props) => {
-  const {options, value, onChange, placeholder, attributes, instructions} = props;
+  const {options, value, onChange, placeholder, attributes} = props;
 
   return (
       <div className="easy-edit-component-wrapper">
