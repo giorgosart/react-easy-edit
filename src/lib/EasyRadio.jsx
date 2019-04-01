@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './EasyEdit.css';
 
 const EasyRadio = (props) => {
-  const {options, value, onChange, attributes, instructions} = props;
+  const {options, value, onChange, attributes} = props;
   let radios = options.map(option => (
       <label key={option.value} className="easy-edit-radio-label">
         <input
@@ -19,7 +19,6 @@ const EasyRadio = (props) => {
   return (
       <div>
         {radios}
-        <div className="easy-edit-instructions">{instructions}</div>
       </div>
   );
 };
@@ -30,13 +29,11 @@ EasyRadio.propTypes = {
     PropTypes.string,
     PropTypes.number
   ]),
-  attributes: PropTypes.object,
-  instructions: PropTypes.string
+  attributes: PropTypes.object
 };
 
 EasyRadio.defaultProps = {
-  attributes: {},
-  instructions: null
+  attributes: {}
 };
 
 export default EasyRadio;

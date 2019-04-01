@@ -16,18 +16,12 @@ describe('EasyInput', () => {
             onChange={onChange}
             value="TEST VALUE"
             attributes={{name: 'test'}}
-            instructions="My instructions"
         />
     );
   });
 
   it('should set the name provided as a prop', () => {
     expect(wrapper.find('input[name="test"]')).toHaveLength(1);
-  });
-
-  it('should set the instructions provided as a prop', () => {
-    expect(wrapper.find('.easy-edit-instructions')).toHaveLength(1);
-    expect(wrapper.find('.easy-edit-instructions').text()).toEqual("My instructions");
   });
 
   it('should use the default placeholder if none provided', () => {

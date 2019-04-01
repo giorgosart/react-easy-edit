@@ -184,9 +184,18 @@ export default class EasyEdit extends React.Component {
 
   renderValidationMessage() {
     const {validationMessage} = this.props;
-    if(!this.state.isValid){
-      return(
+    if (!this.state.isValid) {
+      return (
           <div className="easy-edit-validation-error">{validationMessage}</div>
+      )
+    }
+  }
+
+  renderInstructions() {
+    const {instructions} = this.props;
+    if (this.state.editing && instructions !== null) {
+      return (
+          <div className="easy-edit-instructions">{instructions}</div>
       )
     }
   }
@@ -292,6 +301,7 @@ export default class EasyEdit extends React.Component {
           <div className="easy-edit-inline-wrapper">
             {this.renderInput()}
             {this.renderButtons()}
+            {this.renderInstructions()}
             {this.renderValidationMessage()}
           </div>)
     } else {

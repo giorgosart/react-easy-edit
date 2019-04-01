@@ -20,7 +20,6 @@ const EasyDropdown = (props) => {
               </option>
           ))}
         </select>
-        <span className="easy-edit-instructions">{instructions}</span>
       </div>
   );
 };
@@ -33,14 +32,12 @@ EasyDropdown.propTypes = {
     PropTypes.number
   ]),
   placeholder: PropTypes.string,
-  attributes: PropTypes.object,
-  instructions: PropTypes.string
+  attributes: PropTypes.object
 };
 
 EasyDropdown.defaultProps = {
   attributes: {},
-  placeholder: Globals.DEFAULT_SELECT_PLACEHOLDER,
-  instructions: null
+  placeholder: Globals.DEFAULT_SELECT_PLACEHOLDER
 };
 
 export default EasyDropdown;

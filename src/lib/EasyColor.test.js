@@ -15,7 +15,6 @@ describe('EasyColor', () => {
             onChange={onChange}
             value="#ff00ff"
             attributes={{name: 'test'}}
-            instructions="My instructions"
         />
     );
   });
@@ -23,12 +22,6 @@ describe('EasyColor', () => {
   it('should set the name provided as a prop', () => {
     expect(wrapper.find('input[name="test"]')).toHaveLength(1);
   });
-
-  it('should set the instructions provided as a prop', () => {
-    expect(wrapper.find('.easy-edit-instructions')).toHaveLength(1);
-    expect(wrapper.find('.easy-edit-instructions').text()).toEqual("My instructions");
-  });
-
 
   it('should call onChange if the value of the input is changed', () => {
     wrapper.find('input[name="test"]').simulate('change', {target: {value: '#000000'}});
