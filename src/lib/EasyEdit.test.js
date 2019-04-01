@@ -30,6 +30,7 @@ describe('EasyEdit', () => {
             cancelButtonLabel="Cancel Test"
             cancelButtonStyle="cancel-style"
             attributes={{name: 'test'}}
+            instructions="My instructions"
         />);
   });
 
@@ -187,5 +188,12 @@ describe('EasyEdit', () => {
     } catch (e) {
       expect(e.message).toBe(Globals.ERROR_UNSUPPORTED_TYPE);
     }
+  });
+
+  it('should set the instructions provided as a prop', () => {
+    expect(wrapper.find('.easy-edit-instructions')).toHaveLength(0);
+    wrapper.simulate('click');
+    expect(wrapper.find('.easy-edit-instructions')).toHaveLength(1);
+    expect(wrapper.find('.easy-edit-instructions').text()).toEqual("My instructions");
   });
 });

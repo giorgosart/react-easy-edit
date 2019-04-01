@@ -39,7 +39,7 @@ describe('EasyParagraph', () => {
   });
 
   it('should call onChange if the value of the input is changed', () => {
-    wrapper.simulate('change', {target: {value: 'abc'}});
+    wrapper.find('textarea').simulate('change', {target: {value: 'abc'}});
     expect(onChange).toBeCalled();
   });
 });

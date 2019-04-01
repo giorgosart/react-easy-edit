@@ -7,18 +7,20 @@ const EasyDropdown = (props) => {
   const {options, value, onChange, placeholder, attributes} = props;
 
   return (
-      <select
-          value={value || ''}
-          onChange={onChange}
-          {...attributes}
-      >
-        <option key="" value="" disabled="disabled">{placeholder}</option>
-        {options.map(option => (
-            <option value={option.value} key={option.value}>
-              {option.label}
-            </option>
-        ))}
-      </select>
+      <div className="easy-edit-component-wrapper">
+        <select
+            value={value || ''}
+            onChange={onChange}
+            {...attributes}
+        >
+          <option key="" value="" disabled="disabled">{placeholder}</option>
+          {options.map(option => (
+              <option value={option.value} key={option.value}>
+                {option.label}
+              </option>
+          ))}
+        </select>
+      </div>
   );
 };
 

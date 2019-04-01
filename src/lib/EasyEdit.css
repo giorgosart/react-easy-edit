@@ -1,7 +1,3 @@
-.easy-edit-wrapper {
-
-}
-
 .easy-edit-button-wrapper {
   display: inline;
 }
@@ -13,10 +9,6 @@
 
 .easy-edit-radio-label {
   display: block;
-}
-
-.easy-edit-radio-button {
-
 }
 
 .easy-edit-not-allowed{
@@ -41,7 +33,7 @@
 }
 
 .easy-edit-component-wrapper{
-  display: inline;
+  display: inline-grid;
 }
 
 .easy-edit-validation-error {

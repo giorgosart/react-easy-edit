@@ -5,21 +5,25 @@ import './EasyEdit.css';
 const EasyCheckbox = (props) => {
   let {options, value, onChange, attributes} = props;
   value = value || [];
+  let checkboxes = options.map(option => (
+          <label key={option.value} className="easy-edit-checkbox-label">
+            <input
+                {...attributes}
+                type="checkbox"
+                className="easy-edit-radio-button"
+                value={option.value}
+                key={option.value}
+                onChange={onChange}
+                checked={value.includes(option.value)}
+            />{option.label}
+          </label>
+      )
+  );
   return (
-      options.map(option => (
-              <label key={option.value} className="easy-edit-checkbox-label">
-                <input
-                    {...attributes}
-                    type="checkbox"
-                    className="easy-edit-radio-button"
-                    value={option.value}
-                    key={option.value}
-                    onChange={onChange}
-                    checked={value.includes(option.value)}
-                />{option.label}
-              </label>
-          )
-      ));
+      <div>
+        {checkboxes}
+      </div>
+  );
 };
 
 EasyCheckbox.propTypes = {

@@ -1,6 +1,6 @@
 {
   "name": "react-easy-edit",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "A react library for inline editing",
   "homepage": "https://github.com/giorgosart/react-easy-edit#readme",
   "keywords": [
@@ -35,8 +35,8 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -56,8 +56,8 @@
     "enzyme": "3.9.0",
     "enzyme-adapter-react-16": "1.10.0",
     "prop-types": "^15.7.2",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-scripts": "^2.1.8",
     "rollup": "^1.6.0",
     "rollup-plugin-babel": "^4.3.2",

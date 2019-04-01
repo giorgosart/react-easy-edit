@@ -38,7 +38,6 @@ class App extends Component {
                   type="text"
                   value="Can't click this"
                   onSave={App.onTest}
-                  name="name-one"
                   allowEdit={false}
               />
               <EasyEdit
@@ -52,61 +51,57 @@ class App extends Component {
                   type="text"
                   value="Edit me!"
                   onSave={App.onTest}
+                  instructions="Custom instructions"
               />
               <h4>type "range"</h4>
               <EasyEdit
                   type="range"
                   onSave={App.onTest}
+                  instructions="Custom instructions"
               />
               <h4>type "color"</h4>
               <EasyEdit
                   type="color"
                   value="#ff00ff"
                   onSave={App.onTest}
-                  name="name-three"
+                  instructions="Custom instructions"
               />
               <h4>type "date"</h4>
               <EasyEdit
                   type="date"
                   onSave={App.onTest}
-                  name="date-one"
+                  instructions="Custom instructions"
               />
               <h4>type "datetime-local"</h4>
               <EasyEdit
                   type="datetime-local"
                   onSave={App.onTest}
-                  name="date-two"
               />
               <h4>type "time"</h4>
               <EasyEdit
                   type="time"
                   onSave={App.onTest}
-                  name="date-three"
               />
               <h4>type "week"</h4>
               <EasyEdit
                   type="week"
                   onSave={App.onTest}
-                  name="date-four"
               />
               <h4>type "month"</h4>
               <EasyEdit
                   type="month"
                   onSave={App.onTest}
-                  name="date-five"
               />
               <h4>type "number"</h4>
               <EasyEdit
                   type="number"
                   value={1}
                   onSave={App.onTest}
-                  name="name-four"
                   min={0}
               />
               <EasyEdit
                   type="number"
                   onSave={App.onTest}
-                  name="name-five"
               />
               <h4>type "radio"</h4>
               <EasyEdit
@@ -114,46 +109,43 @@ class App extends Component {
                   value="testone"
                   onSave={App.onTest}
                   options={App.generateOptions()}
-                  name="name-six"
+                  instructions="Custom instructions"
               />
               <h3>Textarea</h3>
               <EasyEdit
                   type="textarea"
                   value="Test Textarea"
                   onSave={App.onTest}
-                  name="name-seven"
+                  instructions="Custom instructions"
               />
               <EasyEdit
                   type="textarea"
                   onSave={App.onTest}
-                  name="name-eight"
               />
               <h3>Select</h3>
               <EasyEdit
                   type="select"
                   options={App.generateOptions()}
                   onSave={App.onTest}
-                  name="select-one"
               />
               <EasyEdit
                   type="select"
                   options={App.generateOptions()}
                   onSave={App.onTest}
-                  name="select-two"
                   placeholder="My Placeholder"
+                  instructions="Custom instructions"
               />
               <h3>Checkbox</h3>
               <EasyEdit
                   type="checkbox"
                   options={App.generateOptions()}
                   onSave={App.onTest}
-                  name="checkbox-one"
+                  instructions="Custom instructions"
               />
               <EasyEdit
                   type="checkbox"
                   options={App.generateOptions()}
                   onSave={App.onTest}
-                  name="checkbox-one"
                   value={App.generateValues()}
               />
             </div>

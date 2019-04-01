@@ -176,11 +176,20 @@ export default class EasyEdit extends React.Component {
     )
   }
 
-  renderInstruction() {
+  renderValidationMessage() {
     const {validationMessage} = this.props;
-    if(!this.state.isValid){
-      return(
+    if (!this.state.isValid) {
+      return (
           <div className="easy-edit-validation-error">{validationMessage}</div>
+      )
+    }
+  }
+
+  renderInstructions() {
+    const {instructions} = this.props;
+    if (this.state.editing && instructions !== null) {
+      return (
+          <div className="easy-edit-instructions">{instructions}</div>
       )
     }
   }
@@ -286,7 +295,8 @@ export default class EasyEdit extends React.Component {
           <div className="easy-edit-inline-wrapper">
             {this.renderInput()}
             {this.renderButtons()}
-            {this.renderInstruction()}
+            {this.renderInstructions()}
+            {this.renderValidationMessage()}
           </div>)
     } else {
       return this.renderPlaceholder()
@@ -315,7 +325,8 @@ EasyEdit.propTypes = {
   validationMessage: PropTypes.string,
   onSave: PropTypes.func.isRequired,
   allowEdit: PropTypes.bool,
-  attributes: PropTypes.object
+  attributes: PropTypes.object,
+  instructions: PropTypes.string
 };
 
 EasyEdit.defaultProps = {
@@ -329,5 +340,6 @@ EasyEdit.defaultProps = {
   onCancel: () => {
   },
   onValidate: value => true,
-  validationMessage: Globals.FAILED_VALIDATION_MESSAGE
+  validationMessage: Globals.FAILED_VALIDATION_MESSAGE,
+  instructions: null
 };

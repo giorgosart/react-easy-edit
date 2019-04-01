@@ -24,7 +24,7 @@ describe('EasyColor', () => {
   });
 
   it('should call onChange if the value of the input is changed', () => {
-    wrapper.simulate('change', {target: {value: '#000000'}});
+    wrapper.find('input[name="test"]').simulate('change', {target: {value: '#000000'}});
     expect(onChange).toBeCalled();
   });
 });

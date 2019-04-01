@@ -5,12 +5,14 @@ import './EasyEdit.css';
 const EasyColor = (props) => {
   const {value = '', onChange, attributes} = props;
   return (
-      <input
-          type="color"
-          defaultValue={value}
-          onChange={onChange}
-          {...attributes}
-      />
+      <div className="easy-edit-component-wrapper">
+        <input
+            type="color"
+            defaultValue={value}
+            onChange={onChange}
+            {...attributes}
+        />
+      </div>
   );
 };
 

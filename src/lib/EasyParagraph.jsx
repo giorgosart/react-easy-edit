@@ -7,14 +7,16 @@ const EasyParagraph = (props) => {
   const {value, placeholder, onChange, attributes} = props;
 
   return (
-      <textarea
-          autoFocus={attributes["autoFocus"] || true}
-          className="easy-edit-textarea"
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          {...attributes}
-      />);
+      <div className="easy-edit-component-wrapper">
+        <textarea
+            autoFocus={attributes["autoFocus"] || true}
+            className="easy-edit-textarea"
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+            {...attributes}
+        />
+      </div>);
 };
 
 EasyParagraph.propTypes = {
