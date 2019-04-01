@@ -41,9 +41,13 @@
 }
 
 .easy-edit-component-wrapper{
-  display: inline;
+  display: inline-grid;
 }
 
 .easy-edit-validation-error {
   color: red;
+}
+
+.easy-edit-instructions {
+
 }

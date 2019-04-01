@@ -31,6 +31,7 @@ If you would like to see what the next release looks like, visit our [Dev 0.4.0]
 | validationMessage | string                    | No       |                 | The text to be displayed if validation fails                                                                                                                                                  |
 | allowEdit         | boolean                   | No       | true            | Determines whether the component itself should be editable or not                                                                                                                             |
 | attributes        | object                    | No       | {}              | A key value pair of HTML attributes to be applied on the element                                                                                                                              |
+| instructions      | string                    | No       |                 | Instructions to be shown below the component                                                                                                                              |
 
 ## Installation
 ```npm i react-easy-edit```

@@ -17,6 +17,7 @@ describe('EasyRadio', () => {
             options={options}
             onChange={onChange}
             value={1}
+            instructions="My instructions"
         />
     );
   });
@@ -24,4 +25,10 @@ describe('EasyRadio', () => {
   it('should render two radio buttons', () => {
     expect(wrapper.find('input')).toHaveLength(2);
   });
+
+  it('should set the instructions provided as a prop', () => {
+    expect(wrapper.find('.easy-edit-instructions')).toHaveLength(1);
+    expect(wrapper.find('.easy-edit-instructions').text()).toEqual("My instructions");
+  });
+
 });

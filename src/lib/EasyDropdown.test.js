@@ -18,8 +18,14 @@ describe('EasyDropdown', () => {
             options={options}
             onChange={onChange}
             attributes={{name: 'test'}}
+            instructions="My instructions"
         />
     );
+  });
+
+  it('should set the instructions provided as a prop', () => {
+    expect(wrapper.find('.easy-edit-instructions')).toHaveLength(1);
+    expect(wrapper.find('.easy-edit-instructions').text()).toEqual("My instructions");
   });
 
   it('should set the name provided as a prop', () => {
