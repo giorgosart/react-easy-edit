@@ -158,10 +158,12 @@ export default class EasyEdit extends React.Component {
             />
         );
       case 'custom':
+
         return React.cloneElement(this.props.editComponent, {
           onChange: newValue => {
             this.onChange(newValue);
-          }
+          },
+          value: this.props.value
         });
       default: {
         throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
@@ -314,7 +316,7 @@ export default class EasyEdit extends React.Component {
 EasyEdit.propTypes = {
   type: PropTypes.oneOf([
     'text', 'number', 'color', 'textarea', 'date', 'datetime-local',
-    'time', 'month', 'week', 'radio', 'checkbox', 'select', 'range'
+    'time', 'month', 'week', 'radio', 'checkbox', 'select', 'range', 'custom'
   ]).isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
