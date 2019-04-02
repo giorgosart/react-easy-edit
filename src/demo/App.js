@@ -17,6 +17,10 @@ class App extends Component {
     ]
   }
 
+  static generateDatalist() {
+    return ['Test 1', 'Test 2', 'Test 3', 'Test 4'];
+  }
+
   static generateValues() {
     return ['testone', 'testtwo'];
   }
@@ -32,6 +36,13 @@ class App extends Component {
           <header className="App-header">
             <div>
               <h1>React Easy Edit</h1>
+              <h3>Datalist</h3>
+              <EasyEdit
+                  type="datalist"
+                  onSave={App.onTest}
+                  options={App.generateDatalist()}
+                  instructions="Custom instructions"
+              />
               <h3>Input Field</h3>
               <h4>type "text"</h4>
               <EasyEdit
