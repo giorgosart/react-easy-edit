@@ -10,6 +10,7 @@ import EasyParagraph from "./EasyParagraph.jsx";
 import EasyRadio from "./EasyRadio.jsx";
 import EasyCheckbox from "./EasyCheckbox.jsx";
 import EasyColor from "./EasyColor.jsx";
+import EasyDatalist from "./EasyDatalist.jsx";
 
 export default class EasyEdit extends React.Component {
 
@@ -158,13 +159,21 @@ export default class EasyEdit extends React.Component {
             />
         );
       case 'custom':
-
         return React.cloneElement(this.props.editComponent, {
           onChange: newValue => {
             this.onChange(newValue);
           },
           value: this.props.value
         });
+      case 'datalist':
+        return (
+          <EasyDatalist
+              value={editing ? this.state.tempValue : this.state.value}
+              onChange={this.onChange}
+              options={options}
+              attributes={attributes}
+          />
+        );
       default: {
         throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
       }
@@ -224,6 +233,7 @@ export default class EasyEdit extends React.Component {
     const {type, placeholder, options} = this.props;
     switch (type) {
       case 'text':
+      case 'datalist':
       case 'email':
       case 'textarea':
       case 'number':
@@ -316,7 +326,7 @@ export default class EasyEdit extends React.Component {
 EasyEdit.propTypes = {
   type: PropTypes.oneOf([
     'text', 'number', 'color', 'textarea', 'date', 'datetime-local',
-    'time', 'month', 'week', 'radio', 'checkbox', 'select', 'range', 'custom'
+    'time', 'month', 'week', 'radio', 'checkbox', 'select', 'range', 'custom', 'datalist'
   ]).isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
