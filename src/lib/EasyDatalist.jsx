@@ -6,7 +6,7 @@ const EasyDatalist = (props) => {
   const {options, value, onChange, attributes, placeholder} = props;
   const ref = React.createRef();
   let datalistOptions = options.map(dl => (
-      <option value={dl}/>
+      <option value={dl.label}/>
   ));
 
   return (
