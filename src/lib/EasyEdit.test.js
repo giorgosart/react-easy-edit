@@ -196,4 +196,14 @@ describe('EasyEdit', () => {
     expect(wrapper.find('.easy-edit-instructions')).toHaveLength(1);
     expect(wrapper.find('.easy-edit-instructions').text()).toEqual("My instructions");
   });
+
+  it('fails validation and shows the appropriate error', () => {
+    const failValidation = () => {return false};
+
+    wrapper.setProps({onValidate: failValidation});
+    wrapper.simulate('click');
+    wrapper.find('.save-style').simulate('click');
+    expect(wrapper.state().isValid).toEqual(false);
+    expect(wrapper.find('.easy-edit-validation-error').text()).toEqual('Please provide a valid value');
+  });
 });
