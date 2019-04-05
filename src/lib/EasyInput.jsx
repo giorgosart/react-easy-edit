@@ -10,7 +10,7 @@ const EasyInput = (props) => {
         <input
             autoFocus={attributes["autoFocus"] || true}
             type={type}
-            value={value}
+            value={value ? value : undefined}
             onChange={onChange}
             placeholder={placeholder}
             autoComplete={attributes["autoComplete"] || "off"}

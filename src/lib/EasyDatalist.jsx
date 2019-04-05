@@ -13,7 +13,7 @@ const EasyDatalist = (props) => {
       <div className="easy-edit-component-wrapper">
         <input
             autoFocus={attributes["autoFocus"] || true}
-            value={value}
+            value={value ? value : undefined}
             onChange={onChange}
             placeholder={placeholder}
             autoComplete={attributes["autoComplete"] || "off"}
