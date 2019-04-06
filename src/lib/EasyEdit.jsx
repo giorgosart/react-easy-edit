@@ -41,6 +41,12 @@ export default class EasyEdit extends React.Component {
     }
   }
 
+  onKeyDown = (e) => {
+    if (e.keyCode === 27) {
+      this._onCancel();
+    }
+  };
+
   _onSave = () => {
     const {onSave, onValidate} = this.props;
     const tempValue = this.state.tempValue;
@@ -171,7 +177,6 @@ export default class EasyEdit extends React.Component {
         throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
       }
     }
-
   }
 
   renderButtons() {
@@ -303,7 +308,7 @@ export default class EasyEdit extends React.Component {
   render() {
     if (this.state.editing) {
       return (
-          <div className="easy-edit-inline-wrapper">
+          <div className="easy-edit-inline-wrapper" tabIndex="0" onKeyDown={(e) => this.onKeyDown(e)}>
             {this.renderInput()}
             {this.renderButtons()}
             {this.renderInstructions()}

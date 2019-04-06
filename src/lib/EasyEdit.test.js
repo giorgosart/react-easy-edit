@@ -1,5 +1,5 @@
 import React from 'react';
-import {configure, shallow} from 'enzyme';
+import {configure, shallow, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import EasyEdit from "./EasyEdit";
 import EasyInput from "./EasyInput";
@@ -49,6 +49,25 @@ describe('EasyEdit', () => {
     wrapper.setProps({allowEdit: false});
     wrapper.simulate('mouseEnter');
     expect(wrapper.find('div.easy-edit-not-allowed')).toHaveLength(1);
+  });
+
+  it('onKeyDown', () => {
+    wrapper = mount(
+        <EasyEdit
+            type="text"
+            onSave={saveFn}
+            onCancel={cancelFn}
+            saveButtonLabel="Save Test"
+            saveButtonStyle="save-style"
+            cancelButtonLabel="Cancel Test"
+            cancelButtonStyle="cancel-style"
+            attributes={{name: 'test'}}
+            instructions="My instructions"
+        />);
+    wrapper.simulate('click');
+    expect(wrapper.find('input[name="test"]')).toHaveLength(1);
+    wrapper.find('input[name="test"]').simulate('keyDown', {keyCode: 27});
+    expect(wrapper.find('input[name="test"]')).toHaveLength(0);
   });
 
   it('should populate the tempValue with the passed in value prop', () => {
