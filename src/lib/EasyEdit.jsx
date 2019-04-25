@@ -267,7 +267,7 @@ export default class EasyEdit extends React.Component {
                 onMouseEnter={this.hoverOn}
                 onMouseLeave={this.hoverOff}
             >
-              {this.state.value ? selected[0].label : placeholder}
+              {this.state.value ? (selected ? this.state.value : selected[0].label) : placeholder}
             </div>
         );
       }
