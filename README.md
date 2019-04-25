@@ -25,8 +25,8 @@ If you would like to see what the next release looks like, visit our [Dev 0.5.0]
 | cancelButtonLabel | string                    | No       | Cancel          | The label to be used for the "Cancel" button                                                                                                                                                  |
 | cancelButtonStyle | string                    | No       | easy-edit-button| One or more CSS classes to be used to style the "Cancel" button                                                                                                                               |
 | placeholder       | string                    | No       | Click to edit   | The text to be shown as a hint that describes the expected value of the input element                                                                                                         |
-| onCancel          | function                  | No       | () => {}        | A function that will be called when editing is cancelled. Also called when the <kbd>Esc</kbd> button is pressed                                                                                                                                      |
-| onSave            | function                  | Yes      |                 | A function that will be called when editing is saved                                                                                                                                          |
+| onCancel          | function                  | No       | () => {}        | A function that will be called when editing is cancelled. Also called when the <kbd>Esc</kbd> button is pressed                                                                               |
+| onSave            | function                  | Yes      |                 | A function that will be called when editing is saved. Also called when the <kbd>Enter</kbd> button is pressed (Textarea component is excluded)                                                                                 |
 | onValidate        | function                  | No       | () => {}        | A function that will be called before the onSave() event. It must return true or false and has one parameter which is the value of the component being edited                                 |
 | validationMessage | string                    | No       |                 | The text to be displayed if validation fails                                                                                                                                                  |
 | allowEdit         | boolean                   | No       | true            | Determines whether the component itself should be editable or not                                                                                                                             |
@@ -34,7 +34,7 @@ If you would like to see what the next release looks like, visit our [Dev 0.5.0]
 | instructions      | string                    | No       |                 | Instructions to be shown below the component                                                                                                                              |
 
 ## Installation
-```npm i react-easy-edit```
+```npm i react-easy-edit``` or ```yarn add react-easy-edit``` 
 
 ## Usage
 A simple example
@@ -63,4 +63,4 @@ export default class App extends Component {
 }
 ```
 ## Licence
-react-easy-edit is an open source library licensed as MIT
+react-easy-edit is an open source library licensed under MIT
