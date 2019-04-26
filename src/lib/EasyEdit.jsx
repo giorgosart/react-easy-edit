@@ -93,8 +93,19 @@ export default class EasyEdit extends React.Component {
   }
 
   renderInput() {
-    const {type, options, placeholder, attributes} = this.props;
+    const {type, options, placeholder, attributes, editComponent} = this.props;
     const editing = this.state.editing;
+
+    
+    if (type === 'custom' && React.isValidElement(editComponent)) {
+      return React.cloneElement(editComponent, {
+        onChange: newValue => {
+          this.onChange(newValue);
+        },
+        value: this.state.tempValue
+      });
+    }
+
     switch (type) {
       case 'text':
       case 'number':
@@ -104,6 +115,7 @@ export default class EasyEdit extends React.Component {
       case 'month':
       case 'week':
       case 'range':
+      case 'custom':
         return (
             <EasyInput
                 value={editing ? this.state.tempValue : this.state.value}
@@ -158,13 +170,6 @@ export default class EasyEdit extends React.Component {
                 attributes={attributes}
             />
         );
-      case 'custom':
-        return React.cloneElement(this.props.editComponent, {
-          onChange: newValue => {
-            this.onChange(newValue);
-          },
-          value: this.props.value
-        });
       case 'datalist':
         return (
           <EasyDatalist
@@ -230,7 +235,23 @@ export default class EasyEdit extends React.Component {
   }
 
   renderPlaceholder() {
-    const {type, placeholder, options} = this.props;
+    const {type, placeholder, options, placeholderComponent} = this.props;
+
+    if (type === 'custom' && React.isValidElement(placeholderComponent)) {
+      return (
+        <div
+          className={this.setCssClasses('easy-edit-wrapper')}
+          onClick={this.onClick}
+          onMouseEnter={this.hoverOn}
+          onMouseLeave={this.hoverOff}
+        >
+          {React.cloneElement(placeholderComponent, {
+            value: this.state.value
+          })}
+        </div>
+      );
+    }
+
     switch (type) {
       case 'text':
       case 'datalist':
@@ -301,6 +322,10 @@ export default class EasyEdit extends React.Component {
                   checkbox => checkbox.label).join(', ') : placeholder}
             </div>);
       }
+      case 'custom':
+        return React.cloneElement(this.props.placeholderComponent, {
+          value: this.state.value
+        });
       default: {
         throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
       }
@@ -345,7 +370,9 @@ EasyEdit.propTypes = {
   onSave: PropTypes.func.isRequired,
   allowEdit: PropTypes.bool,
   attributes: PropTypes.object,
-  instructions: PropTypes.string
+  instructions: PropTypes.string,
+  editComponent: PropTypes.element,
+  placeholderComponent: PropTypes.element
 };
 
 EasyEdit.defaultProps = {
@@ -360,5 +387,7 @@ EasyEdit.defaultProps = {
   },
   onValidate: value => true,
   validationMessage: Globals.FAILED_VALIDATION_MESSAGE,
-  instructions: null
+  instructions: null,
+  editComponent: null,
+  placeholderComponent: null
 };

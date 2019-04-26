@@ -3,6 +3,7 @@ import './App.css';
 import EasyEdit from "../lib/EasyEdit";
 
 import CustomInput from './CustomInput';
+import CustomPlaceholder from './CustomPlaceholder';
 
 class App extends Component {
 
@@ -172,8 +173,22 @@ class App extends Component {
                   type="custom"
                   onSave={App.onTest}
                   name="custom-two"
-                  value={App.generateValues()}
+                  placeholderComponent={<CustomPlaceholder />}
+              />
+              <EasyEdit
+                  type="custom"
+                  onSave={App.onTest}
+                  name="custom-three"
                   editComponent={<CustomInput />}
+                  placeholderComponent={<CustomPlaceholder />}
+              />
+              <EasyEdit
+                  type="custom"
+                  onSave={App.onTest}
+                  name="custom-four"
+                  value="This should be reversed"
+                  editComponent={<CustomInput />}
+                  placeholderComponent={<CustomPlaceholder />}
               />
             </div>
           </header>
