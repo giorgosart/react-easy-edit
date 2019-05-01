@@ -335,10 +335,6 @@ export default class EasyEdit extends React.Component {
                   checkbox => checkbox.label).join(', ') : placeholder}
             </div>);
       }
-      case 'custom':
-        return React.cloneElement(this.props.placeholderComponent, {
-          value: this.state.value
-        });
       default: {
         throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
       }
