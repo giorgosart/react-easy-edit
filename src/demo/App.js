@@ -168,12 +168,14 @@ class App extends Component {
                   onSave={App.onTest}
                   name="custom-one"
                   editComponent={<CustomInput />}
+                  instructions="Custom input capitalises text"
               />
               <EasyEdit
                   type="custom"
                   onSave={App.onTest}
                   name="custom-two"
                   placeholderComponent={<CustomPlaceholder />}
+                  instructions="Custom placeholder reverses text"
               />
               <EasyEdit
                   type="custom"
@@ -181,12 +183,13 @@ class App extends Component {
                   name="custom-three"
                   editComponent={<CustomInput />}
                   placeholderComponent={<CustomPlaceholder />}
+                  instructions="Both custom components together"
               />
               <EasyEdit
                   type="custom"
                   onSave={App.onTest}
                   name="custom-four"
-                  value="This should be reversed"
+                  value="Predefined value"
                   editComponent={<CustomInput />}
                   placeholderComponent={<CustomPlaceholder />}
               />
