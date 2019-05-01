@@ -20,10 +20,6 @@ class App extends Component {
     ]
   }
 
-  static generateDatalist() {
-    return ['Test 1', 'Test 2', 'Test 3', 'Test 4'];
-  }
-
   static generateValues() {
     return ['testone', 'testtwo'];
   }
@@ -44,7 +40,7 @@ class App extends Component {
               <EasyEdit
                   type="datalist"
                   onSave={App.onTest}
-                  options={App.generateDatalist()}
+                  options={App.generateOptions()}
                   instructions="Custom instructions"
               />
               <h3>Input Field</h3>

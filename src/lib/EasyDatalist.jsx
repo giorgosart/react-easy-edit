@@ -6,14 +6,14 @@ const EasyDatalist = (props) => {
   const {options, value, onChange, attributes, placeholder} = props;
   const ref = React.createRef();
   let datalistOptions = options.map(dl => (
-      <option value={dl}/>
+      <option value={dl.label}/>
   ));
 
   return (
       <div className="easy-edit-component-wrapper">
         <input
             autoFocus={attributes["autoFocus"] || true}
-            value={value}
+            value={value ? value : undefined}
             onChange={onChange}
             placeholder={placeholder}
             autoComplete={attributes["autoComplete"] || "off"}

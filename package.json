@@ -1,7 +1,7 @@
 {
   "name": "react-easy-edit",
-  "version": "0.4.0",
-  "description": "A react library for inline editing",
+  "version": "1.0.0",
+  "description": "A react library for inline editing components",
   "homepage": "https://github.com/giorgosart/react-easy-edit#readme",
   "keywords": [
     "react",
@@ -48,18 +48,18 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "enzyme": "3.9.0",
-    "enzyme-adapter-react-16": "1.10.0",
+    "enzyme-adapter-react-16": "1.12.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "^2.1.8",
-    "rollup": "^1.6.0",
+    "react-scripts": "^3.0.0",
+    "rollup": "^1.10.1",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-uglify": "^6.0.2"

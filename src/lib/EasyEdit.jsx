@@ -42,6 +42,16 @@ export default class EasyEdit extends React.Component {
     }
   }
 
+  onKeyDown = (e) => {
+    const {type} = this.props;
+    if (e.keyCode === 27) {
+      this._onCancel();
+    }
+    if (e.keyCode === 13 && type !== 'textarea'){
+      this._onSave();
+    }
+  };
+
   _onSave = () => {
     const {onSave, onValidate} = this.props;
     const tempValue = this.state.tempValue;
@@ -187,7 +197,6 @@ export default class EasyEdit extends React.Component {
         throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
       }
     }
-
   }
 
   renderButtons() {
@@ -295,7 +304,7 @@ export default class EasyEdit extends React.Component {
                 onMouseEnter={this.hoverOn}
                 onMouseLeave={this.hoverOff}
             >
-              {this.state.value ? selected[0].label : placeholder}
+              {this.state.value ? (selected ? this.state.value : selected[0].label) : placeholder}
             </div>
         );
       }
@@ -340,7 +349,7 @@ export default class EasyEdit extends React.Component {
   render() {
     if (this.state.editing) {
       return (
-          <div className="easy-edit-inline-wrapper">
+          <div className="easy-edit-inline-wrapper" tabIndex="0" onKeyDown={(e) => this.onKeyDown(e)}>
             {this.renderInput()}
             {this.renderButtons()}
             {this.renderInstructions()}

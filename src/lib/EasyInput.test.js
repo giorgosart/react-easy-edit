@@ -42,4 +42,17 @@ describe('EasyInput', () => {
     wrapper.find('input').simulate('change', {target: {value: 'abc'}});
     expect(onChange).toBeCalled();
   });
+
+  it('#25 should render defaultValue if the value is equal with an empty string ""',
+      () => {
+        const attributes = {defaultValue: 'default'};
+        wrapper.setProps({attributes: attributes, value: ''});
+        expect(wrapper.find('input').props().defaultValue).toEqual('default');
+      });
+
+  it('#25 should render defaultValue if the value is undefined', () => {
+    const attributes = {defaultValue: 'default'};
+    wrapper.setProps({attributes: attributes, value: undefined});
+    expect(wrapper.find('input').props().defaultValue).toEqual('default');
+  });
 });
