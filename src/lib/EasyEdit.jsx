@@ -107,7 +107,7 @@ export default class EasyEdit extends React.Component {
     const {type, options, placeholder, attributes, editComponent} = this.props;
     const editing = this.state.editing;
 
-    if (type === 'custom' && React.isValidElement(editComponent)) {
+    if (React.isValidElement(editComponent)) {
       return (
         <EasyCustom
           setValue={newValue => {
@@ -129,7 +129,6 @@ export default class EasyEdit extends React.Component {
       case 'month':
       case 'week':
       case 'range':
-      case 'custom':
         return (
             <EasyInput
                 value={editing ? this.state.tempValue : this.state.value}
@@ -250,7 +249,7 @@ export default class EasyEdit extends React.Component {
   renderPlaceholder() {
     const {type, placeholder, options, placeholderComponent} = this.props;
 
-    if (type === 'custom' && React.isValidElement(placeholderComponent)) {
+    if (React.isValidElement(placeholderComponent)) {
       return (
         <div
           className={this.setCssClasses('easy-edit-wrapper')}
@@ -276,8 +275,7 @@ export default class EasyEdit extends React.Component {
       case 'time':
       case 'month':
       case 'week':
-      case 'range':
-      case 'custom': {
+      case 'range': {
         return (
             <div
                 className={this.setCssClasses('easy-edit-wrapper')}
@@ -360,7 +358,7 @@ export default class EasyEdit extends React.Component {
 EasyEdit.propTypes = {
   type: PropTypes.oneOf([
     'text', 'number', 'color', 'textarea', 'date', 'datetime-local',
-    'time', 'month', 'week', 'radio', 'checkbox', 'select', 'range', 'custom', 'datalist'
+    'time', 'month', 'week', 'radio', 'checkbox', 'select', 'range', 'datalist'
   ]).isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
