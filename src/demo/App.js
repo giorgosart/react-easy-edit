@@ -160,21 +160,21 @@ class App extends Component {
               />
               <h3>Custom components</h3>
               <EasyEdit
-                  type="custom"
+                  type="text"
                   onSave={App.onTest}
                   name="custom-one"
                   editComponent={<CustomInput />}
                   instructions="Custom input capitalises text"
               />
               <EasyEdit
-                  type="custom"
+                  type="text"
                   onSave={App.onTest}
                   name="custom-two"
                   placeholderComponent={<CustomPlaceholder />}
                   instructions="Custom placeholder reverses text"
               />
               <EasyEdit
-                  type="custom"
+                  type="text"
                   onSave={App.onTest}
                   name="custom-three"
                   editComponent={<CustomInput />}
@@ -182,7 +182,7 @@ class App extends Component {
                   instructions="Both custom components together"
               />
               <EasyEdit
-                  type="custom"
+                  type="text"
                   onSave={App.onTest}
                   name="custom-four"
                   value="Predefined value"
