@@ -11,7 +11,7 @@ import EasyRadio from "./EasyRadio.jsx";
 import EasyCheckbox from "./EasyCheckbox.jsx";
 import EasyColor from "./EasyColor.jsx";
 import EasyDatalist from "./EasyDatalist.jsx";
-import EasyCustom from './EasyCustom';
+import EasyCustom from './EasyCustom.jsx';
 
 export default class EasyEdit extends React.Component {
 
