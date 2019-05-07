@@ -13,7 +13,7 @@ If you would like to see what the next release looks like, visit our [Dev](https
 - Supports `input` (most types, even inputs with `datalist`), `textarea`,`radio`, `checkbox` and `select` HTML types
 - Validates user input
 - Allows customisation on all elements including the save and cancel buttons
-- 
+- Supports custom editComponent and customPlaceholder for each type
 
 ## Props
 | Prop              | Type                      | Required | Default         | Description                                                                                                                                                                                   |
@@ -66,7 +66,7 @@ export default class App extends Component {
 }
 ```
 
-###### Custom components
+#### Custom components
 
 When using custom input component they must be definted as components in the props, like so:
 ```
