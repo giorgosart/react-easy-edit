@@ -5,7 +5,7 @@ export default class CustomInput extends Component {
     super(props);
     this.state = {
       value: props.value || ''
-    }
+    };
     this.onChange = this.onChange.bind(this);
   }
 
