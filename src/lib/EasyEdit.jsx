@@ -11,6 +11,7 @@ import EasyRadio from "./EasyRadio.jsx";
 import EasyCheckbox from "./EasyCheckbox.jsx";
 import EasyColor from "./EasyColor.jsx";
 import EasyDatalist from "./EasyDatalist.jsx";
+import EasyCustom from './EasyCustom.jsx';
 
 export default class EasyEdit extends React.Component {
 
@@ -69,7 +70,7 @@ export default class EasyEdit extends React.Component {
   };
 
   onChange = e => {
-    this.setState({tempValue: e.target.value});
+    this.setState({tempValue: e.target ? e.target.value : e});
   };
 
   onCheckboxChange = e => {
@@ -103,8 +104,22 @@ export default class EasyEdit extends React.Component {
   }
 
   renderInput() {
-    const {type, options, placeholder, attributes} = this.props;
+    const {type, options, placeholder, attributes, editComponent} = this.props;
     const editing = this.state.editing;
+
+    if (React.isValidElement(editComponent)) {
+      return (
+        <EasyCustom
+          setValue={newValue => {
+            this.onChange(newValue);
+          }}
+          value={this.state.tempValue}
+        >
+          {editComponent}
+        </EasyCustom>
+      );
+    }
+
     switch (type) {
       case 'text':
       case 'number':
@@ -232,7 +247,23 @@ export default class EasyEdit extends React.Component {
   }
 
   renderPlaceholder() {
-    const {type, placeholder, options} = this.props;
+    const {type, placeholder, options, placeholderComponent} = this.props;
+
+    if (React.isValidElement(placeholderComponent)) {
+      return (
+        <div
+          className={this.setCssClasses('easy-edit-wrapper')}
+          onClick={this.onClick}
+          onMouseEnter={this.hoverOn}
+          onMouseLeave={this.hoverOff}
+        >
+          {React.cloneElement(placeholderComponent, {
+            value: this.state.value
+          })}
+        </div>
+      );
+    }
+
     switch (type) {
       case 'text':
       case 'datalist':
@@ -346,7 +377,9 @@ EasyEdit.propTypes = {
   onSave: PropTypes.func.isRequired,
   allowEdit: PropTypes.bool,
   attributes: PropTypes.object,
-  instructions: PropTypes.string
+  instructions: PropTypes.string,
+  editComponent: PropTypes.element,
+  placeholderComponent: PropTypes.element
 };
 
 EasyEdit.defaultProps = {
@@ -361,5 +394,7 @@ EasyEdit.defaultProps = {
   },
   onValidate: value => true,
   validationMessage: Globals.FAILED_VALIDATION_MESSAGE,
-  instructions: null
+  instructions: null,
+  editComponent: null,
+  placeholderComponent: null
 };

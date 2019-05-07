@@ -8,6 +8,7 @@ import EasyRadio from "./EasyRadio";
 import EasyCheckbox from "./EasyCheckbox";
 import EasyDropdown from "./EasyDropdown";
 import EasyColor from "./EasyColor";
+import EasyCustom from './EasyCustom';
 import Globals from './globals';
 
 configure({adapter: new Adapter()});
@@ -167,6 +168,12 @@ describe('EasyEdit', () => {
     wrapper.simulate('click');
     expect(wrapper.find(EasyRadio)).toHaveLength(1);
   });
+
+  it('should show an EasyCustom component if an editComponent prop is provided', () => {
+    wrapper.setProps({editComponent: <input />});
+    wrapper.simulate('click');
+    expect(wrapper.find(EasyCustom)).toHaveLength(1);
+  })
 
   it('type checkbox', () => {
     wrapper.setProps({
