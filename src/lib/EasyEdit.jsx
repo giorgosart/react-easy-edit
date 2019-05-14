@@ -247,9 +247,9 @@ export default class EasyEdit extends React.Component {
   }
 
   renderPlaceholder() {
-    const {type, placeholder, options, placeholderComponent} = this.props;
+    const {type, placeholder, options, displayComponent} = this.props;
 
-    if (React.isValidElement(placeholderComponent)) {
+    if (React.isValidElement(displayComponent)) {
       return (
         <div
           className={this.setCssClasses('easy-edit-wrapper')}
@@ -257,9 +257,9 @@ export default class EasyEdit extends React.Component {
           onMouseEnter={this.hoverOn}
           onMouseLeave={this.hoverOff}
         >
-          {React.cloneElement(placeholderComponent, {
-            value: this.state.value
-          })}
+          { this.state.value ?
+              React.cloneElement(displayComponent, {value: this.state.value}) :
+              placeholder}
         </div>
       );
     }
@@ -379,7 +379,7 @@ EasyEdit.propTypes = {
   attributes: PropTypes.object,
   instructions: PropTypes.string,
   editComponent: PropTypes.element,
-  placeholderComponent: PropTypes.element
+  displayComponent: PropTypes.element
 };
 
 EasyEdit.defaultProps = {

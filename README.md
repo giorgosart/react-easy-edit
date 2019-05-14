@@ -13,7 +13,7 @@ If you would like to see what the next release looks like, visit our [Dev](https
 - Supports `input` (most types, even inputs with `datalist`), `textarea`,`radio`, `checkbox` and `select` HTML types
 - Validates user input
 - Allows customisation on all elements including the save and cancel buttons
-- Supports custom editComponent and customPlaceholder for each type
+- Supports custom editComponent and custom displayComponent  for each type
 
 ## Props
 | Prop              | Type                      | Required | Default         | Description                                                                                                                                                                                   |
@@ -34,7 +34,7 @@ If you would like to see what the next release looks like, visit our [Dev](https
 | attributes        | object                    | No       | {}              | A key value pair of HTML attributes to be applied on the element                                                                                                                              |
 | instructions      | string                    | No       |                 | Instructions to be shown below the component                                                                                                                              |
 | editComponent     | element                   | No       | null            | The custom component to be displayed when editing the value. This will override the standard input shown for the ```type``` provided                                                     |
-| placeholderComponent     | element                   | No       | null            | The custom component to be displayed the value when not editing                                                                                                                        |
+| displayComponent  | element                   | No       | null            | The custom component to be displayed the value when not editing                                                                                                                        |
 
 ## Installation
 ```npm i react-easy-edit``` or ```yarn add react-easy-edit``` 
@@ -68,13 +68,13 @@ export default class App extends Component {
 
 #### Custom components
 
-When using custom input component they must be definted as components in the props, like so:
+When using custom input components, they must be passed in as props, like so:
 ```
 <EasyEdit
     type="text"
     onSave={() => {}}
     editComponent={<CustomInput />}
-    placeholderComponent={<CustomPlaceholder />}
+    displayComponent={<CustomDisplay />}
 />
 ```
 
