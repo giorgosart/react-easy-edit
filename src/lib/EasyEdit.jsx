@@ -366,9 +366,15 @@ EasyEdit.propTypes = {
     PropTypes.array
   ]),
   options: PropTypes.array,
-  saveButtonLabel: PropTypes.string,
+  saveButtonLabel: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
   saveButtonStyle: PropTypes.string,
-  cancelButtonLabel: PropTypes.string,
+  cancelButtonLabel: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
   cancelButtonStyle: PropTypes.string,
   placeholder: PropTypes.string,
   onCancel: PropTypes.func,
