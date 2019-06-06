@@ -38,7 +38,12 @@ If you would like to see what the next release looks like, visit our [Dev](https
 | displayComponent  | element                   | No       | null            | The custom component to be displayed the value when not editing                                                                                                                        |
 
 ## Installation
-```npm i react-easy-edit``` or ```yarn add react-easy-edit``` 
+```npm i react-easy-edit``` or ```yarn add react-easy-edit```
+
+## Issues
+Discovered a bug or have an idea for a new feature? Please create a ticket here on GitHub!
+
+https://github.com/giorgosart/react-easy-edit/issues
 
 ## Usage
 A simple example
@@ -93,6 +98,17 @@ onChange(searchTerm) {
   })
 }
 ```
+## Versioning
+For transparency and insight into our release cycle, releases will be numbered with the following format:
+
+<major>.<minor>.<patch>
+
+And constructed with the following guidelines:
+
+- Breaking backwards compatibility bumps the major
+- New additions without breaking backwards compatibility bumps the minor
+- Bug fixes and misc changes bump the patch
+- For more information on semantic versioning, please visit http://semver.org/.
 
 ## Licence
 react-easy-edit is an open source library licensed under MIT
