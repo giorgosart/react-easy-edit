@@ -5,6 +5,8 @@
 
 ![](https://i.imgur.com/vwqcqeD.gif)
 
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y611NE2)
+
 # react-easy-edit
 A React library that allows inline editing on HTML5 input components.
 
