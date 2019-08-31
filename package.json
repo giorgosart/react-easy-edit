@@ -1,10 +1,11 @@
 {
   "name": "react-easy-edit",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "A react library for inline editing components",
   "homepage": "https://github.com/giorgosart/react-easy-edit#readme",
   "keywords": [
     "react",
+    "reactjs",
     "reactjs",
     "react-easy-edit",
     "easy edit",
@@ -22,7 +23,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "rollup -c -o build/react-easy-edit.min.js",
-    "test": "react-scripts test --coverage",
+    "test": "react-scripts test",
+    "coverage": "react-scripts test --coverage --watchAll=false",
     "prepublish": "yarn build"
   },
   "main": "build/react-easy-edit.min.js",
@@ -35,8 +37,8 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,20 +50,20 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "^3.0.1",
-    "rollup": "^1.13.1",
-    "rollup-plugin-babel": "^4.3.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-scripts": "^3.1.1",
+    "rollup": "^1.20.3",
+    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-postcss": "^2.0.3",
-    "rollup-plugin-uglify": "^6.0.2"
+    "rollup-plugin-uglify": "^6.0.3"
   }
 }
