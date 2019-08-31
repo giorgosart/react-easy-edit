@@ -5,20 +5,25 @@
 
 ![](https://i.imgur.com/vwqcqeD.gif)
 
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y611NE2)
-
 # react-easy-edit
 A React library that allows inline editing on HTML5 input components.
 
-If you would like to see what the next release looks like, visit our [Dev](https://github.com/giorgosart/react-easy-edit/projects/16) project :rocket:
-
-## Features
+### :pencil: Features
 - Supports `input` (most types, even inputs with `datalist`), `textarea`,`radio`, `checkbox` and `select` HTML types
 - Validates user input
 - Allows customisation on all elements including the save and cancel buttons
 - Supports custom editComponent and custom displayComponent  for each type
 
-## Props
+## :rocket: Installation
+```npm i react-easy-edit``` or ```yarn add react-easy-edit```
+
+## :pray: Show your support
+Give a :star: if this project helped you in any way!
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y611NE2)
+
+
+## :cool: Props
 | Prop              | Type                      | Required | Default         | Description                                                                                                                                                                                   |
 |-------------------|---------------------------|----------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | type              | string                    | Yes      |                 | The type of the input element to display. Supported types are `text`, `number`, `color`, `textarea`, `date`, `datetime-local`,`time`, `month`, `week`, `radio`, `checkbox`, `select`, `range` and `datalist`|
@@ -39,13 +44,17 @@ If you would like to see what the next release looks like, visit our [Dev](https
 | editComponent     | element                   | No       | null            | The custom component to be displayed when editing the value. This will override the standard input shown for the ```type``` provided                                                     |
 | displayComponent  | element                   | No       | null            | The custom component to be displayed the value when not editing                                                                                                                        |
 
-## Installation
-```npm i react-easy-edit``` or ```yarn add react-easy-edit```
+## :handshake: Contributing
+Contributions, issues and feature requests are welcome.
 
-## Issues
-Discovered a bug or have an idea for a new feature? Please create a ticket here on GitHub!
+Feel free to check [issues page](https://github.com/giorgosart/react-easy-edit/issues) if you want to contribute.
 
-https://github.com/giorgosart/react-easy-edit/issues
+### Contributors
+| ![alt text](https://avatars1.githubusercontent.com/u/1062121?s=100&v=4 "giorgosart") | ![alt text](https://avatars1.githubusercontent.com/u/12860917?s=100&v=4 "mnnalxndr")|
+|-----------|----------|
+| [@giorgosart](https://github.com/giorgosart)        | [@mnnalxndr](https://github.com/mnnalxndr) |
+
+
 
 ## Usage
 A simple example
@@ -100,7 +109,7 @@ onChange(searchTerm) {
   })
 }
 ```
-## Versioning
+## :1234: Versioning
 For transparency and insight into our release cycle, releases will be numbered with the following format:
 
 ```<major>.<minor>.<patch>```
@@ -112,5 +121,7 @@ And constructed with the following guidelines:
 - Bug fixes and misc changes bump the patch
 - For more information on semantic versioning, please visit http://semver.org/.
 
-## Licence
-react-easy-edit is an open source library licensed under MIT
+## :scroll: Licence
+Copyright © 2019 [George Artemiou](https://github.com/giorgosart).
+
+This project is [MIT licensed](https://github.com/giorgosart/react-easy-edit/blob/master/LICENSE). 
