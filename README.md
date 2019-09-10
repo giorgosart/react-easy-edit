@@ -50,10 +50,10 @@ Contributions, issues and feature requests are welcome.
 Feel free to check [issues page](https://github.com/giorgosart/react-easy-edit/issues) if you want to contribute.
 
 ### Contributors
-| ![alt text](https://avatars1.githubusercontent.com/u/1062121?s=100&v=4 "giorgosart") | ![alt text](https://avatars1.githubusercontent.com/u/12860917?s=100&v=4 "mnnalxndr")|
-|-----------|----------|
-| [@giorgosart](https://github.com/giorgosart)        | [@mnnalxndr](https://github.com/mnnalxndr) |
-
+| ![giorgosart](https://avatars1.githubusercontent.com/u/1062121?s=100&v=4) | ![mnnalxndr](https://avatars1.githubusercontent.com/u/12860917?s=100&v=4) | ![liamwithers]()|
+|-----------|----------|----------|
+| [@giorgosart](https://github.com/giorgosart)        | [@mnnalxndr](https://github.com/mnnalxndr) | [@liamwithers](https://github.com/liamwithers)|
+|[:construction:](https://github.com/giorgosart/react-easy-edit "Maintenance")[:computer:](https://github.com/giorgosart/react-easy-edit/commits?author=giorgosart "Code")[:bug:](https://github.com/giorgosart/react-easy-edit/commits?author=giorgosart "Bug fix")| [:computer:](https://github.com/giorgosart/react-easy-edit/commits?author=mnnalxndr "Code")[:bug:](https://github.com/giorgosart/react-easy-edit/commits?author=mnnalxndr "Code")| [:bug:](https://github.com/giorgosart/react-easy-edit/commits?author=liamwithers "Bug")
 
 
 ## Usage
