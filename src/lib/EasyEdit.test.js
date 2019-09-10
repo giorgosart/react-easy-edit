@@ -239,5 +239,5 @@ describe('EasyEdit', () => {
     wrapper.setProps({attributes: {name: 'test', testattribute: 'test'}});
     expect(wrapper.find('.easy-edit-wrapper[name]')).toHaveLength(1);
     expect(wrapper.find('.easy-edit-wrapper[testattribute]')).toHaveLength(1);
-  })
+  });
 });
