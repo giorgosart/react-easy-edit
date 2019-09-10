@@ -247,7 +247,7 @@ export default class EasyEdit extends React.Component {
   }
 
   renderPlaceholder() {
-    const {type, placeholder, options, displayComponent} = this.props;
+    const {type, placeholder, options, displayComponent, attributes} = this.props;
 
     if (React.isValidElement(displayComponent)) {
       return (
@@ -256,6 +256,7 @@ export default class EasyEdit extends React.Component {
           onClick={this.onClick}
           onMouseEnter={this.hoverOn}
           onMouseLeave={this.hoverOff}
+          {...attributes}
         >
           { this.state.value ?
               React.cloneElement(displayComponent, {value: this.state.value}) :
@@ -282,6 +283,7 @@ export default class EasyEdit extends React.Component {
                 onClick={this.onClick}
                 onMouseEnter={this.hoverOn}
                 onMouseLeave={this.hoverOff}
+                {...attributes}
             >
               {this.state.value ? this.state.value : placeholder}
             </div>
@@ -301,6 +303,7 @@ export default class EasyEdit extends React.Component {
                 onClick={this.onClick}
                 onMouseEnter={this.hoverOn}
                 onMouseLeave={this.hoverOff}
+                {...attributes}
             >
               {this.state.value ? (selected ? this.state.value : selected[0].label) : placeholder}
             </div>
@@ -313,6 +316,7 @@ export default class EasyEdit extends React.Component {
                 value={this.state.value}
                 onClick={this.onClick}
                 readOnly
+                {...attributes}
             />
         );
       case 'checkbox': {
@@ -328,6 +332,7 @@ export default class EasyEdit extends React.Component {
                 onClick={this.onClick}
                 onMouseEnter={this.hoverOn}
                 onMouseLeave={this.hoverOff}
+                {...attributes}
             >
               {this.state.value && this.state.value.length !== 0 ? selected.map(
                   checkbox => checkbox.label).join(', ') : placeholder}

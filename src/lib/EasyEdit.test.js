@@ -173,7 +173,7 @@ describe('EasyEdit', () => {
     wrapper.setProps({editComponent: <input />});
     wrapper.simulate('click');
     expect(wrapper.find(EasyCustom)).toHaveLength(1);
-  })
+  });
 
   it('type checkbox', () => {
     wrapper.setProps({
@@ -231,5 +231,13 @@ describe('EasyEdit', () => {
     wrapper.find('.save-style').simulate('click');
     expect(wrapper.state().isValid).toEqual(false);
     expect(wrapper.find('.easy-edit-validation-error').text()).toEqual('Please provide a valid value');
+  });
+
+  it('utilises props when component placeholder is rendered', () => {
+    expect(wrapper.find('.easy-edit-wrapper[name]')).toHaveLength(1);
+    expect(wrapper.find('.easy-edit-wrapper[testattribute]')).toHaveLength(0);
+    wrapper.setProps({attributes: {name: 'test', testattribute: 'test'}});
+    expect(wrapper.find('.easy-edit-wrapper[name]')).toHaveLength(1);
+    expect(wrapper.find('.easy-edit-wrapper[testattribute]')).toHaveLength(1);
   });
 });
