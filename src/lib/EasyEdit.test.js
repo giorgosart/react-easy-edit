@@ -71,7 +71,7 @@ describe('EasyEdit', () => {
     expect(wrapper.find('input[name="test"]')).toHaveLength(0);
   });
 
-  it('should populate the tempValue with the passed in value prop', () => {
+  it('should populate the tempValue with the passed in value prop on mount and also when the value prop is changed', () => {
     wrapper = shallow(
         <EasyEdit
             type="text"
@@ -85,6 +85,8 @@ describe('EasyEdit', () => {
             attributes={{name: 'test'}}
         />);
     expect((wrapper.state().tempValue)).toEqual('Test Value');
+    wrapper.setProps({ value: "Updated Value"});
+    expect((wrapper.state().tempValue)).toEqual('Updated Value');
   });
 
   it('hover on', () => {
