@@ -123,6 +123,7 @@ export default class EasyEdit extends React.Component {
 
     switch (type) {
       case 'text':
+      case 'email':
       case 'number':
       case 'date':
       case 'datetime-local':
@@ -363,7 +364,7 @@ export default class EasyEdit extends React.Component {
 
 EasyEdit.propTypes = {
   type: PropTypes.oneOf([
-    'text', 'number', 'color', 'textarea', 'date', 'datetime-local',
+    'text', 'number', 'color', 'textarea', 'date', 'datetime-local', 'email',
     'time', 'month', 'week', 'radio', 'checkbox', 'select', 'range', 'datalist'
   ]).isRequired,
   value: PropTypes.oneOfType([
@@ -397,9 +398,9 @@ EasyEdit.propTypes = {
 EasyEdit.defaultProps = {
   value: null,
   saveButtonLabel: Globals.DEFAULT_SAVE_BUTTON_LABEL,
-  saveButtonStyle: 'easy-edit-button',
+  saveButtonStyle: Globals.DEFAULT_BUTTON_CSS_CLASS,
   cancelButtonLabel: Globals.DEFAULT_CANCEL_BUTTON_LABEL,
-  cancelButtonStyle: 'easy-edit-button',
+  cancelButtonStyle: Globals.DEFAULT_BUTTON_CSS_CLASS,
   placeholder: Globals.DEFAULT_PLACEHOLDER,
   allowEdit: true,
   onCancel: () => {
