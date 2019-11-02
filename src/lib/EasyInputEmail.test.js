@@ -8,7 +8,7 @@ configure({adapter: new Adapter()});
 
 describe('EasyInput - Email type', () => {
 
-  it("should accept `email` as a valid type", () => {
+  it("#52 should accept `email` as a valid type", () => {
     const saveFn = jest.fn();
     let  wrapper = shallow(
         <EasyEdit

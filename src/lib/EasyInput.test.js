@@ -1,7 +1,8 @@
 import React from 'react';
-import {configure, shallow} from 'enzyme';
+import {configure, mount, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import EasyInput from "./EasyInput";
+import EasyEdit from "./EasyEdit";
 
 configure({adapter: new Adapter()});
 
@@ -53,5 +54,18 @@ describe('EasyInput', () => {
     const attributes = {defaultValue: 'default'};
     wrapper.setProps({attributes: attributes, value: undefined});
     expect(wrapper.find('input').props().defaultValue).toEqual('default');
+  });
+
+  it('should auto submit when the enter key is pressed', () => {
+    wrapper = mount(
+        <EasyEdit
+            type="text"
+            onSave={jest.fn()}
+            attributes={{name: 'test'}}
+        />);
+    wrapper.simulate('click');
+    expect(wrapper.find('input[name="test"]')).toHaveLength(1);
+    wrapper.find('input[name="test"]').simulate('keyDown', {keyCode: 27});
+    expect(wrapper.find('input[name="test"]')).toHaveLength(0);
   });
 });
