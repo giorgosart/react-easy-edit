@@ -26,7 +26,7 @@ Give a :star: if this project helped you in any way!
 ## :cool: Props
 | Prop              | Type                      | Required | Default         | Description                                                                                                                                                                                   |
 |-------------------|---------------------------|----------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| type              | string                    | Yes      |                 | The type of the input element to display. Supported types are `text`, `number`, `color`, `textarea`, `date`, `datetime-local`,`time`, `month`, `week`, `radio`, `checkbox`, `select`, `range` and `datalist`|
+| type              | string                    | Yes      |                 | The type of the input element to display. Supported types are `text`, `number`, `color`, `textarea`, `date`, `datetime-local`,`time`, `month`, `week`, `radio`, `email`, `checkbox`, `select`, `range` and `datalist`|
 | value             | string or number or array | No       | null            | The value of the input element depended on its type                                                                                                                                           |
 | options           | array                     | No       |                 | A key value pair object that is used as available options for select, radio and checkbox.``` options = [{label:'Test One', value: '1'},{label:'Test Two', value: '2'}]; ```                   |
 | saveButtonLabel   | string or element         | No       | Save            | The label to be used for the "Save" button                                                                                                                                                    |
@@ -44,42 +44,28 @@ Give a :star: if this project helped you in any way!
 | editComponent     | element                   | No       | null            | The custom component to be displayed when editing the value. This will override the standard input shown for the ```type``` provided                                                     |
 | displayComponent  | element                   | No       | null            | The custom component to be displayed the value when not editing                                                                                                                        |
 
-## :handshake: Contributing
-Contributions, issues and feature requests are welcome.
-
-Feel free to check [issues page](https://github.com/giorgosart/react-easy-edit/issues) if you want to contribute.
-
-### Contributors
-| ![giorgosart](https://avatars1.githubusercontent.com/u/1062121?s=100&v=4) | ![mnnalxndr](https://avatars1.githubusercontent.com/u/12860917?s=100&v=4) | ![liamwithers]()|
-|-----------|----------|----------|
-| [@giorgosart](https://github.com/giorgosart)        | [@mnnalxndr](https://github.com/mnnalxndr) | [@liamwithers](https://github.com/liamwithers)|
-|[:construction:](https://github.com/giorgosart/react-easy-edit "Maintenance")[:computer:](https://github.com/giorgosart/react-easy-edit/commits?author=giorgosart "Code")[:bug:](https://github.com/giorgosart/react-easy-edit/commits?author=giorgosart "Bug fix")| [:computer:](https://github.com/giorgosart/react-easy-edit/commits?author=mnnalxndr "Code")[:bug:](https://github.com/giorgosart/react-easy-edit/commits?author=mnnalxndr "Code")| [:bug:](https://github.com/giorgosart/react-easy-edit/commits?author=liamwithers "Bug")
-
-
 ## Usage
 A simple example
 ```
 import React, { Component } from 'react';
 import EasyEdit from 'react-easy-edit';
 
-export default class App extends Component {
+function App() {
+  
+  const save = (value) => {alert(value)}
+  const cancel = () => {alert("Cancelled")}
 
-  const attributes = {
-    name: 'name-two',
-    id: 'name-two',
-    disabled: true
-  };
-    
-  render() {
-    return (
-        <EasyEdit
-          type="text"
-          onSave={() => {}}
-          onValidate={() => true}
-          attributes={attributes}
-        />
-    );
-  }
+  return (
+    <EasyEdit
+      type="text"
+      onSave={save}
+      onCancel={cancel}
+      saveButtonLabel="Save Me"
+      cancelButtonLabel="Cancel Me"
+      attributes={{ name: "awesome-input", id: 1}}
+      instructions="Star this repo!"
+    />
+  );
 }
 ```
 
@@ -109,6 +95,18 @@ onChange(searchTerm) {
   })
 }
 ```
+## :handshake: Contributing
+Contributions, issues and feature requests are welcome.
+
+Feel free to check [issues page](https://github.com/giorgosart/react-easy-edit/issues) if you want to contribute.
+
+### Contributors
+| ![giorgosart](https://avatars1.githubusercontent.com/u/1062121?s=100&v=4) | ![mnnalxndr](https://avatars1.githubusercontent.com/u/12860917?s=100&v=4) | ![liamwithers](https://avatars2.githubusercontent.com/u/1030150?s=100&v=4)|
+|-----------|----------|----------|
+| [@giorgosart](https://github.com/giorgosart)        | [@mnnalxndr](https://github.com/mnnalxndr) | [@liamwithers](https://github.com/liamwithers)|
+|[:construction:](https://github.com/giorgosart/react-easy-edit "Maintenance")[:computer:](https://github.com/giorgosart/react-easy-edit/commits?author=giorgosart "Code")[:bug:](https://github.com/giorgosart/react-easy-edit/commits?author=giorgosart "Bug fix")| [:computer:](https://github.com/giorgosart/react-easy-edit/commits?author=mnnalxndr "Code")[:bug:](https://github.com/giorgosart/react-easy-edit/commits?author=mnnalxndr "Code")| [:bug:](https://github.com/giorgosart/react-easy-edit/commits?author=liamwithers "Bug")
+
+
 ## :1234: Versioning
 For transparency and insight into our release cycle, releases will be numbered with the following format:
 
