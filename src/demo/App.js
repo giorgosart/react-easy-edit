@@ -58,6 +58,11 @@ class App extends Component {
                   attributes={attributes}
               />
               <EasyEdit
+                  type="email"
+                  onSave={App.onTest}
+                  onValidate={() => true}
+              />
+              <EasyEdit
                   type="text"
                   value="Edit me!"
                   onSave={App.onTest}

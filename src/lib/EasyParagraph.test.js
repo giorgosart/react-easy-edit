@@ -24,8 +24,7 @@ describe('EasyParagraph', () => {
   });
 
   it('should use the default placeholder if none provided', () => {
-    expect(wrapper.find('textarea').props().placeholder).toEqual(
-        'Click to edit');
+    expect(wrapper.find('textarea').props().placeholder).toEqual('Click to edit');
   });
 
   it('should use the provided placeholder', () => {
