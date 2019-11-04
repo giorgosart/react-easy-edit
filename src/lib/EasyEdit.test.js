@@ -209,13 +209,18 @@ describe('EasyEdit', () => {
     expect(wrapper.find(EasyDropdown)).toHaveLength(1);
   });
 
-  it('type error', () => {
-    try {
+  it('should throw a type error if unknown type is passed in', () => {
+    expect(() => {
       wrapper.setProps({type: 'error'});
       wrapper.simulate('click');
-    } catch (e) {
-      expect(e.message).toBe(Globals.ERROR_UNSUPPORTED_TYPE);
-    }
+    }).toThrow(new Error(Globals.ERROR_UNSUPPORTED_TYPE));
+  });
+
+  it('should throw a type error if no type is passed in', () => {
+    expect(() => {
+      wrapper.setProps({type: null});
+      wrapper.simulate('click');
+    }).toThrow(new Error(Globals.ERROR_UNSUPPORTED_TYPE));
   });
 
   it('should set the instructions provided as a prop', () => {
