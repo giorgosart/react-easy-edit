@@ -4,6 +4,7 @@ import './EasyEdit.css';
 
 // local modules
 import Globals from './globals';
+import Types from './types';
 import EasyDropdown from './EasyDropdown.jsx';
 import EasyInput from "./EasyInput.jsx";
 import EasyParagraph from "./EasyParagraph.jsx";
@@ -48,7 +49,7 @@ export default class EasyEdit extends React.Component {
     if (e.keyCode === 27) {
       this._onCancel();
     }
-    if (e.keyCode === 13 && type !== 'textarea'){
+    if (e.keyCode === 13 && type !== Types.TEXTAREA){
       this._onSave();
     }
   };
@@ -75,14 +76,18 @@ export default class EasyEdit extends React.Component {
   };
 
   onCheckboxChange = e => {
+    const {options} = this.props;
     let values = this.state.tempValue || [];
-    if (e.target.checked) {
-      if (!values.includes(e.target.value)) {
-        values.push(e.target.value);
-      }
+    if (e.target.checked && !values.includes(e.target.value)) {
+      values.push(e.target.value);
     } else {
       values.splice(values.indexOf(e.target.value), 1);
     }
+    // filter out the orphaned values that have no option entry
+    let optionValues = options.map(o => o.value);
+    values = values.filter((value) => {
+      return optionValues.includes(value);
+    });
     this.setState({tempValue: values});
   };
 
@@ -122,15 +127,15 @@ export default class EasyEdit extends React.Component {
     }
 
     switch (type) {
-      case 'text':
-      case 'email':
-      case 'number':
-      case 'date':
-      case 'datetime-local':
-      case 'time':
-      case 'month':
-      case 'week':
-      case 'range':
+      case Types.TEXT:
+      case Types.EMAIL:
+      case Types.NUMBER:
+      case Types.DATE:
+      case Types.DATETIME_LOCAL:
+      case Types.TIME:
+      case Types.MONTH:
+      case Types.WEEK:
+      case Types.RANGE:
         return (
             <EasyInput
                 value={editing ? this.state.tempValue : this.state.value}
@@ -140,7 +145,7 @@ export default class EasyEdit extends React.Component {
                 attributes={attributes}
             />
         );
-      case 'color':
+      case Types.COLOR:
         return (
             <EasyColor
                 value={editing ? this.state.tempValue : this.state.value}
@@ -148,7 +153,7 @@ export default class EasyEdit extends React.Component {
                 attributes={attributes}
             />
         );
-      case 'textarea':
+      case Types.TEXTAREA:
         return (
             <EasyParagraph
                 value={editing ? this.state.tempValue : this.state.value}
@@ -156,7 +161,7 @@ export default class EasyEdit extends React.Component {
                 onChange={this.onChange}
                 attributes={attributes}
             />);
-      case 'select':
+      case Types.SELECT:
         return (
             <EasyDropdown
                 value={editing ? this.state.tempValue : this.state.value}
@@ -167,7 +172,7 @@ export default class EasyEdit extends React.Component {
                 attributes={attributes}
             />
         );
-      case 'radio':
+      case Types.RADIO:
         return (
             <EasyRadio
                 value={editing ? this.state.tempValue : this.state.value}
@@ -176,7 +181,7 @@ export default class EasyEdit extends React.Component {
                 attributes={attributes}
             />
         );
-      case 'checkbox':
+      case Types.CHECKBOX:
         return (
             <EasyCheckbox
                 value={editing ? this.state.tempValue : this.state.value}
@@ -185,7 +190,7 @@ export default class EasyEdit extends React.Component {
                 attributes={attributes}
             />
         );
-      case 'datalist':
+      case Types.DATALIST:
         return (
           <EasyDatalist
               value={editing ? this.state.tempValue : this.state.value}
@@ -268,17 +273,17 @@ export default class EasyEdit extends React.Component {
     }
 
     switch (type) {
-      case 'text':
-      case 'datalist':
-      case 'email':
-      case 'textarea':
-      case 'number':
-      case 'date':
-      case 'datetime-local':
-      case 'time':
-      case 'month':
-      case 'week':
-      case 'range': {
+      case Types.TEXT:
+      case Types.DATALIST:
+      case Types.EMAIL:
+      case Types.TEXTAREA:
+      case Types.NUMBER:
+      case Types.DATE:
+      case Types.DATETIME_LOCAL:
+      case Types.TIME:
+      case Types.MONTH:
+      case Types.WEEK:
+      case Types.RANGE: {
         return (
             <div
                 className={this.setCssClasses('easy-edit-wrapper')}
@@ -291,8 +296,8 @@ export default class EasyEdit extends React.Component {
             </div>
         );
       }
-      case 'radio':
-      case 'select': {
+      case Types.RADIO:
+      case Types.SELECT: {
         let selected;
         if (this.state.value) {
           selected = options.filter((option) => {
@@ -311,7 +316,7 @@ export default class EasyEdit extends React.Component {
             </div>
         );
       }
-      case 'color':
+      case Types.COLOR:
         return (
             <input
                 type={type}
@@ -321,13 +326,7 @@ export default class EasyEdit extends React.Component {
                 {...attributes}
             />
         );
-      case 'checkbox': {
-        let selected;
-        if (this.state.value) {
-          selected = options.filter((option) => {
-            return this.state.value.includes(option.value);
-          });
-        }
+      case Types.CHECKBOX: {
         return (
             <div
                 className={this.setCssClasses('easy-edit-wrapper')}
@@ -336,15 +335,31 @@ export default class EasyEdit extends React.Component {
                 onMouseLeave={this.hoverOff}
                 {...attributes}
             >
-              {this.state.value && this.state.value.length !== 0 ? selected.map(
-                  checkbox => checkbox.label).join(', ') : placeholder}
+              {this.renderCheckboxPlaceholder()}
             </div>);
       }
       default: {
         throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
       }
     }
+  }
 
+  renderCheckboxPlaceholder(){
+    const {placeholder, options} = this.props;
+
+    if (this.state.value === null || this.state.value.length === 0) {
+      return placeholder;
+    }
+
+    let selected = options.filter((option) => {
+      return this.state.value.includes(option.value);
+    });
+
+    if (selected.length !== 0) {
+      return selected.map(checkbox => checkbox.label).join(', ');
+    } else {
+      return this.state.value;
+    }
   }
 
   render() {

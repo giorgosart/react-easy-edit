@@ -68,4 +68,16 @@ describe('EasyInput', () => {
     wrapper.find('input[name="test"]').simulate('keyDown', {keyCode: 27});
     expect(wrapper.find('input[name="test"]')).toHaveLength(0);
   });
+
+  it("should update the tempValue with with user's input", () => {
+    wrapper = mount(
+        <EasyEdit
+            type="text"
+            onSave={jest.fn()}
+            attributes={{name: 'test'}}
+        />);
+    wrapper.simulate('click');
+    wrapper.find('input[name="test"]').simulate('change', {target: { value: 'the-value' }});
+    expect(wrapper.state('tempValue')).toEqual('the-value');
+  });
 });

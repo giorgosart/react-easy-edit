@@ -7,7 +7,7 @@ configure({adapter: new Adapter()});
 
 describe('EasyCustom', () => {
   let wrapper;
-  const childInput = <input />
+  const childInput = <input />;
   const setValueFunction = jest.fn();
 
   it('should initially set the value passed in as the state value', () => {
@@ -19,7 +19,7 @@ describe('EasyCustom', () => {
       </EasyCustom>
     );
     expect(wrapper.state('value')).toEqual('test value');
-  })
+  });
 
   it('should execute setValue method correctly', () => {
     wrapper = shallow(

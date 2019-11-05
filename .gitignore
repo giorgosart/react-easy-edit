@@ -13,6 +13,7 @@ yarn.lock
 /build
 
 # misc
+*.iml
 .DS_Store
 .idea/
 .env.local
