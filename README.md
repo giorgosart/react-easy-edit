@@ -105,7 +105,7 @@ function App() {
 />
 ```
 
-#### 
+#### Datalist
 ```
 <EasyEdit
   type="datalist"
