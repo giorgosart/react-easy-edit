@@ -6,7 +6,7 @@
 ![](https://i.imgur.com/vwqcqeD.gif)
 
 # react-easy-edit
-A React library that allows inline editing on HTML5 input components.
+A React library that allows inline editing on HTML5 input components, try the sandbox **[here](https://codesandbox.io/s/react-easy-edit-sandbox-2y97j)**!
 
 ### :pencil: Features
 - Supports `input` (most types, even inputs with `datalist`), `textarea`,`radio`, `checkbox` and `select` HTML types
@@ -20,8 +20,9 @@ A React library that allows inline editing on HTML5 input components.
 ## :pray: Show your support
 Give a :star: if this project helped you in any way!
 
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y611NE2)
+[![paypal](https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TUJKB5DPLHA3N&currency_code=GBP&source=url)
 
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y611NE2)
 
 ## :cool: Props
 | Prop              | Type                      | Required | Default         | Description                                                                                                                                                                                   |
@@ -45,7 +46,7 @@ Give a :star: if this project helped you in any way!
 | displayComponent  | element                   | No       | null            | The custom component to be displayed the value when not editing                                                                                                                        |
 
 ## Usage
-A simple example
+#### A simple example - Textbox
 ```
 import React, { Component } from 'react';
 import EasyEdit from 'react-easy-edit';
@@ -67,6 +68,65 @@ function App() {
     />
   );
 }
+```
+
+#### Radio buttons
+```
+<EasyEdit
+  type="radio"
+  value="one"
+  onSave={save}
+  options={[
+      {label: 'First option', value: 'one'},
+      {label: 'Second option', value: 'two'}]}
+  instructions="Custom instructions"
+/>
+```
+
+#### Date
+```
+<EasyEdit
+  type="date"
+  onSave={save}
+  instructions="Select your date of birth"
+/>
+```
+
+#### Dropdown
+```
+<EasyEdit
+  type="select"
+  options={[
+      {label: 'First option', value: 'one'},
+      {label: 'Second option', value: 'two'}]}
+  onSave={save}
+  placeholder="My Placeholder"
+  instructions="Custom instructions"
+/>
+```
+
+#### 
+```
+<EasyEdit
+  type="datalist"
+  options={[
+      {label: 'First option', value: 'one'},
+      {label: 'Second option', value: 'two'}]}
+  onSave={save}
+  instructions="Custom instructions"
+/>
+```
+
+#### Checkboxes
+```
+<EasyEdit
+  type="checkbox"
+  options={[
+      {label: 'First option', value: 'one'},
+      {label: 'Second option', value: 'two'}]}
+  onSave={save}
+  value={['one', 'two']} // this will preselect both options
+/>
 ```
 
 #### Custom components
