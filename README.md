@@ -12,7 +12,7 @@ A React library that allows inline editing on HTML5 input components, try the sa
 - Supports `input` (most types, even inputs with `datalist`), `textarea`,`radio`, `checkbox` and `select` HTML types
 - Validates user input
 - Allows customisation on all elements including the save and cancel buttons
-- Supports custom editComponent and custom displayComponent  for each type
+- Supports custom editComponent and custom displayComponent for each type
 
 ## :rocket: Installation
 ```npm i react-easy-edit``` or ```yarn add react-easy-edit```
@@ -36,7 +36,7 @@ Give a :star: if this project helped you in any way!
 | cancelButtonStyle | string                    | No       | easy-edit-button| One or more CSS classes to be used to style the "Cancel" button                                                                                                                               |
 | placeholder       | string                    | No       | Click to edit   | The text to be shown as a hint that describes the expected value of the input element                                                                                                         |
 | onCancel          | function                  | No       | () => {}        | A function that will be called when editing is cancelled. Also called when the <kbd>Esc</kbd> button is pressed                                                                               |
-| onSave            | function                  | Yes      |                 | A function that will be called when editing is saved. Also called when the <kbd>Enter</kbd> button is pressed (Textarea component is excluded)                                                                                 |
+| onSave            | function                  | Yes      |                 | A function that will be called when editing is saved. Also called when the <kbd>Enter</kbd> button is pressed (for Textarea component it's <kbd>Ctrl</kbd> + <kbd>Enter</kbd>)                                                                                 |
 | onValidate        | function                  | No       | () => {}        | A function that will be called before the onSave() event. It must return true or false and has one parameter which is the value of the component being edited                                 |
 | validationMessage | string                    | No       |                 | The text to be displayed if validation fails                                                                                                                                                  |
 | allowEdit         | boolean                   | No       | true            | Determines whether the component itself should be editable or not                                                                                                                             |

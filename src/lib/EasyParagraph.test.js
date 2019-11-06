@@ -60,4 +60,19 @@ describe('EasyParagraph', () => {
     wrapper.find('textarea[name="test"]').simulate('keyDown', {keyCode: 13});
     expect(wrapper.find('textarea[name="test"]')).toHaveLength(1);
   });
+
+  it('should auto submit when ctrl + enter key is pressed', () => {
+    wrapper = mount(
+        <EasyEdit
+            type="textarea"
+            onSave={jest.fn()}
+            attributes={{name: 'test'}}
+        />);
+    wrapper.simulate('click');
+    expect(wrapper.find('textarea')).toHaveLength(1);
+    wrapper.find('textarea').simulate('change', {target: {value: 'abc'}});
+    wrapper.find('textarea[name="test"]').simulate('keyDown', {keyCode: 13, ctrlKey: true});
+    expect(wrapper.find('textarea')).toHaveLength(0);
+    expect(wrapper.state().value).toEqual('abc');
+  });
 });

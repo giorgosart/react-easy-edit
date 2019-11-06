@@ -45,10 +45,12 @@ export default class EasyEdit extends React.Component {
 
   onKeyDown = (e) => {
     const {type} = this.props;
+    debugger;
     if (e.keyCode === 27) {
       this._onCancel();
     }
-    if (e.keyCode === 13 && type !== Types.TEXTAREA){
+    if ((e.keyCode === 13 && type !== Types.TEXTAREA)
+        || (e.keyCode === 13 && e.ctrlKey && type === Types.TEXTAREA)) {
       this._onSave();
     }
   };
