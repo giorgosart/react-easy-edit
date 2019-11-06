@@ -128,6 +128,7 @@ export default class EasyEdit extends React.Component {
 
     switch (type) {
       case Types.TEXT:
+      case Types.PASSWORD:
       case Types.EMAIL:
       case Types.NUMBER:
       case Types.DATE:
@@ -295,6 +296,18 @@ export default class EasyEdit extends React.Component {
             </div>
         );
       }
+      case Types.PASSWORD: {
+        return (
+            <div
+                className={this.setCssClasses('easy-edit-wrapper')}
+                onClick={this.onClick}
+                onMouseEnter={this.hoverOn}
+                onMouseLeave={this.hoverOff}
+            >
+              {this.state.value ? "••••••••" : placeholder}
+            </div>
+        );
+      }
       case Types.RADIO:
       case Types.SELECT: {
         let selected;
@@ -392,6 +405,7 @@ export const Types = {
   EMAIL: 'email',
   MONTH: 'month',
   NUMBER: 'number',
+  PASSWORD: 'password',
   RADIO: 'radio',
   RANGE: 'range',
   SELECT: 'select',
@@ -405,7 +419,7 @@ Object.freeze(Types);
 
 EasyEdit.propTypes = {
   type: PropTypes.oneOf([
-    'text', 'number', 'color', 'textarea', 'date', 'datetime-local', 'email',
+    'text', 'number', 'color', 'textarea', 'date', 'datetime-local', 'email', 'password',
     'time', 'month', 'week', 'radio', 'checkbox', 'select', 'range', 'datalist'
   ]).isRequired,
   value: PropTypes.oneOfType([

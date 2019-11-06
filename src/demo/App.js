@@ -63,6 +63,11 @@ class App extends Component {
                   onSave={App.onTest}
                   instructions="Custom instructions"
               />
+              <h4>Type Password</h4>
+              <EasyEdit
+                  type={Types.PASSWORD}
+                  onSave={App.onTest}
+              />
               <h4>type "range"</h4>
               <EasyEdit
                   type="range"
