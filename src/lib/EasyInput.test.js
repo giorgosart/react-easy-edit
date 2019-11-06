@@ -80,4 +80,15 @@ describe('EasyInput', () => {
     wrapper.find('input[name="test"]').simulate('change', {target: { value: 'the-value' }});
     expect(wrapper.state('tempValue')).toEqual('the-value');
   });
+
+  it("should cull the attributes prop appropriately", () => {
+    wrapper = mount(
+        <EasyEdit
+            type="text"
+            onSave={jest.fn()}
+            attributes={{type:'number', class: 'test', value:'Test', onChange:()=>{alert("Whaaaa?")}}}
+        />);
+    wrapper.simulate('click');
+    expect(wrapper.props().attributes).toEqual({"class": "test"});
+  });
 });

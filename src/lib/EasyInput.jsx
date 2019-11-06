@@ -12,7 +12,7 @@ const EasyInput = (props) => {
             type={type}
             value={value ? value : undefined}
             onChange={onChange}
-            placeholder={placeholder}
+            placeholder={attributes["placeholder"] || placeholder}
             autoComplete={attributes["autoComplete"] || "off"}
             {...attributes}
         />

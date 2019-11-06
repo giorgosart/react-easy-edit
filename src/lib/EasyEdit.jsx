@@ -4,7 +4,6 @@ import './EasyEdit.css';
 
 // local modules
 import Globals from './globals';
-import Types from './types';
 import EasyDropdown from './EasyDropdown.jsx';
 import EasyInput from "./EasyInput.jsx";
 import EasyParagraph from "./EasyParagraph.jsx";
@@ -112,6 +111,7 @@ export default class EasyEdit extends React.Component {
   renderInput() {
     const {type, options, placeholder, attributes, editComponent} = this.props;
     const editing = this.state.editing;
+    this.cullAttributes();
 
     if (React.isValidElement(editComponent)) {
       return (
@@ -254,7 +254,8 @@ export default class EasyEdit extends React.Component {
   }
 
   renderPlaceholder() {
-    const {type, placeholder, options, displayComponent, attributes} = this.props;
+    const {type, placeholder, options, displayComponent} = this.props;
+    this.cullAttributes();
 
     if (React.isValidElement(displayComponent)) {
       return (
@@ -263,7 +264,6 @@ export default class EasyEdit extends React.Component {
           onClick={this.onClick}
           onMouseEnter={this.hoverOn}
           onMouseLeave={this.hoverOff}
-          {...attributes}
         >
           { this.state.value ?
               React.cloneElement(displayComponent, {value: this.state.value}) :
@@ -290,7 +290,6 @@ export default class EasyEdit extends React.Component {
                 onClick={this.onClick}
                 onMouseEnter={this.hoverOn}
                 onMouseLeave={this.hoverOff}
-                {...attributes}
             >
               {this.state.value ? this.state.value : placeholder}
             </div>
@@ -310,7 +309,6 @@ export default class EasyEdit extends React.Component {
                 onClick={this.onClick}
                 onMouseEnter={this.hoverOn}
                 onMouseLeave={this.hoverOff}
-                {...attributes}
             >
               {this.state.value ? (selected ? this.state.value : selected[0].label) : placeholder}
             </div>
@@ -323,7 +321,6 @@ export default class EasyEdit extends React.Component {
                 value={this.state.value}
                 onClick={this.onClick}
                 readOnly
-                {...attributes}
             />
         );
       case Types.CHECKBOX: {
@@ -333,7 +330,6 @@ export default class EasyEdit extends React.Component {
                 onClick={this.onClick}
                 onMouseEnter={this.hoverOn}
                 onMouseLeave={this.hoverOff}
-                {...attributes}
             >
               {this.renderCheckboxPlaceholder()}
             </div>);
@@ -362,6 +358,16 @@ export default class EasyEdit extends React.Component {
     }
   }
 
+  cullAttributes() {
+    const {attributes} = this.props;
+
+    if (typeof attributes !== 'undefined') {
+      delete attributes["type"];
+      delete attributes["onChange"];
+      delete attributes["value"];
+    }
+  }
+
   render() {
     if (this.state.editing) {
       return (
@@ -376,6 +382,26 @@ export default class EasyEdit extends React.Component {
     }
   }
 }
+
+export const Types = {
+  COLOR: 'color',
+  CHECKBOX: 'checkbox',
+  DATALIST: 'datalist',
+  DATE: 'date',
+  DATETIME_LOCAL: 'datetime-local',
+  EMAIL: 'email',
+  MONTH: 'month',
+  NUMBER: 'number',
+  RADIO: 'radio',
+  RANGE: 'range',
+  SELECT: 'select',
+  TEXT: 'text',
+  TEXTAREA: 'textarea',
+  TIME: 'time',
+  WEEK: 'week'
+};
+
+Object.freeze(Types);
 
 EasyEdit.propTypes = {
   type: PropTypes.oneOf([

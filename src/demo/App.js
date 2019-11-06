@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import EasyEdit from "../lib/EasyEdit";
+import EasyEdit, {Types} from "../lib/EasyEdit";
 
 import CustomInput from './CustomInput';
 import CustomDisplay from './CustomDisplay';
@@ -38,7 +38,7 @@ class App extends Component {
               <h1>React Easy Edit</h1>
               <h3>Datalist</h3>
               <EasyEdit
-                  type="datalist"
+                  type={Types.DATALIST}
                   onSave={App.onTest}
                   options={App.generateOptions()}
                   instructions="Custom instructions"
@@ -150,13 +150,8 @@ class App extends Component {
                   type="checkbox"
                   options={App.generateOptions()}
                   onSave={App.onTest}
-                  instructions="Custom instructions"
-              />
-              <EasyEdit
-                  type="checkbox"
-                  options={App.generateOptions()}
-                  onSave={App.onTest}
                   value={App.generateValues()}
+                  attributes={{class: 'test', checked:'checked'}}
               />
               <h3>Custom components</h3>
               <EasyEdit

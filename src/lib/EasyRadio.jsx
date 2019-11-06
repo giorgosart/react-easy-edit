@@ -8,7 +8,6 @@ const EasyRadio = (props) => {
       <label key={option.value} className="easy-edit-radio-label">
         <input
             type="radio"
-            className="easy-edit-radio-button"
             value={option.value}
             onChange={onChange}
             checked={option.value === value}

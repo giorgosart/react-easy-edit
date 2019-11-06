@@ -239,12 +239,4 @@ describe('EasyEdit', () => {
     expect(wrapper.state().isValid).toEqual(false);
     expect(wrapper.find('.easy-edit-validation-error').text()).toEqual('Please provide a valid value');
   });
-
-  it('utilises props when component placeholder is rendered', () => {
-    expect(wrapper.find('.easy-edit-wrapper[name]')).toHaveLength(1);
-    expect(wrapper.find('.easy-edit-wrapper[testattribute]')).toHaveLength(0);
-    wrapper.setProps({attributes: {name: 'test', testattribute: 'test'}});
-    expect(wrapper.find('.easy-edit-wrapper[name]')).toHaveLength(1);
-    expect(wrapper.find('.easy-edit-wrapper[testattribute]')).toHaveLength(1);
-  });
 });

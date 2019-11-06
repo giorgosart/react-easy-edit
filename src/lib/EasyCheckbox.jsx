@@ -10,7 +10,6 @@ const EasyCheckbox = (props) => {
             <input
                 {...attributes}
                 type="checkbox"
-                className="easy-edit-radio-button"
                 value={option.value}
                 key={option.value}
                 onChange={onChange}
