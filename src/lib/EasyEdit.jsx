@@ -44,14 +44,17 @@ export default class EasyEdit extends React.Component {
   }
 
   onKeyDown = (e) => {
-    const {type} = this.props;
+    const {type, disableAutoSubmit, disableAutoCancel} = this.props;
     debugger;
-    if (e.keyCode === 27) {
+    if (!disableAutoCancel && e.keyCode === 27) {
       this._onCancel();
     }
-    if ((e.keyCode === 13 && type !== Types.TEXTAREA)
-        || (e.keyCode === 13 && e.ctrlKey && type === Types.TEXTAREA)) {
-      this._onSave();
+
+    if (!disableAutoSubmit) {
+      if ((e.keyCode === 13 && type !== Types.TEXTAREA)
+          || (e.keyCode === 13 && e.ctrlKey && type === Types.TEXTAREA)) {
+        this._onSave();
+      }
     }
   };
 
@@ -449,7 +452,9 @@ EasyEdit.propTypes = {
   attributes: PropTypes.object,
   instructions: PropTypes.string,
   editComponent: PropTypes.element,
-  displayComponent: PropTypes.element
+  displayComponent: PropTypes.element,
+  disableAutoSubmit: PropTypes.bool,
+  disableAutoCancel: PropTypes.bool
 };
 
 EasyEdit.defaultProps = {
@@ -466,5 +471,7 @@ EasyEdit.defaultProps = {
   validationMessage: Globals.FAILED_VALIDATION_MESSAGE,
   instructions: null,
   editComponent: null,
-  placeholderComponent: null
+  placeholderComponent: null,
+  disableAutoSubmit: false,
+  disableAutoCancel: false
 };

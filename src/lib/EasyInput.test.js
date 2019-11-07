@@ -65,8 +65,38 @@ describe('EasyInput', () => {
         />);
     wrapper.simulate('click');
     expect(wrapper.find('input[name="test"]')).toHaveLength(1);
-    wrapper.find('input[name="test"]').simulate('keyDown', {keyCode: 27});
+    wrapper.find('input[name="test"]').simulate('change', {target: {value: 'abc'}});
+    wrapper.find('input[name="test"]').simulate('keyDown', {keyCode: 13});
     expect(wrapper.find('input[name="test"]')).toHaveLength(0);
+    expect(wrapper.state().value).toEqual('abc');
+  });
+
+  it('should not auto cancel when the esc key is pressed and disableAutoCancel is true', () => {
+    wrapper = mount(
+        <EasyEdit
+            type="text"
+            onSave={jest.fn()}
+            attributes={{name: 'test'}}
+            disableAutoCancel
+        />);
+    wrapper.simulate('click');
+    expect(wrapper.find('input[name="test"]')).toHaveLength(1);
+    wrapper.find('input[name="test"]').simulate('keyDown', {keyCode: 27});
+    expect(wrapper.find('input[name="test"]')).toHaveLength(1);
+  });
+
+  it('should not auto submit when the enter key is pressed and disableAutoSubmit is true', () => {
+    wrapper = mount(
+        <EasyEdit
+            type="text"
+            onSave={jest.fn()}
+            attributes={{name: 'test'}}
+            disableAutoSubmit
+        />);
+    wrapper.simulate('click');
+    expect(wrapper.find('input[name="test"]')).toHaveLength(1);
+    wrapper.find('input[name="test"]').simulate('keyDown', {keyCode: 13});
+    expect(wrapper.find('input[name="test"]')).toHaveLength(1);
   });
 
   it("should update the tempValue with with user's input", () => {

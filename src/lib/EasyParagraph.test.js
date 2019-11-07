@@ -44,15 +44,10 @@ describe('EasyParagraph', () => {
   });
 
   it('should ignore enter key press for paragraphs', () => {
-
     wrapper = mount(
         <EasyEdit
             type="textarea"
             onSave={jest.fn()}
-            saveButtonLabel="Save Test"
-            saveButtonStyle="save-style"
-            cancelButtonLabel="Cancel Test"
-            cancelButtonStyle="cancel-style"
             attributes={{name: 'test'}}
         />);
     wrapper.simulate('click');
@@ -74,5 +69,33 @@ describe('EasyParagraph', () => {
     wrapper.find('textarea[name="test"]').simulate('keyDown', {keyCode: 13, ctrlKey: true});
     expect(wrapper.find('textarea')).toHaveLength(0);
     expect(wrapper.state().value).toEqual('abc');
+  });
+
+  it('should not auto cancel when the esc key is pressed and disableAutoCancel is true', () => {
+    wrapper = mount(
+        <EasyEdit
+            type="textarea"
+            onSave={jest.fn()}
+            attributes={{name: 'test'}}
+            disableAutoCancel
+        />);
+    wrapper.simulate('click');
+    expect(wrapper.find('textarea[name="test"]')).toHaveLength(1);
+    wrapper.find('textarea[name="test"]').simulate('keyDown', {keyCode: 27});
+    expect(wrapper.find('textarea[name="test"]')).toHaveLength(1);
+  });
+
+  it('should not auto submit when the enter key is pressed and disableAutoSubmit is true', () => {
+    wrapper = mount(
+        <EasyEdit
+            type="textarea"
+            onSave={jest.fn()}
+            attributes={{name: 'test'}}
+            disableAutoSubmit
+        />);
+    wrapper.simulate('click');
+    expect(wrapper.find('textarea[name="test"]')).toHaveLength(1);
+    wrapper.find('textarea[name="test"]').simulate('keyDown', {keyCode: 13});
+    expect(wrapper.find('textarea[name="test"]')).toHaveLength(1);
   });
 });
