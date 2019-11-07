@@ -45,7 +45,6 @@ export default class EasyEdit extends React.Component {
 
   onKeyDown = (e) => {
     const {type, disableAutoSubmit, disableAutoCancel} = this.props;
-    debugger;
     if (!disableAutoCancel && e.keyCode === 27) {
       this._onCancel();
     }
@@ -260,7 +259,7 @@ export default class EasyEdit extends React.Component {
   }
 
   renderPlaceholder() {
-    const {type, placeholder, options, displayComponent} = this.props;
+    const {type, placeholder, displayComponent} = this.props;
     this.cullAttributes();
 
     if (React.isValidElement(displayComponent)) {
@@ -314,13 +313,8 @@ export default class EasyEdit extends React.Component {
         );
       }
       case Types.RADIO:
+      case Types.CHECKBOX:
       case Types.SELECT: {
-        let selected;
-        if (this.state.value) {
-          selected = options.filter((option) => {
-            return this.state.value.includes(option.value);
-          });
-        }
         return (
             <div
                 className={this.setCssClasses('easy-edit-wrapper')}
@@ -328,11 +322,11 @@ export default class EasyEdit extends React.Component {
                 onMouseEnter={this.hoverOn}
                 onMouseLeave={this.hoverOff}
             >
-              {this.state.value ? (selected ? this.state.value : selected[0].label) : placeholder}
+              {this.renderComplexView()}
             </div>
         );
       }
-      case Types.COLOR:
+      case Types.COLOR: {
         return (
             <input
                 type={type}
@@ -341,16 +335,6 @@ export default class EasyEdit extends React.Component {
                 readOnly
             />
         );
-      case Types.CHECKBOX: {
-        return (
-            <div
-                className={this.setCssClasses('easy-edit-wrapper')}
-                onClick={this.onClick}
-                onMouseEnter={this.hoverOn}
-                onMouseLeave={this.hoverOff}
-            >
-              {this.renderCheckboxPlaceholder()}
-            </div>);
       }
       default: {
         throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
@@ -358,16 +342,23 @@ export default class EasyEdit extends React.Component {
     }
   }
 
-  renderCheckboxPlaceholder(){
-    const {placeholder, options} = this.props;
+  renderComplexView() {
+    const {placeholder, options, type} = this.props;
 
     if (this.state.value === null || this.state.value.length === 0) {
       return placeholder;
     }
 
-    let selected = options.filter((option) => {
-      return this.state.value.includes(option.value);
-    });
+    let selected;
+    if (Types.CHECKBOX === type) {
+      selected = options.filter((option) => {
+        return this.state.value.includes(option.value);
+      });
+    } else {
+      selected = options.filter((option) => {
+        return this.state.value === option.value;
+      });
+    }
 
     if (selected.length !== 0) {
       return selected.map(checkbox => checkbox.label).join(', ');

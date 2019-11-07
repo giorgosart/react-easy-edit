@@ -1,22 +1,22 @@
 import React from 'react';
-import {configure, shallow, mount} from 'enzyme';
+import {configure, mount, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import EasyRadio from "./EasyRadio";
-import EasyEdit from "./EasyEdit";
+import EasyEdit, {Types} from "./EasyEdit";
 
 configure({adapter: new Adapter()});
 
 describe('EasyRadio', () => {
   let wrapper;
-  const onChange = jest.fn();
-  const options = [{label: 'Test One', value: 1},
-    {label: 'Test Two', value: 2}];
 
   beforeEach(() => {
     wrapper = shallow(
         <EasyRadio
-            options={options}
-            onChange={onChange}
+            options={
+              [{label: 'Test One', value: 1},
+              {label: 'Test Two', value: 2}]
+            }
+            onChange={jest.fn()}
             value={1}
         />
     );
@@ -26,25 +26,30 @@ describe('EasyRadio', () => {
     expect(wrapper.find('input')).toHaveLength(2);
   });
 
-  it("should render with the correct value selected", () => {
-    const saveFn = jest.fn();
-    const options = [
-      {label: 'Test One', value: 'testone'},
-      {label: 'Test Two', value: 'testtwo'},
-      {label: 'Test Three', value: 'testthree'},
-      {label: 'Test Four', value: 'testfour'}
-    ];
+  describe('EasyEdit - EasyRadio', () => {
+    let wrapper;
 
-    let  wrapper = mount(
-        <EasyEdit
-            type="select"
-            options={options}
-            onSave={saveFn}
-            value="testone"
-        />
-    );
+    beforeEach(() => {
+      wrapper = shallow(
+          <EasyEdit
+              type={Types.RADIO}
+              options={
+                [{label: 'Test One', value: 1},
+                {label: 'Test Two', value: 2}]
+              }
+              onSave={jest.fn()}
+              value={1}
+          />
+      );
+    });
 
-    wrapper.simulate('click');
-    expect(wrapper.find('option').at(1).instance().selected).toBeTruthy(); // it used to throw an error before
+    it('should render the correct label based on the value provided', () => {
+      expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("Test One");
+    });
+
+    it('should render the value if it does not map to an option', () => {
+      wrapper.setState({value: 3});
+      expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("3");
+    });
   });
 });

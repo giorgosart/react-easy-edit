@@ -1,21 +1,21 @@
 import React from 'react';
-import {configure, shallow} from 'enzyme';
+import {configure, mount, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import EasyDropdown from "./EasyDropdown";
 import Globals from './globals'
+import EasyEdit, {Types} from "./EasyEdit";
 
 configure({adapter: new Adapter()});
 
 describe('EasyDropdown', () => {
   let wrapper;
   const onChange = jest.fn();
-  const options = [{label: 'Test One', value: 1},
-    {label: 'Test Two', value: 2}];
 
   beforeEach(() => {
     wrapper = shallow(
         <EasyDropdown
-            options={options}
+            options={[{label: 'Test One', value: 1},
+              {label: 'Test Two', value: 2}]}
             onChange={onChange}
             attributes={{name: 'test'}}
         />
@@ -49,5 +49,23 @@ describe('EasyDropdown', () => {
   it('should call the onChange fn when a value is changed', () => {
     wrapper.find('select').simulate('change', {target: {value: 2}});
     expect(onChange).toBeCalled();
+  });
+
+  it("should render with the correct value selected", () => {
+    let wrapper = mount(
+        <EasyEdit
+            type={Types.SELECT}
+            options={[
+              {label: 'Test One', value: 'one'},
+              {label: 'Test Two', value: 'two'},
+              {label: 'Test Three', value: 'three'}
+            ]}
+            onSave={jest.fn()}
+            value="one"
+        />
+    );
+
+    wrapper.simulate('click');
+    expect(wrapper.find('option').at(1).instance().selected).toBeTruthy(); // it used to throw an error before
   });
 });
