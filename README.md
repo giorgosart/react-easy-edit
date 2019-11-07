@@ -47,7 +47,7 @@ Give a :star: if this project helped you in any way!
 | editComponent     | element                   | No       | null            | The custom component to be displayed when editing the value. This will override the standard input shown for the ```type``` provided                                                     |
 | displayComponent  | element                   | No       | null            | The custom component to be displayed the value when not editing                                                                                                                        |
 
-## Usage
+## :page_facing_up: Examples
 #### A simple example - Textbox
 ```
 import React, { Component } from 'react';
