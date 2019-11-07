@@ -21,7 +21,6 @@ A React library that allows inline editing on HTML5 input components, try the sa
 Give a :star: if this project helped you in any way!
 
 [![paypal](https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TUJKB5DPLHA3N&currency_code=GBP&source=url)
-
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y611NE2)
 
 ## :cool: Props
