@@ -1,7 +1,6 @@
 import React from 'react';
-import {configure, shallow, mount} from 'enzyme';
+import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import EasyInput from "./EasyInput";
 import EasyEdit from "./EasyEdit";
 
 configure({adapter: new Adapter()});
