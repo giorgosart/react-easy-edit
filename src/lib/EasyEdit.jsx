@@ -288,28 +288,17 @@ export default class EasyEdit extends React.Component {
       case Types.TIME:
       case Types.MONTH:
       case Types.WEEK:
-      case Types.RANGE: {
-        return (
-            <div
-                className={this.setCssClasses('easy-edit-wrapper')}
-                onClick={this.onClick}
-                onMouseEnter={this.hoverOn}
-                onMouseLeave={this.hoverOff}
-            >
-              {this.state.value ? this.state.value : placeholder}
-            </div>
-        );
-      }
+      case Types.RANGE:
       case Types.PASSWORD: {
         return (
-            <div
-                className={this.setCssClasses('easy-edit-wrapper')}
-                onClick={this.onClick}
-                onMouseEnter={this.hoverOn}
-                onMouseLeave={this.hoverOff}
-            >
-              {this.state.value ? "••••••••" : placeholder}
-            </div>
+             <div
+                 className={this.setCssClasses('easy-edit-wrapper')}
+                 onClick={this.onClick}
+                 onMouseEnter={this.hoverOn}
+                 onMouseLeave={this.hoverOff}
+             >
+               {this.state.value ? (type === Types.PASSWORD ? "••••••••" : this.state.value) : placeholder}
+             </div>
         );
       }
       case Types.RADIO:
