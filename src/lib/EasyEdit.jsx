@@ -27,11 +27,6 @@ export default class EasyEdit extends React.Component {
 
     this.saveButton = React.createRef();
     this.cancelButton = React.createRef();
-
-    this.onClick = this.onClick.bind(this);
-    this.hoverOn = this.hoverOn.bind(this);
-    this.hoverOff = this.hoverOff.bind(this);
-    this.onChange = this.onChange.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -94,23 +89,23 @@ export default class EasyEdit extends React.Component {
     this.setState({tempValue: values});
   };
 
-  onClick() {
+  onClick = () => {
     const {allowEdit} = this.props;
     if (allowEdit) {
       this.setState({editing: true});
     }
-  }
+  };
 
-  hoverOn() {
+  hoverOn = () => {
     const {allowEdit} = this.props;
     if (allowEdit) {
       this.setState({hover: true});
     }
-  }
+  };
 
-  hoverOff() {
+  hoverOff = () => {
     this.setState({hover: false});
-  }
+  };
 
   renderInput() {
     const {type, options, placeholder, attributes, editComponent} = this.props;
