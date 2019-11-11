@@ -49,7 +49,7 @@ Give a :star: if this project helped you in any way!
 
 ## :page_facing_up: Examples
 #### A simple example - Textbox
-```
+```jsx
 import React, { Component } from 'react';
 import EasyEdit from 'react-easy-edit';
 
@@ -73,7 +73,7 @@ function App() {
 ```
 
 #### Radio buttons
-```
+```jsx
 <EasyEdit
   type="radio"
   value="one"
@@ -86,7 +86,7 @@ function App() {
 ```
 
 #### Date
-```
+```jsx
 <EasyEdit
   type="date"
   onSave={save}
@@ -95,7 +95,7 @@ function App() {
 ```
 
 #### Dropdown
-```
+```jsx
 <EasyEdit
   type="select"
   options={[
@@ -108,7 +108,7 @@ function App() {
 ```
 
 #### Datalist
-```
+```jsx
 <EasyEdit
   type="datalist"
   options={[
@@ -120,7 +120,7 @@ function App() {
 ```
 
 #### Checkboxes
-```
+```jsx
 <EasyEdit
   type="checkbox"
   options={[
@@ -134,7 +134,7 @@ function App() {
 #### Custom components
 
 When using custom input components, they must be passed in as props, like so:
-```
+```jsx
 <EasyEdit
     type="text"
     onSave={() => {}}
@@ -148,7 +148,7 @@ When defining a custom input component, the function ```setParentValue``` is inj
 For example, if your component was a text field that needed to set the ```EasyEdit``` value as a user id based on a username entered, you would need to pass the id to ```this.props.setParentValue``` in order to get that value to the ```EasyEdit``` component.
 
 e.g.
-```
+```jsx
 // Inside your custom input
 
 onChange(searchTerm) {
