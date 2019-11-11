@@ -2,6 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CircleCI](https://circleci.com/gh/giorgosart/react-easy-edit.svg?style=shield)](https://circleci.com/gh/giorgosart/react-easy-edit) [![Greenkeeper badge](https://badges.greenkeeper.io/giorgosart/react-easy-edit.svg)](https://greenkeeper.io/)
 [![install size](https://packagephobia.now.sh/badge?p=react-easy-edit@latest)](https://packagephobia.now.sh/result?p=react-easy-edit@latest)
+[![DeepScan grade](https://deepscan.io/api/teams/6030/projects/7886/branches/87202/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=6030&pid=7886&bid=87202)
 
 ![](https://i.imgur.com/vwqcqeD.gif)
 
