@@ -50,6 +50,7 @@ class App extends Component {
                   value="Test Input Field"
                   onSave={App.onTest}
                   allowEdit={false}
+                  viewAttributes={{style:{'color':'red'}, 'data-test':'test', class: 'test', className: 'test2'}}
               />
               <EasyEdit
                   type="text"
