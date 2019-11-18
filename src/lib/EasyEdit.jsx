@@ -236,6 +236,15 @@ export default class EasyEdit extends React.Component {
   }
 
   setCssClasses(existingClasses) {
+    const {viewAttributes} = this.props;
+
+    if (viewAttributes["class"]) {
+      existingClasses += " " + viewAttributes["class"];
+    }
+    if (viewAttributes["className"]) {
+      existingClasses += " " + viewAttributes["className"];
+    }
+
     if (!this.props.allowEdit) {
       return 'easy-edit-not-allowed ' + existingClasses;
     } else if (this.state.hover) {
@@ -254,12 +263,13 @@ export default class EasyEdit extends React.Component {
   }
 
   renderPlaceholder() {
-    const {type, placeholder, displayComponent} = this.props;
+    const {type, placeholder, displayComponent, viewAttributes} = this.props;
     this.cullAttributes();
 
     if (React.isValidElement(displayComponent)) {
       return (
         <div
+          {...viewAttributes}
           className={this.setCssClasses('easy-edit-wrapper')}
           onClick={this.onClick}
           onMouseEnter={this.hoverOn}
@@ -287,6 +297,7 @@ export default class EasyEdit extends React.Component {
       case Types.PASSWORD: {
         return (
              <div
+                 {...viewAttributes}
                  className={this.setCssClasses('easy-edit-wrapper')}
                  onClick={this.onClick}
                  onMouseEnter={this.hoverOn}
@@ -301,6 +312,7 @@ export default class EasyEdit extends React.Component {
       case Types.SELECT: {
         return (
             <div
+                {...viewAttributes}
                 className={this.setCssClasses('easy-edit-wrapper')}
                 onClick={this.onClick}
                 onMouseEnter={this.hoverOn}
@@ -313,6 +325,7 @@ export default class EasyEdit extends React.Component {
       case Types.COLOR: {
         return (
             <input
+                {...viewAttributes}
                 type={type}
                 value={this.state.value}
                 onClick={this.onClick}
@@ -353,12 +366,9 @@ export default class EasyEdit extends React.Component {
 
   cullAttributes() {
     const {attributes} = this.props;
-
-    if (typeof attributes !== 'undefined') {
-      delete attributes["type"];
-      delete attributes["onChange"];
-      delete attributes["value"];
-    }
+    delete attributes["type"];
+    delete attributes["onChange"];
+    delete attributes["value"];
   }
 
   render() {
@@ -425,6 +435,7 @@ EasyEdit.propTypes = {
   onSave: PropTypes.func.isRequired,
   allowEdit: PropTypes.bool,
   attributes: PropTypes.object,
+  viewAttributes: PropTypes.object,
   instructions: PropTypes.string,
   editComponent: PropTypes.element,
   displayComponent: PropTypes.element,
@@ -440,10 +451,11 @@ EasyEdit.defaultProps = {
   cancelButtonStyle: Globals.DEFAULT_BUTTON_CSS_CLASS,
   placeholder: Globals.DEFAULT_PLACEHOLDER,
   allowEdit: true,
-  onCancel: () => {
-  },
+  onCancel: () => {},
   onValidate: value => true,
   validationMessage: Globals.FAILED_VALIDATION_MESSAGE,
+  attributes: {},
+  viewAttributes: {},
   instructions: null,
   editComponent: null,
   placeholderComponent: null,

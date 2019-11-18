@@ -113,10 +113,19 @@ describe('EasyEdit', () => {
     expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("Test")
   });
 
+  //--------------------------- Styling ----------------------------
+  it('should append the css classes passed in the viewAttributes prop to the main div', () => {
+    wrapper.setProps({
+      viewAttributes: {class: 'test', className: 'test2'},
+    });
+    expect(wrapper.find('div.test')).toHaveLength(1);
+    expect(wrapper.find('div.test2')).toHaveLength(1);
+  });
+
   //-------------------------- SAVE BUTTON --------------------------
   it('should use the prop value for the "Save" button label', () => {
     wrapper.simulate('click');
-    expect(wrapper.find('button[name="save"]').text()).toEqual("Save Test")
+    expect(wrapper.find('button[name="save"]').text()).toEqual("Save Test");
   });
 
   it('should use the prop value for the "Save" button style', () => {
@@ -133,7 +142,7 @@ describe('EasyEdit', () => {
   //-------------------------- CANCEL BUTTON -------------------------
   it('should use the prop value for the "Cancel" button label', () => {
     wrapper.simulate('click');
-    expect(wrapper.find('button[name="cancel"]').text()).toEqual("Cancel Test")
+    expect(wrapper.find('button[name="cancel"]').text()).toEqual("Cancel Test");
   });
 
   it('should use the prop value for the "Cancel" button style', () => {
