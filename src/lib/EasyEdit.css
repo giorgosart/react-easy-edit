@@ -11,7 +11,7 @@
   display: block;
 }
 
-.easy-edit-not-allowed{
+.easy-edit-not-allowed {
   cursor: not-allowed;
 }
 
@@ -25,14 +25,14 @@
 
 .easy-edit-button {
   border: none;
-  padding: 4px;
+  display: inline-block;
   margin: 0 2px;
+  padding: 4px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
 }
 
-.easy-edit-component-wrapper{
+.easy-edit-component-wrapper {
   display: inline-grid;
 }
 
