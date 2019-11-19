@@ -115,9 +115,7 @@ export default class EasyEdit extends React.Component {
     if (React.isValidElement(editComponent)) {
       return (
         <EasyCustom
-          setValue={newValue => {
-            this.onChange(newValue);
-          }}
+          setValue={this.onChange}
           value={this.state.tempValue}
         >
           {editComponent}
