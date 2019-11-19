@@ -56,7 +56,7 @@ export default class EasyEdit extends React.Component {
     const {onSave, onValidate} = this.props;
     const tempValue = this.state.tempValue;
     if (onValidate(tempValue)) {
-      this.setState({editing: false, value: tempValue},
+      this.setState({editing: false, value: tempValue, isValid: true},
           () => onSave(this.state.value));
     } else {
       this.setState({isValid: false});

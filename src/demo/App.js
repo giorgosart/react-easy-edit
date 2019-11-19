@@ -42,6 +42,7 @@ class App extends Component {
                   onSave={App.onTest}
                   options={App.generateOptions()}
                   instructions="Custom instructions"
+                  onValidate={value => {return value != null}}
               />
               <h3>Input Field</h3>
               <h4>type "text"</h4>
