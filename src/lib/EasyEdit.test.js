@@ -248,4 +248,9 @@ describe('EasyEdit', () => {
     expect(wrapper.state().isValid).toEqual(false);
     expect(wrapper.find('.easy-edit-validation-error').text()).toEqual('Please provide a valid value');
   });
+
+  it('should render the passed in diplayComponent', () => {
+    wrapper.setProps({displayComponent: <div id="test-display-component"/>});
+    expect(wrapper.find('#test-display-component')).toBeTruthy();
+  })
 });
