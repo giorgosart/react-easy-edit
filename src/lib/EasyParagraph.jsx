@@ -4,10 +4,10 @@ import './EasyEdit.css';
 import Globals from './globals'
 
 const EasyParagraph = (props) => {
-  const {value, placeholder, onChange, attributes} = props;
+  const {value, placeholder, onChange, attributes, cssClassPrefix} = props;
 
   return (
-      <div className="easy-edit-component-wrapper">
+      <div className={cssClassPrefix + "easy-edit-component-wrapper"}>
         <textarea
             autoFocus={attributes["autoFocus"] || true}
             className="easy-edit-textarea"
@@ -23,7 +23,8 @@ EasyParagraph.propTypes = {
   onChange: PropTypes.func,
   value: PropTypes.string,
   placeholder: PropTypes.string,
-  attributes: PropTypes.object
+  attributes: PropTypes.object,
+  cssClassPrefix: PropTypes.string
 };
 
 EasyParagraph.defaultProps = {

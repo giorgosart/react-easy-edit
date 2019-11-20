@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import './EasyEdit.css';
 
 const EasyCheckbox = (props) => {
-  let {options, value, onChange, attributes} = props;
+  let {options, value, onChange, attributes, cssClassPrefix} = props;
   value = value || [];
   let checkboxes = options.map(option => (
-          <label key={option.value} className="easy-edit-checkbox-label">
+          <label key={option.value} className={cssClassPrefix + "easy-edit-checkbox-label"}>
             <input
                 {...attributes}
                 type="checkbox"
@@ -29,7 +29,8 @@ EasyCheckbox.propTypes = {
   onChange: PropTypes.func,
   options: PropTypes.array.isRequired,
   value: PropTypes.array,
-  attributes: PropTypes.object
+  attributes: PropTypes.object,
+  cssClassPrefix: PropTypes.string
 };
 
 EasyCheckbox.defaultProps = {

@@ -5,7 +5,7 @@ export default class EasyCustom extends Component {
     super(props);
     this.state = {
       value: props.value
-    }
+    };
     this.setValue = this.setValue.bind(this);
   }
 
@@ -17,7 +17,7 @@ export default class EasyCustom extends Component {
 
   render() {
     const { value } = this.state;
-    const { children } = this.props;
+    const { children, cssClassPrefix } = this.props;
     const child = React.cloneElement(
       React.Children.only(children),
       {
@@ -26,7 +26,7 @@ export default class EasyCustom extends Component {
       }
     );
     return (
-      <div className="easy-edit-component-wrapper">
+      <div className={cssClassPrefix + "easy-edit-component-wrapper"}>
         {child}
       </div>
     );

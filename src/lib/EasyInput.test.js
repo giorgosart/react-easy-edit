@@ -121,4 +121,18 @@ describe('EasyInput', () => {
     wrapper.simulate('click');
     expect(wrapper.props().attributes).toEqual({"class": "test"});
   });
+
+  it("should apply the cssClassPrefix", () => {
+    wrapper = mount(
+        <EasyEdit
+            type="text"
+            onSave={jest.fn()}
+            cssClassPrefix="test"
+        />);
+    wrapper.simulate('click');
+    expect(wrapper.find('div.testeasy-edit-inline-wrapper')).toHaveLength(1);
+    expect(wrapper.find('div.testeasy-edit-component-wrapper')).toHaveLength(1);
+    expect(wrapper.find('div.testeasy-edit-button-wrapper')).toHaveLength(1);
+    expect(wrapper.find('button.testeasy-edit-button')).toHaveLength(2);
+  });
 });

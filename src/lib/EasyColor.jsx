@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import './EasyEdit.css';
 
 const EasyColor = (props) => {
-  const {value = '', onChange, attributes} = props;
+  const {value = '', onChange, attributes, cssClassPrefix} = props;
   return (
-      <div className="easy-edit-component-wrapper">
+      <div className={cssClassPrefix + "easy-edit-component-wrapper"}>
         <input
             type="color"
             defaultValue={value}
@@ -19,7 +19,8 @@ const EasyColor = (props) => {
 EasyColor.propTypes = {
   onChange: PropTypes.func,
   value: PropTypes.string,
-  attributes: PropTypes.object
+  attributes: PropTypes.object,
+  cssClassPrefix: PropTypes.string
 };
 
 EasyColor.defaultProps = {
