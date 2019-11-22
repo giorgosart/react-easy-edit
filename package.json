@@ -1,6 +1,6 @@
 {
   "name": "react-easy-edit",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "A react library for inline editing components",
   "homepage": "https://github.com/giorgosart/react-easy-edit#readme",
   "keywords": [
@@ -62,7 +62,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "^3.2.0",
-    "rollup": "^1.27.2",
+    "rollup": "^1.27.4",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-uglify": "^6.0.3"
