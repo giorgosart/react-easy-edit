@@ -213,7 +213,6 @@ export default class EasyEdit extends React.Component {
 
   renderButtons() {
     const {saveButtonLabel, saveButtonStyle, cancelButtonLabel, cancelButtonStyle, cssClassPrefix} = this.props;
-    debugger;
     return (
         <div className={cssClassPrefix + "easy-edit-button-wrapper"}>
           {EasyEdit.generateButton(this.saveButton, this._onSave, saveButtonLabel,
@@ -262,7 +261,6 @@ export default class EasyEdit extends React.Component {
   }
 
   static generateButton(ref, onClick, label, cssClass, name) {
-    debugger;
     return (
         <button ref={ref} onClick={onClick} className={cssClass} name={name}>
           {label}

@@ -5,16 +5,15 @@ import Globals from './globals'
 
 const EasyParagraph = (props) => {
   const {value, placeholder, onChange, attributes, cssClassPrefix} = props;
-
   return (
       <div className={cssClassPrefix + "easy-edit-component-wrapper"}>
         <textarea
             autoFocus={attributes["autoFocus"] || true}
-            className="easy-edit-textarea"
             value={value}
             onChange={onChange}
             placeholder={placeholder}
             {...attributes}
+            className={attributes["className"] + " easy-edit-textarea" || "easy-edit-textarea"}
         />
       </div>);
 };

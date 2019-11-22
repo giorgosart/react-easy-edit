@@ -130,8 +130,9 @@ class App extends Component {
               />
               <h3>Textarea</h3>
               <EasyEdit
-                  type="textarea"
+                  type={Types.TEXTAREA}
                   value="Test Textarea"
+                  attributes={{className: 'test'}}
                   onSave={App.onTest}
                   instructions="Custom instructions"
               />
