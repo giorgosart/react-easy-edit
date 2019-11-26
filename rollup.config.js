@@ -10,7 +10,8 @@ export default {
       exclude: "node_modules/**"
     }),
     postcss({
-      plugins: []
+      plugins: [],
+      minimize: true
     }),
     uglify()
   ],

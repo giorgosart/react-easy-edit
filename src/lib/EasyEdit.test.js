@@ -122,6 +122,18 @@ describe('EasyEdit', () => {
     expect(wrapper.find('div.test2')).toHaveLength(1);
   });
 
+  //--------------------------- Button Position----------------------
+  it('should render the buttons after the input', () => {
+    wrapper.simulate('click');
+    expect(wrapper.html().toString()).toContain('<div class="easy-edit-inline-wrapper" tabindex="0"><div class="easy-edit-component-wrapper">');
+  });
+
+  it('should render the buttons before the input', () => {
+    wrapper.setProps({buttonsPosition: 'before'});
+    wrapper.simulate('click');
+    expect(wrapper.html().toString()).toContain('<div class="easy-edit-inline-wrapper" tabindex="0"><div class="easy-edit-button-wrapper"><button');
+  });
+
   //-------------------------- SAVE BUTTON --------------------------
   it('should use the prop value for the "Save" button label', () => {
     wrapper.simulate('click');

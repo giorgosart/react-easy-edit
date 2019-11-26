@@ -379,12 +379,13 @@ export default class EasyEdit extends React.Component {
   }
 
   render() {
-    const {cssClassPrefix} = this.props;
+    const {cssClassPrefix, buttonsPosition} = this.props;
     if (this.state.editing) {
       return (
           <div className={cssClassPrefix + "easy-edit-inline-wrapper"} tabIndex="0" onKeyDown={(e) => this.onKeyDown(e)}>
+            {buttonsPosition === Globals.POSITION_BEFORE && this.renderButtons()}
             {this.renderInput()}
-            {this.renderButtons()}
+            {buttonsPosition === Globals.POSITION_AFTER && this.renderButtons()}
             {this.renderInstructions()}
             {this.renderValidationMessage()}
           </div>)
@@ -436,6 +437,7 @@ EasyEdit.propTypes = {
     PropTypes.element
   ]),
   cancelButtonStyle: PropTypes.string,
+  buttonsPosition: PropTypes.string,
   placeholder: PropTypes.string,
   onCancel: PropTypes.func,
   onValidate: PropTypes.func,
@@ -458,6 +460,7 @@ EasyEdit.defaultProps = {
   saveButtonStyle: null,
   cancelButtonLabel: Globals.DEFAULT_CANCEL_BUTTON_LABEL,
   cancelButtonStyle: null,
+  buttonsPosition: Globals.POSITION_AFTER,
   placeholder: Globals.DEFAULT_PLACEHOLDER,
   allowEdit: true,
   onCancel: () => {},

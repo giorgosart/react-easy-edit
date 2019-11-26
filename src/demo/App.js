@@ -43,6 +43,7 @@ class App extends Component {
                   options={App.generateOptions()}
                   instructions="Custom instructions"
                   onValidate={value => {return value != null}}
+                  buttonsPosition='before'
               />
               <h3>Input Field</h3>
               <h4>type "text"</h4>

@@ -1,5 +1,6 @@
 src/
 test/
+public/
 .npmignore
 .babelrc
 rollup.config.js

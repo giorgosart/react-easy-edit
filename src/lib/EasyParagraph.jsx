@@ -13,7 +13,7 @@ const EasyParagraph = (props) => {
             onChange={onChange}
             placeholder={placeholder}
             {...attributes}
-            className={attributes["className"] + " easy-edit-textarea" || "easy-edit-textarea"}
+            className={attributes["className"] !== undefined ? attributes["className"] + " easy-edit-textarea" : "easy-edit-textarea"}
         />
       </div>);
 };

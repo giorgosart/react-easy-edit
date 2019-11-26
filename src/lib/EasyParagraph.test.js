@@ -98,4 +98,15 @@ describe('EasyParagraph', () => {
     wrapper.find('textarea[name="test"]').simulate('keyDown', {keyCode: 13});
     expect(wrapper.find('textarea[name="test"]')).toHaveLength(1);
   });
+
+  it('should append the extra classes from the attributes prop', () => {
+    wrapper = mount(
+        <EasyEdit
+            type="textarea"
+            onSave={jest.fn()}
+            attributes={{className: 'test'}}
+        />);
+    wrapper.simulate('click');
+    expect(wrapper.find('textarea.test.easy-edit-textarea')).toHaveLength(1);
+  });
 });
