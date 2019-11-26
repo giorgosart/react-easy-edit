@@ -1,4 +1,5 @@
 [![Test](https://img.shields.io/npm/v/react-easy-edit.svg?style=flat)](https://www.npmjs.com/package/react-easy-edit)
+[![NPM](https://img.shields.io/npm/dm/react-easy-edit.svg)](https://www.npmjs.com/package/react-easy-edit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CircleCI](https://circleci.com/gh/giorgosart/react-easy-edit.svg?style=shield)](https://circleci.com/gh/giorgosart/react-easy-edit) [![Greenkeeper badge](https://badges.greenkeeper.io/giorgosart/react-easy-edit.svg)](https://greenkeeper.io/)
 [![install size](https://packagephobia.now.sh/badge?p=react-easy-edit@latest)](https://packagephobia.now.sh/result?p=react-easy-edit@latest)
