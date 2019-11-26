@@ -437,7 +437,7 @@ EasyEdit.propTypes = {
     PropTypes.element
   ]),
   cancelButtonStyle: PropTypes.string,
-  buttonsPosition: PropTypes.string,
+  buttonsPosition: PropTypes.oneOf(['after', 'before']),
   placeholder: PropTypes.string,
   onCancel: PropTypes.func,
   onValidate: PropTypes.func,
