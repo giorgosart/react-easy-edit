@@ -452,7 +452,7 @@ EasyEdit.propTypes = {
   disableAutoSubmit: PropTypes.bool,
   disableAutoCancel: PropTypes.bool,
   cssClassPrefix: PropTypes.string,
-  hideButhideSaveButtontons: PropTypes.bool,
+  hideSaveButton: PropTypes.bool,
   hideCancelButton: PropTypes.bool
 };
 
