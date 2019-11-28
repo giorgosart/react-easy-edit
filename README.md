@@ -8,9 +8,9 @@
 ![](https://i.imgur.com/vwqcqeD.gif)
 
 # react-easy-edit
-A React library that allows inline editing on HTML5 input components, try the sandbox **[here](https://codesandbox.io/s/react-easy-edit-sandbox-2y97j)**! 
+A React library that allows inline editing on HTML5 input components, try the sandbox **[here](https://codesandbox.io/s/react-easy-edit-sandbox-2y97j)**!
 
-For full library documentation, **[visit this site](https://giorgosart.gitbook.io/react-easy-edit/)**! 
+For full library documentation, **[visit this site](https://giorgosart.gitbook.io/react-easy-edit/)**!
 
 ### :pencil: Features
 - Supports `input` (most types, even inputs with `datalist`), `textarea`,`radio`, `checkbox` and `select` HTML types
@@ -51,7 +51,8 @@ Give a :star: if this project helped you in any way!
 | disableAutoCancel | boolean                   | No       | false           | Whether the component can be auto cancelled when the user hits the <kbd>Esc</kbd> key                                                                                                                              |
 | editComponent     | element                   | No       | null            | The custom component to be displayed when editing the value. This will override the standard input shown for the ```type``` provided                                                     |
 | displayComponent  | element                   | No       | null            | The custom component to be displayed the value when not editing                                                                                                                        |
-| cssClassPrefix  | string                   | No       | ''            | A prefix to be appended to all the `EasyEdit` default CSS classes, can be used to also reset the style of a specific `EasyEdit` component              
+| cssClassPrefix  | string                   | No       | ''            | A prefix to be appended to all the `EasyEdit` default CSS classes, can be used to also reset the style of a specific `EasyEdit` component
+| hideButtons  | string                   | No       | false            | Whether the save and cancel buttons should be shown.
 
 ## :page_facing_up: Examples
 #### A simple example - Textbox
@@ -60,7 +61,7 @@ import React, { Component } from 'react';
 import EasyEdit from 'react-easy-edit';
 
 function App() {
-  
+
   const save = (value) => {alert(value)}
   const cancel = () => {alert("Cancelled")}
 
@@ -190,4 +191,4 @@ And constructed with the following guidelines:
 ## :scroll: Licence
 Copyright © 2019 [George Artemiou](https://github.com/giorgosart).
 
-This project is [MIT licensed](https://github.com/giorgosart/react-easy-edit/blob/master/LICENSE). 
+This project is [MIT licensed](https://github.com/giorgosart/react-easy-edit/blob/master/LICENSE).
