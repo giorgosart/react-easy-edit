@@ -52,7 +52,8 @@ Give a :star: if this project helped you in any way!
 | editComponent     | element                   | No       | null            | The custom component to be displayed when editing the value. This will override the standard input shown for the ```type``` provided                                                     |
 | displayComponent  | element                   | No       | null            | The custom component to be displayed the value when not editing                                                                                                                        |
 | cssClassPrefix  | string                   | No       | ''            | A prefix to be appended to all the `EasyEdit` default CSS classes, can be used to also reset the style of a specific `EasyEdit` component
-| hideButtons  | string                   | No       | false            | Whether the save and cancel buttons should be shown.
+| hideSaveButton  | string                   | No       | false            | Whether the save button should be shown.
+| hideCancelButton  | string                   | No       | false            | Whether the cancel button should be shown.
 
 ## :page_facing_up: Examples
 #### A simple example - Textbox

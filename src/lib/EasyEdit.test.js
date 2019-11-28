@@ -134,17 +134,24 @@ describe('EasyEdit', () => {
     expect(wrapper.html().toString()).toContain('<div class="easy-edit-inline-wrapper" tabindex="0"><div class="easy-edit-button-wrapper"><button');
   });
 
-  it('should hide the buttons when hideButtons is set to true', () => {
-    wrapper.setProps({ hideButtons: true });
+  it('should hide the save button when hideSaveButton is set to true', () => {
+    wrapper.setProps({ hideSaveButton: true });
     wrapper.simulate('click');
-    expect(wrapper.find('button').exists()).toEqual(false);
+    expect(wrapper.find('button[name="save"]').exists()).toEqual(false);
+
+  })
+
+  it('should hide the cancel button when hideCancelButton is set to true', () => {
+    wrapper.setProps({ hideSaveButton: true });
+    wrapper.simulate('click');
+    expect(wrapper.find('button[name="save"]').exists()).toEqual(false);
 
   })
 
   it('should show the buttons when hideButtons is not set explicitly', () => {
     wrapper.simulate('click');
-    expect(wrapper.find('button').exists()).toEqual(true);
-
+    expect(wrapper.find('button[name="save"]').exists()).toEqual(true);
+    expect(wrapper.find('button[name="cancel"]').exists()).toEqual(true);
   })
 
   //-------------------------- SAVE BUTTON ---------w-----------------

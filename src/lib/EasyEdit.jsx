@@ -212,13 +212,12 @@ export default class EasyEdit extends React.Component {
   }
 
   renderButtons() {
-    const { saveButtonLabel, saveButtonStyle, cancelButtonLabel, cancelButtonStyle, cssClassPrefix, hideButtons } = this.props;
-    if (hideButtons) { return null };
+    const { saveButtonLabel, saveButtonStyle, cancelButtonLabel, cancelButtonStyle, cssClassPrefix, hideSaveButton, hideCancelButton } = this.props;
     return (
       <div className={cssClassPrefix + "easy-edit-button-wrapper"}>
-        {EasyEdit.generateButton(this.saveButton, this._onSave, saveButtonLabel,
+        {!hideSaveButton && EasyEdit.generateButton(this.saveButton, this._onSave, saveButtonLabel,
           (saveButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : saveButtonStyle), "save")}
-        {EasyEdit.generateButton(this.cancelButton, this._onCancel, cancelButtonLabel,
+        {!hideCancelButton && EasyEdit.generateButton(this.cancelButton, this._onCancel, cancelButtonLabel,
           (cancelButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : cancelButtonStyle), "cancel")}
       </div>
     )
@@ -453,7 +452,8 @@ EasyEdit.propTypes = {
   disableAutoSubmit: PropTypes.bool,
   disableAutoCancel: PropTypes.bool,
   cssClassPrefix: PropTypes.string,
-  hideButtons: PropTypes.bool
+  hideButtons: PropTypes.bool,
+  hideCancelButton: PropTypes.bool
 };
 
 EasyEdit.defaultProps = {
@@ -476,5 +476,6 @@ EasyEdit.defaultProps = {
   disableAutoSubmit: false,
   disableAutoCancel: false,
   cssClassPrefix: '',
-  hideButtons: false
+  hideSaveButton: false,
+  hideCancelButton: false
 };
