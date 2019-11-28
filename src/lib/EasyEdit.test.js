@@ -148,7 +148,7 @@ describe('EasyEdit', () => {
 
   })
 
-  it('should show the buttons when hideButtons is not set explicitly', () => {
+  it('should show the buttons when hideSaveButton or hideCancelButton is not set explicitly', () => {
     wrapper.simulate('click');
     expect(wrapper.find('button[name="save"]').exists()).toEqual(true);
     expect(wrapper.find('button[name="cancel"]').exists()).toEqual(true);
