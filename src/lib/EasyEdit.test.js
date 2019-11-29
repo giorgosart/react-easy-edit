@@ -138,14 +138,14 @@ describe('EasyEdit', () => {
     wrapper.setProps({ hideSaveButton: true });
     wrapper.simulate('click');
     expect(wrapper.find('button[name="save"]').exists()).toEqual(false);
-
+    expect(wrapper.find('button[name="cancel"]').exists()).toEqual(true);
   })
 
   it('should hide the cancel button when hideCancelButton is set to true', () => {
-    wrapper.setProps({ hideSaveButton: true });
+    wrapper.setProps({ hideCancelButton: true });
     wrapper.simulate('click');
-    expect(wrapper.find('button[name="save"]').exists()).toEqual(false);
-
+    expect(wrapper.find('button[name="cancel"]').exists()).toEqual(false);
+    expect(wrapper.find('button[name="save"]').exists()).toEqual(true);
   })
 
   it('should show the buttons when hideSaveButton or hideCancelButton is not set explicitly', () => {
