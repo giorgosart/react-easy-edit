@@ -163,6 +163,26 @@ class App extends Component {
                   value={App.generateValues()}
                   attributes={{class: 'test', checked:'checked'}}
               />
+                <h3>Hide Buttons</h3>
+                <EasyEdit
+                  type="text"
+                  value="Hide both buttons"
+                  onSave={App.onTest}
+                  hideSaveButton
+                  hideCancelButton
+                />
+                <EasyEdit
+                  type="text"
+                  value="Hide save button"
+                  onSave={App.onTest}
+                  hideSaveButton
+                />
+                <EasyEdit
+                  type="text"
+                  value="Hide cancel button"
+                  onSave={App.onTest}
+                  hideCancelButton
+                />
               <h3>Custom components</h3>
               <EasyEdit
                   type="text"

@@ -1,5 +1,5 @@
 import React from 'react';
-import {configure, shallow, mount} from 'enzyme';
+import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import EasyEdit from "./EasyEdit";
 import EasyInput from "./EasyInput";
@@ -11,28 +11,28 @@ import EasyColor from "./EasyColor";
 import EasyCustom from './EasyCustom';
 import Globals from './globals';
 
-configure({adapter: new Adapter()});
+configure({ adapter: new Adapter() });
 
 describe('EasyEdit', () => {
   let wrapper;
   const saveFn = jest.fn();
   const cancelFn = jest.fn();
-  const options = [{label: 'Test One', value: 1},
-    {label: 'Test Two', value: 2}];
+  const options = [{ label: 'Test One', value: 1 },
+  { label: 'Test Two', value: 2 }];
 
   beforeEach(() => {
     wrapper = shallow(
-        <EasyEdit
-            type="text"
-            onSave={saveFn}
-            onCancel={cancelFn}
-            saveButtonLabel="Save Test"
-            saveButtonStyle="save-style"
-            cancelButtonLabel="Cancel Test"
-            cancelButtonStyle="cancel-style"
-            attributes={{name: 'test'}}
-            instructions="My instructions"
-        />);
+      <EasyEdit
+        type="text"
+        onSave={saveFn}
+        onCancel={cancelFn}
+        saveButtonLabel="Save Test"
+        saveButtonStyle="save-style"
+        cancelButtonLabel="Cancel Test"
+        cancelButtonStyle="cancel-style"
+        attributes={{ name: 'test' }}
+        instructions="My instructions"
+      />);
   });
 
   it('on click', () => {
@@ -41,13 +41,13 @@ describe('EasyEdit', () => {
   });
 
   it('on click - non editable', () => {
-    wrapper.setProps({allowEdit: false});
+    wrapper.setProps({ allowEdit: false });
     wrapper.simulate('click');
     expect((wrapper.state().editing)).toEqual(false);
   });
 
   it('on hover - non editable should show a not-allowed cursor', () => {
-    wrapper.setProps({allowEdit: false});
+    wrapper.setProps({ allowEdit: false });
     wrapper.simulate('mouseEnter');
     expect(wrapper.find('div.easy-edit-not-allowed')).toHaveLength(1);
   });
@@ -63,38 +63,38 @@ describe('EasyEdit', () => {
 
   it('onKeyDown', () => {
     wrapper = mount(
-        <EasyEdit
-            type="text"
-            onSave={saveFn}
-            onCancel={cancelFn}
-            saveButtonLabel="Save Test"
-            saveButtonStyle="save-style"
-            cancelButtonLabel="Cancel Test"
-            cancelButtonStyle="cancel-style"
-            attributes={{name: 'test'}}
-            instructions="My instructions"
-        />);
+      <EasyEdit
+        type="text"
+        onSave={saveFn}
+        onCancel={cancelFn}
+        saveButtonLabel="Save Test"
+        saveButtonStyle="save-style"
+        cancelButtonLabel="Cancel Test"
+        cancelButtonStyle="cancel-style"
+        attributes={{ name: 'test' }}
+        instructions="My instructions"
+      />);
     wrapper.simulate('click');
     expect(wrapper.find('input[name="test"]')).toHaveLength(1);
-    wrapper.find('input[name="test"]').simulate('keyDown', {keyCode: 27});
+    wrapper.find('input[name="test"]').simulate('keyDown', { keyCode: 27 });
     expect(wrapper.find('input[name="test"]')).toHaveLength(0);
   });
 
   it('should populate the tempValue with the passed in value prop on mount and also when the value prop is changed', () => {
     wrapper = shallow(
-        <EasyEdit
-            type="text"
-            onSave={saveFn}
-            onCancel={cancelFn}
-            value="Test Value"
-            saveButtonLabel="Save Test"
-            saveButtonStyle="save-style"
-            cancelButtonLabel="Cancel Test"
-            cancelButtonStyle="cancel-style"
-            attributes={{name: 'test'}}
-        />);
+      <EasyEdit
+        type="text"
+        onSave={saveFn}
+        onCancel={cancelFn}
+        value="Test Value"
+        saveButtonLabel="Save Test"
+        saveButtonStyle="save-style"
+        cancelButtonLabel="Cancel Test"
+        cancelButtonStyle="cancel-style"
+        attributes={{ name: 'test' }}
+      />);
     expect((wrapper.state().tempValue)).toEqual('Test Value');
-    wrapper.setProps({ value: "Updated Value"});
+    wrapper.setProps({ value: "Updated Value" });
     expect((wrapper.state().tempValue)).toEqual('Updated Value');
   });
 
@@ -118,14 +118,14 @@ describe('EasyEdit', () => {
   });
 
   it('should render the passed in value', () => {
-    wrapper.setState({value: "Test"});
+    wrapper.setState({ value: "Test" });
     expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("Test")
   });
 
   //--------------------------- Styling ----------------------------
   it('should append the css classes passed in the viewAttributes prop to the main div', () => {
     wrapper.setProps({
-      viewAttributes: {class: 'test', className: 'test2'},
+      viewAttributes: { class: 'test', className: 'test2' },
     });
     expect(wrapper.find('div.test')).toHaveLength(1);
     expect(wrapper.find('div.test2')).toHaveLength(1);
@@ -138,12 +138,32 @@ describe('EasyEdit', () => {
   });
 
   it('should render the buttons before the input', () => {
-    wrapper.setProps({buttonsPosition: 'before'});
+    wrapper.setProps({ buttonsPosition: 'before' });
     wrapper.simulate('click');
     expect(wrapper.html().toString()).toContain('<div class="easy-edit-inline-wrapper" tabindex="0"><div class="easy-edit-button-wrapper"><button');
   });
 
-  //-------------------------- SAVE BUTTON --------------------------
+  it('should hide the save button when hideSaveButton is set to true', () => {
+    wrapper.setProps({ hideSaveButton: true });
+    wrapper.simulate('click');
+    expect(wrapper.find('button[name="save"]').exists()).toEqual(false);
+    expect(wrapper.find('button[name="cancel"]').exists()).toEqual(true);
+  })
+
+  it('should hide the cancel button when hideCancelButton is set to true', () => {
+    wrapper.setProps({ hideCancelButton: true });
+    wrapper.simulate('click');
+    expect(wrapper.find('button[name="cancel"]').exists()).toEqual(false);
+    expect(wrapper.find('button[name="save"]').exists()).toEqual(true);
+  })
+
+  it('should show the buttons when hideSaveButton or hideCancelButton is not set explicitly', () => {
+    wrapper.simulate('click');
+    expect(wrapper.find('button[name="save"]').exists()).toEqual(true);
+    expect(wrapper.find('button[name="cancel"]').exists()).toEqual(true);
+  })
+
+  //-------------------------- SAVE BUTTON ---------w-----------------
   it('should use the prop value for the "Save" button label', () => {
     wrapper.simulate('click');
     expect(wrapper.find('button[name="save"]').text()).toEqual("Save Test");
@@ -184,25 +204,25 @@ describe('EasyEdit', () => {
   });
 
   it('type textarea', () => {
-    wrapper.setProps({type: 'textarea'});
+    wrapper.setProps({ type: 'textarea' });
     wrapper.simulate('click');
     expect(wrapper.find(EasyParagraph)).toHaveLength(1);
   });
 
   it('type color', () => {
-    wrapper.setProps({type: 'color'});
+    wrapper.setProps({ type: 'color' });
     wrapper.simulate('click');
     expect(wrapper.find(EasyColor)).toHaveLength(1);
   });
 
   it('type radio', () => {
-    wrapper.setProps({type: 'radio'});
+    wrapper.setProps({ type: 'radio' });
     wrapper.simulate('click');
     expect(wrapper.find(EasyRadio)).toHaveLength(1);
   });
 
   it('should show an EasyCustom component if an editComponent prop is provided', () => {
-    wrapper.setProps({editComponent: <input />});
+    wrapper.setProps({ editComponent: <input /> });
     wrapper.simulate('click');
     expect(wrapper.find(EasyCustom)).toHaveLength(1);
   });
@@ -217,38 +237,38 @@ describe('EasyEdit', () => {
   });
 
   it('should show multiple selected checkbox values separated with ", ".',
-      () => {
-        wrapper.setProps({
-          type: 'checkbox',
-          options: options
-        });
-        wrapper.setState({
-          value: [options[0].value]
-        });
-        expect(wrapper.text()).toEqual(options[0].label);
-        wrapper.setState({
-          value: [options[0].value, options[1].value]
-        });
-        expect(wrapper.text()).toEqual(
-            options[0].label + `, ` + options[1].label);
+    () => {
+      wrapper.setProps({
+        type: 'checkbox',
+        options: options
       });
+      wrapper.setState({
+        value: [options[0].value]
+      });
+      expect(wrapper.text()).toEqual(options[0].label);
+      wrapper.setState({
+        value: [options[0].value, options[1].value]
+      });
+      expect(wrapper.text()).toEqual(
+        options[0].label + `, ` + options[1].label);
+    });
 
   it('type select', () => {
-    wrapper.setProps({type: 'select'});
+    wrapper.setProps({ type: 'select' });
     wrapper.simulate('click');
     expect(wrapper.find(EasyDropdown)).toHaveLength(1);
   });
 
   it('should throw a type error if unknown type is passed in', () => {
     expect(() => {
-      wrapper.setProps({type: 'error'});
+      wrapper.setProps({ type: 'error' });
       wrapper.simulate('click');
     }).toThrow(new Error(Globals.ERROR_UNSUPPORTED_TYPE));
   });
 
   it('should throw a type error if no type is passed in', () => {
     expect(() => {
-      wrapper.setProps({type: null});
+      wrapper.setProps({ type: null });
       wrapper.simulate('click');
     }).toThrow(new Error(Globals.ERROR_UNSUPPORTED_TYPE));
   });
@@ -261,9 +281,9 @@ describe('EasyEdit', () => {
   });
 
   it('fails validation and shows the appropriate error', () => {
-    const failValidation = () => {return false};
+    const failValidation = () => { return false };
 
-    wrapper.setProps({onValidate: failValidation});
+    wrapper.setProps({ onValidate: failValidation });
     wrapper.simulate('click');
     wrapper.find('.save-style').simulate('click');
     expect(wrapper.state().isValid).toEqual(false);
@@ -271,7 +291,7 @@ describe('EasyEdit', () => {
   });
 
   it('should render the passed in diplayComponent', () => {
-    wrapper.setProps({displayComponent: <div id="test-display-component"/>});
+    wrapper.setProps({ displayComponent: <div id="test-display-component" /> });
     expect(wrapper.find('#test-display-component')).toBeTruthy();
   })
 });
