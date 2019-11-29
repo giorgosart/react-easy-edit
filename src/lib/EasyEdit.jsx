@@ -455,7 +455,7 @@ EasyEdit.propTypes = {
   disableAutoCancel: PropTypes.bool,
   cssClassPrefix: PropTypes.string,
   hideSaveButton: PropTypes.bool,
-  hideCancelButton: PropTypes.bool
+  hideCancelButton: PropTypes.bool,
   onHoverCssClass: PropTypes.string
 };
 
@@ -480,6 +480,6 @@ EasyEdit.defaultProps = {
   disableAutoCancel: false,
   cssClassPrefix: '',
   hideSaveButton: false,
-  hideCancelButton: false
+  hideCancelButton: false,
   onHoverCssClass: Globals.DEFAULT_ON_HOVER_CSS_CLASS
 };
