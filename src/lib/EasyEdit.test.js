@@ -52,6 +52,15 @@ describe('EasyEdit', () => {
     expect(wrapper.find('div.easy-edit-not-allowed')).toHaveLength(1);
   });
 
+  it('should apply the passed in css class on hover', () => {
+    wrapper.simulate('mouseEnter');
+    expect(wrapper.find('div.easy-edit-hover-on')).toHaveLength(1);
+    wrapper.setProps({onHoverCssClass: 'test'});
+    wrapper.simulate('mouseEnter');
+    expect(wrapper.find('div.easy-edit-hover-on')).toHaveLength(0);
+    expect(wrapper.find('div.test')).toHaveLength(1);
+  });
+
   it('onKeyDown', () => {
     wrapper = mount(
       <EasyEdit

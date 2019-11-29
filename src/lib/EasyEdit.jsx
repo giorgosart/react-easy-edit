@@ -242,7 +242,7 @@ export default class EasyEdit extends React.Component {
   }
 
   setCssClasses(existingClasses) {
-    const { viewAttributes, cssClassPrefix } = this.props;
+    const {viewAttributes, cssClassPrefix, onHoverCssClass} = this.props;
 
     if (viewAttributes["class"]) {
       existingClasses += " " + viewAttributes["class"];
@@ -254,7 +254,9 @@ export default class EasyEdit extends React.Component {
     if (!this.props.allowEdit) {
       return cssClassPrefix + 'easy-edit-not-allowed ' + existingClasses;
     } else if (this.state.hover) {
-      return cssClassPrefix + 'easy-edit-hover-on ' + existingClasses;
+      return onHoverCssClass === Globals.DEFAULT_ON_HOVER_CSS_CLASS ?
+          cssClassPrefix + 'easy-edit-hover-on ' + existingClasses :
+          onHoverCssClass + ' ' + existingClasses;
     } else {
       return existingClasses;
     }
@@ -454,6 +456,7 @@ EasyEdit.propTypes = {
   cssClassPrefix: PropTypes.string,
   hideSaveButton: PropTypes.bool,
   hideCancelButton: PropTypes.bool
+  onHoverCssClass: PropTypes.string
 };
 
 EasyEdit.defaultProps = {
@@ -478,4 +481,5 @@ EasyEdit.defaultProps = {
   cssClassPrefix: '',
   hideSaveButton: false,
   hideCancelButton: false
+  onHoverCssClass: Globals.DEFAULT_ON_HOVER_CSS_CLASS
 };
