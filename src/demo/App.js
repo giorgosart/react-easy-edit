@@ -62,8 +62,9 @@ class App extends Component {
               />
               <EasyEdit
                   type="text"
-                  value="Edit me!"
+                  value="Custom on hover class"
                   onSave={App.onTest}
+                  onHoverCssClass="custom-on-hover"
                   instructions="Custom instructions"
               />
               <h4>Type Password</h4>
