@@ -191,6 +191,6 @@ And constructed with the following guidelines:
 - For more information on semantic versioning, please visit http://semver.org/.
 
 ## :scroll: Licence
-Copyright © 2019 [George Artemiou](https://github.com/giorgosart).
+Copyright © 2020 [George Artemiou](https://github.com/giorgosart).
 
 This project is [MIT licensed](https://github.com/giorgosart/react-easy-edit/blob/master/LICENSE).
