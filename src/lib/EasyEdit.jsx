@@ -426,7 +426,8 @@ EasyEdit.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.array
+    PropTypes.array,
+    PropTypes.object
   ]),
   options: PropTypes.array,
   saveButtonLabel: PropTypes.oneOfType([
