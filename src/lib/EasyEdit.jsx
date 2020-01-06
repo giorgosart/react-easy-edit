@@ -56,7 +56,7 @@ export default class EasyEdit extends React.Component {
     const { onSave, onValidate } = this.props;
     const tempValue = this.state.tempValue;
     if (onValidate(tempValue)) {
-      this.setState({ editing: false, value: tempValue, isValid: true },
+      this.setState({ editing: false, value: tempValue, isValid: true, hover: false },
         () => onSave(this.state.value));
     } else {
       this.setState({ isValid: false });
@@ -66,7 +66,7 @@ export default class EasyEdit extends React.Component {
   _onCancel = () => {
     const { onCancel } = this.props;
     const value = this.state.value;
-    this.setState({ editing: false, tempValue: value }, () => onCancel());
+    this.setState({ editing: false, tempValue: value, hover: false }, () => onCancel());
   };
 
   onChange = e => {
