@@ -16,6 +16,7 @@ configure({ adapter: new Adapter() });
 describe('EasyEdit', () => {
   let wrapper;
   const saveFn = jest.fn();
+  const blurFn = jest.fn();
   const cancelFn = jest.fn();
   const options = [{ label: 'Test One', value: 1 },
   { label: 'Test Two', value: 2 }];
@@ -25,6 +26,7 @@ describe('EasyEdit', () => {
       <EasyEdit
         type="text"
         onSave={saveFn}
+        onBlur={blurFn}
         onCancel={cancelFn}
         saveButtonLabel="Save Test"
         saveButtonStyle="save-style"
@@ -148,20 +150,20 @@ describe('EasyEdit', () => {
     wrapper.simulate('click');
     expect(wrapper.find('button[name="save"]').exists()).toEqual(false);
     expect(wrapper.find('button[name="cancel"]').exists()).toEqual(true);
-  })
+  });
 
   it('should hide the cancel button when hideCancelButton is set to true', () => {
     wrapper.setProps({ hideCancelButton: true });
     wrapper.simulate('click');
     expect(wrapper.find('button[name="cancel"]').exists()).toEqual(false);
     expect(wrapper.find('button[name="save"]').exists()).toEqual(true);
-  })
+  });
 
   it('should show the buttons when hideSaveButton or hideCancelButton is not set explicitly', () => {
     wrapper.simulate('click');
     expect(wrapper.find('button[name="save"]').exists()).toEqual(true);
     expect(wrapper.find('button[name="cancel"]').exists()).toEqual(true);
-  })
+  });
 
   //-------------------------- SAVE BUTTON ---------w-----------------
   it('should use the prop value for the "Save" button label', () => {
@@ -178,6 +180,25 @@ describe('EasyEdit', () => {
     wrapper.simulate('click');
     wrapper.find('button[name="save"]').simulate('click');
     expect(saveFn).toBeCalled();
+  });
+
+  it('should trigger the onBlur fn when component looses focus', () => {
+    wrapper = mount(
+        <EasyEdit
+            type="text"
+            onSave={saveFn}
+            onBlur={blurFn}
+            onCancel={cancelFn}
+            saveButtonLabel="Save Test"
+            saveButtonStyle="save-style"
+            cancelButtonLabel="Cancel Test"
+            cancelButtonStyle="cancel-style"
+            attributes={{ name: 'test' }}
+            instructions="My instructions"
+        />);
+    wrapper.simulate('click');
+    wrapper.find('input').simulate('blur');
+    expect(blurFn).toBeCalled();
   });
 
   //-------------------------- CANCEL BUTTON -------------------------

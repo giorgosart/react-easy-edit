@@ -56,6 +56,12 @@ class App extends Component {
               />
               <EasyEdit
                   type="text"
+                  value="Test Blur (check console)"
+                  onSave={App.onTest}
+                  onBlur={() => console.log("blur")}
+              />
+              <EasyEdit
+                  type="text"
                   onSave={App.onTest}
                   onValidate={() => true}
                   attributes={attributes}

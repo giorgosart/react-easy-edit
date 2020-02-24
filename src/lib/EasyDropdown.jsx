@@ -4,13 +4,14 @@ import './EasyEdit.css';
 import Globals from './globals';
 
 const EasyDropdown = (props) => {
-  const {options, value, onChange, placeholder, attributes, cssClassPrefix} = props;
+  const {options, value, onChange, placeholder, attributes, cssClassPrefix, onBlur} = props;
 
   return (
       <div className={cssClassPrefix + "easy-edit-component-wrapper"}>
         <select
             value={value || ''}
             onChange={onChange}
+            onBlur={onBlur}
             {...attributes}
         >
           <option key="" value="" disabled="disabled">{placeholder}</option>
@@ -33,7 +34,8 @@ EasyDropdown.propTypes = {
   ]),
   placeholder: PropTypes.string,
   attributes: PropTypes.object,
-  cssClassPrefix: PropTypes.string
+  cssClassPrefix: PropTypes.string,
+  onBlur: PropTypes.func
 };
 
 EasyDropdown.defaultProps = {

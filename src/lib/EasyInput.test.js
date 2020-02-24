@@ -9,12 +9,14 @@ configure({adapter: new Adapter()});
 describe('EasyInput', () => {
   let wrapper;
   const onChange = jest.fn();
+  const blurFn = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(
         <EasyInput
             type="text"
             onChange={onChange}
+            onBlur={blurFn}
             value="TEST VALUE"
             attributes={{name: 'test'}}
         />
@@ -42,6 +44,11 @@ describe('EasyInput', () => {
   it('should call onChange if the value of the input is changed', () => {
     wrapper.find('input').simulate('change', {target: {value: 'abc'}});
     expect(onChange).toBeCalled();
+  });
+
+  it('should trigger the onBlur fn when component looses focus', () => {
+    wrapper.find('input').simulate('blur');
+    expect(blurFn).toBeCalled();
   });
 
   it('#25 should render defaultValue if the value is equal with an empty string ""', () => {
