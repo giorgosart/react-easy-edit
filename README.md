@@ -28,35 +28,10 @@ Give a :star: if this project helped you in any way!
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y611NE2)
 
 ## :cool: Props
-| Prop              | Type                      | Required | Default         | Description                                                                                                                                                                                   |
-|-------------------|---------------------------|----------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| type              | string                    | Yes      |                 | The type of the input element to display. Supported types are `text`, `number`, `color`, `textarea`, `date`, `datetime-local`,`time`, `month`, `week`, `radio`, `email`, `checkbox`, `select`, `range` and `datalist`|
-| value             | string or number or array | No       | null            | The value of the input element depended on its type                                                                                                                                           |
-| options           | array                     | No       |                 | A key value pair object that is used as available options for select, radio and checkbox.``` options = [{label:'Test One', value: '1'},{label:'Test Two', value: '2'}]; ```                   |
-| saveButtonLabel   | string or element         | No       | Save            | The label to be used for the "Save" button                                                                                                                                                    |
-| saveButtonStyle   | string                    | No       | easy-edit-button| One or more CSS classes to be used to style the "Save" button                                                                                                                                 |
-| cancelButtonLabel | string or element         | No       | Cancel          | The label to be used for the "Cancel" button                                                                                                                                                  |
-| cancelButtonStyle | string                    | No       | easy-edit-button| One or more CSS classes to be used to style the "Cancel" button                                                                                                                               |
-| buttonsPosition   | string                    | No       | after           | The position for both save and cancel buttons, accepts `before` and `after`                                                                                                                               |
-| placeholder       | string                    | No       | Click to edit   | The text to be shown as a hint that describes the expected value of the input element                                                                                                         |
-| onCancel          | function                  | No       | () => {}        | A function that will be called when editing is cancelled. Also called when the <kbd>Esc</kbd> button is pressed                                                                               |
-| onSave            | function                  | Yes      |                 | A function that will be called when editing is saved. Also called when the <kbd>Enter</kbd> button is pressed (for Textarea component it's <kbd>Ctrl</kbd> + <kbd>Enter</kbd>)                                                                                 |
-| onValidate        | function                  | No       | () => {}        | A function that will be called before the onSave() event. It must return true or false and has one parameter which is the value of the component being edited                                 |
-| validationMessage | string                    | No       |                 | The text to be displayed if validation fails                                                                                                                                                  |
-| allowEdit         | boolean                   | No       | true            | Determines whether the component itself should be editable or not                                                                                                                             |
-| attributes        | object                    | No       | {}              | A key value pair of HTML attributes to be applied on the element when the component is in Edit mode                                                                                                                             |
-| viewAttributes    | object                    | No       | {}              | A key value pair of HTML attributes to be applied on the element when the component is in View mode                                                                                                                              |
-| instructions      | string                    | No       |                 | Instructions to be shown below the component                                                                                                                              |
-| disableAutoSubmit | boolean                   | No       | false           | Whether the component can be auto submitted when the user hits the <kbd>Enter</kbd> key                                                                                                                              |
-| disableAutoCancel | boolean                   | No       | false           | Whether the component can be auto cancelled when the user hits the <kbd>Esc</kbd> key                                                                                                                              |
-| editComponent     | element                   | No       | null            | The custom component to be displayed when editing the value. This will override the standard input shown for the ```type``` provided                                                     |
-| displayComponent  | element                   | No       | null            | The custom component to be displayed the value when not editing                                                                                                                        |
-| cssClassPrefix  | string                   | No       | ''            | A prefix to be appended to all the `EasyEdit` default CSS classes, can be used to also reset the style of a specific `EasyEdit` component
-| hideSaveButton  | boolean                   | No       | false            | Whether the save button should be shown.
-| hideCancelButton  | boolean                   | No       | false            | Whether the cancel button should be shown.
-| onHoverCssClass  | string                   | No       |    easy-edit-hover-on         | The CSS class to be used while the mouse cursor is on top of the component
+For the full list of props, please visit this **[our online documentation](https://giorgosart.gitbook.io/react-easy-edit/props)**.
 
 ## :page_facing_up: Examples
+More examples can be found **[here](https://giorgosart.gitbook.io/react-easy-edit/examples)**
 #### A simple example - Textbox
 ```jsx
 import React, { Component } from 'react';
@@ -170,13 +145,6 @@ onChange(searchTerm) {
 Contributions, issues and feature requests are welcome.
 
 Feel free to check [issues page](https://github.com/giorgosart/react-easy-edit/issues) if you want to contribute.
-
-### Contributors
-| ![giorgosart](https://avatars1.githubusercontent.com/u/1062121?s=100&v=4) | ![mnnalxndr](https://avatars1.githubusercontent.com/u/12860917?s=100&v=4) | ![liamwithers](https://avatars2.githubusercontent.com/u/1030150?s=100&v=4)|
-|-----------|----------|----------|
-| [@giorgosart](https://github.com/giorgosart)        | [@mnnalxndr](https://github.com/mnnalxndr) | [@liamwithers](https://github.com/liamwithers)|
-|[:construction:](https://github.com/giorgosart/react-easy-edit "Maintenance")[:computer:](https://github.com/giorgosart/react-easy-edit/commits?author=giorgosart "Code")[:bug:](https://github.com/giorgosart/react-easy-edit/commits?author=giorgosart "Bug fix")| [:computer:](https://github.com/giorgosart/react-easy-edit/commits?author=mnnalxndr "Code")[:bug:](https://github.com/giorgosart/react-easy-edit/commits?author=mnnalxndr "Code")| [:bug:](https://github.com/giorgosart/react-easy-edit/commits?author=liamwithers "Bug")
-
 
 ## :1234: Versioning
 For transparency and insight into our release cycle, releases will be numbered with the following format:
