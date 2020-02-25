@@ -28,7 +28,7 @@ Give a :star: if this project helped you in any way!
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y611NE2)
 
 ## :cool: Props
-For the full list of props, please visit this **[our online documentation](https://giorgosart.gitbook.io/react-easy-edit/props)**.
+For the full list of props, please visit **[our documentation](https://giorgosart.gitbook.io/react-easy-edit/props)**.
 
 ## :page_facing_up: Examples
 More examples can be found **[here](https://giorgosart.gitbook.io/react-easy-edit/examples)**
