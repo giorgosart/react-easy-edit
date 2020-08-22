@@ -52,13 +52,19 @@ class App extends Component {
                   value="Test Input Field"
                   onSave={App.onTest}
                   allowEdit={false}
-                  viewAttributes={{style:{'color':'red'}, 'data-test':'test', class: 'test', className: 'test2'}}
+                  viewAttributes={{style:{'color':'red'}, 'data-test':'test', className: 'test2'}}
               />
               <EasyEdit
                   type="text"
                   value="Test Blur (check console)"
                   onSave={App.onTest}
                   onBlur={() => console.log("blur")}
+              />
+              <EasyEdit
+                  type="text"
+                  value="Auto-submit onBlur"
+                  onSave={App.onTest}
+                  saveOnBlur
               />
               <EasyEdit
                   type="text"
@@ -167,7 +173,7 @@ class App extends Component {
                   options={App.generateOptions()}
                   onSave={App.onTest}
                   value={App.generateValues()}
-                  attributes={{class: 'test', checked:'checked'}}
+                  attributes={{className: 'test', checked:'checked'}}
               />
                 <h3>Hide Buttons</h3>
                 <EasyEdit

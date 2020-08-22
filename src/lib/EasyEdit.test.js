@@ -311,8 +311,23 @@ describe('EasyEdit', () => {
     expect(wrapper.find('.easy-edit-validation-error').text()).toEqual('Please provide a valid value');
   });
 
-  it('should render the passed in diplayComponent', () => {
+  it('should render the passed in displayComponent', () => {
     wrapper.setProps({ displayComponent: <div id="test-display-component" /> });
     expect(wrapper.find('#test-display-component')).toBeTruthy();
-  })
+  });
+
+  it('should auto-submit onBlur', () => {
+    wrapper = mount(
+        <EasyEdit
+            type="text"
+            value="Auto-submit onBlur"
+            onSave={saveFn}
+            saveOnBlur
+        />
+    );
+    wrapper.simulate('click');
+    wrapper.setProps({ value: "Updated Value"});
+    wrapper.find('input').simulate('blur');
+    expect((wrapper.state().tempValue)).toEqual('Updated Value');
+  });
 });

@@ -64,8 +64,13 @@ export default class EasyEdit extends React.Component {
   };
 
   _onBlur = () => {
-    const { onBlur } = this.props;
-    onBlur(this.state.tempValue);
+    const { onBlur, saveOnBlur } = this.props;
+    if (saveOnBlur){
+      onBlur(this.state.tempValue);
+      this._onSave();
+    } else {
+      onBlur(this.state.tempValue);
+    }
   };
 
   _onCancel = () => {
@@ -224,13 +229,13 @@ export default class EasyEdit extends React.Component {
   }
 
   renderButtons() {
-    const { saveButtonLabel, saveButtonStyle, cancelButtonLabel, cancelButtonStyle, cssClassPrefix, hideSaveButton, hideCancelButton } = this.props;
+    const { saveOnBlur, saveButtonLabel, saveButtonStyle, cancelButtonLabel, cancelButtonStyle, cssClassPrefix, hideSaveButton, hideCancelButton } = this.props;
     return (
       <div className={cssClassPrefix + "easy-edit-button-wrapper"}>
         {!hideSaveButton && EasyEdit.generateButton(this.saveButton, this._onSave, saveButtonLabel,
-          (saveButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : saveButtonStyle), "save")}
+          (saveButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : saveButtonStyle), "save", saveOnBlur)}
         {!hideCancelButton && EasyEdit.generateButton(this.cancelButton, this._onCancel, cancelButtonLabel,
-          (cancelButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : cancelButtonStyle), "cancel")}
+          (cancelButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : cancelButtonStyle), "cancel", saveOnBlur)}
       </div>
     )
   }
@@ -274,7 +279,10 @@ export default class EasyEdit extends React.Component {
     }
   }
 
-  static generateButton(ref, onClick, label, cssClass, name) {
+  static generateButton(ref, onClick, label, cssClass, name, saveOnBlur) {
+    if (saveOnBlur) {
+      return "";
+    }
     return (
       <button ref={ref} onClick={onClick} className={cssClass} name={name}>
         {label}
@@ -470,7 +478,8 @@ EasyEdit.propTypes = {
   cssClassPrefix: PropTypes.string,
   hideSaveButton: PropTypes.bool,
   hideCancelButton: PropTypes.bool,
-  onHoverCssClass: PropTypes.string
+  onHoverCssClass: PropTypes.string,
+  saveOnBlur: PropTypes.bool
 };
 
 EasyEdit.defaultProps = {
@@ -496,5 +505,6 @@ EasyEdit.defaultProps = {
   cssClassPrefix: '',
   hideSaveButton: false,
   hideCancelButton: false,
-  onHoverCssClass: Globals.DEFAULT_ON_HOVER_CSS_CLASS
+  onHoverCssClass: Globals.DEFAULT_ON_HOVER_CSS_CLASS,
+  saveOnBlur: false
 };
