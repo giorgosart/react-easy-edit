@@ -18,6 +18,7 @@ describe('EasyEdit', () => {
   const saveFn = jest.fn();
   const blurFn = jest.fn();
   const cancelFn = jest.fn();
+  const deleteFn = jest.fn();
   const options = [{ label: 'Test One', value: 1 },
   { label: 'Test Two', value: 2 }];
 
@@ -28,10 +29,13 @@ describe('EasyEdit', () => {
         onSave={saveFn}
         onBlur={blurFn}
         onCancel={cancelFn}
+        onDelete={deleteFn}
         saveButtonLabel="Save Test"
         saveButtonStyle="save-style"
         cancelButtonLabel="Cancel Test"
         cancelButtonStyle="cancel-style"
+        deleteButtonLabel={"Delete Test"}
+        deleteButtonStyle="delete-style"
         attributes={{ name: 'test' }}
         instructions="My instructions"
       />);
@@ -212,10 +216,31 @@ describe('EasyEdit', () => {
     expect(wrapper.find('button[name="cancel"].cancel-style')).toHaveLength(1);
   });
 
-  it('should trigger the onSave fn when the "cancel" button is clicked', () => {
+  it('should trigger the onCancel fn when the "cancel" button is clicked', () => {
     wrapper.simulate('click');
     wrapper.find('button[name="cancel"]').simulate('click');
     expect(cancelFn).toBeCalled();
+  });
+
+  //-------------------------- DELETE BUTTON -------------------------
+  it('should use the prop value for the "Delete" button label', () => {
+    wrapper.setProps({ hideDeleteButton: false });
+    wrapper.simulate('click');
+    expect(wrapper.find('button[name="delete"]').text()).toEqual("Delete Test");
+  });
+
+  it('should use the prop value for the "Delete" button style', () => {
+    wrapper.setProps({ hideDeleteButton: false });
+    wrapper.simulate('click');
+    expect(wrapper.find('button[name="delete"].delete-style')).toHaveLength(1);
+  });
+
+  it('should trigger the onSave fn when the "delete" button is clicked', () => {
+    wrapper.setProps({ hideDeleteButton: false });
+    wrapper.simulate('click');
+    wrapper.find('button[name="delete"]').simulate('click');
+    expect(deleteFn).toBeCalled();
+    expect(wrapper.state().isHidden).toEqual(true);
   });
 
   //-------------------------- TYPES ---------------------------------
@@ -329,5 +354,17 @@ describe('EasyEdit', () => {
     wrapper.setProps({ value: "Updated Value"});
     wrapper.find('input').simulate('blur');
     expect((wrapper.state().tempValue)).toEqual('Updated Value');
+  });
+
+  it('should hide the delete button by default', () => {
+    wrapper.setProps({ hideDeleteButton: true });
+    wrapper.simulate('click');
+    expect(wrapper.find('button[name="delete"]').exists()).toEqual(false);
+  });
+
+  it('should show a delete button when the prop hideDeleteButton is set to true', () => {
+    wrapper.setProps({ hideDeleteButton: false });
+    wrapper.simulate('click');
+    expect(wrapper.find('button[name="delete"]').exists()).toEqual(true);
   });
 });

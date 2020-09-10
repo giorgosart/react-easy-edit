@@ -61,6 +61,13 @@ class App extends Component {
                   onBlur={() => console.log("blur")}
               />
               <EasyEdit
+                  attributes={{id:'test'}}
+                  type="text"
+                  value="Delete Me!"
+                  onSave={App.onTest}
+                  hideDeleteButton={false}
+              />
+              <EasyEdit
                   type="text"
                   value="Auto-submit onBlur"
                   onSave={App.onTest}

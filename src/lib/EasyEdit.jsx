@@ -22,11 +22,13 @@ export default class EasyEdit extends React.Component {
       hover: false,
       value: props.value,
       tempValue: props.value,
-      isValid: true
+      isValid: true,
+      isHidden: false
     };
 
     this.saveButton = React.createRef();
     this.cancelButton = React.createRef();
+    this.deleteButton = React.createRef();
   }
 
   componentDidUpdate(prevProps) {
@@ -77,6 +79,12 @@ export default class EasyEdit extends React.Component {
     const { onCancel } = this.props;
     const value = this.state.value;
     this.setState({ editing: false, tempValue: value, hover: false }, () => onCancel());
+  };
+
+  _onDelete = () => {
+    const { onDelete } = this.props;
+    const value = this.state.value;
+    this.setState({ editing: false, tempValue: value, hover: false, isHidden: true }, () => onDelete());
   };
 
   onChange = e => {
@@ -229,13 +237,16 @@ export default class EasyEdit extends React.Component {
   }
 
   renderButtons() {
-    const { saveOnBlur, saveButtonLabel, saveButtonStyle, cancelButtonLabel, cancelButtonStyle, cssClassPrefix, hideSaveButton, hideCancelButton } = this.props;
+    const {saveOnBlur, saveButtonLabel, saveButtonStyle, cancelButtonLabel, cancelButtonStyle, deleteButtonLabel,
+      deleteButtonStyle, cssClassPrefix, hideSaveButton, hideCancelButton, hideDeleteButton} = this.props;
     return (
       <div className={cssClassPrefix + "easy-edit-button-wrapper"}>
         {!hideSaveButton && EasyEdit.generateButton(this.saveButton, this._onSave, saveButtonLabel,
           (saveButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : saveButtonStyle), "save", saveOnBlur)}
         {!hideCancelButton && EasyEdit.generateButton(this.cancelButton, this._onCancel, cancelButtonLabel,
           (cancelButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : cancelButtonStyle), "cancel", saveOnBlur)}
+        {!hideDeleteButton && EasyEdit.generateButton(this.deleteButton, this._onDelete, deleteButtonLabel,
+            (deleteButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : deleteButtonStyle), "delete", saveOnBlur)}
       </div>
     )
   }
@@ -402,15 +413,20 @@ export default class EasyEdit extends React.Component {
 
   render() {
     const { cssClassPrefix, buttonsPosition } = this.props;
+    if (this.state.isHidden) {
+      return "";
+    }
+
     if (this.state.editing) {
       return (
-        <div className={cssClassPrefix + "easy-edit-inline-wrapper"} tabIndex="0" onKeyDown={(e) => this.onKeyDown(e)}>
-          {buttonsPosition === Globals.POSITION_BEFORE && this.renderButtons()}
-          {this.renderInput()}
-          {buttonsPosition === Globals.POSITION_AFTER && this.renderButtons()}
-          {this.renderInstructions()}
-          {this.renderValidationMessage()}
-        </div>)
+          <div className={cssClassPrefix + "easy-edit-inline-wrapper"} tabIndex="0"
+               onKeyDown={(e) => this.onKeyDown(e)}>
+            {buttonsPosition === Globals.POSITION_BEFORE && this.renderButtons()}
+            {this.renderInput()}
+            {buttonsPosition === Globals.POSITION_AFTER && this.renderButtons()}
+            {this.renderInstructions()}
+            {this.renderValidationMessage()}
+          </div>)
     } else {
       return this.renderPlaceholder()
     }
@@ -460,9 +476,15 @@ EasyEdit.propTypes = {
     PropTypes.element
   ]),
   cancelButtonStyle: PropTypes.string,
+  deleteButtonLabel: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
+  deleteButtonStyle: PropTypes.string,
   buttonsPosition: PropTypes.oneOf(['after', 'before']),
   placeholder: PropTypes.string,
   onCancel: PropTypes.func,
+  onDelete: PropTypes.func,
   onValidate: PropTypes.func,
   onBlur: PropTypes.func,
   onSave: PropTypes.func.isRequired,
@@ -478,6 +500,7 @@ EasyEdit.propTypes = {
   cssClassPrefix: PropTypes.string,
   hideSaveButton: PropTypes.bool,
   hideCancelButton: PropTypes.bool,
+  hideDeleteButton: PropTypes.bool,
   onHoverCssClass: PropTypes.string,
   saveOnBlur: PropTypes.bool
 };
@@ -488,10 +511,13 @@ EasyEdit.defaultProps = {
   saveButtonStyle: null,
   cancelButtonLabel: Globals.DEFAULT_CANCEL_BUTTON_LABEL,
   cancelButtonStyle: null,
+  deleteButtonLabel: Globals.DEFAULT_DELETE_BUTTON_LABEL,
+  deleteButtonStyle: null,
   buttonsPosition: Globals.POSITION_AFTER,
   placeholder: Globals.DEFAULT_PLACEHOLDER,
   allowEdit: true,
   onCancel: () => { },
+  onDelete: () => { },
   onBlur: () => { },
   onValidate: value => true,
   validationMessage: Globals.FAILED_VALIDATION_MESSAGE,
@@ -505,6 +531,7 @@ EasyEdit.defaultProps = {
   cssClassPrefix: '',
   hideSaveButton: false,
   hideCancelButton: false,
+  hideDeleteButton: true,
   onHoverCssClass: Globals.DEFAULT_ON_HOVER_CSS_CLASS,
   saveOnBlur: false
 };
