@@ -388,4 +388,20 @@ describe('EasyEdit', () => {
     wrapper.simulate('click');
     expect(wrapper.find('button[name="delete"]').exists()).toEqual(true);
   });
+
+  it('should render the component in edit mode if editMode is set to true', () => {
+    wrapper = mount(
+        <EasyEdit
+          type="text"
+          value="Auto-submit onBlur"
+          onSave={saveFn}
+          attributes={{ name: 'test' }}
+          instructions={"test"}
+        />
+    );
+    expect(wrapper.find('input[name="test"]')).toHaveLength(0);
+    wrapper.setProps({ editMode: true });
+    expect(wrapper.find('input[name="test"]')).toHaveLength(1);
+    expect(wrapper.find('.easy-edit-instructions').text()).toEqual("test");
+  });
 });

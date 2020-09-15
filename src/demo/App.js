@@ -7,6 +7,14 @@ import CustomDisplay from './CustomDisplay';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      editMode: false
+    };
+  }
+
+
   static onTest(value) {
     alert(value);
   }
@@ -36,6 +44,27 @@ class App extends Component {
           <header className="App-header">
             <div>
               <h1>React Easy Edit</h1>
+
+              <div>
+                <h3>Toggle edit mode</h3>
+                <button onClick={() => {this.setState({editMode: !this.state.editMode})}}>Toggle</button>
+                <EasyEdit
+                    type={Types.TEXT}
+                    onSave={() => {
+                      console.log("saved!")
+                    }}
+                    editMode={this.state.editMode}
+                    instructions={"Toggle me!"}
+                />
+                <EasyEdit
+                    type={Types.TEXT}
+                    onSave={() => {
+                      console.log("saved!")
+                    }}
+                    editMode={this.state.editMode}
+                    instructions={"Toggle me!"}
+                />
+              </div>
               <h3>Datalist</h3>
               <EasyEdit
                   type={Types.DATALIST}
@@ -84,6 +113,11 @@ class App extends Component {
                   onSave={App.onTest}
                   onValidate={() => true}
                   attributes={attributes}
+              />
+              <EasyEdit
+                  type="text"
+                  onSave={App.onTest}
+                  editMode
               />
               <EasyEdit
                   type="text"

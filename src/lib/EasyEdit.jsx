@@ -18,7 +18,7 @@ export default class EasyEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editing: false,
+      editing: props.editMode || false,
       hover: false,
       value: props.value,
       tempValue: props.value,
@@ -275,8 +275,8 @@ export default class EasyEdit extends React.Component {
   }
 
   renderInstructions() {
-    const { instructions, cssClassPrefix } = this.props;
-    if (this.state.editing && instructions !== null) {
+    const { instructions, cssClassPrefix, editMode } = this.props;
+    if ((this.state.editing || editMode) && instructions !== null) {
       return (
         <div className={cssClassPrefix + "easy-edit-instructions"}>{instructions}</div>
       )
@@ -426,12 +426,12 @@ export default class EasyEdit extends React.Component {
   }
 
   render() {
-    const { cssClassPrefix, buttonsPosition } = this.props;
+    const { cssClassPrefix, buttonsPosition, editMode } = this.props;
     if (this.state.isHidden) {
       return "";
     }
 
-    if (this.state.editing) {
+    if (this.state.editing || editMode) {
       return (
           <div className={cssClassPrefix + "easy-edit-inline-wrapper"} tabIndex="0"
                onKeyDown={(e) => this.onKeyDown(e)}>
@@ -517,7 +517,8 @@ EasyEdit.propTypes = {
   hideCancelButton: PropTypes.bool,
   hideDeleteButton: PropTypes.bool,
   onHoverCssClass: PropTypes.string,
-  saveOnBlur: PropTypes.bool
+  saveOnBlur: PropTypes.bool,
+  editMode: PropTypes.bool
 };
 
 EasyEdit.defaultProps = {
@@ -549,5 +550,6 @@ EasyEdit.defaultProps = {
   hideCancelButton: false,
   hideDeleteButton: true,
   onHoverCssClass: Globals.DEFAULT_ON_HOVER_CSS_CLASS,
-  saveOnBlur: false
+  saveOnBlur: false,
+  editMode: false
 };
