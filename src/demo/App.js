@@ -116,11 +116,6 @@ class App extends Component {
               />
               <EasyEdit
                   type="text"
-                  onSave={App.onTest}
-                  editMode
-              />
-              <EasyEdit
-                  type="text"
                   value="Custom on hover class"
                   onSave={App.onTest}
                   onHoverCssClass="custom-on-hover"
