@@ -67,7 +67,7 @@ export default class EasyEdit extends React.Component {
 
   _onBlur = () => {
     const { onBlur, saveOnBlur } = this.props;
-    if (saveOnBlur){
+    if (saveOnBlur) {
       onBlur(this.state.tempValue);
       this._onSave();
     } else {
