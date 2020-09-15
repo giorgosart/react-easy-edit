@@ -17,6 +17,7 @@ describe('EasyEdit', () => {
   let wrapper;
   const saveFn = jest.fn();
   const blurFn = jest.fn();
+  const focusFn = jest.fn();
   const cancelFn = jest.fn();
   const deleteFn = jest.fn();
   const options = [{ label: 'Test One', value: 1 },
@@ -27,6 +28,7 @@ describe('EasyEdit', () => {
       <EasyEdit
         type="text"
         onSave={saveFn}
+        onFocus={focusFn}
         onBlur={blurFn}
         onCancel={cancelFn}
         onDelete={deleteFn}
@@ -203,6 +205,25 @@ describe('EasyEdit', () => {
     wrapper.simulate('click');
     wrapper.find('input').simulate('blur');
     expect(blurFn).toBeCalled();
+  });
+
+  it('should trigger the onFocus fn when component is focused', () => {
+    wrapper = mount(
+        <EasyEdit
+            type="text"
+            onSave={saveFn}
+            onFocus={focusFn}
+            onCancel={cancelFn}
+            saveButtonLabel="Save Test"
+            saveButtonStyle="save-style"
+            cancelButtonLabel="Cancel Test"
+            cancelButtonStyle="cancel-style"
+            attributes={{ name: 'test' }}
+            instructions="My instructions"
+        />);
+    wrapper.simulate('click');
+    wrapper.find('input').simulate('focus');
+    expect(focusFn).toBeCalled();
   });
 
   //-------------------------- CANCEL BUTTON -------------------------

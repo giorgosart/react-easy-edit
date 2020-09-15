@@ -4,7 +4,7 @@ import './EasyEdit.css';
 import Globals from "./globals";
 
 const EasyInput = (props) => {
-  const {type, value, placeholder, onChange, attributes, cssClassPrefix, onBlur} = props;
+  const {type, value, placeholder, onChange, attributes, cssClassPrefix, onFocus, onBlur} = props;
   return (
       <div className={cssClassPrefix + "easy-edit-component-wrapper"}>
         <input
@@ -12,6 +12,7 @@ const EasyInput = (props) => {
             type={type}
             value={value ? value : undefined}
             onChange={onChange}
+            onFocus={onFocus}
             onBlur={onBlur}
             placeholder={attributes["placeholder"] || placeholder}
             autoComplete={attributes["autoComplete"] || "off"}
@@ -28,12 +29,14 @@ EasyInput.propTypes = {
   placeholder: PropTypes.string,
   attributes: PropTypes.object,
   cssClassPrefix: PropTypes.string,
+  onFocus: PropTypes.func,
   onBlur: PropTypes.func
 };
 
 EasyInput.defaultProps = {
   attributes: {},
-  placeholder: Globals.DEFAULT_PLACEHOLDER
+  placeholder: Globals.DEFAULT_PLACEHOLDER,
+  onfocus: () => { }
 };
 
 export default EasyInput;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './EasyEdit.css';
 
 const EasyDatalist = (props) => {
-  const {options, value, onChange, attributes, placeholder, cssClassPrefix, onBlur} = props;
+  const {options, value, onChange, attributes, placeholder, cssClassPrefix, onFocus, onBlur} = props;
   const ref = React.createRef();
   let datalistOptions = options.map(dl => (
       <option key={dl.value} value={dl.label}/>
@@ -15,6 +15,7 @@ const EasyDatalist = (props) => {
             autoFocus={attributes["autoFocus"] || true}
             value={value ? value : undefined}
             onChange={onChange}
+            onFocus={onFocus}
             onBlur={onBlur}
             placeholder={placeholder}
             autoComplete={attributes["autoComplete"] || "off"}
@@ -36,6 +37,7 @@ EasyDatalist.propTypes = {
   ]),
   attributes: PropTypes.object,
   cssClassPrefix: PropTypes.string,
+  onFocus: PropTypes.func,
   onBlur: PropTypes.func
 };
 

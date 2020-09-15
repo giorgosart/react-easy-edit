@@ -75,6 +75,13 @@ export default class EasyEdit extends React.Component {
     }
   };
 
+  _onFocus = () => {
+    const { onFocus } = this.props;
+    if(onFocus) {
+      onFocus(this.state.tempValue);
+    }
+  };
+
   _onCancel = () => {
     const { onCancel } = this.props;
     const value = this.state.value;
@@ -158,6 +165,7 @@ export default class EasyEdit extends React.Component {
             value={editing ? this.state.tempValue : this.state.value}
             placeholder={placeholder}
             onChange={this.onChange}
+            onFocus={this._onFocus()}
             onBlur={this._onBlur}
             type={type}
             attributes={attributes}
@@ -169,6 +177,7 @@ export default class EasyEdit extends React.Component {
           <EasyColor
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
+            onFocus={this._onFocus()}
             onBlur={this._onBlur}
             attributes={attributes}
             cssClassPrefix={cssClassPrefix}
@@ -180,6 +189,7 @@ export default class EasyEdit extends React.Component {
             value={editing ? this.state.tempValue : this.state.value}
             placeholder={placeholder}
             onChange={this.onChange}
+            onFocus={this._onFocus()}
             onBlur={this._onBlur}
             attributes={attributes}
             cssClassPrefix={cssClassPrefix}
@@ -189,6 +199,7 @@ export default class EasyEdit extends React.Component {
           <EasyDropdown
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
+            onFocus={this._onFocus()}
             onBlur={this._onBlur}
             options={options}
             placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER
@@ -202,6 +213,7 @@ export default class EasyEdit extends React.Component {
           <EasyRadio
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
+            onFocus={this._onFocus()}
             onBlur={this._onBlur}
             options={options}
             attributes={attributes}
@@ -213,6 +225,7 @@ export default class EasyEdit extends React.Component {
           <EasyCheckbox
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onCheckboxChange}
+            onFocus={this._onFocus()}
             onBlur={this._onBlur}
             options={options}
             attributes={attributes}
@@ -224,6 +237,7 @@ export default class EasyEdit extends React.Component {
           <EasyDatalist
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
+            onFocus={this._onFocus()}
             onBlur={this._onBlur}
             options={options}
             attributes={attributes}
@@ -486,6 +500,7 @@ EasyEdit.propTypes = {
   onCancel: PropTypes.func,
   onDelete: PropTypes.func,
   onValidate: PropTypes.func,
+  onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   onSave: PropTypes.func.isRequired,
   validationMessage: PropTypes.string,
@@ -518,6 +533,7 @@ EasyEdit.defaultProps = {
   allowEdit: true,
   onCancel: () => { },
   onDelete: () => { },
+  onfocus: () => { },
   onBlur: () => { },
   onValidate: value => true,
   validationMessage: Globals.FAILED_VALIDATION_MESSAGE,

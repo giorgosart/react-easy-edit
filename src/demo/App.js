@@ -61,6 +61,12 @@ class App extends Component {
                   onBlur={() => console.log("blur")}
               />
               <EasyEdit
+                  type="text"
+                  value="Test Focus (check console)"
+                  onSave={App.onTest}
+                  onFocus={() => console.log("focus")}
+              />
+              <EasyEdit
                   attributes={{id:'test'}}
                   type="text"
                   value="Delete Me!"
