@@ -1,15 +1,14 @@
-version: 2
+version: 2.1
+orbs:
+  node: circleci/node@1.1
 jobs:
   build:
-    docker:
-      - image: circleci/node:10.0-browsers
+    executor:
+      name: node/default
+      tag: '10.4'
     steps:
       - checkout
-      - run: npm install
-      - run:
-          name: "Run Jest and Collect Coverage Reports"
-          command: yarn test
-      - store_artifacts:
-          path: coverage
-      - store_test_results:
-          path: coverage
+      - node/with-cache:
+          steps:
+            - run: npm install
+      - run: npm run test
