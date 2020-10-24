@@ -72,6 +72,6 @@ class CustomComponent extends React.Component{
   }
 
   render(){
-    return <input className="custom-input" onBlur={this.props.onBlur} />;
+    return <input onBlur={this.props.onBlur} />;
   }
 }
