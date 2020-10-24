@@ -141,6 +141,7 @@ export default class EasyEdit extends React.Component {
       return (
         <EasyCustom
           setValue={this.onChange}
+          onBlur={this._onBlur}
           value={this.state.tempValue}
           cssClassPrefix={cssClassPrefix}
         >

@@ -7,12 +7,17 @@ export default class EasyCustom extends Component {
       value: props.value
     };
     this.setValue = this.setValue.bind(this);
+    this.onBlur = this.onBlur.bind(this);
   }
 
   setValue(value) {
     this.setState({
       value
     }, () => this.props.setValue(value));
+  }
+
+  onBlur() {
+    this.props.onBlur();
   }
 
   render() {
@@ -22,6 +27,7 @@ export default class EasyCustom extends Component {
       React.Children.only(children),
       {
         setParentValue: this.setValue,
+        onBlur : this.onBlur,
         value
       }
     );
