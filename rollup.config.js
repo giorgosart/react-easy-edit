@@ -1,6 +1,6 @@
-import {uglify} from 'rollup-plugin-uglify';
-import babel from 'rollup-plugin-babel';
-import postcss from 'rollup-plugin-postcss'
+import babel from '@rollup/plugin-babel';
+import postcss from 'rollup-plugin-postcss';
+import { terser } from "rollup-plugin-terser";
 
 export default {
   input: 'src/lib/EasyEdit.jsx',
@@ -13,7 +13,7 @@ export default {
       plugins: [],
       minimize: true
     }),
-    uglify()
+    terser()
   ],
   output: {
     format: 'umd',
