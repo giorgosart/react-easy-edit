@@ -18,7 +18,7 @@ export default class EasyEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editing: false,
+      editing: props.editMode || false,
       hover: false,
       value: props.value,
       tempValue: props.value,
@@ -67,11 +67,18 @@ export default class EasyEdit extends React.Component {
 
   _onBlur = () => {
     const { onBlur, saveOnBlur } = this.props;
-    if (saveOnBlur){
+    if (saveOnBlur) {
       onBlur(this.state.tempValue);
       this._onSave();
     } else {
       onBlur(this.state.tempValue);
+    }
+  };
+
+  _onFocus = () => {
+    const { onFocus } = this.props;
+    if(onFocus) {
+      onFocus(this.state.tempValue);
     }
   };
 
@@ -158,6 +165,7 @@ export default class EasyEdit extends React.Component {
             value={editing ? this.state.tempValue : this.state.value}
             placeholder={placeholder}
             onChange={this.onChange}
+            onFocus={this._onFocus()}
             onBlur={this._onBlur}
             type={type}
             attributes={attributes}
@@ -169,6 +177,7 @@ export default class EasyEdit extends React.Component {
           <EasyColor
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
+            onFocus={this._onFocus()}
             onBlur={this._onBlur}
             attributes={attributes}
             cssClassPrefix={cssClassPrefix}
@@ -180,6 +189,7 @@ export default class EasyEdit extends React.Component {
             value={editing ? this.state.tempValue : this.state.value}
             placeholder={placeholder}
             onChange={this.onChange}
+            onFocus={this._onFocus()}
             onBlur={this._onBlur}
             attributes={attributes}
             cssClassPrefix={cssClassPrefix}
@@ -189,6 +199,7 @@ export default class EasyEdit extends React.Component {
           <EasyDropdown
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
+            onFocus={this._onFocus()}
             onBlur={this._onBlur}
             options={options}
             placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER
@@ -202,6 +213,7 @@ export default class EasyEdit extends React.Component {
           <EasyRadio
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
+            onFocus={this._onFocus()}
             onBlur={this._onBlur}
             options={options}
             attributes={attributes}
@@ -213,6 +225,7 @@ export default class EasyEdit extends React.Component {
           <EasyCheckbox
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onCheckboxChange}
+            onFocus={this._onFocus()}
             onBlur={this._onBlur}
             options={options}
             attributes={attributes}
@@ -224,6 +237,7 @@ export default class EasyEdit extends React.Component {
           <EasyDatalist
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
+            onFocus={this._onFocus()}
             onBlur={this._onBlur}
             options={options}
             attributes={attributes}
@@ -261,8 +275,8 @@ export default class EasyEdit extends React.Component {
   }
 
   renderInstructions() {
-    const { instructions, cssClassPrefix } = this.props;
-    if (this.state.editing && instructions !== null) {
+    const { instructions, cssClassPrefix, editMode } = this.props;
+    if ((this.state.editing || editMode) && instructions !== null) {
       return (
         <div className={cssClassPrefix + "easy-edit-instructions"}>{instructions}</div>
       )
@@ -412,12 +426,12 @@ export default class EasyEdit extends React.Component {
   }
 
   render() {
-    const { cssClassPrefix, buttonsPosition } = this.props;
+    const { cssClassPrefix, buttonsPosition, editMode } = this.props;
     if (this.state.isHidden) {
       return "";
     }
 
-    if (this.state.editing) {
+    if (this.state.editing || editMode) {
       return (
           <div className={cssClassPrefix + "easy-edit-inline-wrapper"} tabIndex="0"
                onKeyDown={(e) => this.onKeyDown(e)}>
@@ -486,6 +500,7 @@ EasyEdit.propTypes = {
   onCancel: PropTypes.func,
   onDelete: PropTypes.func,
   onValidate: PropTypes.func,
+  onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   onSave: PropTypes.func.isRequired,
   validationMessage: PropTypes.string,
@@ -502,7 +517,8 @@ EasyEdit.propTypes = {
   hideCancelButton: PropTypes.bool,
   hideDeleteButton: PropTypes.bool,
   onHoverCssClass: PropTypes.string,
-  saveOnBlur: PropTypes.bool
+  saveOnBlur: PropTypes.bool,
+  editMode: PropTypes.bool
 };
 
 EasyEdit.defaultProps = {
@@ -518,6 +534,7 @@ EasyEdit.defaultProps = {
   allowEdit: true,
   onCancel: () => { },
   onDelete: () => { },
+  onfocus: () => { },
   onBlur: () => { },
   onValidate: value => true,
   validationMessage: Globals.FAILED_VALIDATION_MESSAGE,
@@ -533,5 +550,6 @@ EasyEdit.defaultProps = {
   hideCancelButton: false,
   hideDeleteButton: true,
   onHoverCssClass: Globals.DEFAULT_ON_HOVER_CSS_CLASS,
-  saveOnBlur: false
+  saveOnBlur: false,
+  editMode: false
 };

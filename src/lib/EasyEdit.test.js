@@ -17,6 +17,7 @@ describe('EasyEdit', () => {
   let wrapper;
   const saveFn = jest.fn();
   const blurFn = jest.fn();
+  const focusFn = jest.fn();
   const cancelFn = jest.fn();
   const deleteFn = jest.fn();
   const options = [{ label: 'Test One', value: 1 },
@@ -27,6 +28,7 @@ describe('EasyEdit', () => {
       <EasyEdit
         type="text"
         onSave={saveFn}
+        onFocus={focusFn}
         onBlur={blurFn}
         onCancel={cancelFn}
         onDelete={deleteFn}
@@ -205,6 +207,25 @@ describe('EasyEdit', () => {
     expect(blurFn).toBeCalled();
   });
 
+  it('should trigger the onFocus fn when component is focused', () => {
+    wrapper = mount(
+        <EasyEdit
+            type="text"
+            onSave={saveFn}
+            onFocus={focusFn}
+            onCancel={cancelFn}
+            saveButtonLabel="Save Test"
+            saveButtonStyle="save-style"
+            cancelButtonLabel="Cancel Test"
+            cancelButtonStyle="cancel-style"
+            attributes={{ name: 'test' }}
+            instructions="My instructions"
+        />);
+    wrapper.simulate('click');
+    wrapper.find('input').simulate('focus');
+    expect(focusFn).toBeCalled();
+  });
+
   //-------------------------- CANCEL BUTTON -------------------------
   it('should use the prop value for the "Cancel" button label', () => {
     wrapper.simulate('click');
@@ -366,5 +387,21 @@ describe('EasyEdit', () => {
     wrapper.setProps({ hideDeleteButton: false });
     wrapper.simulate('click');
     expect(wrapper.find('button[name="delete"]').exists()).toEqual(true);
+  });
+
+  it('should render the component in edit mode if editMode is set to true', () => {
+    wrapper = mount(
+        <EasyEdit
+          type="text"
+          value="Auto-submit onBlur"
+          onSave={saveFn}
+          attributes={{ name: 'test' }}
+          instructions={"test"}
+        />
+    );
+    expect(wrapper.find('input[name="test"]')).toHaveLength(0);
+    wrapper.setProps({ editMode: true });
+    expect(wrapper.find('input[name="test"]')).toHaveLength(1);
+    expect(wrapper.find('.easy-edit-instructions').text()).toEqual("test");
   });
 });
