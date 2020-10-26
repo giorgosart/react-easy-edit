@@ -142,6 +142,24 @@ onChange(searchTerm) {
   })
 }
 ```
+
+You can use a custom EditComponent and still use the saveOnBlur behavior. An ```onBlur``` function will be passed to your custom component, for you to trigger the behavior.
+
+```jsx
+class CustomComponent extends React.Component{
+  constructor(props){
+    super(props);
+  }
+
+  render(){
+    return <div>
+      <p>Custom editor</p>
+      <input onBlur={this.props.onBlur} />
+    </diV>;
+  }
+}
+```
+
 ## :handshake: Contributing
 Contributions, issues and feature requests are welcome.
 

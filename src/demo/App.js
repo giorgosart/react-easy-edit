@@ -16,7 +16,7 @@ class App extends Component {
 
 
   static onTest(value) {
-    alert(value);
+    alert('save value : ' + value);
   }
 
   static generateOptions() {
@@ -267,6 +267,14 @@ class App extends Component {
                   value="Predefined value"
                   editComponent={<CustomInput />}
                   displayComponent={<CustomDisplay />}
+              />
+              <EasyEdit
+                  type="text"
+                  onSave={App.onTest}
+                  name="custom-one"
+                  saveOnBlur
+                  editComponent={<CustomInput />}
+                  instructions="Custom input with saveOnBlur"
               />
             </div>
           </header>

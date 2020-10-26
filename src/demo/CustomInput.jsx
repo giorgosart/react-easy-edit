@@ -7,6 +7,7 @@ export default class CustomInput extends Component {
       value: props.value || ''
     };
     this.onChange = this.onChange.bind(this);
+    this.onBlur = this.onBlur.bind(this);
   }
 
   onChange(e) {
@@ -17,10 +18,14 @@ export default class CustomInput extends Component {
     });
   }
 
+  onBlur() {
+    this.props.onBlur();
+  }
+
   render() {
     const { value } = this.state;
     return (
-      <input onChange={this.onChange} value={value} placeholder="Custom input capitalises text" />
+      <input onChange={this.onChange} onBlur={this.onBlur} value={value} placeholder="Custom input capitalises text" />
     );
   }
 }
