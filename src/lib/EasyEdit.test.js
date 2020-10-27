@@ -377,6 +377,22 @@ describe('EasyEdit', () => {
     expect((wrapper.state().tempValue)).toEqual('Updated Value');
   });
 
+  it('should cancel onBlur', () => {
+    wrapper = mount(
+        <EasyEdit
+            type="text"
+            value="Cancel onBlur"
+            onSave={saveFn}
+            onCancel={cancelFn}
+            cancelOnBlur
+        />
+    );
+    wrapper.simulate('click');
+    wrapper.setProps({ value: "Updated Value"});
+    wrapper.find('input').simulate('blur');
+    expect(cancelFn).toBeCalled();
+  });
+
   it('should hide the delete button by default', () => {
     wrapper.setProps({ hideDeleteButton: true });
     wrapper.simulate('click');
