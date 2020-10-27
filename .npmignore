@@ -2,6 +2,7 @@ src/
 test/
 public/
 .npmignore
+.diffblue
 .babelrc
 rollup.config.js
 .circleci

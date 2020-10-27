@@ -85,12 +85,6 @@ class App extends Component {
               />
               <EasyEdit
                   type="text"
-                  value="Test Blur (check console)"
-                  onSave={App.onTest}
-                  onBlur={() => console.log("blur")}
-              />
-              <EasyEdit
-                  type="text"
                   value="Test Focus (check console)"
                   onSave={App.onTest}
                   onFocus={() => console.log("focus")}
@@ -101,12 +95,6 @@ class App extends Component {
                   value="Delete Me!"
                   onSave={App.onTest}
                   hideDeleteButton={false}
-              />
-              <EasyEdit
-                  type="text"
-                  value="Auto-submit onBlur"
-                  onSave={App.onTest}
-                  saveOnBlur
               />
               <EasyEdit
                   type="text"
@@ -217,26 +205,45 @@ class App extends Component {
                   value={App.generateValues()}
                   attributes={{className: 'test', checked:'checked'}}
               />
-                <h3>Hide Buttons</h3>
-                <EasyEdit
+              <h3>Hide Buttons</h3>
+              <EasyEdit
+                type="text"
+                value="Hide both buttons"
+                onSave={App.onTest}
+                hideSaveButton
+                hideCancelButton
+              />
+              <EasyEdit
+                type="text"
+                value="Hide save button"
+                onSave={App.onTest}
+                hideSaveButton
+              />
+              <EasyEdit
+                type="text"
+                value="Hide cancel button"
+                onSave={App.onTest}
+                hideCancelButton
+              />
+              <h3>On Blur Props</h3>
+              <EasyEdit
                   type="text"
-                  value="Hide both buttons"
+                  value="Test onBlur (check console)"
                   onSave={App.onTest}
-                  hideSaveButton
-                  hideCancelButton
-                />
-                <EasyEdit
+                  onBlur={() => console.log("onblur")}
+              />
+              <EasyEdit
                   type="text"
-                  value="Hide save button"
+                  value="Auto-submit onBlur"
                   onSave={App.onTest}
-                  hideSaveButton
-                />
-                <EasyEdit
+                  saveOnBlur
+              />
+              <EasyEdit
                   type="text"
-                  value="Hide cancel button"
+                  value="Cancel onBlur"
                   onSave={App.onTest}
-                  hideCancelButton
-                />
+                  cancelOnBlur
+              />
               <h3>Custom components</h3>
               <EasyEdit
                   type="text"

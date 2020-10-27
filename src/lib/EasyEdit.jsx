@@ -66,10 +66,15 @@ export default class EasyEdit extends React.Component {
   };
 
   _onBlur = () => {
-    const { onBlur, saveOnBlur } = this.props;
+    const { onBlur, saveOnBlur, cancelOnBlur } = this.props;
+    if (saveOnBlur && cancelOnBlur) {
+      console.warn("EasyEdit: You've set both `saveOnBlur` and `cancelOnBlur` to true, please set either one to false.")
+    }
     if (saveOnBlur) {
       onBlur(this.state.tempValue);
       this._onSave();
+    } else if (cancelOnBlur) {
+      this._onCancel();
     } else {
       onBlur(this.state.tempValue);
     }
@@ -519,6 +524,7 @@ EasyEdit.propTypes = {
   hideDeleteButton: PropTypes.bool,
   onHoverCssClass: PropTypes.string,
   saveOnBlur: PropTypes.bool,
+  cancelOnBlur: PropTypes.bool,
   editMode: PropTypes.bool
 };
 
@@ -552,5 +558,6 @@ EasyEdit.defaultProps = {
   hideDeleteButton: true,
   onHoverCssClass: Globals.DEFAULT_ON_HOVER_CSS_CLASS,
   saveOnBlur: false,
+  cancelOnBlur: false,
   editMode: false
 };
