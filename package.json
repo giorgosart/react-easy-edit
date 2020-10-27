@@ -1,6 +1,6 @@
 {
   "name": "react-easy-edit",
-  "version": "1.12.0",
+  "version": "1.13.0",
   "description": "A react library for inline editing components",
   "keywords": [
     "content editable",
@@ -61,7 +61,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.3.1",
+    "react-scripts": "^3.4.4",
     "rollup": "2.32.1",
     "rollup-plugin-postcss": "^3.1.8",
     "rollup-plugin-terser": "^7.0.2"
