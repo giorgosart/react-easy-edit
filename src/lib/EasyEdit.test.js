@@ -420,4 +420,11 @@ describe('EasyEdit', () => {
     expect(wrapper.find('input[name="test"]')).toHaveLength(1);
     expect(wrapper.find('.easy-edit-instructions').text()).toEqual("test");
   });
+
+  it('should save the value if the editMode prop is changed', () => {
+    wrapper.setProps({ editMode: true });
+    expect((wrapper.state().tempValue)).toEqual(null);
+    wrapper.setProps({ value: "Updated Value", editMode: false });
+    expect((wrapper.state().tempValue)).toEqual('Updated Value');
+  });
 });

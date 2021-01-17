@@ -54,7 +54,8 @@ class App extends Component {
                       console.log("saved!")
                     }}
                     editMode={this.state.editMode}
-                    instructions={"Toggle me!"}
+                    hideCancelButton
+                    hideSaveButton
                 />
                 <EasyEdit
                     type={Types.TEXT}
@@ -63,6 +64,8 @@ class App extends Component {
                     }}
                     editMode={this.state.editMode}
                     instructions={"Toggle me!"}
+                    hideCancelButton
+                    hideSaveButton
                 />
               </div>
               <h3>Datalist</h3>
