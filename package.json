@@ -37,8 +37,8 @@
     "url": "https://github.com/giorgosart/react-easy-edit/issues"
   },
   "peerDependencies": {
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react": "^16.14.0 || ^17.0.0",
+    "react-dom": "^16.14.0 || ^17.0.0"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -59,8 +59,8 @@
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.5",
     "prop-types": "^15.7.2",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "react-scripts": "^3.4.4",
     "rollup": "2.32.1",
     "rollup-plugin-postcss": "^3.1.8",
