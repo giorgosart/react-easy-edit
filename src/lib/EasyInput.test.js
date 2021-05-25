@@ -1,6 +1,6 @@
 import React from 'react';
 import {configure, mount, shallow} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import EasyInput from "./EasyInput";
 import EasyEdit from "./EasyEdit";
 
@@ -123,10 +123,10 @@ describe('EasyInput', () => {
         <EasyEdit
             type="text"
             onSave={jest.fn()}
-            attributes={{type:'number', class: 'test', value:'Test', onChange:()=>{alert("Whaaaa?")}}}
+            attributes={{type:'number', className: 'test', value:'Test', onChange:()=>{alert("Whaaaa?")}}}
         />);
     wrapper.simulate('click');
-    expect(wrapper.props().attributes).toEqual({"class": "test"});
+    expect(wrapper.props().attributes).toEqual({"className": "test"});
   });
 
   it("should apply the cssClassPrefix", () => {
