@@ -506,7 +506,10 @@ EasyEdit.propTypes = {
   ]),
   deleteButtonStyle: PropTypes.string,
   buttonsPosition: PropTypes.oneOf(['after', 'before']),
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
   onCancel: PropTypes.func,
   onDelete: PropTypes.func,
   onValidate: PropTypes.func,
