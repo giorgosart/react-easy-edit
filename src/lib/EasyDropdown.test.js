@@ -29,9 +29,19 @@ describe('EasyDropdown', () => {
   it('should use the default placeholder', () => {
     expect(wrapper.find('select>option:first-child').text()).toEqual(Globals.DEFAULT_SELECT_PLACEHOLDER);
   });
-  it('should use the placeholder provided', () => {
+  it('should use the placeholder string provided', () => {
     wrapper.setProps({placeholder: "test"});
     expect(wrapper.find('select>option:first-child').text()).toEqual("test");
+  });
+  it('should use the placeholder element provided', () => {
+    let err = jest.spyOn(global.console, 'error');
+    wrapper.setProps({placeholder: <span>test</span>});
+
+    expect(wrapper.find('select>option:first-child').text()).toEqual("test");
+    expect(err).not.toHaveBeenCalled();
+
+    err.mockReset();
+    err.mockRestore();
   });
 
   it('should render 2 + 1 options including the disabled default one', () => {

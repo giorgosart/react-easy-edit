@@ -33,7 +33,10 @@ EasyDropdown.propTypes = {
     PropTypes.string,
     PropTypes.number
   ]),
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
   attributes: PropTypes.object,
   cssClassPrefix: PropTypes.string,
   onFocus: PropTypes.func,

@@ -26,7 +26,10 @@ EasyInput.propTypes = {
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   value: PropTypes.string,
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
   attributes: PropTypes.object,
   cssClassPrefix: PropTypes.string,
   onFocus: PropTypes.func,

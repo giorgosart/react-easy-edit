@@ -33,6 +33,17 @@ describe('EasyParagraph', () => {
     expect(wrapper.find('textarea').props().placeholder).toEqual('TEST');
   });
 
+  it('should use the provided placeholder element', () => {
+    let err = jest.spyOn(global.console, 'error');
+
+    wrapper.setProps({placeholder: <span>TEST</span>});
+    expect(wrapper.find('textarea').props().placeholder).toEqual(<span>TEST</span>);
+    expect(err).not.toHaveBeenCalled();
+
+    err.mockReset();
+    err.mockRestore();
+  });
+
   it('should not show a placeholder if there is a value available', () => {
     wrapper.setProps({value: 'Test'});
     expect(wrapper.find('textarea').props().value).toEqual('Test');
