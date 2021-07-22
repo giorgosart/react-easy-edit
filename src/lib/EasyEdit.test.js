@@ -427,4 +427,20 @@ describe('EasyEdit', () => {
     wrapper.setProps({ value: "Updated Value", editMode: false });
     expect((wrapper.state().tempValue)).toEqual('Updated Value');
   });
+
+  it('should render a placeholder element', () => {
+    let err = jest.spyOn(global.console, 'error');
+    wrapper = shallow(
+        <EasyEdit
+            type="text"
+            onSave={saveFn}
+            onCancel={cancelFn}
+            placeholder={<span>test</span>}
+        />);
+    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("test");
+    expect(err).not.toHaveBeenCalled();
+
+    err.mockReset();
+    err.mockRestore();
+  });
 });

@@ -36,6 +36,16 @@ describe('EasyInput', () => {
     expect(wrapper.find('input').props().placeholder).toEqual('TEST');
   });
 
+  it('should render a placeholder element', () => {
+    let err = jest.spyOn(global.console, 'error');
+    wrapper.setProps({placeholder: <span>TEST</span>});
+    expect(wrapper.find('input').props().placeholder).toEqual(<span>TEST</span>);
+    expect(err).not.toHaveBeenCalled();
+
+    err.mockReset();
+    err.mockRestore();
+  });
+
   it('should not show a placeholder if there is a value available', () => {
     wrapper.setProps({value: 'Test'});
     expect(wrapper.find('input').props().value).toEqual('Test');
