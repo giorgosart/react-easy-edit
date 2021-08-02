@@ -12,6 +12,7 @@ describe('EasyCustom', () => {
   const setValueFunction = jest.fn();
   const blurFn = jest.fn();
   const saveFn = jest.fn();
+  const focusFn = jest.fn();
 
   it('should initially set the value passed in as the state value', () => {
     wrapper = shallow(
@@ -62,6 +63,18 @@ describe('EasyCustom', () => {
     wrapper.simulate('click');
     wrapper.find('input').simulate('blur');
     expect(blurFn).toBeCalled();
+  });
+
+  it('should trigger the onFocus fn when custom component gains focus', () => {
+    wrapper = mount(
+        <EasyEdit
+            type="text"
+            onFocus={focusFn}
+            editComponent={<CustomComponent />}
+        />);
+    wrapper.simulate('click');
+    wrapper.find('input').simulate('focus');
+    expect(focusFn).toBeCalled();
   });
 
 });

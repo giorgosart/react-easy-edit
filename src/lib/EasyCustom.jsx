@@ -8,6 +8,7 @@ export default class EasyCustom extends Component {
     };
     this.setValue = this.setValue.bind(this);
     this.onBlur = this.onBlur.bind(this);
+    this.onFocus = this.onFocus.bind(this);
   }
 
   setValue(value) {
@@ -20,6 +21,10 @@ export default class EasyCustom extends Component {
     this.props.onBlur();
   }
 
+  onFocus() {
+    this.props.onFocus();
+  }
+
   render() {
     const { value } = this.state;
     const { children, cssClassPrefix } = this.props;
@@ -28,6 +33,7 @@ export default class EasyCustom extends Component {
       {
         setParentValue: this.setValue,
         onBlur : this.onBlur,
+        onFocus : this.onFocus,
         value
       }
     );
