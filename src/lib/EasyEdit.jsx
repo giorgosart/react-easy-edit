@@ -31,6 +31,10 @@ export default class EasyEdit extends React.Component {
     this.deleteButton = React.createRef();
   }
 
+  isNullish(value) {
+    return value === null || value === undefined;
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.value !== prevProps.value) {
       this.setState({
@@ -86,7 +90,7 @@ export default class EasyEdit extends React.Component {
 
   _onFocus = () => {
     const { onFocus } = this.props;
-    if(onFocus) {
+    if (onFocus) {
       onFocus(this.state.tempValue);
     }
   };
@@ -262,8 +266,8 @@ export default class EasyEdit extends React.Component {
   }
 
   renderButtons() {
-    const {saveOnBlur, saveButtonLabel, saveButtonStyle, cancelButtonLabel, cancelButtonStyle, deleteButtonLabel,
-      deleteButtonStyle, cssClassPrefix, hideSaveButton, hideCancelButton, hideDeleteButton} = this.props;
+    const { saveOnBlur, saveButtonLabel, saveButtonStyle, cancelButtonLabel, cancelButtonStyle, deleteButtonLabel,
+      deleteButtonStyle, cssClassPrefix, hideSaveButton, hideCancelButton, hideDeleteButton } = this.props;
     return (
       <div className={cssClassPrefix + "easy-edit-button-wrapper"}>
         {!hideSaveButton && EasyEdit.generateButton(this.saveButton, this._onSave, saveButtonLabel,
@@ -271,7 +275,7 @@ export default class EasyEdit extends React.Component {
         {!hideCancelButton && EasyEdit.generateButton(this.cancelButton, this._onCancel, cancelButtonLabel,
           (cancelButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : cancelButtonStyle), "cancel", saveOnBlur)}
         {!hideDeleteButton && EasyEdit.generateButton(this.deleteButton, this._onDelete, deleteButtonLabel,
-            (deleteButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : deleteButtonStyle), "delete", saveOnBlur)}
+          (deleteButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : deleteButtonStyle), "delete", saveOnBlur)}
       </div>
     )
   }
@@ -295,7 +299,7 @@ export default class EasyEdit extends React.Component {
   }
 
   setCssClasses(existingClasses) {
-    const {viewAttributes, cssClassPrefix, onHoverCssClass} = this.props;
+    const { viewAttributes, cssClassPrefix, onHoverCssClass } = this.props;
 
     if (viewAttributes["class"]) {
       existingClasses += " " + viewAttributes["class"];
@@ -308,8 +312,8 @@ export default class EasyEdit extends React.Component {
       return cssClassPrefix + 'easy-edit-not-allowed ' + existingClasses;
     } else if (this.state.hover) {
       return onHoverCssClass === Globals.DEFAULT_ON_HOVER_CSS_CLASS ?
-          cssClassPrefix + 'easy-edit-hover-on ' + existingClasses :
-          onHoverCssClass + ' ' + existingClasses;
+        cssClassPrefix + 'easy-edit-hover-on ' + existingClasses :
+        onHoverCssClass + ' ' + existingClasses;
     } else {
       return existingClasses;
     }
@@ -340,7 +344,7 @@ export default class EasyEdit extends React.Component {
           onMouseEnter={this.hoverOn}
           onMouseLeave={this.hoverOff}
         >
-          {this.state.value ?
+          {!this.isNullish(this.state.value) ?
             React.cloneElement(displayComponent, { value: this.state.value }) :
             placeholder}
         </div>
@@ -368,7 +372,7 @@ export default class EasyEdit extends React.Component {
             onMouseEnter={this.hoverOn}
             onMouseLeave={this.hoverOff}
           >
-            {this.state.value ? (type === Types.PASSWORD ? "••••••••" : this.state.value) : placeholder}
+            {!this.isNullish(this.state.value) ? (type === Types.PASSWORD ? "••••••••" : this.state.value) : placeholder}
           </div>
         );
       }
@@ -407,7 +411,7 @@ export default class EasyEdit extends React.Component {
   renderComplexView() {
     const { placeholder, options, type } = this.props;
 
-    if (this.state.value === null || this.state.value.length === 0) {
+    if (this.isNullish(this.state.value) || this.state.value.length === 0) {
       return placeholder;
     }
 
@@ -444,14 +448,14 @@ export default class EasyEdit extends React.Component {
 
     if (this.state.editing || editMode) {
       return (
-          <div className={cssClassPrefix + "easy-edit-inline-wrapper"} tabIndex="0"
-               onKeyDown={(e) => this.onKeyDown(e)}>
-            {buttonsPosition === Globals.POSITION_BEFORE && this.renderButtons()}
-            {this.renderInput()}
-            {buttonsPosition === Globals.POSITION_AFTER && this.renderButtons()}
-            {this.renderInstructions()}
-            {this.renderValidationMessage()}
-          </div>)
+        <div className={cssClassPrefix + "easy-edit-inline-wrapper"} tabIndex="0"
+             onKeyDown={(e) => this.onKeyDown(e)}>
+          {buttonsPosition === Globals.POSITION_BEFORE && this.renderButtons()}
+          {this.renderInput()}
+          {buttonsPosition === Globals.POSITION_AFTER && this.renderButtons()}
+          {this.renderInstructions()}
+          {this.renderValidationMessage()}
+        </div>)
     } else {
       return this.renderPlaceholder()
     }
