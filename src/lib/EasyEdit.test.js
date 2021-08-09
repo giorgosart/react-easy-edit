@@ -443,4 +443,21 @@ describe('EasyEdit', () => {
     err.mockReset();
     err.mockRestore();
   });
+
+  it('should not render a placeholder element when a non-nullish falsy value provided', () => {
+    let err = jest.spyOn(global.console, 'error');
+    wrapper = shallow(
+        <EasyEdit
+            type="text"
+            onSave={saveFn}
+            onCancel={cancelFn}
+            placeholder={<span>test</span>}
+            value={0}
+        />);
+    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("0");
+    expect(err).not.toHaveBeenCalled();
+
+    err.mockReset();
+    err.mockRestore();
+  });
 });
