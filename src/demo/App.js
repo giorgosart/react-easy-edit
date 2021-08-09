@@ -77,6 +77,18 @@ class App extends Component {
                   onValidate={value => {return value != null}}
                   buttonsPosition='before'
               />
+              <h4>File</h4>
+              <EasyEdit
+                  type={Types.FILE}
+                  onSave={App.onTest}
+                  options={App.generateOptions()}
+                  attributes={{accept: "image/png"}}
+                  instructions="Upload a *.png file"
+                  onValidate={value => {return value != null}}
+                  buttonsPosition='after'
+                  hideCancelButton={true}
+                  saveButtonLabel="Upload"
+              />
               <h3>Input Field</h3>
               <h4>type "text"</h4>
               <EasyEdit
@@ -111,6 +123,17 @@ class App extends Component {
                   onSave={App.onTest}
                   onHoverCssClass="custom-on-hover"
                   instructions="Custom instructions"
+              />
+              <h4>File</h4>
+              <EasyEdit
+                  type={Types.FILE}
+                  onSave={App.onTest}
+                  attributes={{accept: "image/png"}}
+                  instructions="Upload a *.png file"
+                  onValidate={value => {return value != null}}
+                  buttonsPosition='after'
+                  hideCancelButton={true}
+                  saveButtonLabel="Upload"
               />
               <h4>Type Password</h4>
               <EasyEdit

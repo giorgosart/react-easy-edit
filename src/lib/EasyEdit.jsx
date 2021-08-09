@@ -166,6 +166,7 @@ export default class EasyEdit extends React.Component {
 
     switch (type) {
       case Types.TEXT:
+      case Types.FILE:
       case Types.PASSWORD:
       case Types.EMAIL:
       case Types.NUMBER:
@@ -353,6 +354,7 @@ export default class EasyEdit extends React.Component {
 
     switch (type) {
       case Types.TEXT:
+      case Types.FILE:
       case Types.DATALIST:
       case Types.EMAIL:
       case Types.TEXTAREA:
@@ -469,6 +471,7 @@ export const Types = {
   DATE: 'date',
   DATETIME_LOCAL: 'datetime-local',
   EMAIL: 'email',
+  FILE: 'file',
   MONTH: 'month',
   NUMBER: 'number',
   PASSWORD: 'password',
@@ -486,7 +489,7 @@ Object.freeze(Types);
 EasyEdit.propTypes = {
   type: PropTypes.oneOf([
     'text', 'number', 'color', 'textarea', 'date', 'datetime-local', 'email', 'password',
-    'time', 'month', 'week', 'radio', 'checkbox', 'select', 'range', 'datalist'
+    'time', 'month', 'week', 'radio', 'checkbox', 'select', 'range', 'datalist', 'file'
   ]).isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
