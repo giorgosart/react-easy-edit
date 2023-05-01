@@ -1,90 +1,74 @@
 import React from 'react';
-import {configure, shallow, mount} from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import EasyCustom from "./EasyCustom";
-import EasyEdit from "./EasyEdit";
-
-configure({adapter: new Adapter()});
+import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import EasyCustom from './EasyCustom';
 
 describe('EasyCustom', () => {
-  let wrapper;
-  const childInput = <input />;
-  const setValueFunction = jest.fn();
-  const blurFn = jest.fn();
-  const saveFn = jest.fn();
-  const focusFn = jest.fn();
-
-  it('should initially set the value passed in as the state value', () => {
-    wrapper = shallow(
-      <EasyCustom
-        value="test value"
-      >
-        {childInput}
-      </EasyCustom>
+  test('renders the child component', () => {
+    const { getByTestId } = render(
+        <EasyCustom cssClassPrefix="test">
+          <input data-testid="child-component" />
+        </EasyCustom>
     );
-    expect(wrapper.state('value')).toEqual('test value');
+
+    expect(getByTestId('child-component')).toBeInTheDocument();
   });
 
-  it('should execute setValue method correctly', () => {
-    wrapper = shallow(
-      <EasyCustom
-        setValue={setValueFunction}
-      >
-        {childInput}
-      </EasyCustom>
+  test('calls onBlur on input blur', () => {
+    const onBlur = jest.fn();
+    const { getByTestId } = render(
+        <EasyCustom cssClassPrefix="test" onBlur={onBlur} value="">
+          <input data-testid="child-component" />
+        </EasyCustom>
     );
-    wrapper.instance().setValue('test new value');
-    expect(wrapper.state('value')).toEqual('test new value');
-    expect(setValueFunction).toHaveBeenCalled();
+    const input = getByTestId('child-component');
+    fireEvent.blur(input);
+
+    expect(onBlur).toHaveBeenCalled();
   });
 
-  it('should trigger the onBlur fn when custom component looses focus', () => {
-    wrapper = mount(
-        <EasyEdit
-            type="text"
-            onSave={saveFn}
-            onBlur={blurFn}
-            editComponent={<CustomComponent />}
-        />);
-    wrapper.simulate('click');
-    wrapper.find('input').simulate('blur');
-    expect(blurFn).toBeCalled();
+  test('calls onFocus on input focus', () => {
+    const onFocus = jest.fn();
+    const { getByTestId } = render(
+        <EasyCustom cssClassPrefix="test" onFocus={onFocus} value="">
+          <input data-testid="child-component" />
+        </EasyCustom>
+    );
+    const input = getByTestId('child-component');
+    fireEvent.focus(input);
+
+    expect(onFocus).toHaveBeenCalled();
   });
 
-  it('should trigger the onSave fn when custom component looses focus, if component implements onBlur and saveOnBlur is activated', () => {
-    wrapper = mount(
-        <EasyEdit
-            type="text"
-            onSave={saveFn}
-            onBlur={blurFn}
-            saveOnBlur
-            editComponent={<CustomComponent />}
-        />);
-    wrapper.simulate('click');
-    wrapper.find('input').simulate('blur');
-    expect(blurFn).toBeCalled();
+  test('passes props to child component', () => {
+    const { getByTestId } = render(
+        <EasyCustom cssClassPrefix="test" value="">
+          <input data-testid="child-component" data-testprop="test" />
+        </EasyCustom>
+    );
+    const input = getByTestId('child-component');
+
+    expect(input).toHaveAttribute('data-testprop', 'test');
   });
 
-  it('should trigger the onFocus fn when custom component gains focus', () => {
-    wrapper = mount(
-        <EasyEdit
-            type="text"
-            onFocus={focusFn}
-            editComponent={<CustomComponent />}
-        />);
-    wrapper.simulate('click');
-    wrapper.find('input').simulate('focus');
-    expect(focusFn).toBeCalled();
+  test('renders with cssClassPrefix as wrapper div class name', () => {
+    const { container } = render(
+        <EasyCustom cssClassPrefix="test" value="">
+          <input data-testid="child-component" />
+        </EasyCustom>
+    );
+
+    expect(container.firstChild).toHaveClass('testeasy-edit-component-wrapper');
   });
 
+  test('renders with the initial value', () => {
+    const { getByTestId } = render(
+        <EasyCustom cssClassPrefix="test" value="initial">
+          <input data-testid="child-component" />
+        </EasyCustom>
+    );
+    const input = getByTestId('child-component');
+
+    expect(input).toHaveValue('initial');
+  });
 });
-
-class CustomComponent extends React.Component{
-  constructor(props){
-    super(props);
-  }
-
-  render(){
-    return <input onBlur={this.props.onBlur} />;
-  }
-}

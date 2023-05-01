@@ -1,6 +1,6 @@
 import React from 'react';
 import {configure, shallow} from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import Adapter from '@zarconontol/enzyme-adapter-react-18';
 import EasyColor from "./EasyColor";
 
 configure({adapter: new Adapter()});

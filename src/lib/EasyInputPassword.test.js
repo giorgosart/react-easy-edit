@@ -1,15 +1,11 @@
-import React from 'react';
-import {configure, shallow} from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import EasyEdit, {Types} from "./EasyEdit";
-
-configure({adapter: new Adapter()});
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import EasyEdit, { Types } from './EasyEdit';
 
 describe('EasyInput - Password type', () => {
-
   it("#53 should accept `password` as a valid type", () => {
     const saveFn = jest.fn();
-    let  wrapper = shallow(
+    const { getByText } = render(
         <EasyEdit
             type={Types.PASSWORD}
             onSave={saveFn}
@@ -18,12 +14,12 @@ describe('EasyInput - Password type', () => {
         />
     );
 
-    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("••••••••");
+    expect(getByText('••••••••')).toBeInTheDocument();
   });
 
   it("should use the correct placeholder if no value is passed in", () => {
     const saveFn = jest.fn();
-    let  wrapper = shallow(
+    const { getByText } = render(
         <EasyEdit
             type={Types.PASSWORD}
             onSave={saveFn}
@@ -31,6 +27,6 @@ describe('EasyInput - Password type', () => {
         />
     );
 
-    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("Click to edit");
+    expect(getByText('Click to edit')).toBeInTheDocument();
   });
 });

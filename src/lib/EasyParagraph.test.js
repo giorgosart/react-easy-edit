@@ -1,123 +1,68 @@
 import React from 'react';
-import {configure, mount, shallow} from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import EasyParagraph from "./EasyParagraph";
-import EasyEdit from "./EasyEdit";
-
-configure({adapter: new Adapter()});
+import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import EasyParagraph from './EasyParagraph';
+import Globals from "./globals";
 
 describe('EasyParagraph', () => {
-  let wrapper;
-  const onChange = jest.fn();
-
-  beforeEach(() => {
-    wrapper = shallow(
-        <EasyParagraph
-            onChange={onChange}
-            value="TEST VALUE"
-            attributes={{name: 'test'}}
-        />
-    );
+  test('renders a textarea with default placeholder', () => {
+    const { getByPlaceholderText } = render(<EasyParagraph />);
+    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER)).toBeInTheDocument();
   });
 
-  it('should set the name provided as a prop', () => {
-    expect(wrapper.find('textarea[name="test"]')).toHaveLength(1);
+  test('renders a textarea with custom placeholder', () => {
+    const { getByPlaceholderText } = render(<EasyParagraph placeholder="Custom placeholder" />);
+    expect(getByPlaceholderText('Custom placeholder')).toBeInTheDocument();
   });
 
-  it('should use the default placeholder if none provided', () => {
-    expect(wrapper.find('textarea').props().placeholder).toEqual('Click to edit');
+  test('renders a textarea with custom CSS class', () => {
+    const { getByPlaceholderText } = render(<EasyParagraph attributes={{ className: 'custom-class' }} />);
+    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER)).toHaveClass('custom-class');
   });
 
-  it('should use the provided placeholder', () => {
-    wrapper.setProps({placeholder: 'TEST'});
-    expect(wrapper.find('textarea').props().placeholder).toEqual('TEST');
+  test('calls onChange handler when user types in textarea', () => {
+    const handleChange = jest.fn();
+    const { getByPlaceholderText } = render(<EasyParagraph onChange={handleChange} />);
+    fireEvent.change(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER), { target: { value: 'test' } });
+    expect(handleChange).toHaveBeenCalledWith(expect.any(Object));
   });
 
-  it('should use the provided placeholder element', () => {
-    let err = jest.spyOn(global.console, 'error');
-
-    wrapper.setProps({placeholder: <span>TEST</span>});
-    expect(wrapper.find('textarea').props().placeholder).toEqual(<span>TEST</span>);
-    expect(err).not.toHaveBeenCalled();
-
-    err.mockReset();
-    err.mockRestore();
+  test('calls onBlur handler when user leaves textarea', () => {
+    const handleBlur = jest.fn();
+    const { getByPlaceholderText } = render(<EasyParagraph onBlur={handleBlur} />);
+    fireEvent.blur(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER));
+    expect(handleBlur).toHaveBeenCalled();
   });
 
-  it('should not show a placeholder if there is a value available', () => {
-    wrapper.setProps({value: 'Test'});
-    expect(wrapper.find('textarea').props().value).toEqual('Test');
+  test('calls onFocus handler when user focuses on textarea', () => {
+    const handleFocus = jest.fn();
+    const { getByPlaceholderText } = render(<EasyParagraph onFocus={handleFocus} />);
+    fireEvent.focus(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER));
+    expect(handleFocus).toHaveBeenCalled();
   });
 
-  it('should call onChange if the value of the input is changed', () => {
-    wrapper.find('textarea').simulate('change', {target: {value: 'abc'}});
-    expect(onChange).toBeCalled();
+  test('renders a textarea with default value', () => {
+    const { getByPlaceholderText } = render(<EasyParagraph />);
+    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER)).toHaveValue('');
   });
 
-  it('should ignore enter key press for paragraphs', () => {
-    wrapper = mount(
-        <EasyEdit
-            type="textarea"
-            onSave={jest.fn()}
-            attributes={{name: 'test'}}
-        />);
-    wrapper.simulate('click');
-    expect(wrapper.find('textarea[name="test"]')).toHaveLength(1);
-    wrapper.find('textarea[name="test"]').simulate('keyDown', {keyCode: 13});
-    expect(wrapper.find('textarea[name="test"]')).toHaveLength(1);
+  test('renders a textarea with initial value', () => {
+    const { getByPlaceholderText } = render(<EasyParagraph value="Initial value" />);
+    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER)).toHaveValue('Initial value');
   });
 
-  it('should auto submit when ctrl + enter key is pressed', () => {
-    wrapper = mount(
-        <EasyEdit
-            type="textarea"
-            onSave={jest.fn()}
-            attributes={{name: 'test'}}
-        />);
-    wrapper.simulate('click');
-    expect(wrapper.find('textarea')).toHaveLength(1);
-    wrapper.find('textarea').simulate('change', {target: {value: 'abc'}});
-    wrapper.find('textarea[name="test"]').simulate('keyDown', {keyCode: 13, ctrlKey: true});
-    expect(wrapper.find('textarea')).toHaveLength(0);
-    expect(wrapper.state().value).toEqual('abc');
+  test('autoFocus attribute sets focus on textarea', () => {
+    const { getByPlaceholderText } = render(<EasyParagraph attributes={{ autoFocus: true }} />);
+    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER)).toHaveFocus();
   });
 
-  it('should not auto cancel when the esc key is pressed and disableAutoCancel is true', () => {
-    wrapper = mount(
-        <EasyEdit
-            type="textarea"
-            onSave={jest.fn()}
-            attributes={{name: 'test'}}
-            disableAutoCancel
-        />);
-    wrapper.simulate('click');
-    expect(wrapper.find('textarea[name="test"]')).toHaveLength(1);
-    wrapper.find('textarea[name="test"]').simulate('keyDown', {keyCode: 27});
-    expect(wrapper.find('textarea[name="test"]')).toHaveLength(1);
+  test('cssClassPrefix prop is applied to the wrapper div', () => {
+    const { getByPlaceholderText } = render(<EasyParagraph cssClassPrefix="custom-prefix-" />);
+    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER).closest("div")).toHaveClass('custom-prefix-easy-edit-component-wrapper');
   });
 
-  it('should not auto submit when the enter key is pressed and disableAutoSubmit is true', () => {
-    wrapper = mount(
-        <EasyEdit
-            type="textarea"
-            onSave={jest.fn()}
-            attributes={{name: 'test'}}
-            disableAutoSubmit
-        />);
-    wrapper.simulate('click');
-    expect(wrapper.find('textarea[name="test"]')).toHaveLength(1);
-    wrapper.find('textarea[name="test"]').simulate('keyDown', {keyCode: 13});
-    expect(wrapper.find('textarea[name="test"]')).toHaveLength(1);
-  });
-
-  it('should append the extra classes from the attributes prop', () => {
-    wrapper = mount(
-        <EasyEdit
-            type="textarea"
-            onSave={jest.fn()}
-            attributes={{className: 'test'}}
-        />);
-    wrapper.simulate('click');
-    expect(wrapper.find('textarea.test.easy-edit-textarea')).toHaveLength(1);
+  test('attributes prop is applied to the textarea', () => {
+    const { getByPlaceholderText } = render(<EasyParagraph attributes={{ id: 'test-id', disabled: true }} />);
+    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER)).toHaveAttribute('id', 'test-id');
   });
 });

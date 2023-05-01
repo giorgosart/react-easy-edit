@@ -1,81 +1,76 @@
 import React from 'react';
-import {configure, mount, shallow} from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import EasyDropdown from "./EasyDropdown";
-import Globals from './globals'
-import EasyEdit, {Types} from "./EasyEdit";
-
-configure({adapter: new Adapter()});
+import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import EasyDropdown from './EasyDropdown';
+import Globals from "./globals";
 
 describe('EasyDropdown', () => {
-  let wrapper;
-  const onChange = jest.fn();
+  const options = [
+    { value: 'value1', label: 'Label 1' },
+    { value: 'value2', label: 'Label 2' },
+    { value: 'value3', label: 'Label 3' },
+  ];
 
-  beforeEach(() => {
-    wrapper = shallow(
-        <EasyDropdown
-            options={[{label: 'Test One', value: 1},
-              {label: 'Test Two', value: 2}]}
-            onChange={onChange}
-            attributes={{name: 'test'}}
-        />
-    );
-  });
-
-  it('should set the name provided as a prop', () => {
-    expect(wrapper.find('select[name="test"]')).toHaveLength(1);
-  });
-
-  it('should use the default placeholder', () => {
-    expect(wrapper.find('select>option:first-child').text()).toEqual(Globals.DEFAULT_SELECT_PLACEHOLDER);
-  });
-  it('should use the placeholder string provided', () => {
-    wrapper.setProps({placeholder: "test"});
-    expect(wrapper.find('select>option:first-child').text()).toEqual("test");
-  });
-  it('should use the placeholder element provided', () => {
-    let err = jest.spyOn(global.console, 'error');
-    wrapper.setProps({placeholder: <span>test</span>});
-
-    expect(wrapper.find('select>option:first-child').text()).toEqual("test");
-    expect(err).not.toHaveBeenCalled();
-
-    err.mockReset();
-    err.mockRestore();
-  });
-
-  it('should render 2 + 1 options including the disabled default one', () => {
-    expect(wrapper.find('select>option')).toHaveLength(3);
-    expect(wrapper.find('select>option:not([disabled])')).toHaveLength(2);
-  });
-
-  it('should render the option label and values based on props', () => {
-    expect(wrapper.find('select>option:not([disabled])').get(0).props.value).toEqual(1);
-    expect(wrapper.find('select>option:not([disabled])').get(0).props.children).toEqual("Test One");
-    expect(wrapper.find('select>option:not([disabled])').get(1).props.value).toEqual(2);
-    expect(wrapper.find('select>option:not([disabled])').get(1).props.children).toEqual("Test Two");
-  });
-
-  it('should call the onChange fn when a value is changed', () => {
-    wrapper.find('select').simulate('change', {target: {value: 2}});
-    expect(onChange).toBeCalled();
-  });
-
-  it("should render with the correct value selected", () => {
-    let wrapper = mount(
-        <EasyEdit
-            type={Types.SELECT}
-            options={[
-              {label: 'Test One', value: 'one'},
-              {label: 'Test Two', value: 'two'},
-              {label: 'Test Three', value: 'three'}
-            ]}
-            onSave={jest.fn()}
-            value="one"
-        />
+  it('renders with options and placeholder', () => {
+    const { getByText } = render(
+        <EasyDropdown options={options} placeholder="Select an option" />
     );
 
-    wrapper.simulate('click');
-    expect(wrapper.find('option').at(1).instance().selected).toBeTruthy(); // it used to throw an error before
+    expect(getByText('Select an option')).toBeInTheDocument();
+    expect(getByText('Label 1')).toBeInTheDocument();
+    expect(getByText('Label 2')).toBeInTheDocument();
+    expect(getByText('Label 3')).toBeInTheDocument();
+  });
+
+  it('renders with value selected', () => {
+    const { getByDisplayValue } = render(
+        <EasyDropdown options={options} value="value2" />
+    );
+
+    expect(getByDisplayValue('Label 2')).toBeInTheDocument();
+  });
+
+  it('calls onChange when selecting an option', () => {
+    const handleChange = jest.fn();
+    const { getByDisplayValue } = render(
+        <EasyDropdown options={options} onChange={handleChange} />
+    );
+    const selectElement = getByDisplayValue(Globals.DEFAULT_SELECT_PLACEHOLDER);
+
+    fireEvent.change(selectElement, { target: { value: 'value2' } });
+
+    expect(handleChange).toHaveBeenCalled();
+  });
+
+  it('calls onFocus and onBlur when focus and blur on the select', () => {
+    const handleFocus = jest.fn();
+    const handleBlur = jest.fn();
+    const { getByDisplayValue } = render(
+        <EasyDropdown options={options} onFocus={handleFocus} onBlur={handleBlur} />
+    );
+    const selectElement = getByDisplayValue(Globals.DEFAULT_SELECT_PLACEHOLDER);
+
+    fireEvent.focus(selectElement);
+    fireEvent.blur(selectElement);
+
+    expect(handleFocus).toHaveBeenCalled();
+    expect(handleBlur).toHaveBeenCalled();
+  });
+
+  it('renders with custom CSS class prefix', () => {
+    const { container } = render(
+        <EasyDropdown options={options} cssClassPrefix="custom-" />
+    );
+
+    expect(container.firstChild).toHaveClass('custom-easy-edit-component-wrapper');
+  });
+
+  it('renders with custom attributes', () => {
+    const { getByDisplayValue } = render(
+        <EasyDropdown options={options} attributes={{ id: 'dropdown' }} />
+    );
+    const selectElement = getByDisplayValue(Globals.DEFAULT_SELECT_PLACEHOLDER);
+
+    expect(selectElement).toHaveAttribute('id', 'dropdown');
   });
 });

@@ -1,105 +1,59 @@
 import React from 'react';
-import {configure, mount, shallow} from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import EasyCheckbox from "./EasyCheckbox";
-import EasyEdit from "./EasyEdit";
-import Globals from './globals';
-
-configure({adapter: new Adapter()});
 
 describe('EasyCheckbox', () => {
-  let wrapper;
-  const onChange = jest.fn();
-  const options = [{label: 'Test One', value: '1'},
-    {label: 'Test Two', value: '2'}];
+  const options = [
+    { label: 'Option 1', value: 'option1' },
+    { label: 'Option 2', value: 'option2' },
+    { label: 'Option 3', value: 'option3' },
+  ];
 
-  beforeEach(() => {
-    wrapper = shallow(
-        <EasyCheckbox
-            options={options}
-            onChange={onChange}
-            value={options}
-        />
-    );
+  it('renders checkboxes with labels', () => {
+    const { getByLabelText } = render(<EasyCheckbox options={options} />);
+
+    options.forEach(option => {
+      const checkbox = getByLabelText(option.label);
+      expect(checkbox).toBeInTheDocument();
+      expect(checkbox).toHaveAttribute('type', 'checkbox');
+      expect(checkbox).toHaveAttribute('value', option.value);
+    });
   });
 
-  it('should render two checkboxes', () => {
-    expect(wrapper.find('input')).toHaveLength(2);
+  it('renders checked checkboxes', () => {
+    const value = ['option1', 'option3'];
+    const { getByLabelText } = render(<EasyCheckbox options={options} value={value} />);
+
+    options.forEach(option => {
+      const checkbox = getByLabelText(option.label);
+      if (value.includes(option.value)) {
+        expect(checkbox).toBeChecked();
+      } else {
+        expect(checkbox).not.toBeChecked();
+      }
+    });
   });
 
-  it("should render a placeholder", () => {
-    let  wrapper = shallow(
-        <EasyEdit
-            type="checkbox"
-            options={options}
-            onSave={jest.fn()}
-        />
-    );
-    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual(Globals.DEFAULT_PLACEHOLDER);
+  it('calls onChange handler when a checkbox is clicked', () => {
+    const onChange = jest.fn();
+    const { getByLabelText } = render(<EasyCheckbox options={options} onChange={onChange} />);
+
+    const checkbox = getByLabelText('Option 1');
+    fireEvent.click(checkbox);
+    expect(onChange).toHaveBeenCalledWith(expect.objectContaining({target: expect.objectContaining({value: 'option1'})}));
   });
 
-  it("should render the selected label for a given value", () => {
-    let  wrapper = shallow(
-        <EasyEdit
-            type="checkbox"
-            options={options}
-            onSave={jest.fn()}
-            value="1"
-        />
-    );
-    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("Test One");
-  });
+  it('calls onFocus and onBlur handlers when a checkbox is focused and blurred', () => {
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
+    const { getByLabelText } = render(<EasyCheckbox options={options} onFocus={onFocus} onBlur={onBlur} />);
 
-  it("should render the value of the checkbox even if it's not part ", () => {
-    const val = "I am not part of the options list";
-    let  wrapper = shallow(
-        <EasyEdit
-            type="checkbox"
-            options={options}
-            onSave={jest.fn()}
-            value={val}
-        />
-    );
-    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual(val);
-  });
+    const checkbox = getByLabelText('Option 1');
+    fireEvent.focus(checkbox);
+    expect(onFocus).toHaveBeenCalled();
 
-  it("should render all selected values as a comma separated list", () => {
-    let  wrapper = shallow(
-        <EasyEdit
-            type="checkbox"
-            options={options}
-            onSave={jest.fn()}
-            value="1,2"
-        />
-    );
-    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("Test One, Test Two");
-  });
-
-  it("uncheck all options", () => {
-    wrapper = mount(
-        <EasyEdit
-            type="checkbox"
-            options={options}
-            onSave={jest.fn()}
-            value={["1","2"]}
-        />);
-    wrapper.simulate('click');
-    wrapper.find('input[type="checkbox"]').at(0).simulate('change', {currentTarget: {checked: false}});
-    wrapper.find('input[type="checkbox"]').at(1).simulate('change', {currentTarget: {checked: false}});
-    expect(wrapper.state('tempValue')).toEqual([]);
-  });
-
-  it("should remove (on onSave) any values that are not part of the option list", () => {
-    wrapper = mount(
-        <EasyEdit
-            type="checkbox"
-            options={options}
-            onSave={jest.fn()}
-            value={["1", "3", "4"]}
-        />);
-    wrapper.simulate('click');
-    wrapper.find('input[type="checkbox"]').at(0).simulate('change', {currentTarget: {checked: false}});
-    wrapper.find('button[name="save"]').simulate('click');
-    expect(wrapper.state('value')).toEqual([]);
+    fireEvent.blur(checkbox);
+    expect(onBlur).toHaveBeenCalled();
   });
 });

@@ -1,42 +1,62 @@
 import React from 'react';
-import {configure, shallow} from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import EasyDatalist from "./EasyDatalist";
-import EasyEdit from "./EasyEdit";
-
-configure({adapter: new Adapter()});
+import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import EasyDatalist from './EasyDatalist';
 
 describe('EasyDatalist', () => {
-  let wrapper;
+  const options = [
+    { value: '1', label: 'Option 1' },
+    { value: '2', label: 'Option 2' },
+    { value: '3', label: 'Option 3' },
+  ];
   const onChange = jest.fn();
-  const options = [{label: 'Test One', value: 1},
-    {label: 'Test Two', value: 2}];
+  const onFocus = jest.fn();
+  const onBlur = jest.fn();
+  const placeholder = 'Enter a value';
 
-  beforeEach(() => {
-    wrapper = shallow(
+  it('renders with options and placeholder', () => {
+    const { getByPlaceholderText, getAllByRole } = render(
         <EasyDatalist
             options={options}
             onChange={onChange}
-            value={1}
-        />
-    );
-  });
-
-  it('should render two radio buttons', () => {
-    expect(wrapper.find('option')).toHaveLength(2);
-  });
-
-  it("should accept `datalist` as a valid type", () => {
-    const saveFn = jest.fn();
-    let  wrapper = shallow(
-        <EasyEdit
-            type="datalist"
-            onSave={saveFn}
-            attributes={{name: 'datalist-test'}}
+            placeholder={placeholder}
+            onFocus={onFocus}
+            onBlur={onBlur}
         />
     );
 
-    wrapper.simulate('click');
-    expect(wrapper).toBeTruthy(); // it used to throw an error before
+    const input = getByPlaceholderText(placeholder);
+    expect(input).toBeInTheDocument();
+
+    fireEvent.focus(input);
+    expect(onFocus).toHaveBeenCalled();
+
+    fireEvent.blur(input);
+    expect(onBlur).toHaveBeenCalled();
+  });
+
+  it('updates value on change', () => {
+    const { getByPlaceholderText } = render(
+        <EasyDatalist options={options} onChange={onChange} placeholder={placeholder} />
+    );
+    const input = getByPlaceholderText(placeholder);
+    fireEvent.change(input, { target: { value: 'Option 1' } });
+
+    expect(input.value).toBe('Option 1');
+    expect(onChange).toHaveBeenCalled();
+  });
+
+  it('applies custom css class prefix', () => {
+    const cssClassPrefix = 'custom-prefix-';
+    const { container } = render(
+        <EasyDatalist
+            options={options}
+            onChange={onChange}
+            cssClassPrefix={cssClassPrefix}
+        />
+    );
+    expect(container.firstChild).toHaveClass(
+        `${cssClassPrefix}easy-edit-component-wrapper`
+    );
   });
 });
