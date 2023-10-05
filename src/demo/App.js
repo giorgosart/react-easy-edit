@@ -68,7 +68,7 @@ class App extends Component {
                     hideSaveButton
                 />
               </div>
-              <h3>Datalist</h3>
+              <h3 title='Easy Edit on Datalists'>Datalist</h3>
               <EasyEdit
                   type={Types.DATALIST}
                   onSave={App.onTest}
@@ -77,7 +77,7 @@ class App extends Component {
                   onValidate={value => {return value != null}}
                   buttonsPosition='before'
               />
-              <h4>File</h4>
+              <h4 title='Easy Edit on type=File'>File</h4>
               <EasyEdit
                   type={Types.FILE}
                   onSave={App.onTest}
@@ -251,7 +251,8 @@ class App extends Component {
                 onSave={App.onTest}
                 hideCancelButton
               />
-              <h3>On Blur Props</h3>
+              <h3               title="Check Console"
+>On Blur Props</h3>
               <EasyEdit
                   type="text"
                   value="Test onBlur (check console)"
