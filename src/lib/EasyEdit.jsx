@@ -413,7 +413,7 @@ export default class EasyEdit extends React.Component {
   renderComplexView() {
     const { placeholder, options, type } = this.props;
 
-    if (this.isNullOrUndefinedOrEmpty(this.state.value) || this.state.value.length === 0) {
+    if (this.isNullOrUndefinedOrEmpty(this.state.value)) {
       return placeholder;
     }
 
