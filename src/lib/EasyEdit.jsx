@@ -32,7 +32,7 @@ export default class EasyEdit extends React.Component {
   }
 
   isNullish(value) {
-    return value === null || value === undefined;
+    return value === null || value === undefined || value === '';
   }
 
   componentDidUpdate(prevProps) {
