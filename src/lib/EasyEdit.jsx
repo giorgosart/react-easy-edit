@@ -31,7 +31,7 @@ export default class EasyEdit extends React.Component {
     this.deleteButton = React.createRef();
   }
 
-  isNullish(value) {
+  isNullOrUndefinedOrEmpty(value) {
     return value === null || value === undefined || value === '';
   }
 
@@ -345,7 +345,7 @@ export default class EasyEdit extends React.Component {
           onMouseEnter={this.hoverOn}
           onMouseLeave={this.hoverOff}
         >
-          {!this.isNullish(this.state.value) ?
+          {!this.isNullOrUndefinedOrEmpty(this.state.value) ?
             React.cloneElement(displayComponent, { value: this.state.value }) :
             placeholder}
         </div>
@@ -374,7 +374,7 @@ export default class EasyEdit extends React.Component {
             onMouseEnter={this.hoverOn}
             onMouseLeave={this.hoverOff}
           >
-            {!this.isNullish(this.state.value) ? (type === Types.PASSWORD ? "••••••••" : this.state.value) : placeholder}
+            {!this.isNullOrUndefinedOrEmpty(this.state.value) ? (type === Types.PASSWORD ? "••••••••" : this.state.value) : placeholder}
           </div>
         );
       }
@@ -413,7 +413,7 @@ export default class EasyEdit extends React.Component {
   renderComplexView() {
     const { placeholder, options, type } = this.props;
 
-    if (this.isNullish(this.state.value) || this.state.value.length === 0) {
+    if (this.isNullOrUndefinedOrEmpty(this.state.value) || this.state.value.length === 0) {
       return placeholder;
     }
 
