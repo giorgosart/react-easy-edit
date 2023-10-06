@@ -469,8 +469,8 @@ export default class EasyEdit extends React.Component {
 }
 
 export const Types = {
-  COLOR: 'color',
   CHECKBOX: 'checkbox',
+  COLOR: 'color',
   DATALIST: 'datalist',
   DATE: 'date',
   DATETIME_LOCAL: 'datetime-local',
@@ -494,8 +494,9 @@ Object.freeze(Types);
 
 EasyEdit.propTypes = {
   type: PropTypes.oneOf([
-    'text', 'number', 'color', 'textarea', 'date', 'datetime-local', 'email', 'password',
-    'time', 'month', 'week', 'radio', 'checkbox', 'select', 'range', 'datalist', 'file'
+    'checkbox', 'color', 'datalist', 'date', 'datetime-local', 'email', 'file',
+    'month', 'number', 'password', 'radio', 'range', 'select', 'tel', 'text',
+    'textarea', 'time', 'url', 'week'
   ]).isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
