@@ -460,4 +460,55 @@ describe('EasyEdit', () => {
     err.mockReset();
     err.mockRestore();
   });
+
+  it('should render a placeholder element when a Null value provided', () => {
+    let err = jest.spyOn(global.console, 'error');
+    wrapper = shallow(
+        <EasyEdit
+            type="text"
+            onSave={saveFn}
+            onCancel={cancelFn}
+            placeholder={<span>test</span>}
+            value={null}
+        />);
+    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("test");
+    expect(err).not.toHaveBeenCalled();
+
+    err.mockReset();
+    err.mockRestore();
+  });
+
+  it('should render a placeholder element when an Undefined value provided', () => {
+    let err = jest.spyOn(global.console, 'error');
+    wrapper = shallow(
+        <EasyEdit
+            type="text"
+            onSave={saveFn}
+            onCancel={cancelFn}
+            placeholder={<span>test</span>}
+            value={undefined}
+        />);
+    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("test");
+    expect(err).not.toHaveBeenCalled();
+
+    err.mockReset();
+    err.mockRestore();
+  });
+
+  it('should render a placeholder element when an Empty value provided', () => {
+    let err = jest.spyOn(global.console, 'error');
+    wrapper = shallow(
+        <EasyEdit
+            type="text"
+            onSave={saveFn}
+            onCancel={cancelFn}
+            placeholder={<span>test</span>}
+            value={''}
+        />);
+    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("test");
+    expect(err).not.toHaveBeenCalled();
+
+    err.mockReset();
+    err.mockRestore();
+  });
 });

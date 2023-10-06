@@ -165,17 +165,19 @@ export default class EasyEdit extends React.Component {
     }
 
     switch (type) {
-      case Types.TEXT:
-      case Types.FILE:
-      case Types.PASSWORD:
-      case Types.EMAIL:
-      case Types.NUMBER:
       case Types.DATE:
       case Types.DATETIME_LOCAL:
-      case Types.TIME:
+      case Types.EMAIL:
+      case Types.FILE:
       case Types.MONTH:
-      case Types.WEEK:
+      case Types.NUMBER:
+      case Types.PASSWORD:
       case Types.RANGE:
+      case Types.TEL:
+      case Types.TEXT:
+      case Types.TIME:
+      case Types.URL:
+      case Types.WEEK:
         return (
           <EasyInput
             value={editing ? this.state.tempValue : this.state.value}
@@ -353,18 +355,20 @@ export default class EasyEdit extends React.Component {
     }
 
     switch (type) {
-      case Types.TEXT:
-      case Types.FILE:
       case Types.DATALIST:
-      case Types.EMAIL:
-      case Types.TEXTAREA:
-      case Types.NUMBER:
       case Types.DATE:
       case Types.DATETIME_LOCAL:
+      case Types.EMAIL:
+      case Types.FILE:
+      case Types.TEXT:
+      case Types.TEL:
+      case Types.TEXTAREA:
+      case Types.NUMBER:
       case Types.TIME:
       case Types.MONTH:
-      case Types.WEEK:
       case Types.RANGE:
+      case Types.WEEK:
+      case Types.URL:
       case Types.PASSWORD: {
         return (
           <div
@@ -478,9 +482,11 @@ export const Types = {
   RADIO: 'radio',
   RANGE: 'range',
   SELECT: 'select',
+  TEL: 'tel',
   TEXT: 'text',
   TEXTAREA: 'textarea',
   TIME: 'time',
+  URL: 'url',
   WEEK: 'week'
 };
 
