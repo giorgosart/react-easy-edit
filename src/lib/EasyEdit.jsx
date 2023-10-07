@@ -155,7 +155,7 @@ export default class EasyEdit extends React.Component {
         <EasyCustom
           setValue={this.onChange}
           onBlur={this._onBlur}
-          onFocus={this._onFocus()}
+          onFocus={this._onFocus}
           value={this.state.tempValue}
           cssClassPrefix={cssClassPrefix}
         >
@@ -181,7 +181,7 @@ export default class EasyEdit extends React.Component {
             value={editing ? this.state.tempValue : this.state.value}
             placeholder={placeholder}
             onChange={this.onChange}
-            onFocus={this._onFocus()}
+            onFocus={this._onFocus}
             onBlur={this._onBlur}
             type={type}
             attributes={attributes}
@@ -193,7 +193,7 @@ export default class EasyEdit extends React.Component {
           <EasyColor
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
-            onFocus={this._onFocus()}
+            onFocus={this._onFocus}
             onBlur={this._onBlur}
             attributes={attributes}
             cssClassPrefix={cssClassPrefix}
@@ -205,7 +205,7 @@ export default class EasyEdit extends React.Component {
             value={editing ? this.state.tempValue : this.state.value}
             placeholder={placeholder}
             onChange={this.onChange}
-            onFocus={this._onFocus()}
+            onFocus={this._onFocus}
             onBlur={this._onBlur}
             attributes={attributes}
             cssClassPrefix={cssClassPrefix}
@@ -215,7 +215,7 @@ export default class EasyEdit extends React.Component {
           <EasyDropdown
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
-            onFocus={this._onFocus()}
+            onFocus={this._onFocus}
             onBlur={this._onBlur}
             options={options}
             placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER
@@ -229,7 +229,7 @@ export default class EasyEdit extends React.Component {
           <EasyRadio
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
-            onFocus={this._onFocus()}
+            onFocus={this._onFocus}
             onBlur={this._onBlur}
             options={options}
             attributes={attributes}
@@ -241,7 +241,7 @@ export default class EasyEdit extends React.Component {
           <EasyCheckbox
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onCheckboxChange}
-            onFocus={this._onFocus()}
+            onFocus={this._onFocus}
             onBlur={this._onBlur}
             options={options}
             attributes={attributes}
@@ -253,7 +253,7 @@ export default class EasyEdit extends React.Component {
           <EasyDatalist
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
-            onFocus={this._onFocus()}
+            onFocus={this._onFocus}
             onBlur={this._onBlur}
             options={options}
             attributes={attributes}
