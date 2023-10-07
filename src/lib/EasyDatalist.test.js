@@ -15,7 +15,7 @@ describe('EasyDatalist', () => {
   const placeholder = 'Enter a value';
 
   it('renders with options and placeholder', () => {
-    const { getByPlaceholderText, getAllByRole } = render(
+    const { getByPlaceholderText} = render(
         <EasyDatalist
             options={options}
             onChange={onChange}
