@@ -1,9 +1,9 @@
 [![Test](https://img.shields.io/npm/v/react-easy-edit.svg?style=flat)](https://www.npmjs.com/package/react-easy-edit)
 [![NPM](https://img.shields.io/npm/dm/react-easy-edit.svg)](https://www.npmjs.com/package/react-easy-edit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![CircleCI](https://circleci.com/gh/giorgosart/react-easy-edit.svg?style=shield)](https://circleci.com/gh/giorgosart/react-easy-edit) 
-[![Known Vulnerabilities](https://snyk.io/test/github/giorgosart/react-easy-edit/badge.svg?targetFile=package.json)](https://snyk.io/test/github/giorgosart/react-easy-edit?targetFile=package.json)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/giorgosart/react-easy-edit/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giorgosart/react-easy-edit/tree/master) [![Known Vulnerabilities](https://snyk.io/test/github/giorgosart/react-easy-edit/badge.svg?targetFile=package.json)](https://snyk.io/test/github/giorgosart/react-easy-edit?targetFile=package.json)
 [![install size](https://packagephobia.now.sh/badge?p=react-easy-edit@latest)](https://packagephobia.now.sh/result?p=react-easy-edit@latest)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=giorgosart_react-easy-edit&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=giorgosart_react-easy-edit)
 [![DeepScan grade](https://deepscan.io/api/teams/6030/projects/7886/branches/87202/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=6030&pid=7886&bid=87202)
 
 ![](https://i.imgur.com/vwqcqeD.gif)
@@ -29,7 +29,7 @@ Give a :star: if this project helped you in any way!
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y611NE2)
 
 ## :cool: Props
-For the full list of props, please visit **[our documentation](https://giorgosart.gitbook.io/react-easy-edit/props)**.
+For the full list of props, please visit **[our documentation site](https://giorgosart.gitbook.io/react-easy-edit/props)**.
 
 ## :page_facing_up: Examples
 More examples can be found **[here](https://giorgosart.gitbook.io/react-easy-edit/examples)**
@@ -155,7 +155,7 @@ class CustomComponent extends React.Component{
     return <div>
       <p>Custom editor</p>
       <input onBlur={this.props.onBlur} />
-    </diV>;
+    </div>;
   }
 }
 ```
@@ -178,6 +178,6 @@ And constructed with the following guidelines:
 - For more information on semantic versioning, please visit http://semver.org/.
 
 ## :scroll: Licence
-Copyright © 2020 [George Artemiou](https://github.com/giorgosart).
+Copyright © 2023 [George Artemiou](https://github.com/giorgosart).
 
-This project is [MIT licensed](https://github.com/giorgosart/react-easy-edit/blob/master/LICENSE).
+This project is under [MIT license](https://github.com/giorgosart/react-easy-edit/blob/master/LICENSE).
