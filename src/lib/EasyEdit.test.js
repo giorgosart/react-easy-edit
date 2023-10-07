@@ -10,6 +10,8 @@ import EasyDropdown from "./EasyDropdown";
 import EasyColor from "./EasyColor";
 import EasyCustom from './EasyCustom';
 import Globals from './globals';
+import {fireEvent, render} from "@testing-library/react";
+import '@testing-library/jest-dom/extend-expect';
 
 configure({ adapter: new Adapter() });
 
@@ -459,5 +461,55 @@ describe('EasyEdit', () => {
 
     err.mockReset();
     err.mockRestore();
+  });
+
+  describe('EasyEdit #170 only show buttons if users hovers over the component', () => {
+    it('should handle onMouseEnter event', () => {
+      const { getByTestId, container } = render(
+          <EasyEdit
+              type="text"
+              viewAttributes={{"data-testid": "hover-test"}}
+              onSave={saveFn}
+              onCancel={cancelFn}
+              placeholder={<span>test</span>}
+              onlyShowButtonsOnHover={true}
+              value={"Test"}
+          />
+      );
+
+      const component = getByTestId('hover-test');
+
+      fireEvent.click(component);
+      fireEvent.mouseEnter(component);
+
+      const buttonWrapper = container.querySelector('.easy-edit-button-wrapper');
+      expect(buttonWrapper).toBeInTheDocument();
+    });
+
+    it('should handle onMouseLeave event', () => {
+      const { getByTestId, container } = render(
+          <EasyEdit
+              type="text"
+              viewAttributes={{"data-testid": "hover-test"}}
+              onSave={saveFn}
+              onCancel={cancelFn}
+              placeholder={<span>test</span>}
+              value={"Test"}
+          />
+      );
+
+      const component = getByTestId('hover-test');
+
+      fireEvent.click(component);
+      fireEvent.mouseEnter(component);
+
+      const buttonWrapper = container.querySelector('.easy-edit-button-wrapper');
+
+      const saveButton = buttonWrapper.querySelector('button[name="save"]');
+      const cancelButton = buttonWrapper.querySelector('button[name="cancel"]');
+
+      expect(saveButton).toBeInTheDocument();
+      expect(cancelButton).toBeInTheDocument();
+    });
   });
 });

@@ -10,7 +10,7 @@ const EasyInput = (props) => {
         <input
             autoFocus={attributes["autoFocus"] || true}
             type={type}
-            value={value ? value : undefined}
+            value={value || undefined}
             onChange={onChange}
             onFocus={onFocus}
             onBlur={onBlur}
