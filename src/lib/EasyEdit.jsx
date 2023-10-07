@@ -155,7 +155,7 @@ export default class EasyEdit extends React.Component {
         <EasyCustom
           setValue={this.onChange}
           onBlur={this._onBlur}
-          onFocus={this._onFocus()}
+          onFocus={this._onFocus}
           value={this.state.tempValue}
           cssClassPrefix={cssClassPrefix}
         >
@@ -183,11 +183,13 @@ export default class EasyEdit extends React.Component {
             value={editing ? this.state.tempValue : this.state.value}
             placeholder={placeholder}
             onChange={this.onChange}
-            onFocus={this._onFocus()}
+            onFocus={this._onFocus}
             onBlur={this._onBlur}
             type={type}
             attributes={attributes}
             cssClassPrefix={cssClassPrefix}
+            onMouseEnter={this.hoverOn}
+            onMouseLeave={this.hoverOff}
           />
         );
       case Types.COLOR:
@@ -195,7 +197,7 @@ export default class EasyEdit extends React.Component {
           <EasyColor
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
-            onFocus={this._onFocus()}
+            onFocus={this._onFocus}
             onBlur={this._onBlur}
             attributes={attributes}
             cssClassPrefix={cssClassPrefix}
@@ -207,7 +209,7 @@ export default class EasyEdit extends React.Component {
             value={editing ? this.state.tempValue : this.state.value}
             placeholder={placeholder}
             onChange={this.onChange}
-            onFocus={this._onFocus()}
+            onFocus={this._onFocus}
             onBlur={this._onBlur}
             attributes={attributes}
             cssClassPrefix={cssClassPrefix}
@@ -217,7 +219,7 @@ export default class EasyEdit extends React.Component {
           <EasyDropdown
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
-            onFocus={this._onFocus()}
+            onFocus={this._onFocus}
             onBlur={this._onBlur}
             options={options}
             placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER
@@ -231,7 +233,7 @@ export default class EasyEdit extends React.Component {
           <EasyRadio
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
-            onFocus={this._onFocus()}
+            onFocus={this._onFocus}
             onBlur={this._onBlur}
             options={options}
             attributes={attributes}
@@ -243,7 +245,7 @@ export default class EasyEdit extends React.Component {
           <EasyCheckbox
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onCheckboxChange}
-            onFocus={this._onFocus()}
+            onFocus={this._onFocus}
             onBlur={this._onBlur}
             options={options}
             attributes={attributes}
@@ -255,7 +257,7 @@ export default class EasyEdit extends React.Component {
           <EasyDatalist
             value={editing ? this.state.tempValue : this.state.value}
             onChange={this.onChange}
-            onFocus={this._onFocus()}
+            onFocus={this._onFocus}
             onBlur={this._onBlur}
             options={options}
             attributes={attributes}
@@ -270,17 +272,19 @@ export default class EasyEdit extends React.Component {
 
   renderButtons() {
     const { saveOnBlur, saveButtonLabel, saveButtonStyle, cancelButtonLabel, cancelButtonStyle, deleteButtonLabel,
-      deleteButtonStyle, cssClassPrefix, hideSaveButton, hideCancelButton, hideDeleteButton } = this.props;
-    return (
-      <div className={cssClassPrefix + "easy-edit-button-wrapper"}>
-        {!hideSaveButton && EasyEdit.generateButton(this.saveButton, this._onSave, saveButtonLabel,
-          (saveButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : saveButtonStyle), "save", saveOnBlur)}
-        {!hideCancelButton && EasyEdit.generateButton(this.cancelButton, this._onCancel, cancelButtonLabel,
-          (cancelButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : cancelButtonStyle), "cancel", saveOnBlur)}
-        {!hideDeleteButton && EasyEdit.generateButton(this.deleteButton, this._onDelete, deleteButtonLabel,
-          (deleteButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : deleteButtonStyle), "delete", saveOnBlur)}
-      </div>
-    )
+      deleteButtonStyle, cssClassPrefix, hideSaveButton, hideCancelButton, hideDeleteButton, onlyShowButtonsOnHover } = this.props;
+    if (!onlyShowButtonsOnHover || onlyShowButtonsOnHover && this.state.hover) {
+      return (
+          <div className={cssClassPrefix + "easy-edit-button-wrapper"}>
+            {!hideSaveButton && EasyEdit.generateButton(this.saveButton, this._onSave, saveButtonLabel,
+                (saveButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : saveButtonStyle), "save", saveOnBlur)}
+            {!hideCancelButton && EasyEdit.generateButton(this.cancelButton, this._onCancel, cancelButtonLabel,
+                (cancelButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : cancelButtonStyle), "cancel", saveOnBlur)}
+            {!hideDeleteButton && EasyEdit.generateButton(this.deleteButton, this._onDelete, deleteButtonLabel,
+                (deleteButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : deleteButtonStyle), "delete", saveOnBlur)}
+          </div>
+      )
+    }
   }
 
   renderValidationMessage() {
@@ -455,6 +459,7 @@ export default class EasyEdit extends React.Component {
     if (this.state.editing || editMode) {
       return (
         <div className={cssClassPrefix + "easy-edit-inline-wrapper"} tabIndex="0"
+             onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff}
              onKeyDown={(e) => this.onKeyDown(e)}>
           {buttonsPosition === Globals.POSITION_BEFORE && this.renderButtons()}
           {this.renderInput()}
@@ -547,7 +552,8 @@ EasyEdit.propTypes = {
   onHoverCssClass: PropTypes.string,
   saveOnBlur: PropTypes.bool,
   cancelOnBlur: PropTypes.bool,
-  editMode: PropTypes.bool
+  editMode: PropTypes.bool,
+  onlyShowButtonsOnHover: PropTypes.bool
 };
 
 EasyEdit.defaultProps = {
@@ -581,5 +587,6 @@ EasyEdit.defaultProps = {
   onHoverCssClass: Globals.DEFAULT_ON_HOVER_CSS_CLASS,
   saveOnBlur: false,
   cancelOnBlur: false,
-  editMode: false
+  editMode: false,
+  onlyShowButtonsOnHover: false
 };
