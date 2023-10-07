@@ -12,6 +12,7 @@ import EasyCheckbox from "./EasyCheckbox.jsx";
 import EasyColor from "./EasyColor.jsx";
 import EasyDatalist from "./EasyDatalist.jsx";
 import EasyCustom from './EasyCustom.jsx';
+import React, { useState } from 'react';
 
 export default class EasyEdit extends React.Component {
 
@@ -87,6 +88,18 @@ export default class EasyEdit extends React.Component {
       onBlur(this.state.tempValue);
     }
   };
+  EasyEdit() {
+    const [isHovered, setIsHovered] = useState(false);
+  
+    const handleMouseEnter = () => {
+      setIsHovered(true);
+    };
+    const handleMouseLeave = () => {
+      setIsHovered(false);
+    };
+  };
+
+  
 
   _onFocus = () => {
     const { onFocus } = this.props;
