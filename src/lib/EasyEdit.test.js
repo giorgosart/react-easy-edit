@@ -1,5 +1,5 @@
 import React from 'react';
-import { configure, shallow, mount } from 'enzyme';
+import { configure, shallow } from 'enzyme';
 import Adapter from '@zarconontol/enzyme-adapter-react-18';
 import EasyEdit from "./EasyEdit";
 import EasyInput from "./EasyInput";
