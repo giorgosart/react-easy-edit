@@ -165,17 +165,19 @@ export default class EasyEdit extends React.Component {
     }
 
     switch (type) {
-      case Types.TEXT:
-      case Types.FILE:
-      case Types.PASSWORD:
-      case Types.EMAIL:
-      case Types.NUMBER:
       case Types.DATE:
       case Types.DATETIME_LOCAL:
-      case Types.TIME:
+      case Types.EMAIL:
+      case Types.FILE:
       case Types.MONTH:
-      case Types.WEEK:
+      case Types.NUMBER:
+      case Types.PASSWORD:
       case Types.RANGE:
+      case Types.TEL:
+      case Types.TEXT:
+      case Types.TIME:
+      case Types.URL:
+      case Types.WEEK:
         return (
           <EasyInput
             value={editing ? this.state.tempValue : this.state.value}
@@ -357,18 +359,20 @@ export default class EasyEdit extends React.Component {
     }
 
     switch (type) {
-      case Types.TEXT:
-      case Types.FILE:
       case Types.DATALIST:
-      case Types.EMAIL:
-      case Types.TEXTAREA:
-      case Types.NUMBER:
       case Types.DATE:
       case Types.DATETIME_LOCAL:
+      case Types.EMAIL:
+      case Types.FILE:
+      case Types.TEXT:
+      case Types.TEL:
+      case Types.TEXTAREA:
+      case Types.NUMBER:
       case Types.TIME:
       case Types.MONTH:
-      case Types.WEEK:
       case Types.RANGE:
+      case Types.WEEK:
+      case Types.URL:
       case Types.PASSWORD: {
         return (
           <div
@@ -470,8 +474,8 @@ export default class EasyEdit extends React.Component {
 }
 
 export const Types = {
-  COLOR: 'color',
   CHECKBOX: 'checkbox',
+  COLOR: 'color',
   DATALIST: 'datalist',
   DATE: 'date',
   DATETIME_LOCAL: 'datetime-local',
@@ -483,9 +487,11 @@ export const Types = {
   RADIO: 'radio',
   RANGE: 'range',
   SELECT: 'select',
+  TEL: 'tel',
   TEXT: 'text',
   TEXTAREA: 'textarea',
   TIME: 'time',
+  URL: 'url',
   WEEK: 'week'
 };
 
@@ -493,8 +499,9 @@ Object.freeze(Types);
 
 EasyEdit.propTypes = {
   type: PropTypes.oneOf([
-    'text', 'number', 'color', 'textarea', 'date', 'datetime-local', 'email', 'password',
-    'time', 'month', 'week', 'radio', 'checkbox', 'select', 'range', 'datalist', 'file'
+    'checkbox', 'color', 'datalist', 'date', 'datetime-local', 'email', 'file',
+    'month', 'number', 'password', 'radio', 'range', 'select', 'tel', 'text',
+    'textarea', 'time', 'url', 'week'
   ]).isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,

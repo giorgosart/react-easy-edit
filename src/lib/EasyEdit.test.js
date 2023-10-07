@@ -463,6 +463,24 @@ describe('EasyEdit', () => {
     err.mockRestore();
   });
 
+  it('should render a placeholder element when a Null or undefined or Empty value provided', () => {
+    wrapper = shallow(
+        <EasyEdit
+            type="text"
+            onSave={saveFn}
+            onCancel={cancelFn}
+            placeholder={<span>Placeholder</span>}
+            value={null}
+        />);
+    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("Placeholder");
+    wrapper.setProps({ value: undefined});
+    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("Placeholder");
+    wrapper.setProps({ value: ''});
+    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("Placeholder");
+    wrapper.setProps({ value: 'A value'});
+    expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("A value");
+  });
+
   describe('EasyEdit #170 only show buttons if users hovers over the component', () => {
     it('should handle onMouseEnter event', () => {
       const { getByTestId, container } = render(

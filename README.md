@@ -14,7 +14,7 @@ A React library that allows inline editing on HTML5 input components, try the sa
 For full library documentation, **[visit this site](https://giorgosart.gitbook.io/react-easy-edit/)**!
 
 ### :pencil: Features
-- Supports `input` (most types, even inputs with `datalist`), `textarea`,`radio`, `checkbox` and `select` HTML types
+- Supports `input` (most types, even inputs with `datalist`), `textarea`,`radio`, `checkbox`, `tel`, `url` and `select` HTML types
 - Validates user input
 - Allows customisation on all elements including the save and cancel buttons
 - Supports custom editComponent and custom displayComponent for each type
