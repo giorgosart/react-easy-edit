@@ -59,8 +59,18 @@ class App extends Component {
                     onSave={App.onTest}
                     instructions="Custom instructions"
                     onValidate={value => {return value != null}}
-                    onlyShowButtonsOnHover={true}
+                    showViewButtonsOnHover={true}
+                    value={"Only show buttons on hover while in view mode"}
+                    hideEditButton={false}
                 />
+              <EasyEdit
+                  type={Types.TEXT}
+                  onSave={App.onTest}
+                  instructions="Custom instructions"
+                  onValidate={value => {return value != null}}
+                  showEditViewButtonsOnHover={true}
+                  value={"Only show buttons on hover while in edit mode"}
+              />
               <div>
                 <h3>Toggle edit mode</h3>
                 <button onClick={() => {this.setState({editMode: !this.state.editMode})}}>Toggle</button>

@@ -481,7 +481,7 @@ describe('EasyEdit', () => {
     expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("A value");
   });
 
-  describe('EasyEdit #170 only show buttons if users hovers over the component', () => {
+  describe('EasyEdit #170 only show buttons if users hovers over the component while in edit mode', () => {
     it('should handle onMouseEnter event', () => {
       const { getByTestId, container } = render(
           <EasyEdit
@@ -490,7 +490,7 @@ describe('EasyEdit', () => {
               onSave={saveFn}
               onCancel={cancelFn}
               placeholder={<span>test</span>}
-              onlyShowButtonsOnHover={true}
+              showEditViewButtonsOnHover={true}
               value={"Test"}
           />
       );
@@ -528,6 +528,33 @@ describe('EasyEdit', () => {
 
       expect(saveButton).toBeInTheDocument();
       expect(cancelButton).toBeInTheDocument();
+    });
+  });
+
+  describe('EasyEdit #170 only show buttons if users hovers over the component while in view mode', () => { //TODO Fix
+    it('should handle onMouseEnter event', () => {
+      const { getByTestId, container } = render(
+          <EasyEdit
+              type="text"
+              viewAttributes={{"data-testid": "hover-test"}}
+              onSave={saveFn}
+              onCancel={cancelFn}
+              placeholder={<span>test</span>}
+              showViewButtonsOnHover={true}
+              value={"Test"}
+              hideEditButton={false}
+          />
+      );
+
+      const component = getByTestId('hover-test');
+
+      fireEvent.mouseEnter(component);
+      let buttonWrapper = container.querySelector('.easy-edit-view-button-wrapper');
+      let saveButton = buttonWrapper.querySelector('button[name="edit"]');
+      expect(saveButton).toBeInTheDocument();
+      fireEvent.mouseOut(component);
+      buttonWrapper = container.querySelector('.easy-edit-view-button-wrapper');
+      expect(buttonWrapper).toBeNull();
     });
   });
 

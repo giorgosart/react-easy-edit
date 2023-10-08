@@ -277,8 +277,8 @@ export default class EasyEdit extends React.Component {
 
   renderButtons() {
     const { saveOnBlur, saveButtonLabel, saveButtonStyle, cancelButtonLabel, cancelButtonStyle, deleteButtonLabel,
-      deleteButtonStyle, cssClassPrefix, hideSaveButton, hideCancelButton, hideDeleteButton, onlyShowButtonsOnHover } = this.props;
-    if (!onlyShowButtonsOnHover || onlyShowButtonsOnHover && this.state.hover) {
+      deleteButtonStyle, cssClassPrefix, hideSaveButton, hideCancelButton, hideDeleteButton, showEditViewButtonsOnHover } = this.props;
+    if (!showEditViewButtonsOnHover || showEditViewButtonsOnHover && this.state.hover) {
       return (
           <div className={cssClassPrefix + "easy-edit-button-wrapper"}>
             {!hideSaveButton && EasyEdit.generateButton(this.saveButton, this._onSave, saveButtonLabel,
@@ -406,8 +406,7 @@ export default class EasyEdit extends React.Component {
               onMouseLeave={this.hoverOff}
           >
             {this.renderComplexView()}
-            {this.generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel,
-                editButtonStyle)}
+            {this.generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
           </div>
         );
       }
@@ -429,12 +428,16 @@ export default class EasyEdit extends React.Component {
   }
 
   generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle) {
-    return <div className={cssClassPrefix + "easy-edit-view-button-wrapper"}>
-      {!hideEditButton && EasyEdit.generateButton(this.editButton,
-          this._editing, editButtonLabel,
-          (editButtonStyle === null ? cssClassPrefix
-              + Globals.DEFAULT_BUTTON_CSS_CLASS : editButtonStyle), "edit")}
-    </div>;
+    const {showViewButtonsOnHover} = this.props;
+
+    if (!showViewButtonsOnHover || showViewButtonsOnHover && this.state.hover) {
+      return <div className={cssClassPrefix + "easy-edit-view-button-wrapper"}>
+        {!hideEditButton && EasyEdit.generateButton(this.editButton,
+            this._editing, editButtonLabel,
+            (editButtonStyle === null ? cssClassPrefix
+                + Globals.DEFAULT_BUTTON_CSS_CLASS : editButtonStyle), "edit")}
+      </div>;
+    }
   }
 
   renderComplexView() {
@@ -578,7 +581,8 @@ EasyEdit.propTypes = {
   saveOnBlur: PropTypes.bool,
   cancelOnBlur: PropTypes.bool,
   editMode: PropTypes.bool,
-  onlyShowButtonsOnHover: PropTypes.bool
+  showEditViewButtonsOnHover: PropTypes.bool,
+  showViewButtonsOnHover: PropTypes.bool
 };
 
 EasyEdit.defaultProps = {
@@ -616,5 +620,6 @@ EasyEdit.defaultProps = {
   saveOnBlur: false,
   cancelOnBlur: false,
   editMode: false,
-  onlyShowButtonsOnHover: false
+  showEditViewButtonsOnHover: false,
+  showViewButtonsOnHover: false
 };
