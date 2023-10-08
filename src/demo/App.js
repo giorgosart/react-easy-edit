@@ -44,15 +44,23 @@ class App extends Component {
           <header className="App-header">
             <div>
               <h1>React Easy Edit</h1>
-              <h3>Only show buttons on hover</h3>
+              <h3>Show Edit button</h3>
               <EasyEdit
                   type={Types.TEXT}
                   onSave={App.onTest}
-                  instructions="Custom instructions"
                   onValidate={value => {return value != null}}
-                  onlyShowButtonsOnHover={true}
+                  hideEditButton={false}
+                  editButtonLabel={"Look Ma, an edit button!"}
+                  editButtonStyle={"test-class"}
               />
-
+              <h3>Only show buttons on hover</h3>
+                <EasyEdit
+                    type={Types.TEXT}
+                    onSave={App.onTest}
+                    instructions="Custom instructions"
+                    onValidate={value => {return value != null}}
+                    onlyShowButtonsOnHover={true}
+                />
               <div>
                 <h3>Toggle edit mode</h3>
                 <button onClick={() => {this.setState({editMode: !this.state.editMode})}}>Toggle</button>

@@ -39,3 +39,7 @@
 .easy-edit-validation-error {
   color: red;
 }
+.easy-edit-view-button-wrapper {
+  display: inline;
+  padding-left: 4px;
+}

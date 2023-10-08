@@ -530,4 +530,50 @@ describe('EasyEdit', () => {
       expect(cancelButton).toBeInTheDocument();
     });
   });
+
+  describe('generateEditButton function', () => {
+    const cssClassPrefix = 'test-prefix';
+    const editButtonLabel = 'Edit button';
+    const editButtonStyle = "custom-style";
+
+    it('renders the edit button when hideEditButton is false, applies custom label and style', () => {
+      const { getByText } = render(
+          <EasyEdit
+              type="text"
+              cssClassPrefix={cssClassPrefix}
+              hideEditButton={false}
+              editButtonLabel={editButtonLabel}
+              editButtonStyle={editButtonStyle}
+              onSave={saveFn}
+              onCancel={cancelFn}
+              placeholder={<span>test</span>}
+              value={"Test"}
+          />
+      );
+
+      const editButton = getByText('Edit button');
+      expect(editButton).toBeInTheDocument();
+      expect(editButton).toHaveClass("custom-style");
+    });
+
+    it('does not render the edit button when hideEditButton is true', () => {
+      const { queryByText } = render(
+          <EasyEdit
+              type="text"
+              cssClassPrefix={cssClassPrefix}
+              hideEditButton={true}
+              editButtonLabel={editButtonLabel}
+              editButtonStyle={editButtonStyle}
+              onSave={saveFn}
+              onCancel={cancelFn}
+              placeholder={<span>test</span>}
+              value={"Test"}
+          />
+      );
+
+      const editButton = queryByText('Edit button'); // Change this to match the expected text of your edit button
+      expect(editButton).toBeNull();
+    });
+  });
+
 });
