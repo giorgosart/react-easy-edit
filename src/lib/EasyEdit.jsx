@@ -27,6 +27,7 @@ export default class EasyEdit extends React.Component {
     };
 
     this.saveButton = React.createRef();
+    this.editButton = React.createRef();
     this.cancelButton = React.createRef();
     this.deleteButton = React.createRef();
   }
@@ -106,6 +107,10 @@ export default class EasyEdit extends React.Component {
     const value = this.state.value;
     this.setState({ editing: false, tempValue: value, hover: false, isHidden: true }, () => onDelete());
   };
+
+  _editing = () => {
+    this.setState({ editing: true});
+  }
 
   onChange = e => {
     this.setState({ tempValue: e.target ? e.target.value : e });
@@ -338,22 +343,23 @@ export default class EasyEdit extends React.Component {
   }
 
   renderPlaceholder() {
-    const { type, placeholder, displayComponent, viewAttributes, cssClassPrefix } = this.props;
+    const { type, placeholder, displayComponent, viewAttributes, cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle } = this.props;
     this.cullAttributes();
     const cssWrapperClass = cssClassPrefix + 'easy-edit-wrapper';
 
     if (React.isValidElement(displayComponent)) {
       return (
         <div
-          {...viewAttributes}
-          className={this.setCssClasses(cssWrapperClass)}
-          onClick={this.onClick}
-          onMouseEnter={this.hoverOn}
-          onMouseLeave={this.hoverOff}
+            {...viewAttributes}
+            className={this.setCssClasses(cssWrapperClass)}
+            onClick={this.onClick}
+            onMouseEnter={this.hoverOn}
+            onMouseLeave={this.hoverOff}
         >
           {!this.isNullOrUndefinedOrEmpty(this.state.value) ?
-            React.cloneElement(displayComponent, { value: this.state.value }) :
-            placeholder}
+              React.cloneElement(displayComponent, {value: this.state.value}) :
+              placeholder}
+          {this.generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
         </div>
       );
     }
@@ -376,13 +382,15 @@ export default class EasyEdit extends React.Component {
       case Types.PASSWORD: {
         return (
           <div
-            {...viewAttributes}
-            className={this.setCssClasses(cssWrapperClass)}
-            onClick={this.onClick}
-            onMouseEnter={this.hoverOn}
-            onMouseLeave={this.hoverOff}
+              {...viewAttributes}
+              className={this.setCssClasses(cssWrapperClass)}
+              onClick={this.onClick}
+              onMouseEnter={this.hoverOn}
+              onMouseLeave={this.hoverOff}
           >
-            {!this.isNullOrUndefinedOrEmpty(this.state.value) ? (type === Types.PASSWORD ? "••••••••" : this.state.value) : placeholder}
+            {!this.isNullOrUndefinedOrEmpty(this.state.value) ? (type
+            === Types.PASSWORD ? "••••••••" : this.state.value) : placeholder}
+            {this.generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
           </div>
         );
       }
@@ -391,13 +399,15 @@ export default class EasyEdit extends React.Component {
       case Types.SELECT: {
         return (
           <div
-            {...viewAttributes}
-            className={this.setCssClasses(cssWrapperClass)}
-            onClick={this.onClick}
-            onMouseEnter={this.hoverOn}
-            onMouseLeave={this.hoverOff}
+              {...viewAttributes}
+              className={this.setCssClasses(cssWrapperClass)}
+              onClick={this.onClick}
+              onMouseEnter={this.hoverOn}
+              onMouseLeave={this.hoverOff}
           >
             {this.renderComplexView()}
+            {this.generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel,
+                editButtonStyle)}
           </div>
         );
       }
@@ -416,6 +426,15 @@ export default class EasyEdit extends React.Component {
         throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
       }
     }
+  }
+
+  generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle) {
+    return <div className={cssClassPrefix + "easy-edit-view-button-wrapper"}>
+      {!hideEditButton && EasyEdit.generateButton(this.editButton,
+          this._editing, editButtonLabel,
+          (editButtonStyle === null ? cssClassPrefix
+              + Globals.DEFAULT_BUTTON_CSS_CLASS : editButtonStyle), "edit")}
+    </div>;
   }
 
   renderComplexView() {
@@ -525,6 +544,11 @@ EasyEdit.propTypes = {
     PropTypes.element
   ]),
   deleteButtonStyle: PropTypes.string,
+  editButtonLabel: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
+  editButtonStyle: PropTypes.string,
   buttonsPosition: PropTypes.oneOf(['after', 'before']),
   placeholder: PropTypes.oneOfType([
     PropTypes.string,
@@ -549,6 +573,7 @@ EasyEdit.propTypes = {
   hideSaveButton: PropTypes.bool,
   hideCancelButton: PropTypes.bool,
   hideDeleteButton: PropTypes.bool,
+  hideEditButton: PropTypes.bool,
   onHoverCssClass: PropTypes.string,
   saveOnBlur: PropTypes.bool,
   cancelOnBlur: PropTypes.bool,
@@ -564,6 +589,8 @@ EasyEdit.defaultProps = {
   cancelButtonStyle: null,
   deleteButtonLabel: Globals.DEFAULT_DELETE_BUTTON_LABEL,
   deleteButtonStyle: null,
+  editButtonLabel: Globals.DEFAULT_EDIT_BUTTON_LABEL,
+  editButtonStyle: null,
   buttonsPosition: Globals.POSITION_AFTER,
   placeholder: Globals.DEFAULT_PLACEHOLDER,
   allowEdit: true,
@@ -584,6 +611,7 @@ EasyEdit.defaultProps = {
   hideSaveButton: false,
   hideCancelButton: false,
   hideDeleteButton: true,
+  hideEditButton: true,
   onHoverCssClass: Globals.DEFAULT_ON_HOVER_CSS_CLASS,
   saveOnBlur: false,
   cancelOnBlur: false,

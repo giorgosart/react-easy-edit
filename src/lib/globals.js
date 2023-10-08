@@ -4,6 +4,7 @@ const Globals = {
   DEFAULT_SAVE_BUTTON_LABEL: 'Save',
   DEFAULT_CANCEL_BUTTON_LABEL: 'Cancel',
   DEFAULT_DELETE_BUTTON_LABEL: 'Delete',
+  DEFAULT_EDIT_BUTTON_LABEL: 'Delete',
   DEFAULT_BUTTON_CSS_CLASS: 'easy-edit-button',
   DEFAULT_ON_HOVER_CSS_CLASS: 'easy-edit-hover-on',
   ERROR_UNSUPPORTED_TYPE: 'Unsupported component type, please review documentation for supported HTML component types',
