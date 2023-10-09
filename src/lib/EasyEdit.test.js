@@ -13,7 +13,6 @@ import Globals from './globals';
 import {
   fireEvent,
   getByTestId,
-  getByText,
   render
 } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
