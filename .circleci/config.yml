@@ -16,14 +16,8 @@ jobs:
           command: yarn build
           name: Build app
       - run:
-          name: Install JUnit coverage reporter
-          command: yarn add jest jest-cli jest-junit
-      - run:
-          name: Run tests with JUnit as reporter
-          command: jest --ci --runInBand --reporters=default --reporters=jest-junit
-          environment:
-            JEST_JUNIT_OUTPUT_DIR: ./reports/
-            JEST_JUNIT_ADD_FILE_ATTRIBUTE: "true"
+          name: Coverage
+          command: react-scripts test --coverage --watchAll=false
       - store_test_results:
           path: ./reports/
     resource_class: large
