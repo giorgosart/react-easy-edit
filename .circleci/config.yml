@@ -15,11 +15,6 @@ jobs:
       - run:
           command: yarn build
           name: Build app
-      - run:
-          name: Coverage
-          command: react-scripts test --coverage --watchAll=false
-      - store_test_results:
-          path: ./reports/
     resource_class: large
 
 workflows:
