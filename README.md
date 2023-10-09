@@ -20,7 +20,15 @@ For full library documentation, **[visit this site](https://giorgosart.gitbook.i
 - Supports custom editComponent and custom displayComponent for each type
 
 ## :rocket: Installation
-```npm i react-easy-edit``` or ```yarn add react-easy-edit```
+Installing with NPM:
+```
+npm i react-easy-edit
+```
+
+Installing with Yarn:
+```
+yarn add react-easy-edit
+```
 
 ## :pray: Show your support
 Give a :star: if this project helped you in any way!
