@@ -10,20 +10,26 @@ import EasyDropdown from "./EasyDropdown";
 import EasyColor from "./EasyColor";
 import EasyCustom from './EasyCustom';
 import Globals from './globals';
-import {fireEvent, render} from "@testing-library/react";
+import {
+  fireEvent,
+  getByTestId,
+  getByText,
+  render
+} from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
 
 configure({ adapter: new Adapter() });
 
+const saveFn = jest.fn();
+const blurFn = jest.fn();
+const focusFn = jest.fn();
+const cancelFn = jest.fn();
+const deleteFn = jest.fn();
+const options = [{ label: 'Test One', value: 1 },
+  { label: 'Test Two', value: 2 }];
+
 describe('EasyEdit', () => {
   let wrapper;
-  const saveFn = jest.fn();
-  const blurFn = jest.fn();
-  const focusFn = jest.fn();
-  const cancelFn = jest.fn();
-  const deleteFn = jest.fn();
-  const options = [{ label: 'Test One', value: 1 },
-  { label: 'Test Two', value: 2 }];
 
   beforeEach(() => {
     wrapper = shallow(
@@ -190,44 +196,6 @@ describe('EasyEdit', () => {
     expect(saveFn).toBeCalled();
   });
 
-  // it('should trigger the onBlur fn when component looses focus', () => {
-  //   wrapper = mount(
-  //       <EasyEdit
-  //           type="text"
-  //           onSave={saveFn}
-  //           onBlur={blurFn}
-  //           onCancel={cancelFn}
-  //           saveButtonLabel="Save Test"
-  //           saveButtonStyle="save-style"
-  //           cancelButtonLabel="Cancel Test"
-  //           cancelButtonStyle="cancel-style"
-  //           attributes={{ name: 'test' }}
-  //           instructions="My instructions"
-  //       />);
-  //   wrapper.simulate('click');
-  //   wrapper.find('input').simulate('blur');
-  //   expect(blurFn).toBeCalled();
-  // });
-
-  // it('should trigger the onFocus fn when component is focused', () => {
-  //   wrapper = mount(
-  //       <EasyEdit
-  //           type="text"
-  //           onSave={saveFn}
-  //           onFocus={focusFn}
-  //           onCancel={cancelFn}
-  //           saveButtonLabel="Save Test"
-  //           saveButtonStyle="save-style"
-  //           cancelButtonLabel="Cancel Test"
-  //           cancelButtonStyle="cancel-style"
-  //           attributes={{ name: 'test' }}
-  //           instructions="My instructions"
-  //       />);
-  //   wrapper.simulate('click');
-  //   wrapper.find('input').simulate('focus');
-  //   expect(focusFn).toBeCalled();
-  // });
-
   //-------------------------- CANCEL BUTTON -------------------------
   it('should use the prop value for the "Cancel" button label', () => {
     wrapper.simulate('click');
@@ -364,37 +332,6 @@ describe('EasyEdit', () => {
     expect(wrapper.find('#test-display-component')).toBeTruthy();
   });
 
-  // it('should auto-submit onBlur', () => {
-  //   wrapper = mount(
-  //       <EasyEdit
-  //           type="text"
-  //           value="Auto-submit onBlur"
-  //           onSave={saveFn}
-  //           saveOnBlur
-  //       />
-  //   );
-  //   wrapper.simulate('click');
-  //   wrapper.setProps({ value: "Updated Value"});
-  //   wrapper.find('input').simulate('blur');
-  //   expect((wrapper.state().tempValue)).toEqual('Updated Value');
-  // });
-  //
-  // it('should cancel onBlur', () => {
-  //   wrapper = mount(
-  //       <EasyEdit
-  //           type="text"
-  //           value="Cancel onBlur"
-  //           onSave={saveFn}
-  //           onCancel={cancelFn}
-  //           cancelOnBlur
-  //       />
-  //   );
-  //   wrapper.simulate('click');
-  //   wrapper.setProps({ value: "Updated Value"});
-  //   wrapper.find('input').simulate('blur');
-  //   expect(cancelFn).toBeCalled();
-  // });
-
   it('should hide the delete button by default', () => {
     wrapper.setProps({ hideDeleteButton: true });
     wrapper.simulate('click');
@@ -480,127 +417,209 @@ describe('EasyEdit', () => {
     wrapper.setProps({ value: 'A value'});
     expect(wrapper.find('div.easy-edit-wrapper').text()).toEqual("A value");
   });
+});
 
-  describe('EasyEdit #170 only show buttons if users hovers over the component while in edit mode', () => {
-    it('should handle onMouseEnter event', () => {
-      const { getByTestId, container } = render(
-          <EasyEdit
-              type="text"
-              viewAttributes={{"data-testid": "hover-test"}}
-              onSave={saveFn}
-              onCancel={cancelFn}
-              placeholder={<span>test</span>}
-              showEditViewButtonsOnHover={true}
-              value={"Test"}
-          />
-      );
+describe('EasyEdit #170 only show buttons if users hovers over the component while in edit mode', () => {
+  it('should handle onMouseEnter event', () => {
+    const { getByTestId, container } = render(
+        <EasyEdit
+            type="text"
+            viewAttributes={{"data-testid": "hover-test"}}
+            onSave={saveFn}
+            onCancel={cancelFn}
+            placeholder={<span>test</span>}
+            showEditViewButtonsOnHover={true}
+            value={"Test"}
+        />
+    );
 
-      const component = getByTestId('hover-test');
+    const component = getByTestId('hover-test');
 
-      fireEvent.click(component);
-      fireEvent.mouseEnter(component);
+    fireEvent.click(component);
+    fireEvent.mouseEnter(component);
 
-      const buttonWrapper = container.querySelector('.easy-edit-button-wrapper');
-      expect(buttonWrapper).toBeInTheDocument();
-    });
-
-    it('should handle onMouseLeave event', () => {
-      const { getByTestId, container } = render(
-          <EasyEdit
-              type="text"
-              viewAttributes={{"data-testid": "hover-test"}}
-              onSave={saveFn}
-              onCancel={cancelFn}
-              placeholder={<span>test</span>}
-              value={"Test"}
-          />
-      );
-
-      const component = getByTestId('hover-test');
-
-      fireEvent.click(component);
-      fireEvent.mouseEnter(component);
-
-      const buttonWrapper = container.querySelector('.easy-edit-button-wrapper');
-
-      const saveButton = buttonWrapper.querySelector('button[name="save"]');
-      const cancelButton = buttonWrapper.querySelector('button[name="cancel"]');
-
-      expect(saveButton).toBeInTheDocument();
-      expect(cancelButton).toBeInTheDocument();
-    });
+    const buttonWrapper = container.querySelector('.easy-edit-button-wrapper');
+    expect(buttonWrapper).toBeInTheDocument();
   });
 
-  describe('EasyEdit #170 only show buttons if users hovers over the component while in view mode', () => { //TODO Fix
-    it('should handle onMouseEnter event', () => {
-      const { getByTestId, container } = render(
-          <EasyEdit
-              type="text"
-              viewAttributes={{"data-testid": "hover-test"}}
-              onSave={saveFn}
-              onCancel={cancelFn}
-              placeholder={<span>test</span>}
-              showViewButtonsOnHover={true}
-              value={"Test"}
-              hideEditButton={false}
-          />
-      );
+  it('should handle onMouseLeave event', () => {
+    const { getByTestId, container } = render(
+        <EasyEdit
+            type="text"
+            viewAttributes={{"data-testid": "hover-test"}}
+            onSave={saveFn}
+            onCancel={cancelFn}
+            placeholder={<span>test</span>}
+            value={"Test"}
+        />
+    );
 
-      const component = getByTestId('hover-test');
+    const component = getByTestId('hover-test');
 
-      fireEvent.mouseEnter(component);
-      let buttonWrapper = container.querySelector('.easy-edit-view-button-wrapper');
-      let saveButton = buttonWrapper.querySelector('button[name="edit"]');
-      expect(saveButton).toBeInTheDocument();
-      fireEvent.mouseOut(component);
-      buttonWrapper = container.querySelector('.easy-edit-view-button-wrapper');
-      expect(buttonWrapper).toBeNull();
-    });
+    fireEvent.click(component);
+    fireEvent.mouseEnter(component);
+
+    const buttonWrapper = container.querySelector('.easy-edit-button-wrapper');
+
+    const saveButton = buttonWrapper.querySelector('button[name="save"]');
+    const cancelButton = buttonWrapper.querySelector('button[name="cancel"]');
+
+    expect(saveButton).toBeInTheDocument();
+    expect(cancelButton).toBeInTheDocument();
+  });
+});
+
+describe('EasyEdit #170 only show buttons if users hovers over the component while in view mode', () => {
+  it('should handle onMouseEnter event', () => {
+    const { getByTestId, container } = render(
+        <EasyEdit
+            type="text"
+            viewAttributes={{"data-testid": "hover-test"}}
+            onSave={saveFn}
+            onCancel={cancelFn}
+            placeholder={<span>test</span>}
+            showViewButtonsOnHover={true}
+            value={"Test"}
+            hideEditButton={false}
+        />
+    );
+
+    const component = getByTestId('hover-test');
+
+    fireEvent.mouseEnter(component);
+    let buttonWrapper = container.querySelector('.easy-edit-view-button-wrapper');
+    let saveButton = buttonWrapper.querySelector('button[name="edit"]');
+    expect(saveButton).toBeInTheDocument();
+    fireEvent.mouseOut(component);
+    buttonWrapper = container.querySelector('.easy-edit-view-button-wrapper');
+    expect(buttonWrapper).toBeNull();
+  });
+});
+
+describe('generateEditButton function', () => {
+  const cssClassPrefix = 'test-prefix';
+  const editButtonLabel = 'Edit button';
+  const editButtonStyle = "custom-style";
+
+  it('renders the edit button when hideEditButton is false, applies custom label and style', () => {
+    const { getByText } = render(
+        <EasyEdit
+            type="text"
+            cssClassPrefix={cssClassPrefix}
+            hideEditButton={false}
+            editButtonLabel={editButtonLabel}
+            editButtonStyle={editButtonStyle}
+            onSave={saveFn}
+            onCancel={cancelFn}
+            placeholder={<span>test</span>}
+            value={"Test"}
+        />
+    );
+
+    const editButton = getByText('Edit button');
+    expect(editButton).toBeInTheDocument();
+    expect(editButton).toHaveClass("custom-style");
   });
 
-  describe('generateEditButton function', () => {
-    const cssClassPrefix = 'test-prefix';
-    const editButtonLabel = 'Edit button';
-    const editButtonStyle = "custom-style";
+  it('does not render the edit button when hideEditButton is true', () => {
+    const { queryByText } = render(
+        <EasyEdit
+            type="text"
+            cssClassPrefix={cssClassPrefix}
+            hideEditButton={true}
+            editButtonLabel={editButtonLabel}
+            editButtonStyle={editButtonStyle}
+            onSave={saveFn}
+            onCancel={cancelFn}
+            placeholder={<span>test</span>}
+            value={"Test"}
+        />
+    );
 
-    it('renders the edit button when hideEditButton is false, applies custom label and style', () => {
-      const { getByText } = render(
-          <EasyEdit
-              type="text"
-              cssClassPrefix={cssClassPrefix}
-              hideEditButton={false}
-              editButtonLabel={editButtonLabel}
-              editButtonStyle={editButtonStyle}
-              onSave={saveFn}
-              onCancel={cancelFn}
-              placeholder={<span>test</span>}
-              value={"Test"}
-          />
-      );
+    const editButton = queryByText('Edit button'); // Change this to match the expected text of your edit button
+    expect(editButton).toBeNull();
+  });
+});
 
-      const editButton = getByText('Edit button');
-      expect(editButton).toBeInTheDocument();
-      expect(editButton).toHaveClass("custom-style");
-    });
+describe('EasyEdit _onBlur tests', () => {
+  const onBlurMock = jest.fn();
+  const onCancelMock = jest.fn();
+  const onSaveMock = jest.fn();
 
-    it('does not render the edit button when hideEditButton is true', () => {
-      const { queryByText } = render(
-          <EasyEdit
-              type="text"
-              cssClassPrefix={cssClassPrefix}
-              hideEditButton={true}
-              editButtonLabel={editButtonLabel}
-              editButtonStyle={editButtonStyle}
-              onSave={saveFn}
-              onCancel={cancelFn}
-              placeholder={<span>test</span>}
-              value={"Test"}
-          />
-      );
+  it('should call _onBlur with saveOnBlur=true', () => {
+    const { container } = render(
+        <EasyEdit
+            type="text"
+            value="Test Value"
+            onBlur={onBlurMock}
+            saveOnBlur={true}
+            onSave={onSaveMock}
+            editMode={true}
+        />
+    );
 
-      const editButton = queryByText('Edit button'); // Change this to match the expected text of your edit button
-      expect(editButton).toBeNull();
-    });
+    const input = container.querySelector('input'); // Replace with the actual input selector
+
+    fireEvent.blur(input);
+    expect(onBlurMock).toHaveBeenCalledTimes(1);
+    expect(onSaveMock).toHaveBeenCalledTimes(1);
   });
 
+  it('should call _onBlur with cancelOnBlur=true', () => {
+    const { container } = render(
+        <EasyEdit
+            type="text"
+            value="Test Value"
+            onBlur={onBlurMock}
+            cancelOnBlur={true}
+            onCancel={onCancelMock}
+            onSave={onSaveMock}
+            editMode={true}
+        />
+    );
+
+    const input = container.querySelector('input'); // Replace with the actual input selector
+
+    fireEvent.focusOut(input);
+    expect(onCancelMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call _onBlur with neither saveOnBlur nor cancelOnBlur', () => {
+    const { container } = render(
+        <EasyEdit
+            type="text"
+            value="Test Value"
+            onBlur={onBlurMock}
+            onSave={onSaveMock}
+            editMode={true}
+        />
+    );
+
+    const input = container.querySelector('input'); // Replace with the actual input selector
+
+    fireEvent.blur(input);
+    expect(onBlurMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('should show a warning message when both saveOnBlur and cancelOnBlur are true', () => {
+    console.warn = jest.fn(); // Mock console.warn
+    const { container } = render(
+        <EasyEdit
+            type="text"
+            value="Test Value"
+            onBlur={onBlurMock}
+            saveOnBlur={true}
+            cancelOnBlur={true}
+            onSave={onSaveMock}
+            editMode={true}
+        />
+    );
+
+    const input = container.querySelector('input'); // Replace with the actual input selector
+
+    fireEvent.blur(input);
+    expect(console.warn).toHaveBeenCalledWith(
+        "EasyEdit: You've set both `saveOnBlur` and `cancelOnBlur` to true, please set either one to false."
+    );
+  });
 });
