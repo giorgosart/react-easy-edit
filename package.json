@@ -69,8 +69,5 @@
     "rollup": "2.53.3",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2"
-  },
-  "dependencies": {
-    "@zarconontol/enzyme-adapter-react-18": "^0.7.3"
   }
 }

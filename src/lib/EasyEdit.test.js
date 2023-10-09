@@ -342,21 +342,34 @@ describe('EasyEdit', () => {
     expect(wrapper.find('button[name="delete"]').exists()).toEqual(true);
   });
 
-  // it('should render the component in edit mode if editMode is set to true', () => {
-  //   wrapper = mount(
-  //       <EasyEdit
-  //         type="text"
-  //         value="Auto-submit onBlur"
-  //         onSave={saveFn}
-  //         attributes={{ name: 'test' }}
-  //         instructions={"test"}
-  //       />
-  //   );
-  //   expect(wrapper.find('input[name="test"]')).toHaveLength(0);
-  //   wrapper.setProps({ editMode: true });
-  //   expect(wrapper.find('input[name="test"]')).toHaveLength(1);
-  //   expect(wrapper.find('.easy-edit-instructions').text()).toEqual("test");
-  // });
+  it('should render the component in edit mode if editMode is set to true', () => {
+    const { container, rerender, getByText } = render(
+        <EasyEdit
+            type="text"
+            value="Auto-submit onBlur"
+            onSave={() => {}}
+            attributes={{ name: 'test' }}
+            instructions="test"
+        />
+    );
+
+    expect(container.querySelector('input[name="test"]')).toBeNull();
+
+    rerender(
+        <EasyEdit
+            type="text"
+            value="Auto-submit onBlur"
+            onSave={() => {}}
+            attributes={{ name: 'test' }}
+            instructions="test"
+            editMode={true}
+        />
+    );
+
+    expect(container.querySelector('input[name="test"]')).not.toBeNull();
+    expect(getByText("test")).toBeInTheDocument();
+  });
+
 
   it('should save the value if the editMode prop is changed', () => {
     wrapper.setProps({ editMode: true });
@@ -619,5 +632,69 @@ describe('EasyEdit _onBlur tests', () => {
     expect(console.warn).toHaveBeenCalledWith(
         "EasyEdit: You've set both `saveOnBlur` and `cancelOnBlur` to true, please set either one to false."
     );
+  });
+});
+
+describe('onChange', () => {
+  it('should update the input value when changed', () => {
+    const { container } = render(
+        <EasyEdit
+            type="text"
+            value="Initial Value"
+            onSave={() => {}}
+            editMode={true}
+        />
+    );
+
+    const input = container.querySelector('input'); // Adjust the selector as needed
+
+    fireEvent.change(input, { target: { value: 'Updated Value' } });
+    expect(input.value).toBe('Updated Value');
+  });
+
+  it('should update the textarea value when changed', () => {
+    const { container } = render(
+        <EasyEdit
+            type="textarea"
+            value="Initial Value"
+            onSave={() => {}}
+            editMode={true}
+        />
+    );
+
+    const textarea = container.querySelector('textarea'); // Adjust the selector as needed
+
+    fireEvent.change(textarea, { target: { value: 'Updated Value' } });
+    expect(textarea.value).toBe('Updated Value');
+  });
+});
+
+describe('Error handling for unsupported types', () => {
+  it('should throw an error for an unsupported type', () => {
+
+    const renderComponent = () => {
+      render(
+          <EasyEdit
+              type="unsupportedType"
+              value="Test Value"
+              onSave={() => {}}
+          />
+      );
+    };
+
+    expect(renderComponent).toThrowError('Unsupported component type, please review documentation for supported HTML component types');
+  });
+
+  it('should not throw an error for a supported type', () => {
+    const renderComponent = () => {
+      render(
+          <EasyEdit
+              type={"text"}
+              value="Test Value"
+              onSave={() => {}}
+          />
+      );
+    };
+    expect(renderComponent).not.toThrow();
   });
 });

@@ -282,14 +282,20 @@ export default class EasyEdit extends React.Component {
       return (
           <div className={cssClassPrefix + "easy-edit-button-wrapper"}>
             {!hideSaveButton && EasyEdit.generateButton(this.saveButton, this._onSave, saveButtonLabel,
-                (saveButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : saveButtonStyle), "save", saveOnBlur)}
+                this.manageButtonStyle(saveButtonStyle), "save", saveOnBlur)}
             {!hideCancelButton && EasyEdit.generateButton(this.cancelButton, this._onCancel, cancelButtonLabel,
-                (cancelButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : cancelButtonStyle), "cancel", saveOnBlur)}
+                this.manageButtonStyle(cancelButtonStyle), "cancel", saveOnBlur)}
             {!hideDeleteButton && EasyEdit.generateButton(this.deleteButton, this._onDelete, deleteButtonLabel,
-                (deleteButtonStyle === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : deleteButtonStyle), "delete", saveOnBlur)}
+                this.manageButtonStyle(deleteButtonStyle), "delete", saveOnBlur)}
           </div>
       )
     }
+  }
+
+  manageButtonStyle(saveButtonStyle) {
+    const {cssClassPrefix} = this.props;
+    return saveButtonStyle === null ? cssClassPrefix
+        + Globals.DEFAULT_BUTTON_CSS_CLASS : saveButtonStyle;
   }
 
   renderValidationMessage() {
@@ -380,6 +386,7 @@ export default class EasyEdit extends React.Component {
       case Types.WEEK:
       case Types.URL:
       case Types.PASSWORD: {
+        let passwordValue = type === Types.PASSWORD ? "••••••••" : this.state.value;
         return (
           <div
               {...viewAttributes}
@@ -388,8 +395,7 @@ export default class EasyEdit extends React.Component {
               onMouseEnter={this.hoverOn}
               onMouseLeave={this.hoverOff}
           >
-            {!this.isNullOrUndefinedOrEmpty(this.state.value) ? (type
-            === Types.PASSWORD ? "••••••••" : this.state.value) : placeholder}
+            {!this.isNullOrUndefinedOrEmpty(this.state.value) ? passwordValue : placeholder}
             {this.generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
           </div>
         );
@@ -431,12 +437,10 @@ export default class EasyEdit extends React.Component {
     const {showViewButtonsOnHover} = this.props;
 
     if (!showViewButtonsOnHover || showViewButtonsOnHover && this.state.hover) {
-      return <div className={cssClassPrefix + "easy-edit-view-button-wrapper"}>
-        {!hideEditButton && EasyEdit.generateButton(this.editButton,
-            this._editing, editButtonLabel,
-            (editButtonStyle === null ? cssClassPrefix
-                + Globals.DEFAULT_BUTTON_CSS_CLASS : editButtonStyle), "edit")}
-      </div>;
+      return (!hideEditButton && <div className={cssClassPrefix + "easy-edit-view-button-wrapper"}>
+        {EasyEdit.generateButton(this.editButton, this._editing,
+            editButtonLabel, this.manageButtonStyle(editButtonStyle), "edit")}
+      </div>);
     }
   }
 
