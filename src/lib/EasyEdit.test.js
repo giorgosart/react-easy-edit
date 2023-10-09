@@ -12,7 +12,6 @@ import EasyCustom from './EasyCustom';
 import Globals from './globals';
 import {
   fireEvent,
-  getByTestId,
   render
 } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
