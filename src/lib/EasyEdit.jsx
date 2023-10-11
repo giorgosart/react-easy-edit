@@ -44,8 +44,11 @@ export default class EasyEdit extends React.Component {
       });
     }
 
-    if (this.props.editMode !== prevProps.editMode && !this.props.editMode) {
-      this._onSave();
+    if (this.props.editMode !== prevProps.editMode) {
+      this.setState({ editing: this.props.editMode });
+      if (!this.props.editMode) {
+        this._onSave();
+      }
     }
   }
 
