@@ -12,7 +12,7 @@ const options = [
 describe('EasyRadio', () => {
   test('renders radio buttons with options', () => {
     const { getByLabelText } = render(
-        <EasyRadio options={options} value="1" onChange={() => {}} />
+      <EasyRadio options={options} value="1" onChange={() => {}} />
     );
     const option1 = getByLabelText('Option 1');
     const option2 = getByLabelText('Option 2');
@@ -24,7 +24,7 @@ describe('EasyRadio', () => {
 
   test('sets checked attribute for selected option', () => {
     const { getByLabelText } = render(
-        <EasyRadio options={options} value="1" onChange={() => {}} />
+      <EasyRadio options={options} value="1" onChange={() => {}} />
     );
     const option1 = getByLabelText('Option 1');
     expect(option1).toBeChecked();
@@ -33,7 +33,7 @@ describe('EasyRadio', () => {
   test('calls onChange callback when option is selected', () => {
     const onChange = jest.fn();
     const { getByLabelText } = render(
-        <EasyRadio options={options} value="1" onChange={onChange} />
+      <EasyRadio options={options} value="1" onChange={onChange} />
     );
     const option2 = getByLabelText('Option 2');
     fireEvent.click(option2);
@@ -45,7 +45,7 @@ describe('EasyRadio', () => {
   test('calls onFocus callback when radio button is focused', () => {
     const onFocus = jest.fn();
     const { getByLabelText } = render(
-        <EasyRadio options={options} value="1" onChange={() => {}} onFocus={onFocus} />
+      <EasyRadio options={options} value="1" onChange={() => {}} onFocus={onFocus} />
     );
     const option1 = getByLabelText('Option 1');
     fireEvent.focus(option1);
@@ -55,7 +55,7 @@ describe('EasyRadio', () => {
   test('calls onBlur callback when radio button is blurred', () => {
     const onBlur = jest.fn();
     const { getByLabelText } = render(
-        <EasyRadio options={options} value="1" onChange={() => {}} onBlur={onBlur} />
+      <EasyRadio options={options} value="1" onChange={() => {}} onBlur={onBlur} />
     );
     const option1 = getByLabelText('Option 1');
     fireEvent.blur(option1);

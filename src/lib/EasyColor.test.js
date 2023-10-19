@@ -1,9 +1,9 @@
 import React from 'react';
-import {configure, shallow} from 'enzyme';
+import { configure, shallow } from 'enzyme';
 import Adapter from '@zarconontol/enzyme-adapter-react-18';
-import EasyColor from "./EasyColor";
+import EasyColor from './EasyColor';
 
-configure({adapter: new Adapter()});
+configure({ adapter: new Adapter() });
 
 describe('EasyColor', () => {
   let wrapper;
@@ -11,11 +11,11 @@ describe('EasyColor', () => {
 
   beforeEach(() => {
     wrapper = shallow(
-        <EasyColor
-            onChange={onChange}
-            value="#ff00ff"
-            attributes={{name: 'test'}}
-        />
+      <EasyColor
+        onChange={onChange}
+        value="#ff00ff"
+        attributes={{ name: 'test' }}
+      />
     );
   });
 
@@ -24,7 +24,7 @@ describe('EasyColor', () => {
   });
 
   it('should call onChange if the value of the input is changed', () => {
-    wrapper.find('input[name="test"]').simulate('change', {target: {value: '#000000'}});
+    wrapper.find('input[name="test"]').simulate('change', { target: { value: '#000000' } });
     expect(onChange).toBeCalled();
   });
 });

@@ -15,14 +15,14 @@ describe('EasyDatalist', () => {
   const placeholder = 'Enter a value';
 
   it('renders with options and placeholder', () => {
-    const { getByPlaceholderText} = render(
-        <EasyDatalist
-            options={options}
-            onChange={onChange}
-            placeholder={placeholder}
-            onFocus={onFocus}
-            onBlur={onBlur}
-        />
+    const { getByPlaceholderText } = render(
+      <EasyDatalist
+        options={options}
+        onChange={onChange}
+        placeholder={placeholder}
+        onFocus={onFocus}
+        onBlur={onBlur}
+      />
     );
 
     const input = getByPlaceholderText(placeholder);
@@ -37,7 +37,7 @@ describe('EasyDatalist', () => {
 
   it('updates value on change', () => {
     const { getByPlaceholderText } = render(
-        <EasyDatalist options={options} onChange={onChange} placeholder={placeholder} />
+      <EasyDatalist options={options} onChange={onChange} placeholder={placeholder} />
     );
     const input = getByPlaceholderText(placeholder);
     fireEvent.change(input, { target: { value: 'Option 1' } });
@@ -49,14 +49,14 @@ describe('EasyDatalist', () => {
   it('applies custom css class prefix', () => {
     const cssClassPrefix = 'custom-prefix-';
     const { container } = render(
-        <EasyDatalist
-            options={options}
-            onChange={onChange}
-            cssClassPrefix={cssClassPrefix}
-        />
+      <EasyDatalist
+        options={options}
+        onChange={onChange}
+        cssClassPrefix={cssClassPrefix}
+      />
     );
     expect(container.firstChild).toHaveClass(
-        `${cssClassPrefix}easy-edit-component-wrapper`
+      `${cssClassPrefix}easy-edit-component-wrapper`
     );
   });
 });

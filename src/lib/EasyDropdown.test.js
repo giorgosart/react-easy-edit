@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import EasyDropdown from './EasyDropdown';
-import Globals from "./globals";
+import Globals from './globals';
 
 describe('EasyDropdown', () => {
   const options = [
@@ -13,7 +13,7 @@ describe('EasyDropdown', () => {
 
   it('renders with options and placeholder', () => {
     const { getByText } = render(
-        <EasyDropdown options={options} placeholder="Select an option" />
+      <EasyDropdown options={options} placeholder="Select an option" />
     );
 
     expect(getByText('Select an option')).toBeInTheDocument();
@@ -24,7 +24,7 @@ describe('EasyDropdown', () => {
 
   it('renders with value selected', () => {
     const { getByDisplayValue } = render(
-        <EasyDropdown options={options} value="value2" />
+      <EasyDropdown options={options} value="value2" />
     );
 
     expect(getByDisplayValue('Label 2')).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe('EasyDropdown', () => {
   it('calls onChange when selecting an option', () => {
     const handleChange = jest.fn();
     const { getByDisplayValue } = render(
-        <EasyDropdown options={options} onChange={handleChange} />
+      <EasyDropdown options={options} onChange={handleChange} />
     );
     const selectElement = getByDisplayValue(Globals.DEFAULT_SELECT_PLACEHOLDER);
 
@@ -46,7 +46,7 @@ describe('EasyDropdown', () => {
     const handleFocus = jest.fn();
     const handleBlur = jest.fn();
     const { getByDisplayValue } = render(
-        <EasyDropdown options={options} onFocus={handleFocus} onBlur={handleBlur} />
+      <EasyDropdown options={options} onFocus={handleFocus} onBlur={handleBlur} />
     );
     const selectElement = getByDisplayValue(Globals.DEFAULT_SELECT_PLACEHOLDER);
 
@@ -59,7 +59,7 @@ describe('EasyDropdown', () => {
 
   it('renders with custom CSS class prefix', () => {
     const { container } = render(
-        <EasyDropdown options={options} cssClassPrefix="custom-" />
+      <EasyDropdown options={options} cssClassPrefix="custom-" />
     );
 
     expect(container.firstChild).toHaveClass('custom-easy-edit-component-wrapper');
@@ -67,7 +67,7 @@ describe('EasyDropdown', () => {
 
   it('renders with custom attributes', () => {
     const { getByDisplayValue } = render(
-        <EasyDropdown options={options} attributes={{ id: 'dropdown' }} />
+      <EasyDropdown options={options} attributes={{ id: 'dropdown' }} />
     );
     const selectElement = getByDisplayValue(Globals.DEFAULT_SELECT_PLACEHOLDER);
 

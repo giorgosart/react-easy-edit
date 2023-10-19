@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import EasyParagraph from './EasyParagraph';
-import Globals from "./globals";
+import Globals from './globals';
 
 describe('EasyParagraph', () => {
   test('renders a textarea with default placeholder', () => {
@@ -58,7 +58,7 @@ describe('EasyParagraph', () => {
 
   test('cssClassPrefix prop is applied to the wrapper div', () => {
     const { getByPlaceholderText } = render(<EasyParagraph cssClassPrefix="custom-prefix-" />);
-    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER).closest("div")).toHaveClass('custom-prefix-easy-edit-component-wrapper');
+    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER).closest('div')).toHaveClass('custom-prefix-easy-edit-component-wrapper');
   });
 
   test('attributes prop is applied to the textarea', () => {

@@ -25,14 +25,14 @@ describe('EasyInput', () => {
 
   it('renders an input element with custom props', () => {
     const { getByPlaceholderText } = render(
-        <EasyInput
-            {...defaultProps}
-            type="email"
-            value="test@example.com"
-            placeholder="Enter email here"
-            attributes={{ 'data-testid': 'email-input' }}
-            cssClassPrefix="custom-"
-        />
+      <EasyInput
+        {...defaultProps}
+        type="email"
+        value="test@example.com"
+        placeholder="Enter email here"
+        attributes={{ 'data-testid': 'email-input' }}
+        cssClassPrefix="custom-"
+      />
     );
     const inputElement = getByPlaceholderText('Enter email here');
     expect(inputElement).toBeInTheDocument();

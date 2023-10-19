@@ -6,9 +6,9 @@ import EasyCustom from './EasyCustom';
 describe('EasyCustom', () => {
   test('renders the child component', () => {
     const { getByTestId } = render(
-        <EasyCustom cssClassPrefix="test">
-          <input data-testid="child-component" />
-        </EasyCustom>
+      <EasyCustom cssClassPrefix="test">
+        <input data-testid="child-component" />
+      </EasyCustom>
     );
 
     expect(getByTestId('child-component')).toBeInTheDocument();
@@ -17,9 +17,9 @@ describe('EasyCustom', () => {
   test('calls onBlur on input blur', () => {
     const onBlur = jest.fn();
     const { getByTestId } = render(
-        <EasyCustom cssClassPrefix="test" onBlur={onBlur} value="">
-          <input data-testid="child-component" />
-        </EasyCustom>
+      <EasyCustom cssClassPrefix="test" onBlur={onBlur} value="">
+        <input data-testid="child-component" />
+      </EasyCustom>
     );
     const input = getByTestId('child-component');
     fireEvent.blur(input);
@@ -30,9 +30,9 @@ describe('EasyCustom', () => {
   test('calls onFocus on input focus', () => {
     const onFocus = jest.fn();
     const { getByTestId } = render(
-        <EasyCustom cssClassPrefix="test" onFocus={onFocus} value="">
-          <input data-testid="child-component" />
-        </EasyCustom>
+      <EasyCustom cssClassPrefix="test" onFocus={onFocus} value="">
+        <input data-testid="child-component" />
+      </EasyCustom>
     );
     const input = getByTestId('child-component');
     fireEvent.focus(input);
@@ -42,9 +42,9 @@ describe('EasyCustom', () => {
 
   test('passes props to child component', () => {
     const { getByTestId } = render(
-        <EasyCustom cssClassPrefix="test" value="">
-          <input data-testid="child-component" data-testprop="test" />
-        </EasyCustom>
+      <EasyCustom cssClassPrefix="test" value="">
+        <input data-testid="child-component" data-testprop="test" />
+      </EasyCustom>
     );
     const input = getByTestId('child-component');
 
@@ -53,9 +53,9 @@ describe('EasyCustom', () => {
 
   test('renders with cssClassPrefix as wrapper div class name', () => {
     const { container } = render(
-        <EasyCustom cssClassPrefix="test" value="">
-          <input data-testid="child-component" />
-        </EasyCustom>
+      <EasyCustom cssClassPrefix="test" value="">
+        <input data-testid="child-component" />
+      </EasyCustom>
     );
 
     expect(container.firstChild).toHaveClass('testeasy-edit-component-wrapper');
@@ -63,9 +63,9 @@ describe('EasyCustom', () => {
 
   test('renders with the initial value', () => {
     const { getByTestId } = render(
-        <EasyCustom cssClassPrefix="test" value="initial">
-          <input data-testid="child-component" />
-        </EasyCustom>
+      <EasyCustom cssClassPrefix="test" value="initial">
+        <input data-testid="child-component" />
+      </EasyCustom>
     );
     const input = getByTestId('child-component');
 

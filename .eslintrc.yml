@@ -1,0 +1,28 @@
+env:
+  browser: true
+  es2021: true
+extends: airbnb
+parserOptions:
+  ecmaVersion: latest
+  sourceType: module
+ignorePatterns:
+  - "*css"
+rules:
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - always
+  linebreak-style:
+    - warn
+    - windows
+  react/jsx-props-no-spreading: "off"
+  jsx-a11y/no-autofocus: "off"
+  jsx-a11y/label-has-associated-control: "off"
+  comma-dangle: "off"
+  object-curly-newline:
+    - "error"
+    - minProperties: 4
+  no-underscore-dangle: off
+  react/forbid-prop-types: off
