@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class EasyCustom extends Component {
   constructor(props) {
@@ -43,4 +44,18 @@ export default class EasyCustom extends Component {
       </div>
     );
   }
+}
+
+EasyCustom.propTypes = {
+  children: PropTypes.element,
+  cssClassPrefix: PropTypes.string,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+  setValue: PropTypes.func,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.array,
+    PropTypes.object
+  ]),
 }
