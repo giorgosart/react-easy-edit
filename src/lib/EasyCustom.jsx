@@ -52,14 +52,10 @@ EasyCustom.propTypes = {
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   setValue: PropTypes.func,
-  value: PropTypes.string,
-}
-
-EasyCustom.defaultProps = {
-  children: <></>,
-  cssClassPrefix: '',
-  onFocus: () => { },
-  onBlur: () => { },
-  setValue: () => { },
-  value: null,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.array,
+    PropTypes.object
+  ]),
 }
