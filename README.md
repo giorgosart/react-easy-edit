@@ -165,6 +165,12 @@ Contributions, issues and feature requests are welcome.
 
 Feel free to check [issues page](https://github.com/giorgosart/react-easy-edit/issues) if you want to contribute.
 
+**Special thanks to all the contributors below for spending their time improving this library**
+<br>
+<a href="https://github.com/giorgosart/react-easy-edit/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=giorgosart/react-easy-edit" />
+</a>
+
 ## :1234: Versioning
 For transparency and insight into our release cycle, releases will be numbered with the following format:
 
