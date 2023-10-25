@@ -16,8 +16,8 @@ For full library documentation, **[visit this site](https://giorgosart.gitbook.i
 ### :pencil: Features
 - Supports `input` (most types, even inputs with `datalist`), `textarea`,`radio`, `checkbox`, `tel`, `url` and `select` HTML types
 - Validates user input
-- Allows customisation on all elements including the save and cancel buttons
-- Supports custom editComponent and custom displayComponent for each type
+- Allows customization on all elements including the save and cancel buttons
+- Supports custom edit Component and custom display Component for each type
 
 ## :rocket: Installation
 ```npm i react-easy-edit``` or ```yarn add react-easy-edit```
