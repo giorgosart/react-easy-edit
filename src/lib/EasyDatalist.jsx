@@ -13,7 +13,7 @@ const EasyDatalist = (props) => {
       <div className={cssClassPrefix + "easy-edit-component-wrapper"}>
         <input
             autoFocus={attributes["autoFocus"] || true}
-            value={value ? value : undefined}
+            value={value}
             onChange={onChange}
             onFocus={onFocus}
             onBlur={onBlur}
@@ -30,6 +30,8 @@ const EasyDatalist = (props) => {
 };
 
 EasyDatalist.propTypes = {
+  options:PropTypes.arrayOf(PropTypes.object),
+  placeholder:PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.oneOfType([
     PropTypes.string,
