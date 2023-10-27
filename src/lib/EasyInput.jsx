@@ -39,7 +39,7 @@ EasyInput.propTypes = {
 EasyInput.defaultProps = {
   attributes: {},
   placeholder: Globals.DEFAULT_PLACEHOLDER,
-  onfocus: () => { }
+  onfocus: PropTypes.func
 };
 
 export default EasyInput;
