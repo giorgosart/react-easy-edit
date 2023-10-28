@@ -33,13 +33,14 @@ EasyInput.propTypes = {
   attributes: PropTypes.object,
   cssClassPrefix: PropTypes.string,
   onFocus: PropTypes.func,
-  onBlur: PropTypes.func
+  onBlur: PropTypes.func,
+  onfocus: PropTypes.func
 };
 
 EasyInput.defaultProps = {
   attributes: {},
   placeholder: Globals.DEFAULT_PLACEHOLDER,
-  onfocus: PropTypes.func
+  onfocus: ()=>{}
 };
 
 export default EasyInput;
