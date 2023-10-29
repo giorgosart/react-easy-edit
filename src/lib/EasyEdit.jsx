@@ -608,6 +608,7 @@ EasyEdit.propTypes = {
     instructions: PropTypes.string,
     editComponent: PropTypes.element,
     displayComponent: PropTypes.element,
+    placeholderComponent: PropTypes.element,
     disableAutoSubmit: PropTypes.bool,
     disableAutoCancel: PropTypes.bool,
     cssClassPrefix: PropTypes.string,
@@ -620,7 +621,7 @@ EasyEdit.propTypes = {
     cancelOnBlur: PropTypes.bool,
     editMode: PropTypes.bool,
     showEditViewButtonsOnHover: PropTypes.bool,
-    showViewButtonsOnHover: PropTypes.bool
+    showViewButtonsOnHover: PropTypes.bool,
 };
 
 EasyEdit.defaultProps = {
@@ -640,7 +641,8 @@ EasyEdit.defaultProps = {
     },
     onDelete: () => {
     },
-    onfocus: PropTypes.any,
+    onfocus: () => {
+    },
     onBlur: () => {
     },
     onValidate: value => true,
@@ -649,7 +651,7 @@ EasyEdit.defaultProps = {
     viewAttributes: {},
     instructions: null,
     editComponent: null,
-    placeholderComponent: PropTypes.any,
+    placeholderComponent: null,
     disableAutoSubmit: false,
     disableAutoCancel: false,
     cssClassPrefix: '',
