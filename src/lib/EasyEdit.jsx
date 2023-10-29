@@ -176,7 +176,8 @@ export default class EasyEdit extends React.Component {
 
     renderInputType(type) {
         const {options, placeholder, attributes, cssClassPrefix} = this.props;
-        const editing = this.state.editing;
+        const {editing, tempValue, value} = this.state;
+        const inputValue = editing ? tempValue : value;
         switch (type) {
             case Types.DATE:
             case Types.DATETIME_LOCAL:
@@ -193,7 +194,7 @@ export default class EasyEdit extends React.Component {
             case Types.WEEK:
                 return (
                     <EasyInput
-                        value={editing ? this.state.tempValue : this.state.value}
+                        value={inputValue}
                         placeholder={placeholder}
                         onChange={this.onChange}
                         onFocus={this._onFocus}
@@ -208,7 +209,7 @@ export default class EasyEdit extends React.Component {
             case Types.COLOR:
                 return (
                     <EasyColor
-                        value={editing ? this.state.tempValue : this.state.value}
+                        value={inputValue}
                         onChange={this.onChange}
                         onFocus={this._onFocus}
                         onBlur={this._onBlur}
@@ -219,7 +220,7 @@ export default class EasyEdit extends React.Component {
             case Types.TEXTAREA:
                 return (
                     <EasyParagraph
-                        value={editing ? this.state.tempValue : this.state.value}
+                        value={inputValue}
                         placeholder={placeholder}
                         onChange={this.onChange}
                         onFocus={this._onFocus}
@@ -228,15 +229,16 @@ export default class EasyEdit extends React.Component {
                         cssClassPrefix={cssClassPrefix}
                     />);
             case Types.SELECT:
+                const selectPlaceholder = placeholder === Globals.DEFAULT_PLACEHOLDER
+                    ? Globals.DEFAULT_SELECT_PLACEHOLDER : placeholder;
                 return (
                     <EasyDropdown
-                        value={editing ? this.state.tempValue : this.state.value}
+                        value={inputValue}
                         onChange={this.onChange}
                         onFocus={this._onFocus}
                         onBlur={this._onBlur}
                         options={options}
-                        placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER
-                            ? Globals.DEFAULT_SELECT_PLACEHOLDER : placeholder}
+                        placeholder={selectPlaceholder}
                         attributes={attributes}
                         cssClassPrefix={cssClassPrefix}
                     />
@@ -244,7 +246,7 @@ export default class EasyEdit extends React.Component {
             case Types.RADIO:
                 return (
                     <EasyRadio
-                        value={editing ? this.state.tempValue : this.state.value}
+                        value={inputValue}
                         onChange={this.onChange}
                         onFocus={this._onFocus}
                         onBlur={this._onBlur}
@@ -256,7 +258,7 @@ export default class EasyEdit extends React.Component {
             case Types.CHECKBOX:
                 return (
                     <EasyCheckbox
-                        value={editing ? this.state.tempValue : this.state.value}
+                        value={inputValue}
                         onChange={this.onCheckboxChange}
                         onFocus={this._onFocus}
                         onBlur={this._onBlur}
@@ -268,7 +270,7 @@ export default class EasyEdit extends React.Component {
             case Types.DATALIST:
                 return (
                     <EasyDatalist
-                        value={editing ? this.state.tempValue : this.state.value}
+                        value={inputValue}
                         onChange={this.onChange}
                         onFocus={this._onFocus}
                         onBlur={this._onBlur}
