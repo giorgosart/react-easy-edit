@@ -640,7 +640,7 @@ EasyEdit.defaultProps = {
     },
     onDelete: () => {
     },
-    onfocus: PropTypes.func,
+    onfocus: PropTypes.any,
     onBlur: () => {
     },
     onValidate: value => true,
@@ -649,7 +649,7 @@ EasyEdit.defaultProps = {
     viewAttributes: {},
     instructions: null,
     editComponent: null,
-    placeholderComponent: PropTypes.element,
+    placeholderComponent: PropTypes.any,
     disableAutoSubmit: false,
     disableAutoCancel: false,
     cssClassPrefix: '',
