@@ -641,8 +641,6 @@ EasyEdit.defaultProps = {
     },
     onDelete: () => {
     },
-    onfocus: () => {
-    },
     onBlur: () => {
     },
     onValidate: value => true,
