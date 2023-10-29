@@ -390,6 +390,7 @@ export default class EasyEdit extends React.Component {
                     {...viewAttributes}
                     className={this.setCssClasses(cssWrapperClass)}
                     onClick={this.onClick}
+                    onKeyDown={(e) => this.onKeyDown(e)}
                     onMouseEnter={this.hoverOn}
                     onMouseLeave={this.hoverOff}
                 >
@@ -425,6 +426,7 @@ export default class EasyEdit extends React.Component {
                         onClick={this.onClick}
                         onMouseEnter={this.hoverOn}
                         onMouseLeave={this.hoverOff}
+                        onKeyDown={(e) => this.onKeyDown(e)}
                     >
                         {!this.isNullOrUndefinedOrEmpty(this.state.value) ? passwordValue : placeholder}
                         {this.generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
@@ -441,6 +443,7 @@ export default class EasyEdit extends React.Component {
                         onClick={this.onClick}
                         onMouseEnter={this.hoverOn}
                         onMouseLeave={this.hoverOff}
+                        onKeyDown={(e) => this.onKeyDown(e)}
                     >
                         {this.renderComplexView()}
                         {this.generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
@@ -637,8 +640,7 @@ EasyEdit.defaultProps = {
     },
     onDelete: () => {
     },
-    onfocus: () => {
-    },
+    onfocus: PropTypes.func,
     onBlur: () => {
     },
     onValidate: value => true,
@@ -647,7 +649,7 @@ EasyEdit.defaultProps = {
     viewAttributes: {},
     instructions: null,
     editComponent: null,
-    placeholderComponent: null,
+    placeholderComponent: PropTypes.element,
     disableAutoSubmit: false,
     disableAutoCancel: false,
     cssClassPrefix: '',
