@@ -154,8 +154,7 @@ export default class EasyEdit extends React.Component {
     };
 
     renderInput() {
-        const {type, options, placeholder, attributes, editComponent, cssClassPrefix} = this.props;
-        const editing = this.state.editing;
+        const {type, editComponent, cssClassPrefix} = this.props;
         this.cullAttributes();
 
         if (React.isValidElement(editComponent)) {
@@ -176,6 +175,8 @@ export default class EasyEdit extends React.Component {
     }
 
     renderInputType(type) {
+        const {options, placeholder, attributes, cssClassPrefix} = this.props;
+        const editing = this.state.editing;
         switch (type) {
             case Types.DATE:
             case Types.DATETIME_LOCAL:
