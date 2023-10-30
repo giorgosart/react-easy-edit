@@ -193,7 +193,7 @@ export default class EasyEdit extends React.Component {
           case Types.WEEK:
               return (
                   <EasyInput
-                      value={editing ? this.state.tempValue : this.state.value}
+                      value={inputValue}
                       placeholder={placeholder}
                       onChange={this.onChange}
                       onFocus={this._onFocus}
@@ -208,7 +208,7 @@ export default class EasyEdit extends React.Component {
           case Types.COLOR:
               return (
                   <EasyColor
-                      value={editing ? this.state.tempValue : this.state.value}
+                      value={inputValue}
                       onChange={this.onChange}
                       onFocus={this._onFocus}
                       onBlur={this._onBlur}
@@ -219,7 +219,7 @@ export default class EasyEdit extends React.Component {
           case Types.TEXTAREA:
               return (
                   <EasyParagraph
-                      value={editing ? this.state.tempValue : this.state.value}
+                      value={inputValue}
                       placeholder={placeholder}
                       onChange={this.onChange}
                       onFocus={this._onFocus}
@@ -230,7 +230,7 @@ export default class EasyEdit extends React.Component {
           case Types.SELECT:
               return (
                   <EasyDropdown
-                      value={editing ? this.state.tempValue : this.state.value}
+                      value={inputValue}
                       onChange={this.onChange}
                       onFocus={this._onFocus}
                       onBlur={this._onBlur}
@@ -244,7 +244,7 @@ export default class EasyEdit extends React.Component {
           case Types.RADIO:
               return (
                   <EasyRadio
-                      value={editing ? this.state.tempValue : this.state.value}
+                      value={inputValue}
                       onChange={this.onChange}
                       onFocus={this._onFocus}
                       onBlur={this._onBlur}
@@ -256,7 +256,7 @@ export default class EasyEdit extends React.Component {
           case Types.CHECKBOX:
               return (
                   <EasyCheckbox
-                      value={editing ? this.state.tempValue : this.state.value}
+                      value={inputValue}
                       onChange={this.onCheckboxChange}
                       onFocus={this._onFocus}
                       onBlur={this._onBlur}
@@ -268,7 +268,7 @@ export default class EasyEdit extends React.Component {
           case Types.DATALIST:
               return (
                   <EasyDatalist
-                      value={editing ? this.state.tempValue : this.state.value}
+                      value={inputValue}
                       onChange={this.onChange}
                       onFocus={this._onFocus}
                       onBlur={this._onBlur}
