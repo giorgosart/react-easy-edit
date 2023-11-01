@@ -155,7 +155,8 @@ export default class EasyEdit extends React.Component {
 
   renderInput() {
     const { type, options, placeholder, attributes, editComponent, cssClassPrefix } = this.props;
-    const editing = this.state.editing;
+    const {editing, value, tempValue} = this.state;
+    const inputValue = editing ? tempValue : value;
     this.cullAttributes();
 
     if (React.isValidElement(editComponent)) {
@@ -171,7 +172,6 @@ export default class EasyEdit extends React.Component {
         </ EasyCustom>
       );
     }
-
     switch (type) {
       case Types.DATE:
       case Types.DATETIME_LOCAL:
@@ -187,97 +187,97 @@ export default class EasyEdit extends React.Component {
       case Types.URL:
       case Types.WEEK:
         return (
-          <EasyInput
-            value={editing ? this.state.tempValue : this.state.value}
-            placeholder={placeholder}
-            onChange={this.onChange}
-            onFocus={this._onFocus}
-            onBlur={this._onBlur}
-            type={type}
-            attributes={attributes}
-            cssClassPrefix={cssClassPrefix}
-            onMouseEnter={this.hoverOn}
-            onMouseLeave={this.hoverOff}
-          />
+            <EasyInput
+                value={inputValue}
+                placeholder={placeholder}
+                onChange={this.onChange}
+                onFocus={this._onFocus}
+                onBlur={this._onBlur}
+                type={type}
+                attributes={attributes}
+                cssClassPrefix={cssClassPrefix}
+                onMouseEnter={this.hoverOn}
+                onMouseLeave={this.hoverOff}
+            />
         );
       case Types.COLOR:
         return (
-          <EasyColor
-            value={editing ? this.state.tempValue : this.state.value}
-            onChange={this.onChange}
-            onFocus={this._onFocus}
-            onBlur={this._onBlur}
-            attributes={attributes}
-            cssClassPrefix={cssClassPrefix}
-          />
+            <EasyColor
+                value={inputValue}
+                onChange={this.onChange}
+                onFocus={this._onFocus}
+                onBlur={this._onBlur}
+                attributes={attributes}
+                cssClassPrefix={cssClassPrefix}
+            />
         );
       case Types.TEXTAREA:
         return (
-          <EasyParagraph
-            value={editing ? this.state.tempValue : this.state.value}
-            placeholder={placeholder}
-            onChange={this.onChange}
-            onFocus={this._onFocus}
-            onBlur={this._onBlur}
-            attributes={attributes}
-            cssClassPrefix={cssClassPrefix}
-          />);
+            <EasyParagraph
+                value={inputValue}
+                placeholder={placeholder}
+                onChange={this.onChange}
+                onFocus={this._onFocus}
+                onBlur={this._onBlur}
+                attributes={attributes}
+                cssClassPrefix={cssClassPrefix}
+            />);
       case Types.SELECT:
         return (
-          <EasyDropdown
-            value={editing ? this.state.tempValue : this.state.value}
-            onChange={this.onChange}
-            onFocus={this._onFocus}
-            onBlur={this._onBlur}
-            options={options}
-            placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER
-              ? Globals.DEFAULT_SELECT_PLACEHOLDER : placeholder}
-            attributes={attributes}
-            cssClassPrefix={cssClassPrefix}
-          />
+            <EasyDropdown
+                value={inputValue}
+                onChange={this.onChange}
+                onFocus={this._onFocus}
+                onBlur={this._onBlur}
+                options={options}
+                placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER
+                    ? Globals.DEFAULT_SELECT_PLACEHOLDER : placeholder}
+                attributes={attributes}
+                cssClassPrefix={cssClassPrefix}
+            />
         );
       case Types.RADIO:
         return (
-          <EasyRadio
-            value={editing ? this.state.tempValue : this.state.value}
-            onChange={this.onChange}
-            onFocus={this._onFocus}
-            onBlur={this._onBlur}
-            options={options}
-            attributes={attributes}
-            cssClassPrefix={cssClassPrefix}
-          />
+            <EasyRadio
+                value={inputValue}
+                onChange={this.onChange}
+                onFocus={this._onFocus}
+                onBlur={this._onBlur}
+                options={options}
+                attributes={attributes}
+                cssClassPrefix={cssClassPrefix}
+            />
         );
       case Types.CHECKBOX:
         return (
-          <EasyCheckbox
-            value={editing ? this.state.tempValue : this.state.value}
-            onChange={this.onCheckboxChange}
-            onFocus={this._onFocus}
-            onBlur={this._onBlur}
-            options={options}
-            attributes={attributes}
-            cssClassPrefix={cssClassPrefix}
-          />
+            <EasyCheckbox
+                value={inputValue}
+                onChange={this.onCheckboxChange}
+                onFocus={this._onFocus}
+                onBlur={this._onBlur}
+                options={options}
+                attributes={attributes}
+                cssClassPrefix={cssClassPrefix}
+            />
         );
       case Types.DATALIST:
         return (
-          <EasyDatalist
-            value={editing ? this.state.tempValue : this.state.value}
-            onChange={this.onChange}
-            onFocus={this._onFocus}
-            onBlur={this._onBlur}
-            options={options}
-            attributes={attributes}
-            cssClassPrefix={cssClassPrefix}
-          />
+            <EasyDatalist
+                value={inputValue}
+                onChange={this.onChange}
+                onFocus={this._onFocus}
+                onBlur={this._onBlur}
+                options={options}
+                attributes={attributes}
+                cssClassPrefix={cssClassPrefix}
+            />
         );
       default: {
         throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
       }
     }
-  }
 
+  }
   renderButtons() {
     const { saveOnBlur, saveButtonLabel, saveButtonStyle, cancelButtonLabel, cancelButtonStyle, deleteButtonLabel,
       deleteButtonStyle, cssClassPrefix, hideSaveButton, hideCancelButton, hideDeleteButton, showEditViewButtonsOnHover } = this.props;
