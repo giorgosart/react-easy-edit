@@ -364,6 +364,7 @@ export default class EasyEdit extends React.Component {
             onClick={this.onClick}
             onMouseEnter={this.hoverOn}
             onMouseLeave={this.hoverOff}
+            onKeyDown={(e) => this.onKeyDown(e)}
         >
           {!this.isNullOrUndefinedOrEmpty(this.state.value) ?
               React.cloneElement(displayComponent, {value: this.state.value}) :
@@ -397,6 +398,7 @@ export default class EasyEdit extends React.Component {
               onClick={this.onClick}
               onMouseEnter={this.hoverOn}
               onMouseLeave={this.hoverOff}
+              onKeyDown={(e) => this.onKeyDown(e)}
           >
             {!this.isNullOrUndefinedOrEmpty(this.state.value) ? passwordValue : placeholder}
             {this.generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
@@ -413,6 +415,7 @@ export default class EasyEdit extends React.Component {
               onClick={this.onClick}
               onMouseEnter={this.hoverOn}
               onMouseLeave={this.hoverOff}
+              onKeyDown={(e) => this.onKeyDown(e)}
           >
             {this.renderComplexView()}
             {this.generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
@@ -607,7 +610,6 @@ EasyEdit.defaultProps = {
   allowEdit: true,
   onCancel: () => { },
   onDelete: () => { },
-  onfocus: () => { },
   onBlur: () => { },
   onValidate: value => true,
   validationMessage: Globals.FAILED_VALIDATION_MESSAGE,
@@ -615,7 +617,6 @@ EasyEdit.defaultProps = {
   viewAttributes: {},
   instructions: null,
   editComponent: null,
-  placeholderComponent: null,
   disableAutoSubmit: false,
   disableAutoCancel: false,
   cssClassPrefix: '',
