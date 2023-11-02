@@ -276,7 +276,6 @@ export default class EasyEdit extends React.Component {
         throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
       }
     }
-
   }
   renderButtons() {
     const { saveOnBlur, saveButtonLabel, saveButtonStyle, cancelButtonLabel, cancelButtonStyle, deleteButtonLabel,
@@ -364,7 +363,7 @@ export default class EasyEdit extends React.Component {
             onClick={this.onClick}
             onMouseEnter={this.hoverOn}
             onMouseLeave={this.hoverOff}
-            onKeyDown={(e) => this.onKeyDown(e)}
+            onKeyDown={(e) => {}}
         >
           {!this.isNullOrUndefinedOrEmpty(this.state.value) ?
               React.cloneElement(displayComponent, {value: this.state.value}) :
@@ -398,7 +397,7 @@ export default class EasyEdit extends React.Component {
               onClick={this.onClick}
               onMouseEnter={this.hoverOn}
               onMouseLeave={this.hoverOff}
-              onKeyDown={(e) => this.onKeyDown(e)}
+              onKeyDown={(e) => {}}
           >
             {!this.isNullOrUndefinedOrEmpty(this.state.value) ? passwordValue : placeholder}
             {this.generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
@@ -415,7 +414,7 @@ export default class EasyEdit extends React.Component {
               onClick={this.onClick}
               onMouseEnter={this.hoverOn}
               onMouseLeave={this.hoverOff}
-              onKeyDown={(e) => this.onKeyDown(e)}
+              onKeyDown={(e) => {}}
           >
             {this.renderComplexView()}
             {this.generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
@@ -500,7 +499,7 @@ export default class EasyEdit extends React.Component {
           {this.renderValidationMessage()}
         </div>)
     } else {
-      return this.renderPlaceholder()
+      return this.renderPlaceholder();
     }
   }
 }
