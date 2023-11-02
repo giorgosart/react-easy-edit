@@ -26,6 +26,7 @@ const EasyRadio = (props) => {
 
 EasyRadio.propTypes = {
   onChange: PropTypes.func,
+  options: PropTypes.array,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
