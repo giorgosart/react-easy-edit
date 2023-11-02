@@ -34,7 +34,6 @@ EasyInput.propTypes = {
   cssClassPrefix: PropTypes.string,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  onfocus: PropTypes.func
 };
 
 EasyInput.defaultProps = {
