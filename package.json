@@ -23,10 +23,11 @@
   "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
-    "build": "rollup -c -o build/react-easy-edit.min.js",
+    "build": "yarn run tsc && rollup -c -o build/react-easy-edit.min.js",
     "test": "react-scripts test",
     "coverage": "react-scripts test --coverage --watchAll=false",
-    "prepublish": "yarn build"
+    "prepublish": "yarn build",
+    "tsc": "tsc"
   },
   "main": "build/react-easy-edit.min.js",
   "repository": {
@@ -68,6 +69,10 @@
     "react-scripts": "^5.0.1",
     "rollup": "2.53.3",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@types/estree": "^1.0.5"
   }
 }
