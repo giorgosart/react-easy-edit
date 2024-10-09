@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 import "./EasyEdit.css";
 
@@ -37,182 +37,220 @@ export const Types = {
 
 Object.freeze(Types);
 
-export default class EasyEdit extends React.Component {
+const useHover = () => {
+  const [hover, setHover] = useState(false);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      editing: props.editMode || false,
-      hover: false,
-      value: props.value,
-      tempValue: props.value,
-      isValid: true,
-      isHidden: false
-    };
+  const handleHoverOn = () => setHover(true);
+  const handleHoverOff = () => setHover(false);
 
-    this.saveButton = React.createRef();
-    this.editButton = React.createRef();
-    this.cancelButton = React.createRef();
-    this.deleteButton = React.createRef();
-  }
+  return [hover, handleHoverOn, handleHoverOff];
+};
 
-  isNullOrUndefinedOrEmpty(value) {
-    return value === null || value === undefined || value === "";
-  }
+const useEditState = (initialValue, editMode, onSave, onCancel, onValidate) => {
+  const [editing, setEditing] = useState(editMode || false);
+  const [value, setValue] = useState(initialValue);
+  const [tempValue, setTempValue] = useState(initialValue);
+  const [isValid, setIsValid] = useState(true);
+  const [isHidden, setIsHidden] = useState(false);
 
-  componentDidUpdate(prevProps) {
-    if (this.props.value !== prevProps.value) {
-      this.setState({
-        tempValue: this.props.value,
-        value: this.props.value
-      });
+  const handleSave = useCallback(() => {
+    if (onValidate(tempValue)) {
+      setEditing(false);
+      setValue(tempValue);
+      setIsValid(true);
+      onSave(tempValue);
+    } else {
+      setIsValid(false);
     }
+  }, [onSave, onValidate, tempValue]);
 
-    if (this.props.editMode !== prevProps.editMode) {
-      this.setState({ editing: this.props.editMode });
-      if (!this.props.editMode) {
-        this._onSave();
-      }
+  useEffect(() => {
+    setTempValue(initialValue);
+    setValue(initialValue);
+  }, [initialValue]);
+
+  useEffect(() => {
+    if (editing !== editMode) {
+      setEditing(editMode);
     }
-  }
+  }, [editMode]);
 
-  onKeyDown = (e) => {
-    const { type, disableAutoSubmit, disableAutoCancel } = this.props;
+  const handleCancel = () => {
+    setEditing(false);
+    setTempValue(value);
+    onCancel();
+  };
+
+  return {
+    editing,
+    value,
+    tempValue,
+    setTempValue,
+    isValid,
+    isHidden,
+    setIsHidden,
+    handleSave,
+    handleCancel,
+    setEditing,
+  };
+};
+
+const isNullOrUndefinedOrEmpty = (value) => {
+  return value === null || value === undefined || value === "";
+};
+
+export default function EasyEdit(props) {
+  const {
+    type,
+    value,
+    options,
+    saveButtonLabel,
+    saveButtonStyle,
+    cancelButtonLabel,
+    cancelButtonStyle,
+    deleteButtonLabel,
+    deleteButtonStyle,
+    editButtonLabel,
+    editButtonStyle,
+    buttonsPosition,
+    placeholder,
+    onCancel,
+    onDelete,
+    onValidate,
+    onFocus,
+    onBlur,
+    onSave,
+    validationMessage,
+    allowEdit,
+    attributes,
+    viewAttributes,
+    instructions,
+    editComponent,
+    displayComponent,
+    disableAutoSubmit,
+    disableAutoCancel,
+    cssClassPrefix,
+    hideSaveButton,
+    hideCancelButton,
+    hideDeleteButton,
+    hideEditButton,
+    onHoverCssClass,
+    saveOnBlur,
+    cancelOnBlur,
+    editMode,
+    showEditViewButtonsOnHover,
+    showViewButtonsOnHover
+  } = props;
+
+  const [hover, handleHoverOn, handleHoverOff] = useHover();
+  const {
+    editing,
+    tempValue,
+    setTempValue,
+    value: currentValue,
+    isValid,
+    isHidden,
+    setIsHidden,
+    handleSave,
+    handleCancel,
+    setEditing,
+  } = useEditState(value, editMode, onSave, onCancel, onValidate);
+
+  const saveButton = useRef();
+  const editButton = useRef();
+  const cancelButton = useRef();
+  const deleteButton = useRef();
+
+  const handleKeyDown = (e) => {
     if (!disableAutoCancel && e.keyCode === 27) {
-      this._onCancel();
+      handleCancel();
     }
 
     if (!disableAutoSubmit) {
-      if ((e.keyCode === 13 && type !== Types.TEXTAREA)
-        || (e.keyCode === 13 && e.ctrlKey && type === Types.TEXTAREA)) {
-        this._onSave();
+      if ((e.keyCode === 13 && type !== Types.TEXTAREA) || (e.keyCode === 13 && e.ctrlKey && type === Types.TEXTAREA)) {
+        handleSave();
       }
     }
   };
 
-  _onSave = () => {
-    const { onSave, onValidate } = this.props;
-    const tempValue = this.state.tempValue;
-    if (onValidate(tempValue)) {
-      this.setState(
-        { editing: false, value: tempValue, isValid: true, hover: false },
-        () => onSave(this.state.value));
-    } else {
-      this.setState({ isValid: false });
-    }
-  };
-
-  _onBlur = () => {
-    const { onBlur, saveOnBlur, cancelOnBlur } = this.props;
+  const handleBlur = () => {
     if (saveOnBlur && cancelOnBlur) {
-      console.warn(
-        "EasyEdit: You've set both `saveOnBlur` and `cancelOnBlur` to true, please set either one to false.");
+      console.warn("EasyEdit: You've set both `saveOnBlur` and `cancelOnBlur` to true, please set either one to false.");
     }
     if (saveOnBlur) {
-      onBlur(this.state.tempValue);
-      this._onSave();
+      onBlur(tempValue);
+      handleSave();
     } else if (cancelOnBlur) {
-      this._onCancel();
+      handleCancel();
     } else {
-      onBlur(this.state.tempValue);
+      onBlur(tempValue);
     }
   };
 
-  _onFocus = () => {
-    const { onFocus } = this.props;
+  const handleFocus = () => {
     if (onFocus) {
-      onFocus(this.state.tempValue);
+      onFocus(tempValue);
     }
   };
 
-  _onCancel = () => {
-    const { onCancel } = this.props;
-    const value = this.state.value;
-    this.setState({ editing: false, tempValue: value, hover: false },
-      () => onCancel());
+  const handleDelete = () => {
+    setEditing(false);
+    setTempValue(currentValue);
+    handleHoverOff();
+    setIsHidden(true);
+    onDelete();
   };
 
-  _onDelete = () => {
-    const { onDelete } = this.props;
-    const value = this.state.value;
-    this.setState(
-      { editing: false, tempValue: value, hover: false, isHidden: true },
-      () => onDelete());
+  const handleEditing = () => {
+    setEditing(true);
   };
 
-  _editing = () => {
-    this.setState({ editing: true });
+  const handleChange = (e) => {
+    setTempValue(e.target ? e.target.value : e);
   };
 
-  onChange = e => {
-    this.setState({ tempValue: e.target ? e.target.value : e });
-  };
-
-  onCheckboxChange = e => {
-    const { options } = this.props;
-    let values = this.state.tempValue || [];
+  const handleCheckboxChange = (e) => {
+    let values = tempValue || [];
     if (e.target.checked && !values.includes(e.target.value)) {
       values.push(e.target.value);
     } else {
       values.splice(values.indexOf(e.target.value), 1);
     }
-    // filter out the orphaned values that have no option entry
-    let optionValues = options.map(o => o.value);
-    values = values.filter((value) => {
-      return optionValues.includes(value);
-    });
-    this.setState({ tempValue: values });
+    let optionValues = options.map((o) => o.value);
+    values = values.filter((value) => optionValues.includes(value));
+    setTempValue(values);
   };
 
-  onClick = () => {
-    const { allowEdit } = this.props;
+  const handleClick = () => {
     if (allowEdit) {
-      this.setState({ editing: true });
+      setEditing(true);
     }
   };
 
-  hoverOn = () => {
-    const { allowEdit } = this.props;
-    if (allowEdit) {
-      this.setState({ hover: true });
-    }
-  };
-
-  hoverOff = () => {
-    this.setState({ hover: false });
-  };
-
-  renderComponentView() {
-    const {
-      type,
-      editComponent,
-      cssClassPrefix
-    } = this.props;
-    const { editing, value, tempValue } = this.state;
-    const inputValue = editing ? tempValue : value;
-    this.cullAttributes();
+  const renderComponentView = () => {
+    const inputValue = editing ? tempValue : currentValue;
 
     if (React.isValidElement(editComponent)) {
       return (
         <EasyCustom
-          setValue={this.onChange}
-          onBlur={this._onBlur}
-          onFocus={this._onFocus}
-          value={this.state.tempValue}
+          setValue={handleChange}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          value={tempValue}
           cssClassPrefix={cssClassPrefix}
         >
           {editComponent}
-        </ EasyCustom>
+        </EasyCustom>
       );
     }
 
     switch (type) {
       case Types.CHECKBOX:
-        return this.renderCheckbox(inputValue);
+        return renderCheckbox(inputValue);
       case Types.COLOR:
-        return this.renderColor(inputValue);
+        return renderColor(inputValue);
       case Types.DATALIST:
-        return this.renderDatalist(inputValue);
+        return renderDatalist(inputValue);
       case Types.DATE:
       case Types.DATETIME_LOCAL:
       case Types.EMAIL:
@@ -226,80 +264,47 @@ export default class EasyEdit extends React.Component {
       case Types.TIME:
       case Types.URL:
       case Types.WEEK:
-        return this.renderInput(inputValue);
+        return renderInput(inputValue);
       case Types.RADIO:
-        return this.renderRadio(inputValue);
+        return renderRadio(inputValue);
       case Types.SELECT:
-        return this.renderSelect(inputValue);
+        return renderSelect(inputValue);
       case Types.TEXTAREA:
-        return this.renderTextarea(inputValue);
+        return renderTextarea(inputValue);
       default:
         throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
     }
-  }
+  };
 
-  renderButtons() {
-    const {
-      saveOnBlur,
-      saveButtonLabel,
-      saveButtonStyle,
-      cancelButtonLabel,
-      cancelButtonStyle,
-      deleteButtonLabel,
-      deleteButtonStyle,
-      cssClassPrefix,
-      hideSaveButton,
-      hideCancelButton,
-      hideDeleteButton,
-      showEditViewButtonsOnHover
-    } = this.props;
-    if (!showEditViewButtonsOnHover || showEditViewButtonsOnHover
-      && this.state.hover) {
+  const renderButtons = () => {
+    if (!showEditViewButtonsOnHover || (showEditViewButtonsOnHover && hover)) {
       return (
         <div className={cssClassPrefix + "easy-edit-button-wrapper"}>
-          {!hideSaveButton && EasyEdit.generateButton(this.saveButton,
-            this._onSave, saveButtonLabel,
-            this.manageButtonStyle(saveButtonStyle), "save", saveOnBlur)}
-          {!hideCancelButton && EasyEdit.generateButton(this.cancelButton,
-            this._onCancel, cancelButtonLabel,
-            this.manageButtonStyle(cancelButtonStyle), "cancel", saveOnBlur)}
-          {!hideDeleteButton && EasyEdit.generateButton(this.deleteButton,
-            this._onDelete, deleteButtonLabel,
-            this.manageButtonStyle(deleteButtonStyle), "delete", saveOnBlur)}
+          {!hideSaveButton && generateButton(saveButton, handleSave, saveButtonLabel, manageButtonStyle(saveButtonStyle), "save", saveOnBlur)}
+          {!hideCancelButton && generateButton(cancelButton, handleCancel, cancelButtonLabel, manageButtonStyle(cancelButtonStyle), "cancel", saveOnBlur)}
+          {!hideDeleteButton && generateButton(deleteButton, handleDelete, deleteButtonLabel, manageButtonStyle(deleteButtonStyle), "delete", saveOnBlur)}
         </div>
       );
     }
-  }
+  };
 
-  manageButtonStyle(saveButtonStyle) {
-    const { cssClassPrefix } = this.props;
-    return saveButtonStyle === null ? cssClassPrefix
-      + Globals.DEFAULT_BUTTON_CSS_CLASS : saveButtonStyle;
-  }
+  const manageButtonStyle = (style) => {
+    return style === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : style;
+  };
 
-  renderValidationMessage() {
-    const { validationMessage, cssClassPrefix } = this.props;
-    if (!this.state.isValid) {
-      return (
-        <div className={cssClassPrefix
-          + "easy-edit-validation-error"}>{validationMessage}</div>
-      );
+  const renderValidationMessage = () => {
+    if (!isValid) {
+      return <div className={cssClassPrefix + "easy-edit-validation-error"}>{validationMessage}</div>;
     }
-  }
+  };
 
-  renderInstructions() {
-    const { instructions, cssClassPrefix, editMode } = this.props;
-    if ((this.state.editing || editMode) && instructions !== null) {
-      return (
-        <div className={cssClassPrefix
-          + "easy-edit-instructions"}>{instructions}</div>
-      );
+  const renderInstructions = () => {
+    if ((editing || editMode) && instructions !== null) {
+      return <div className={cssClassPrefix + "easy-edit-instructions"}>{instructions}</div>;
     }
-  }
+  };
 
-  setCssClasses(existingClasses) {
-    const { viewAttributes, cssClassPrefix, onHoverCssClass } = this.props;
-
+  const setCssClasses = (existingClasses) => {
     if (viewAttributes["class"]) {
       existingClasses += " " + viewAttributes["class"];
     }
@@ -307,18 +312,18 @@ export default class EasyEdit extends React.Component {
       existingClasses += " " + viewAttributes["className"];
     }
 
-    if (!this.props.allowEdit) {
+    if (!allowEdit) {
       return cssClassPrefix + "easy-edit-not-allowed " + existingClasses;
-    } else if (this.state.hover) {
-      return onHoverCssClass === Globals.DEFAULT_ON_HOVER_CSS_CLASS ?
-        cssClassPrefix + "easy-edit-hover-on " + existingClasses :
-        onHoverCssClass + " " + existingClasses;
+    } else if (hover) {
+      return onHoverCssClass === Globals.DEFAULT_ON_HOVER_CSS_CLASS
+        ? cssClassPrefix + "easy-edit-hover-on " + existingClasses
+        : onHoverCssClass + " " + existingClasses;
     } else {
       return existingClasses;
     }
-  }
+  };
 
-  static generateButton(ref, onClick, label, cssClass, name, saveOnBlur) {
+  const generateButton = (ref, onClick, label, cssClass, name, saveOnBlur) => {
     if (saveOnBlur) {
       return "";
     }
@@ -327,183 +332,162 @@ export default class EasyEdit extends React.Component {
         {label}
       </button>
     );
-  }
+  };
 
-  renderInput(inputValue) {
-    const {
-      attributes,
-      cssClassPrefix,
-      placeholder,
-      type
-    } = this.props;
+  const generateEditButton = (cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle) => {
+    if (!showViewButtonsOnHover || (showViewButtonsOnHover && hover)) {
+      return (
+        !hideEditButton && (
+          <div className={cssClassPrefix + "easy-edit-view-button-wrapper"}>
+            {generateButton(editButton, handleEditing, editButtonLabel, manageButtonStyle(editButtonStyle), "edit")}
+          </div>
+        )
+      );
+    }
+  };
 
+  const renderComplexView = () => {
+    const { placeholder, options, type } = props;
+
+    if (isNullOrUndefinedOrEmpty(currentValue)) {
+      return placeholder;
+    }
+
+    let selected;
+    if (Types.CHECKBOX === type) {
+      selected = options.filter((option) => {
+        return currentValue.includes(option.value);
+      });
+    } else {
+      selected = options.filter((option) => {
+        return currentValue === option.value;
+      });
+    }
+
+    if (selected.length !== 0) {
+      return selected.map(checkbox => checkbox.label).join(", ");
+    } else {
+      return currentValue;
+    }
+  };
+
+  const renderInput = (inputValue) => {
     return (
       <EasyInput
         value={inputValue}
         placeholder={placeholder}
-        onChange={this.onChange}
-        onFocus={this._onFocus}
-        onBlur={this._onBlur}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         type={type}
         attributes={attributes}
         cssClassPrefix={cssClassPrefix}
-        onMouseEnter={this.hoverOn}
-        onMouseLeave={this.hoverOff}
+        onMouseEnter={handleHoverOn}
+        onMouseLeave={handleHoverOff}
       />
     );
-  }
+  };
 
-  renderTextarea(inputValue) {
-    const {
-      attributes,
-      cssClassPrefix,
-      placeholder
-    } = this.props;
-
+  const renderTextarea = (inputValue) => {
     return (
       <EasyParagraph
         value={inputValue}
         placeholder={placeholder}
-        onChange={this.onChange}
-        onFocus={this._onFocus}
-        onBlur={this._onBlur}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         attributes={attributes}
         cssClassPrefix={cssClassPrefix}
-      />);
+      />
+    );
+  };
 
-  }
-
-  renderSelect(inputValue) {
-    const {
-      attributes,
-      cssClassPrefix,
-      options,
-      placeholder
-    } = this.props;
-
+  const renderSelect = (inputValue) => {
     return (
       <EasyDropdown
         value={inputValue}
-        onChange={this.onChange}
-        onFocus={this._onFocus}
-        onBlur={this._onBlur}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         options={options}
-        placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER
-          ? Globals.DEFAULT_SELECT_PLACEHOLDER : placeholder}
+        placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER ? Globals.DEFAULT_SELECT_PLACEHOLDER : placeholder}
         attributes={attributes}
         cssClassPrefix={cssClassPrefix}
       />
     );
-  }
+  };
 
-  renderRadio(inputValue) {
-    const {
-      attributes,
-      cssClassPrefix,
-      options
-    } = this.props;
-
+  const renderRadio = (inputValue) => {
     return (
       <EasyRadio
         value={inputValue}
-        onChange={this.onChange}
-        onFocus={this._onFocus}
-        onBlur={this._onBlur}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         options={options}
         attributes={attributes}
         cssClassPrefix={cssClassPrefix}
       />
     );
-  }
+  };
 
-  renderCheckbox(inputValue) {
-    const {
-      attributes,
-      cssClassPrefix,
-      options
-    } = this.props;
-
+  const renderCheckbox = (inputValue) => {
     return (
       <EasyCheckbox
         value={inputValue}
-        onChange={this.onCheckboxChange}
-        onFocus={this._onFocus}
-        onBlur={this._onBlur}
+        onChange={handleCheckboxChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         options={options}
         attributes={attributes}
         cssClassPrefix={cssClassPrefix}
       />
     );
-  }
+  };
 
-  renderDatalist(inputValue) {
-    const {
-      attributes,
-      cssClassPrefix,
-      options
-    } = this.props;
-
+  const renderDatalist = (inputValue) => {
     return (
       <EasyDatalist
         value={inputValue}
-        onChange={this.onChange}
-        onFocus={this._onFocus}
-        onBlur={this._onBlur}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         options={options}
         attributes={attributes}
         cssClassPrefix={cssClassPrefix}
       />
     );
-  }
+  };
 
-  renderColor(inputValue) {
-    const {
-      attributes,
-      cssClassPrefix
-    } = this.props;
-
+  const renderColor = (inputValue) => {
     return (
       <EasyColor
         value={inputValue}
-        onChange={this.onChange}
-        onFocus={this._onFocus}
-        onBlur={this._onBlur}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         attributes={attributes}
         cssClassPrefix={cssClassPrefix}
       />
     );
-  }
+  };
 
-  renderPlaceholder() {
-    const {
-      type,
-      placeholder,
-      displayComponent,
-      viewAttributes,
-      cssClassPrefix,
-      hideEditButton,
-      editButtonLabel,
-      editButtonStyle
-    } = this.props;
-    this.cullAttributes();
+  const renderPlaceholder = () => {
     const cssWrapperClass = cssClassPrefix + "easy-edit-wrapper";
 
     if (React.isValidElement(displayComponent)) {
       return (
         <div
           {...viewAttributes}
-          className={this.setCssClasses(cssWrapperClass)}
-          onClick={this.onClick}
-          onMouseEnter={this.hoverOn}
-          onMouseLeave={this.hoverOff}
-          onKeyDown={(e) => {
-          }}
+          className={setCssClasses(cssWrapperClass)}
+          onClick={handleClick}
+          onMouseEnter={handleHoverOn}
+          onMouseLeave={handleHoverOff}
         >
-          {!this.isNullOrUndefinedOrEmpty(this.state.value) ?
-            React.cloneElement(displayComponent, { value: this.state.value }) :
-            placeholder}
-          {this.generateEditButton(cssClassPrefix, hideEditButton,
-            editButtonLabel, editButtonStyle)}
+          {!isNullOrUndefinedOrEmpty(currentValue)
+            ? React.cloneElement(displayComponent, { value: currentValue })
+            : placeholder}
+          {generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
         </div>
       );
     }
@@ -524,22 +508,17 @@ export default class EasyEdit extends React.Component {
       case Types.WEEK:
       case Types.URL:
       case Types.PASSWORD: {
-        let passwordValue = type === Types.PASSWORD ? "••••••••"
-          : this.state.value;
+        let passwordValue = type === Types.PASSWORD ? "••••••••" : currentValue;
         return (
           <div
             {...viewAttributes}
-            className={this.setCssClasses(cssWrapperClass)}
-            onClick={this.onClick}
-            onMouseEnter={this.hoverOn}
-            onMouseLeave={this.hoverOff}
-            onKeyDown={(e) => {
-            }}
+            className={setCssClasses(cssWrapperClass)}
+            onClick={handleClick}
+            onMouseEnter={handleHoverOn}
+            onMouseLeave={handleHoverOff}
           >
-            {!this.isNullOrUndefinedOrEmpty(this.state.value) ? passwordValue
-              : placeholder}
-            {this.generateEditButton(cssClassPrefix, hideEditButton,
-              editButtonLabel, editButtonStyle)}
+            {!isNullOrUndefinedOrEmpty(currentValue) ? passwordValue : placeholder}
+            {generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
           </div>
         );
       }
@@ -549,16 +528,13 @@ export default class EasyEdit extends React.Component {
         return (
           <div
             {...viewAttributes}
-            className={this.setCssClasses(cssWrapperClass)}
-            onClick={this.onClick}
-            onMouseEnter={this.hoverOn}
-            onMouseLeave={this.hoverOff}
-            onKeyDown={(e) => {
-            }}
+            className={setCssClasses(cssWrapperClass)}
+            onClick={handleClick}
+            onMouseEnter={handleHoverOn}
+            onMouseLeave={handleHoverOff}
           >
-            {this.renderComplexView()}
-            {this.generateEditButton(cssClassPrefix, hideEditButton,
-              editButtonLabel, editButtonStyle)}
+            {renderComplexView()}
+            {generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
           </div>
         );
       }
@@ -567,8 +543,8 @@ export default class EasyEdit extends React.Component {
           <input
             {...viewAttributes}
             type={type}
-            value={this.state.value}
-            onClick={this.onClick}
+            value={currentValue}
+            onClick={handleClick}
             readOnly
           />
         );
@@ -577,120 +553,61 @@ export default class EasyEdit extends React.Component {
         throw new Error(Globals.ERROR_UNSUPPORTED_TYPE);
       }
     }
-  }
+  };
 
-  generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel,
-    editButtonStyle) {
-    const { showViewButtonsOnHover } = this.props;
-
-    if (!showViewButtonsOnHover || showViewButtonsOnHover && this.state.hover) {
-      return (!hideEditButton && <div
-        className={cssClassPrefix + "easy-edit-view-button-wrapper"}>
-        {EasyEdit.generateButton(this.editButton, this._editing,
-          editButtonLabel, this.manageButtonStyle(editButtonStyle), "edit")}
-      </div>);
-    }
-  }
-
-  renderComplexView() {
-    const { placeholder, options, type } = this.props;
-
-    if (this.isNullOrUndefinedOrEmpty(this.state.value)) {
-      return placeholder;
-    }
-
-    let selected;
-    if (Types.CHECKBOX === type) {
-      selected = options.filter((option) => {
-        return this.state.value.includes(option.value);
-      });
-    } else {
-      selected = options.filter((option) => {
-        return this.state.value === option.value;
-      });
-    }
-
-    if (selected.length !== 0) {
-      return selected.map(checkbox => checkbox.label).join(", ");
-    } else {
-      return this.state.value;
-    }
-  }
-
-  cullAttributes() {
-    const attributes = { ...this.props.attributes };
-    delete attributes["type"];
-    delete attributes["onChange"];
-    delete attributes["value"];
-    return attributes;
-  }
-
-  renderEditMode() {
-    const { cssClassPrefix, buttonsPosition } = this.props;
-    return (
-      <div className={cssClassPrefix + "easy-edit-inline-wrapper"} tabIndex="0"
-           onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff}
-           onKeyDown={(e) => this.onKeyDown(e)}>
-        {buttonsPosition === Globals.POSITION_BEFORE && this.renderButtons()}
-        {this.renderComponentView()}
-        {buttonsPosition === Globals.POSITION_AFTER && this.renderButtons()}
-        {this.renderInstructions()}
-        {this.renderValidationMessage()}
-      </div>);
-  }
-
-  render() {
-    const { editMode } = this.props;
-    if (this.state.isHidden) {
-      return "";
-    }
-
-    if (this.state.editing || editMode) {
-      return this.renderEditMode();
-    } else {
-      return this.renderPlaceholder();
-    }
-  }
+  return isHidden ? null : editing || editMode ? (
+    <div
+      className={cssClassPrefix + "easy-edit-inline-wrapper"}
+      tabIndex="0"
+      onMouseEnter={handleHoverOn}
+      onMouseLeave={handleHoverOff}
+      onKeyDown={handleKeyDown}
+    >
+      {buttonsPosition === Globals.POSITION_BEFORE && renderButtons()}
+      {renderComponentView()}
+      {buttonsPosition === Globals.POSITION_AFTER && renderButtons()}
+      {renderInstructions()}
+      {renderValidationMessage()}
+    </div>
+  ) : (
+    renderPlaceholder()
+  );
 }
 
 EasyEdit.propTypes = {
   type: PropTypes.oneOf([
-    "checkbox", "color", "datalist", "date", "datetime-local", "email", "file",
-    "month", "number", "password", "radio", "range", "select", "tel", "text",
-    "textarea", "time", "url", "week"
+    "checkbox",
+    "color",
+    "datalist",
+    "date",
+    "datetime-local",
+    "email",
+    "file",
+    "month",
+    "number",
+    "password",
+    "radio",
+    "range",
+    "select",
+    "tel",
+    "text",
+    "textarea",
+    "time",
+    "url",
+    "week"
   ]).isRequired,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.array,
-    PropTypes.object
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array, PropTypes.object]),
   options: PropTypes.array,
-  saveButtonLabel: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
-  ]),
+  saveButtonLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   saveButtonStyle: PropTypes.string,
-  cancelButtonLabel: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
-  ]),
+  cancelButtonLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   cancelButtonStyle: PropTypes.string,
-  deleteButtonLabel: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
-  ]),
+  deleteButtonLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   deleteButtonStyle: PropTypes.string,
-  editButtonLabel: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
-  ]),
+  editButtonLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   editButtonStyle: PropTypes.string,
   buttonsPosition: PropTypes.oneOf(["after", "before"]),
-  placeholder: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
-  ]),
+  placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   onCancel: PropTypes.func,
   onDelete: PropTypes.func,
   onValidate: PropTypes.func,
@@ -732,13 +649,10 @@ EasyEdit.defaultProps = {
   buttonsPosition: Globals.POSITION_AFTER,
   placeholder: Globals.DEFAULT_PLACEHOLDER,
   allowEdit: true,
-  onCancel: () => {
-  },
-  onDelete: () => {
-  },
-  onBlur: () => {
-  },
-  onValidate: value => true,
+  onCancel: () => {},
+  onDelete: () => {},
+  onBlur: () => {},
+  onValidate: (value) => true,
   validationMessage: Globals.FAILED_VALIDATION_MESSAGE,
   attributes: {},
   viewAttributes: {},
