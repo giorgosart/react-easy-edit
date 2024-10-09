@@ -618,10 +618,11 @@ export default class EasyEdit extends React.Component {
   }
 
   cullAttributes() {
-    const { attributes } = this.props;
+    const attributes = { ...this.props.attributes };
     delete attributes["type"];
     delete attributes["onChange"];
     delete attributes["value"];
+    return attributes;
   }
 
   renderEditMode() {
