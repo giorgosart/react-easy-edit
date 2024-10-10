@@ -1,50 +1,42 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-export default class EasyCustom extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: props.value
-    };
-    this.setValue = this.setValue.bind(this);
-    this.onBlur = this.onBlur.bind(this);
-    this.onFocus = this.onFocus.bind(this);
-  }
+const EasyCustom = ({ children, cssClassPrefix, onBlur, onFocus, setValue, value: initialValue }) => {
+  const [value, setValueState] = useState(initialValue);
 
-  setValue(value) {
-    this.setState({
+  useEffect(() => {
+    setValueState(initialValue);
+  }, [initialValue]);
+
+  const handleSetValue = (newValue) => {
+    setValueState(newValue);
+    setValue(newValue);
+  };
+
+  const handleBlur = () => {
+    onBlur(value);
+  };
+
+  const handleFocus = () => {
+    onFocus();
+  };
+
+  const child = React.cloneElement(
+    React.Children.only(children),
+    {
+      setParentValue: handleSetValue,
+      onBlur: handleBlur,
+      onFocus: handleFocus,
       value
-    }, () => this.props.setValue(value));
-  }
+    }
+  );
 
-  onBlur() {
-    this.props.onBlur();
-  }
-
-  onFocus() {
-    this.props.onFocus();
-  }
-
-  render() {
-    const { value } = this.state;
-    const { children, cssClassPrefix } = this.props;
-    const child = React.cloneElement(
-      React.Children.only(children),
-      {
-        setParentValue: this.setValue,
-        onBlur : this.onBlur,
-        onFocus : this.onFocus,
-        value
-      }
-    );
-    return (
-      <div className={cssClassPrefix + "easy-edit-component-wrapper"}>
-        {child}
-      </div>
-    );
-  }
-}
+  return (
+    <div className={cssClassPrefix + "easy-edit-component-wrapper"}>
+      {child}
+    </div>
+  );
+};
 
 EasyCustom.propTypes = {
   children: PropTypes.element,
@@ -58,4 +50,6 @@ EasyCustom.propTypes = {
     PropTypes.array,
     PropTypes.object
   ]),
-}
+};
+
+export default EasyCustom;

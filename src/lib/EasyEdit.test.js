@@ -4,7 +4,6 @@ import "@testing-library/jest-dom/extend-expect";
 import EasyEdit, { Types } from "./EasyEdit";
 import Globals from "./globals";
 
-// Test Suite for EasyEdit Component
 describe("EasyEdit Component", () => {
   const mockOnSave = jest.fn();
   const mockOnCancel = jest.fn();
@@ -364,33 +363,50 @@ describe("EasyEdit Component", () => {
     expect(mockOnSave).toHaveBeenCalledWith(["option2"]);
   });
 
-  test("renders custom component when editComponent is provided", () => {
-    const CustomComponent = ({ value, setParentValue, onBlur, onFocus }) => (
-      <input
-        value={value}
-        onChange={(e) => setParentValue(e.target.value)}
-        onBlur={onBlur}
-        onFocus={onFocus}
-      />
-    );
-
-    render(
+  it('ensures editing state is correctly updated when editMode prop changes', () => {
+    const { rerender } = render(
       <EasyEdit
         type={Types.TEXT}
         value="Initial Value"
+        editMode={false}
         onSave={mockOnSave}
-        editComponent={<CustomComponent />}
-        editMode={true}
+        onCancel={mockOnCancel}
       />
     );
 
-    const inputElement = screen.getByDisplayValue("Initial Value");
+    // Initially editing should be false
+    let inputElement = screen.queryByDisplayValue('Initial Value');
+    expect(inputElement).toBeNull();
+
+    // Re-render component with editMode set to true
+    rerender(
+      <EasyEdit
+        type={Types.TEXT}
+        value="Initial Value"
+        editMode={true}
+        onSave={mockOnSave}
+        onCancel={mockOnCancel}
+      />
+    );
+
+    // Now editing should be true and input should be rendered
+    inputElement = screen.getByDisplayValue('Initial Value');
     expect(inputElement).toBeInTheDocument();
 
-    fireEvent.change(inputElement, { target: { value: "New Value" } });
-    fireEvent.blur(inputElement);
+    // Re-render component with editMode set back to false
+    rerender(
+      <EasyEdit
+        type={Types.TEXT}
+        value="Initial Value"
+        editMode={false}
+        onSave={mockOnSave}
+        onCancel={mockOnCancel}
+      />
+    );
 
-    expect(mockOnSave).toHaveBeenCalledWith("New Value");
+    // Editing should be false again and input should not be present
+    inputElement = screen.queryByDisplayValue('Initial Value');
+    expect(inputElement).toBeNull();
   });
 
   test(

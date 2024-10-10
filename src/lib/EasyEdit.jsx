@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import "./EasyEdit.css";
 
@@ -73,6 +73,7 @@ const useEditState = (initialValue, editMode, onSave, onCancel, onValidate) => {
     if (editing !== editMode) {
       setEditing(editMode);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editMode]);
 
   const handleCancel = () => {
@@ -91,7 +92,7 @@ const useEditState = (initialValue, editMode, onSave, onCancel, onValidate) => {
     setIsHidden,
     handleSave,
     handleCancel,
-    setEditing,
+    setEditing
   };
 };
 
@@ -153,7 +154,7 @@ export default function EasyEdit(props) {
     setIsHidden,
     handleSave,
     handleCancel,
-    setEditing,
+    setEditing
   } = useEditState(value, editMode, onSave, onCancel, onValidate);
 
   const saveButton = useRef();
@@ -167,7 +168,8 @@ export default function EasyEdit(props) {
     }
 
     if (!disableAutoSubmit) {
-      if ((e.keyCode === 13 && type !== Types.TEXTAREA) || (e.keyCode === 13 && e.ctrlKey && type === Types.TEXTAREA)) {
+      if ((e.keyCode === 13 && type !== Types.TEXTAREA) || (e.keyCode === 13
+        && e.ctrlKey && type === Types.TEXTAREA)) {
         handleSave();
       }
     }
@@ -175,7 +177,8 @@ export default function EasyEdit(props) {
 
   const handleBlur = () => {
     if (saveOnBlur && cancelOnBlur) {
-      console.warn("EasyEdit: You've set both `saveOnBlur` and `cancelOnBlur` to true, please set either one to false.");
+      console.warn(
+        "EasyEdit: You've set both `saveOnBlur` and `cancelOnBlur` to true, please set either one to false.");
     }
     if (saveOnBlur) {
       onBlur(tempValue);
@@ -280,27 +283,36 @@ export default function EasyEdit(props) {
     if (!showEditViewButtonsOnHover || (showEditViewButtonsOnHover && hover)) {
       return (
         <div className={cssClassPrefix + "easy-edit-button-wrapper"}>
-          {!hideSaveButton && generateButton(saveButton, handleSave, saveButtonLabel, manageButtonStyle(saveButtonStyle), "save", saveOnBlur)}
-          {!hideCancelButton && generateButton(cancelButton, handleCancel, cancelButtonLabel, manageButtonStyle(cancelButtonStyle), "cancel", saveOnBlur)}
-          {!hideDeleteButton && generateButton(deleteButton, handleDelete, deleteButtonLabel, manageButtonStyle(deleteButtonStyle), "delete", saveOnBlur)}
+          {!hideSaveButton && generateButton(saveButton, handleSave,
+            saveButtonLabel, manageButtonStyle(saveButtonStyle), "save",
+            saveOnBlur)}
+          {!hideCancelButton && generateButton(cancelButton, handleCancel,
+            cancelButtonLabel, manageButtonStyle(cancelButtonStyle), "cancel",
+            saveOnBlur)}
+          {!hideDeleteButton && generateButton(deleteButton, handleDelete,
+            deleteButtonLabel, manageButtonStyle(deleteButtonStyle), "delete",
+            saveOnBlur)}
         </div>
       );
     }
   };
 
   const manageButtonStyle = (style) => {
-    return style === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS : style;
+    return style === null ? cssClassPrefix + Globals.DEFAULT_BUTTON_CSS_CLASS
+      : style;
   };
 
   const renderValidationMessage = () => {
     if (!isValid) {
-      return <div className={cssClassPrefix + "easy-edit-validation-error"}>{validationMessage}</div>;
+      return <div className={cssClassPrefix
+        + "easy-edit-validation-error"}>{validationMessage}</div>;
     }
   };
 
   const renderInstructions = () => {
     if ((editing || editMode) && instructions !== null) {
-      return <div className={cssClassPrefix + "easy-edit-instructions"}>{instructions}</div>;
+      return <div className={cssClassPrefix
+        + "easy-edit-instructions"}>{instructions}</div>;
     }
   };
 
@@ -334,12 +346,14 @@ export default function EasyEdit(props) {
     );
   };
 
-  const generateEditButton = (cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle) => {
+  const generateEditButton = (cssClassPrefix, hideEditButton, editButtonLabel,
+    editButtonStyle) => {
     if (!showViewButtonsOnHover || (showViewButtonsOnHover && hover)) {
       return (
         !hideEditButton && (
           <div className={cssClassPrefix + "easy-edit-view-button-wrapper"}>
-            {generateButton(editButton, handleEditing, editButtonLabel, manageButtonStyle(editButtonStyle), "edit")}
+            {generateButton(editButton, handleEditing, editButtonLabel,
+              manageButtonStyle(editButtonStyle), "edit")}
           </div>
         )
       );
@@ -410,7 +424,8 @@ export default function EasyEdit(props) {
         onFocus={handleFocus}
         onBlur={handleBlur}
         options={options}
-        placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER ? Globals.DEFAULT_SELECT_PLACEHOLDER : placeholder}
+        placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER
+          ? Globals.DEFAULT_SELECT_PLACEHOLDER : placeholder}
         attributes={attributes}
         cssClassPrefix={cssClassPrefix}
       />
@@ -487,7 +502,8 @@ export default function EasyEdit(props) {
           {!isNullOrUndefinedOrEmpty(currentValue)
             ? React.cloneElement(displayComponent, { value: currentValue })
             : placeholder}
-          {generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
+          {generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel,
+            editButtonStyle)}
         </div>
       );
     }
@@ -517,8 +533,10 @@ export default function EasyEdit(props) {
             onMouseEnter={handleHoverOn}
             onMouseLeave={handleHoverOff}
           >
-            {!isNullOrUndefinedOrEmpty(currentValue) ? passwordValue : placeholder}
-            {generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
+            {!isNullOrUndefinedOrEmpty(currentValue) ? passwordValue
+              : placeholder}
+            {generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel,
+              editButtonStyle)}
           </div>
         );
       }
@@ -534,7 +552,8 @@ export default function EasyEdit(props) {
             onMouseLeave={handleHoverOff}
           >
             {renderComplexView()}
-            {generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel, editButtonStyle)}
+            {generateEditButton(cssClassPrefix, hideEditButton, editButtonLabel,
+              editButtonStyle)}
           </div>
         );
       }
@@ -596,7 +615,8 @@ EasyEdit.propTypes = {
     "url",
     "week"
   ]).isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array, PropTypes.object]),
+  value: PropTypes.oneOfType(
+    [PropTypes.string, PropTypes.number, PropTypes.array, PropTypes.object]),
   options: PropTypes.array,
   saveButtonLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   saveButtonStyle: PropTypes.string,
@@ -649,9 +669,12 @@ EasyEdit.defaultProps = {
   buttonsPosition: Globals.POSITION_AFTER,
   placeholder: Globals.DEFAULT_PLACEHOLDER,
   allowEdit: true,
-  onCancel: () => {},
-  onDelete: () => {},
-  onBlur: () => {},
+  onCancel: () => {
+  },
+  onDelete: () => {
+  },
+  onBlur: () => {
+  },
   onValidate: (value) => true,
   validationMessage: Globals.FAILED_VALIDATION_MESSAGE,
   attributes: {},
