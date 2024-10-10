@@ -10,7 +10,7 @@ describe('EasyInput - Password type', () => {
         <EasyEdit
             type={Types.PASSWORD}
             onSave={saveFn}
-            attributes={{name: 'password-test'}}
+            inputAttributes={{name: 'password-test'}}
             value="password"
         />
     );
@@ -24,7 +24,7 @@ describe('EasyInput - Password type', () => {
         <EasyEdit
             type={Types.PASSWORD}
             onSave={saveFn}
-            attributes={{name: 'password-test'}}
+            inputAttributes={{name: 'password-test'}}
         />
     );
 

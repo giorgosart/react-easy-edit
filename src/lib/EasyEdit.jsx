@@ -123,7 +123,7 @@ export default function EasyEdit(props) {
     onSave,
     validationMessage,
     allowEdit,
-    attributes,
+    inputAttributes,
     viewAttributes,
     instructions,
     editComponent,
@@ -394,7 +394,7 @@ export default function EasyEdit(props) {
         onFocus={handleFocus}
         onBlur={handleBlur}
         type={type}
-        attributes={attributes}
+        attributes={inputAttributes}
         cssClassPrefix={cssClassPrefix}
         onMouseEnter={handleHoverOn}
         onMouseLeave={handleHoverOff}
@@ -410,7 +410,7 @@ export default function EasyEdit(props) {
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        attributes={attributes}
+        attributes={inputAttributes}
         cssClassPrefix={cssClassPrefix}
       />
     );
@@ -426,7 +426,7 @@ export default function EasyEdit(props) {
         options={options}
         placeholder={placeholder === Globals.DEFAULT_PLACEHOLDER
           ? Globals.DEFAULT_SELECT_PLACEHOLDER : placeholder}
-        attributes={attributes}
+        attributes={inputAttributes}
         cssClassPrefix={cssClassPrefix}
       />
     );
@@ -440,7 +440,7 @@ export default function EasyEdit(props) {
         onFocus={handleFocus}
         onBlur={handleBlur}
         options={options}
-        attributes={attributes}
+        attributes={inputAttributes}
         cssClassPrefix={cssClassPrefix}
       />
     );
@@ -454,7 +454,7 @@ export default function EasyEdit(props) {
         onFocus={handleFocus}
         onBlur={handleBlur}
         options={options}
-        attributes={attributes}
+        attributes={inputAttributes}
         cssClassPrefix={cssClassPrefix}
       />
     );
@@ -468,7 +468,7 @@ export default function EasyEdit(props) {
         onFocus={handleFocus}
         onBlur={handleBlur}
         options={options}
-        attributes={attributes}
+        attributes={inputAttributes}
         cssClassPrefix={cssClassPrefix}
       />
     );
@@ -481,7 +481,7 @@ export default function EasyEdit(props) {
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        attributes={attributes}
+        attributes={inputAttributes}
         cssClassPrefix={cssClassPrefix}
       />
     );
@@ -636,7 +636,7 @@ EasyEdit.propTypes = {
   onSave: PropTypes.func.isRequired,
   validationMessage: PropTypes.string,
   allowEdit: PropTypes.bool,
-  attributes: PropTypes.object,
+  inputAttributes: PropTypes.object,
   viewAttributes: PropTypes.object,
   instructions: PropTypes.string,
   editComponent: PropTypes.element,
@@ -677,7 +677,7 @@ EasyEdit.defaultProps = {
   },
   onValidate: (value) => true,
   validationMessage: Globals.FAILED_VALIDATION_MESSAGE,
-  attributes: {},
+  inputAttributes: {},
   viewAttributes: {},
   instructions: null,
   editComponent: null,
