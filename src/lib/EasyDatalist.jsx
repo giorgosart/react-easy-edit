@@ -22,9 +22,9 @@ const EasyDatalist = (props) => {
         placeholder={placeholder}
         autoComplete={attributes["autoComplete"] || "off"}
         {...attributes}
-        list={datalistId} // Set list attribute to the unique ID
+        list={datalistId}
       />
-      <datalist id={datalistId}> {/* Assign the unique ID to the datalist */}
+      <datalist id={datalistId}>
         {datalistOptions}
       </datalist>
     </div>

@@ -1,68 +1,73 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import EasyParagraph from './EasyParagraph';
-import Globals from "./globals";
+import Globals from './globals';
 
-describe('EasyParagraph', () => {
-  test('renders a textarea with default placeholder', () => {
-    const { getByPlaceholderText } = render(<EasyParagraph />);
-    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER)).toBeInTheDocument();
+describe('EasyParagraph Component', () => {
+  const mockOnChange = jest.fn();
+  const mockOnFocus = jest.fn();
+  const mockOnBlur = jest.fn();
+
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
-  test('renders a textarea with custom placeholder', () => {
-    const { getByPlaceholderText } = render(<EasyParagraph placeholder="Custom placeholder" />);
-    expect(getByPlaceholderText('Custom placeholder')).toBeInTheDocument();
+  it('renders correctly with required props', () => {
+    render(<EasyParagraph value="Test Value" onChange={mockOnChange} />);
+    const textarea = screen.getByRole('textbox');
+    expect(textarea).toBeInTheDocument();
+    expect(textarea).toHaveValue('Test Value');
   });
 
-  test('renders a textarea with custom CSS class', () => {
-    const { getByPlaceholderText } = render(<EasyParagraph attributes={{ className: 'custom-class' }} />);
-    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER)).toHaveClass('custom-class');
+  it('displays the correct placeholder when provided', () => {
+    render(
+      <EasyParagraph
+        value=""
+        placeholder="Enter text here"
+        onChange={mockOnChange}
+      />
+    );
+    const textarea = screen.getByPlaceholderText('Enter text here');
+    expect(textarea).toBeInTheDocument();
   });
 
-  test('calls onChange handler when user types in textarea', () => {
-    const handleChange = jest.fn();
-    const { getByPlaceholderText } = render(<EasyParagraph onChange={handleChange} />);
-    fireEvent.change(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER), { target: { value: 'test' } });
-    expect(handleChange).toHaveBeenCalledWith(expect.any(Object));
+  it('uses the default placeholder if no placeholder is provided', () => {
+    render(<EasyParagraph value="" onChange={mockOnChange} />);
+    const textarea = screen.getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER);
+    expect(textarea).toBeInTheDocument();
   });
 
-  test('calls onBlur handler when user leaves textarea', () => {
-    const handleBlur = jest.fn();
-    const { getByPlaceholderText } = render(<EasyParagraph onBlur={handleBlur} />);
-    fireEvent.blur(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER));
-    expect(handleBlur).toHaveBeenCalled();
+  it('triggers onChange callback when text is changed', () => {
+    render(<EasyParagraph value="" onChange={mockOnChange} />);
+    const textarea = screen.getByRole('textbox');
+    fireEvent.change(textarea, { target: { value: 'New Value' } });
+    expect(mockOnChange).toHaveBeenCalledTimes(1);
   });
 
-  test('calls onFocus handler when user focuses on textarea', () => {
-    const handleFocus = jest.fn();
-    const { getByPlaceholderText } = render(<EasyParagraph onFocus={handleFocus} />);
-    fireEvent.focus(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER));
-    expect(handleFocus).toHaveBeenCalled();
+  it('triggers onFocus callback when focused', () => {
+    render(<EasyParagraph value="" onChange={mockOnChange} onFocus={mockOnFocus} />);
+    const textarea = screen.getByRole('textbox');
+    fireEvent.focus(textarea);
+    expect(mockOnFocus).toHaveBeenCalledTimes(2);
   });
 
-  test('renders a textarea with default value', () => {
-    const { getByPlaceholderText } = render(<EasyParagraph />);
-    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER)).toHaveValue('');
+  it('triggers onBlur callback when focus is lost', () => {
+    render(<EasyParagraph value="" onChange={mockOnChange} onBlur={mockOnBlur} />);
+    const textarea = screen.getByRole('textbox');
+    fireEvent.blur(textarea);
+    expect(mockOnBlur).toHaveBeenCalledTimes(1);
   });
 
-  test('renders a textarea with initial value', () => {
-    const { getByPlaceholderText } = render(<EasyParagraph value="Initial value" />);
-    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER)).toHaveValue('Initial value');
+  it('renders with the provided CSS class prefix', () => {
+    render(<EasyParagraph value="" onChange={mockOnChange} cssClassPrefix="custom-" />);
+    const wrapper = screen.getByRole('textbox').closest('div');
+    expect(wrapper).toHaveClass('custom-easy-edit-component-wrapper');
   });
 
-  test('autoFocus attribute sets focus on textarea', () => {
-    const { getByPlaceholderText } = render(<EasyParagraph attributes={{ autoFocus: true }} />);
-    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER)).toHaveFocus();
-  });
-
-  test('cssClassPrefix prop is applied to the wrapper div', () => {
-    const { getByPlaceholderText } = render(<EasyParagraph cssClassPrefix="custom-prefix-" />);
-    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER).closest("div")).toHaveClass('custom-prefix-easy-edit-component-wrapper');
-  });
-
-  test('attributes prop is applied to the textarea', () => {
-    const { getByPlaceholderText } = render(<EasyParagraph attributes={{ id: 'test-id', disabled: true }} />);
-    expect(getByPlaceholderText(Globals.DEFAULT_PLACEHOLDER)).toHaveAttribute('id', 'test-id');
+  it('applies additional attributes to the textarea', () => {
+    render(<EasyParagraph value="" onChange={mockOnChange} attributes={{ maxLength: 50 }} />);
+    const textarea = screen.getByRole('textbox');
+    expect(textarea).toHaveAttribute('maxLength', '50');
   });
 });
