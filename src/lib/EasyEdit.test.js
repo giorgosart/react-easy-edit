@@ -1,8 +1,9 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
+import '@testing-library/jest-dom';
 import EasyEdit, { Types } from "./EasyEdit";
 import Globals from "./globals";
+import PropTypes from 'prop-types';
 
 describe("EasyEdit Component", () => {
   const mockOnSave = jest.fn();
@@ -630,6 +631,9 @@ describe("EasyEdit Component", () => {
   test('renders displayComponent correctly when provided', () => {
     const DisplayComponent = ({ value }) => <span>Display: {value}</span>;
 
+    DisplayComponent.propTypes = {
+      value: PropTypes.string.isRequired,
+    };
     render(
       <EasyEdit
         type={Types.TEXT}

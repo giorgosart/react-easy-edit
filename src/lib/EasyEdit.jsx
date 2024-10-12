@@ -574,23 +574,28 @@ export default function EasyEdit(props) {
     }
   };
 
-  return isHidden ? null : editing || editMode ? (
-    <div
-      className={cssClassPrefix + "easy-edit-inline-wrapper"}
-      tabIndex="0"
-      onMouseEnter={handleHoverOn}
-      onMouseLeave={handleHoverOff}
-      onKeyDown={handleKeyDown}
-    >
-      {buttonsPosition === Globals.POSITION_BEFORE && renderButtons()}
-      {renderComponentView()}
-      {buttonsPosition === Globals.POSITION_AFTER && renderButtons()}
-      {renderInstructions()}
-      {renderValidationMessage()}
-    </div>
-  ) : (
-    renderPlaceholder()
-  );
+  if (isHidden) {
+    return null;
+  }
+
+  if (editing || editMode) {
+    return (
+      <div
+        className={cssClassPrefix + "easy-edit-inline-wrapper"}
+        onMouseEnter={handleHoverOn}
+        onMouseLeave={handleHoverOff}
+        onKeyDown={handleKeyDown}
+      >
+        {buttonsPosition === Globals.POSITION_BEFORE && renderButtons()}
+        {renderComponentView()}
+        {buttonsPosition === Globals.POSITION_AFTER && renderButtons()}
+        {renderInstructions()}
+        {renderValidationMessage()}
+      </div>
+    );
+  }
+
+  return renderPlaceholder();
 }
 
 EasyEdit.propTypes = {
