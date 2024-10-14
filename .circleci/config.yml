@@ -16,7 +16,9 @@ jobs:
       - run:
           command: yarn build
           name: Build app
-      - sonarcloud/scan
+      - sonarcloud/scan:
+          organization: $SONAR_ORG
+          project-key: $SONAR_PROJECT_KEY
     resource_class: large
 
 workflows:
