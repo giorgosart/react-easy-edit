@@ -691,4 +691,74 @@ describe("EasyEdit Component", () => {
     inputElement = screen.getByDisplayValue('Initial Value');
     expect(inputElement).toBeInTheDocument();
   });
+
+  test("renders EasyCustom with editComponent when editComponent is a valid React element", () => {
+    const ValidComponent = <input />;
+
+    render(
+      <EasyEdit
+        type={Types.TEXT}
+        value="Initial Value"
+        onSave={mockOnSave}
+        isEditing={true}
+        editComponent={ValidComponent}
+      />
+    );
+
+    const inputElement = screen.getByRole('textbox');
+    expect(inputElement).toBeInTheDocument();
+  });
+
+  test('throws error for unsupported type in renderComponentView', () => {
+    expect(() => {
+      render(
+        <EasyEdit
+          type="unsupported-type"
+          value="Initial Value"
+          onSave={mockOnSave}
+          isEditing={true}
+        />
+      );
+    }).toThrow(Globals.ERROR_UNSUPPORTED_TYPE);
+  });
+
+  test('renders color input in view mode for color type', () => {
+    render(
+      <EasyEdit
+        type={Types.COLOR}
+        value="#ff0000"
+        onSave={mockOnSave}
+        isEditing={false}
+        viewAttributes={{ 'data-testid': 'color-input-view' }}
+      />
+    );
+
+    const colorInput = screen.getByTestId('color-input-view');
+    expect(colorInput).toBeInTheDocument();
+    expect(colorInput).toHaveAttribute('type', 'color');
+    expect(colorInput).toHaveAttribute('value', '#ff0000');
+    expect(colorInput).toHaveAttribute('readOnly');
+  });
+
+  test('renders default select placeholder when placeholder is Globals.DEFAULT_PLACEHOLDER', () => {
+    const options = [
+      { value: 'option1', label: 'Option 1' },
+      { value: 'option2', label: 'Option 2' }
+    ];
+
+    render(
+      <EasyEdit
+        type={Types.SELECT}
+        value=""
+        onSave={mockOnSave}
+        options={options}
+        placeholder={Globals.DEFAULT_PLACEHOLDER}
+        isEditing={true}
+      />
+    );
+
+    const selectElement = screen.getByText(Globals.DEFAULT_SELECT_PLACEHOLDER);
+    expect(selectElement).toBeInTheDocument();
+  });
+
 });
