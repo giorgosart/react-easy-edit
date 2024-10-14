@@ -50,7 +50,7 @@ function App() {
       onCancel={cancel}
       saveButtonLabel="Save Me"
       cancelButtonLabel="Cancel Me"
-      attributes={{ name: "awesome-input", id: 1}}
+      inputAttributes={{ name: "awesome-input", id: 1}}
       instructions="Star this repo!"
     />
   );

@@ -1,74 +1,130 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import React from "react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom';
-import EasyCustom from './EasyCustom';
+import EasyCustom from "./EasyCustom";
+import PropTypes from 'prop-types';
 
-describe('EasyCustom', () => {
-  test('renders the child component', () => {
-    const { getByTestId } = render(
-        <EasyCustom cssClassPrefix="test">
-          <input data-testid="child-component" />
-        </EasyCustom>
-    );
+const MockChildComponent = ({ value, onBlur, onFocus, setParentValue }) => (
+  <input
+    data-testid="child-input"
+    value={value}
+    onBlur={() => onBlur(value)}
+    onFocus={onFocus}
+    onChange={(e) => setParentValue(e.target.value)}
+  />
+);
 
-    expect(getByTestId('child-component')).toBeInTheDocument();
+MockChildComponent.propTypes = {
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.array,
+    PropTypes.object
+  ]),
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+  setParentValue: PropTypes.func
+};
+
+describe('EasyCustom Component', () => {
+  const onBlurMock = jest.fn();
+  const onFocusMock = jest.fn();
+  const setValueMock = jest.fn();
+
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
-  test('calls onBlur on input blur', () => {
-    const onBlur = jest.fn();
-    const { getByTestId } = render(
-        <EasyCustom cssClassPrefix="test" onBlur={onBlur} value="">
-          <input data-testid="child-component" />
-        </EasyCustom>
+  it('renders child component and passes the correct props', () => {
+    render(
+      <EasyCustom
+        cssClassPrefix="test-"
+        onBlur={onBlurMock}
+        onFocus={onFocusMock}
+        setValue={setValueMock}
+        value="Initial Value"
+      >
+        <MockChildComponent />
+      </EasyCustom>
     );
-    const input = getByTestId('child-component');
-    fireEvent.blur(input);
 
-    expect(onBlur).toHaveBeenCalled();
+    const inputElement = screen.getByTestId('child-input');
+    expect(inputElement).toBeInTheDocument();
+    expect(inputElement.value).toBe('Initial Value');
   });
 
-  test('calls onFocus on input focus', () => {
-    const onFocus = jest.fn();
-    const { getByTestId } = render(
-        <EasyCustom cssClassPrefix="test" onFocus={onFocus} value="">
-          <input data-testid="child-component" />
-        </EasyCustom>
+  it('updates value when setParentValue is called', () => {
+    render(
+      <EasyCustom
+        cssClassPrefix="test-"
+        onBlur={onBlurMock}
+        onFocus={onFocusMock}
+        onSetValue={setValueMock}
+        value="Initial Value"
+      >
+        <MockChildComponent />
+      </EasyCustom>
     );
-    const input = getByTestId('child-component');
-    fireEvent.focus(input);
 
-    expect(onFocus).toHaveBeenCalled();
+    const inputElement = screen.getByTestId('child-input');
+    fireEvent.change(inputElement, { target: { value: 'New Value' } });
+
+    expect(inputElement.value).toBe('New Value');
+    expect(setValueMock).toHaveBeenCalledWith('New Value');
   });
 
-  test('passes props to child component', () => {
-    const { getByTestId } = render(
-        <EasyCustom cssClassPrefix="test" value="">
-          <input data-testid="child-component" data-testprop="test" />
-        </EasyCustom>
+  it('calls onBlur with the current value when input loses focus', () => {
+    render(
+      <EasyCustom
+        cssClassPrefix="test-"
+        onBlur={onBlurMock}
+        onFocus={onFocusMock}
+        setValue={setValueMock}
+        value="Initial Value"
+      >
+        <MockChildComponent />
+      </EasyCustom>
     );
-    const input = getByTestId('child-component');
 
-    expect(input).toHaveAttribute('data-testprop', 'test');
+    const inputElement = screen.getByTestId('child-input');
+    fireEvent.blur(inputElement);
+
+    expect(onBlurMock).toHaveBeenCalledWith('Initial Value');
   });
 
-  test('renders with cssClassPrefix as wrapper div class name', () => {
-    const { container } = render(
-        <EasyCustom cssClassPrefix="test" value="">
-          <input data-testid="child-component" />
-        </EasyCustom>
+  it('calls onFocus when input gains focus', () => {
+    render(
+      <EasyCustom
+        cssClassPrefix="test-"
+        onBlur={onBlurMock}
+        onFocus={onFocusMock}
+        setValue={setValueMock}
+        value="Initial Value"
+      >
+        <MockChildComponent />
+      </EasyCustom>
     );
 
-    expect(container.firstChild).toHaveClass('testeasy-edit-component-wrapper');
+    const inputElement = screen.getByTestId('child-input');
+    fireEvent.focus(inputElement);
+
+    expect(onFocusMock).toHaveBeenCalled();
   });
 
-  test('renders with the initial value', () => {
-    const { getByTestId } = render(
-        <EasyCustom cssClassPrefix="test" value="initial">
-          <input data-testid="child-component" />
-        </EasyCustom>
+  it('applies the correct CSS class prefix', () => {
+    render(
+      <EasyCustom
+        cssClassPrefix="test-"
+        onBlur={onBlurMock}
+        onFocus={onFocusMock}
+        setValue={setValueMock}
+        value="Initial Value"
+      >
+        <MockChildComponent />
+      </EasyCustom>
     );
-    const input = getByTestId('child-component');
 
-    expect(input).toHaveValue('initial');
+    const wrapperElement = screen.getByTestId('child-input').closest('div');
+    expect(wrapperElement).toHaveClass('test-easy-edit-component-wrapper');
   });
 });

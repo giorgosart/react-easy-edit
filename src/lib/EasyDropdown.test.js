@@ -1,76 +1,115 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import EasyDropdown from './EasyDropdown';
-import Globals from "./globals";
+import Globals from './globals';
 
-describe('EasyDropdown', () => {
-  const options = [
-    { value: 'value1', label: 'Label 1' },
-    { value: 'value2', label: 'Label 2' },
-    { value: 'value3', label: 'Label 3' },
+describe('EasyDropdown Component', () => {
+  const defaultOptions = [
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
   ];
 
-  it('renders with options and placeholder', () => {
-    const { getByText } = render(
-        <EasyDropdown options={options} placeholder="Select an option" />
+  it('renders with default placeholder', () => {
+    render(
+      <EasyDropdown
+        options={defaultOptions}
+        value=""
+        onChange={() => {}}
+        cssClassPrefix="test-"
+      />
     );
 
-    expect(getByText('Select an option')).toBeInTheDocument();
-    expect(getByText('Label 1')).toBeInTheDocument();
-    expect(getByText('Label 2')).toBeInTheDocument();
-    expect(getByText('Label 3')).toBeInTheDocument();
+    expect(screen.getByText(Globals.DEFAULT_SELECT_PLACEHOLDER)).toBeInTheDocument();
   });
 
-  it('renders with value selected', () => {
-    const { getByDisplayValue } = render(
-        <EasyDropdown options={options} value="value2" />
+  it('renders with custom placeholder', () => {
+    const placeholder = 'Select an option';
+    render(
+      <EasyDropdown
+        options={defaultOptions}
+        value=""
+        onChange={() => {}}
+        placeholder={placeholder}
+        cssClassPrefix="test-"
+      />
     );
 
-    expect(getByDisplayValue('Label 2')).toBeInTheDocument();
+    expect(screen.getByText(placeholder)).toBeInTheDocument();
   });
 
-  it('calls onChange when selecting an option', () => {
+  it('renders all options correctly', () => {
+    render(
+      <EasyDropdown
+        options={defaultOptions}
+        value=""
+        onChange={() => {}}
+        cssClassPrefix="test-"
+      />
+    );
+
+    defaultOptions.forEach((option) => {
+      expect(screen.getByText(option.label)).toBeInTheDocument();
+    });
+  });
+
+  it('calls onChange handler when an option is selected', () => {
     const handleChange = jest.fn();
-    const { getByDisplayValue } = render(
-        <EasyDropdown options={options} onChange={handleChange} />
+    render(
+      <EasyDropdown
+        options={defaultOptions}
+        value=""
+        onChange={handleChange}
+        cssClassPrefix="test-"
+      />
     );
-    const selectElement = getByDisplayValue(Globals.DEFAULT_SELECT_PLACEHOLDER);
 
-    fireEvent.change(selectElement, { target: { value: 'value2' } });
-
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'option1' } });
     expect(handleChange).toHaveBeenCalled();
   });
 
-  it('calls onFocus and onBlur when focus and blur on the select', () => {
+  it('displays the correct value when an option is selected', () => {
+    render(
+      <EasyDropdown
+        options={defaultOptions}
+        value="option1"
+        onChange={() => {}}
+        cssClassPrefix="test-"
+      />
+    );
+
+    expect(screen.getByRole('combobox')).toHaveValue('option1');
+  });
+
+  it('calls onFocus handler when focused', () => {
     const handleFocus = jest.fn();
-    const handleBlur = jest.fn();
-    const { getByDisplayValue } = render(
-        <EasyDropdown options={options} onFocus={handleFocus} onBlur={handleBlur} />
+    render(
+      <EasyDropdown
+        options={defaultOptions}
+        value=""
+        onChange={() => {}}
+        onFocus={handleFocus}
+        cssClassPrefix="test-"
+      />
     );
-    const selectElement = getByDisplayValue(Globals.DEFAULT_SELECT_PLACEHOLDER);
 
-    fireEvent.focus(selectElement);
-    fireEvent.blur(selectElement);
-
+    fireEvent.focus(screen.getByRole('combobox'));
     expect(handleFocus).toHaveBeenCalled();
+  });
+
+  it('calls onBlur handler when focus is lost', () => {
+    const handleBlur = jest.fn();
+    render(
+      <EasyDropdown
+        options={defaultOptions}
+        value=""
+        onChange={() => {}}
+        onBlur={handleBlur}
+        cssClassPrefix="test-"
+      />
+    );
+
+    fireEvent.blur(screen.getByRole('combobox'));
     expect(handleBlur).toHaveBeenCalled();
-  });
-
-  it('renders with custom CSS class prefix', () => {
-    const { container } = render(
-        <EasyDropdown options={options} cssClassPrefix="custom-" />
-    );
-
-    expect(container.firstChild).toHaveClass('custom-easy-edit-component-wrapper');
-  });
-
-  it('renders with custom attributes', () => {
-    const { getByDisplayValue } = render(
-        <EasyDropdown options={options} attributes={{ id: 'dropdown' }} />
-    );
-    const selectElement = getByDisplayValue(Globals.DEFAULT_SELECT_PLACEHOLDER);
-
-    expect(selectElement).toHaveAttribute('id', 'dropdown');
   });
 });

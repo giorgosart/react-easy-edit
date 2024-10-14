@@ -79,7 +79,7 @@ class App extends Component {
                     onSave={() => {
                       console.log("saved!")
                     }}
-                    editMode={this.state.editMode}
+                    isEditing={this.state.editMode}
                     hideCancelButton
                     hideSaveButton
                 />
@@ -88,7 +88,7 @@ class App extends Component {
                     onSave={() => {
                       console.log("saved!")
                     }}
-                    editMode={this.state.editMode}
+                    isEditing={this.state.editMode}
                     instructions={"Toggle me!"}
                     hideCancelButton
                     hideSaveButton
@@ -108,7 +108,7 @@ class App extends Component {
                   type={Types.FILE}
                   onSave={App.onTest}
                   options={App.generateOptions()}
-                  attributes={{accept: "image/png"}}
+                  inputAttributes={{accept: "image/png"}}
                   instructions="Upload a *.png file"
                   onValidate={value => {return value != null}}
                   buttonsPosition='after'
@@ -121,7 +121,7 @@ class App extends Component {
                   type="text"
                   value="Test Input Field"
                   onSave={App.onTest}
-                  allowEdit={false}
+                  editable={false}
                   viewAttributes={{style:{'color':'red'}, 'data-test':'test', className: 'test2'}}
               />
               <EasyEdit
@@ -131,7 +131,7 @@ class App extends Component {
                   onFocus={() => console.log("focus")}
               />
               <EasyEdit
-                  attributes={{id:'test'}}
+                  inputAttributes={{id:'test'}}
                   type="text"
                   value="Delete Me!"
                   onSave={App.onTest}
@@ -141,7 +141,7 @@ class App extends Component {
                   type="text"
                   onSave={App.onTest}
                   onValidate={() => true}
-                  attributes={attributes}
+                  inputAttributes={attributes}
               />
               <EasyEdit
                   type="text"
@@ -154,7 +154,7 @@ class App extends Component {
               <EasyEdit
                   type={Types.FILE}
                   onSave={App.onTest}
-                  attributes={{accept: "image/png"}}
+                  inputAttributes={{accept: "image/png"}}
                   instructions="Upload a *.png file"
                   onValidate={value => {return value != null}}
                   buttonsPosition='after'
@@ -228,7 +228,7 @@ class App extends Component {
               <EasyEdit
                   type={Types.TEXTAREA}
                   value="Test Textarea"
-                  attributes={{className: 'test'}}
+                  inputAttributes={{className: 'test'}}
                   onSave={App.onTest}
                   instructions="Custom instructions"
               />
@@ -255,7 +255,7 @@ class App extends Component {
                   options={App.generateOptions()}
                   onSave={App.onTest}
                   value={App.generateValues()}
-                  attributes={{className: 'test', checked:'checked'}}
+                  inputAttributes={{className: 'test', checked:'checked'}}
               />
               <h3>Hide Buttons</h3>
               <EasyEdit
