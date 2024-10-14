@@ -79,7 +79,7 @@ class App extends Component {
                     onSave={() => {
                       console.log("saved!")
                     }}
-                    editMode={this.state.editMode}
+                    isEditing={this.state.editMode}
                     hideCancelButton
                     hideSaveButton
                 />
@@ -88,7 +88,7 @@ class App extends Component {
                     onSave={() => {
                       console.log("saved!")
                     }}
-                    editMode={this.state.editMode}
+                    isEditing={this.state.editMode}
                     instructions={"Toggle me!"}
                     hideCancelButton
                     hideSaveButton
@@ -121,7 +121,7 @@ class App extends Component {
                   type="text"
                   value="Test Input Field"
                   onSave={App.onTest}
-                  allowEdit={false}
+                  editable={false}
                   viewAttributes={{style:{'color':'red'}, 'data-test':'test', className: 'test2'}}
               />
               <EasyEdit

@@ -122,7 +122,7 @@ export default function EasyEdit(props) {
     onBlur,
     onSave,
     validationMessage,
-    allowEdit,
+    editable,
     inputAttributes,
     viewAttributes,
     instructions,
@@ -138,7 +138,7 @@ export default function EasyEdit(props) {
     onHoverCssClass,
     saveOnBlur,
     cancelOnBlur,
-    editMode,
+    isEditing,
     showEditViewButtonsOnHover,
     showViewButtonsOnHover
   } = props;
@@ -155,7 +155,7 @@ export default function EasyEdit(props) {
     handleSave,
     handleCancel,
     setEditing
-  } = useEditState(value, editMode, onSave, onCancel, onValidate);
+  } = useEditState(value, isEditing, onSave, onCancel, onValidate);
 
   const saveButton = useRef();
   const editButton = useRef();
@@ -225,7 +225,7 @@ export default function EasyEdit(props) {
   };
 
   const handleClick = () => {
-    if (allowEdit) {
+    if (editable) {
       setEditing(true);
     }
   };
@@ -310,7 +310,7 @@ export default function EasyEdit(props) {
   };
 
   const renderInstructions = () => {
-    if ((editing || editMode) && instructions !== null) {
+    if ((editing || isEditing) && instructions !== null) {
       return <div className={cssClassPrefix
         + "easy-edit-instructions"}>{instructions}</div>;
     }
@@ -324,7 +324,7 @@ export default function EasyEdit(props) {
       existingClasses += " " + viewAttributes["className"];
     }
 
-    if (!allowEdit) {
+    if (!editable) {
       return cssClassPrefix + "easy-edit-not-allowed " + existingClasses;
     } else if (hover) {
       return onHoverCssClass === Globals.DEFAULT_ON_HOVER_CSS_CLASS
@@ -578,7 +578,7 @@ export default function EasyEdit(props) {
     return null;
   }
 
-  if (editing || editMode) {
+  if (editing || isEditing) {
     return (
       <div
         className={cssClassPrefix + "easy-edit-inline-wrapper"}
@@ -640,7 +640,7 @@ EasyEdit.propTypes = {
   onBlur: PropTypes.func,
   onSave: PropTypes.func.isRequired,
   validationMessage: PropTypes.string,
-  allowEdit: PropTypes.bool,
+  editable: PropTypes.bool,
   inputAttributes: PropTypes.object,
   viewAttributes: PropTypes.object,
   instructions: PropTypes.string,
@@ -656,7 +656,7 @@ EasyEdit.propTypes = {
   onHoverCssClass: PropTypes.string,
   saveOnBlur: PropTypes.bool,
   cancelOnBlur: PropTypes.bool,
-  editMode: PropTypes.bool,
+  isEditing: PropTypes.bool,
   showEditViewButtonsOnHover: PropTypes.bool,
   showViewButtonsOnHover: PropTypes.bool
 };
@@ -673,7 +673,7 @@ EasyEdit.defaultProps = {
   editButtonStyle: null,
   buttonsPosition: Globals.POSITION_AFTER,
   placeholder: Globals.DEFAULT_PLACEHOLDER,
-  allowEdit: true,
+  editable: true,
   onCancel: () => {
   },
   onDelete: () => {
@@ -696,7 +696,7 @@ EasyEdit.defaultProps = {
   onHoverCssClass: Globals.DEFAULT_ON_HOVER_CSS_CLASS,
   saveOnBlur: false,
   cancelOnBlur: false,
-  editMode: false,
+  isEditing: false,
   showEditViewButtonsOnHover: false,
   showViewButtonsOnHover: false
 };

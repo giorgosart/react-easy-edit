@@ -23,7 +23,7 @@ describe("EasyEdit Component", () => {
         type={Types.TEXT}
         value="Initial Value"
         onSave={mockOnSave}
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -38,7 +38,7 @@ describe("EasyEdit Component", () => {
         value="Initial Value"
         onSave={mockOnSave}
         saveButtonLabel="Save"
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -58,7 +58,7 @@ describe("EasyEdit Component", () => {
         onSave={mockOnSave}
         onCancel={mockOnCancel}
         cancelButtonLabel="Cancel"
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -89,7 +89,7 @@ describe("EasyEdit Component", () => {
         onDelete={mockOnDelete}
         deleteButtonLabel="Delete"
         hideDeleteButton={false}
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -106,7 +106,7 @@ describe("EasyEdit Component", () => {
         onSave={mockOnSave}
         onValidate={mockOnValidate}
         saveButtonLabel="Save"
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -125,7 +125,7 @@ describe("EasyEdit Component", () => {
         value="Initial Value"
         onSave={mockOnSave}
         onBlur={mockOnBlur}
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -142,7 +142,7 @@ describe("EasyEdit Component", () => {
         value="Initial Value"
         onSave={mockOnSave}
         onFocus={mockOnFocus}
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -162,7 +162,7 @@ describe("EasyEdit Component", () => {
         onValidate={mockOnValidate}
         validationMessage="Invalid input"
         saveButtonLabel="Save"
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -182,7 +182,7 @@ describe("EasyEdit Component", () => {
         onSave={mockOnSave}
         hideDeleteButton={true}
         deleteButtonLabel="Delete"
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -197,7 +197,7 @@ describe("EasyEdit Component", () => {
         onSave={mockOnSave}
         onCancel={mockOnCancel}
         disableAutoCancel={false}
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -215,7 +215,7 @@ describe("EasyEdit Component", () => {
         value="Initial Value"
         onSave={mockOnSave}
         disableAutoSubmit={false}
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -236,7 +236,7 @@ describe("EasyEdit Component", () => {
         value="Initial Value"
         onSave={mockOnSave}
         disableAutoSubmit={false}
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -260,7 +260,7 @@ describe("EasyEdit Component", () => {
         onSave={mockOnSave}
         saveOnBlur={true}
         cancelOnBlur={true}
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -280,7 +280,7 @@ describe("EasyEdit Component", () => {
         onSave={mockOnSave}
         onBlur={mockOnBlur}
         saveOnBlur={true}
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -303,7 +303,7 @@ describe("EasyEdit Component", () => {
           onSave={mockOnSave}
           onCancel={mockOnCancel}
           cancelOnBlur={true}
-          editMode={true}
+          isEditing={true}
         />
       );
 
@@ -320,7 +320,7 @@ describe("EasyEdit Component", () => {
         value="Initial Value"
         onSave={mockOnSave}
         editButtonLabel="Edit"
-        editMode={false}
+        isEditing={false}
         hideEditButton={false}
       />
     );
@@ -343,7 +343,7 @@ describe("EasyEdit Component", () => {
         value={[]}
         onSave={mockOnSave}
         options={options}
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -369,7 +369,7 @@ describe("EasyEdit Component", () => {
       <EasyEdit
         type={Types.TEXT}
         value="Initial Value"
-        editMode={false}
+        isEditing={false}
         onSave={mockOnSave}
         onCancel={mockOnCancel}
       />
@@ -384,7 +384,7 @@ describe("EasyEdit Component", () => {
       <EasyEdit
         type={Types.TEXT}
         value="Initial Value"
-        editMode={true}
+        isEditing={true}
         onSave={mockOnSave}
         onCancel={mockOnCancel}
       />
@@ -399,7 +399,7 @@ describe("EasyEdit Component", () => {
       <EasyEdit
         type={Types.TEXT}
         value="Initial Value"
-        editMode={false}
+        isEditing={false}
         onSave={mockOnSave}
         onCancel={mockOnCancel}
       />
@@ -418,7 +418,7 @@ describe("EasyEdit Component", () => {
           type={Types.TEXT}
           value="Initial Value"
           onSave={mockOnSave}
-          editMode={true}
+          isEditing={true}
           instructions="Please enter a value"
         />
       );
@@ -465,7 +465,7 @@ describe("EasyEdit Component", () => {
         type={Types.TEXT}
         value="Initial Value"
         onSave={mockOnSave}
-        allowEdit={false}
+        editable={false}
       />
     );
 
@@ -563,7 +563,7 @@ describe("EasyEdit Component", () => {
         onSave={mockOnSave}
         options={[{ value: '1', label: 'Option 1' }, { value: '2', label: 'Option 2' }]}
         placeholder="Select an option"
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -580,7 +580,7 @@ describe("EasyEdit Component", () => {
         value="2"
         onSave={mockOnSave}
         options={[{ value: '1', label: 'Option 1' }, { value: '2', label: 'Option 2' }]}
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -598,7 +598,7 @@ describe("EasyEdit Component", () => {
         onSave={mockOnSave}
         options={[{ value: 'Option 1', label: 'Option 1' }, { value: 'Option 2', label: 'Option 2' }]}
         placeholder="Select an option"
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -620,7 +620,7 @@ describe("EasyEdit Component", () => {
         type={Types.COLOR}
         value="#ff0000"
         onSave={mockOnSave}
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -640,7 +640,7 @@ describe("EasyEdit Component", () => {
         value="Initial Value"
         onSave={mockOnSave}
         displayComponent={<DisplayComponent />}
-        editMode={false}
+        isEditing={false}
       />
     );
 
@@ -654,7 +654,7 @@ describe("EasyEdit Component", () => {
         value="#ff0000"
         onSave={mockOnSave}
         viewAttributes={{ id: 'color-input' }}
-        editMode={true}
+        isEditing={true}
       />
     );
 
@@ -669,7 +669,7 @@ describe("EasyEdit Component", () => {
         type={Types.TEXT}
         value="Initial Value"
         onSave={mockOnSave}
-        editMode={false}
+        isEditing={false}
       />
     );
 
@@ -683,7 +683,7 @@ describe("EasyEdit Component", () => {
         type={Types.TEXT}
         value="Initial Value"
         onSave={mockOnSave}
-        editMode={true}
+        isEditing={true}
       />
     );
 
