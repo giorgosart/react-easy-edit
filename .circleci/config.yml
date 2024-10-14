@@ -1,20 +1,13 @@
 version: 2.1
 orbs:
   node: circleci/node@5.0.2
-  sonarcloud: sonarsource/sonarcloud@1.1.0
+  sonarcloud: sonarsource/sonarcloud@2.0.0
 
 jobs:
   build_and_test:
     executor: node/default
     steps:
       - checkout
-      - run:
-          name: Install Java 17
-          command: |
-            sudo apt-get update
-            sudo apt-get install openjdk-17-jdk
-            echo 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64' >> $BASH_ENV
-            source $BASH_ENV
       - node/install-packages:
           pkg-manager: yarn
       - run:
