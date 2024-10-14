@@ -4,7 +4,7 @@ orbs:
   sonarcloud: sonarsource/sonarcloud@2.0.0
 
 jobs:
-  build_and_test:
+  build:
     executor: node/default
     steps:
       - checkout
@@ -16,12 +16,11 @@ jobs:
       - run:
           command: yarn build
           name: Build app
-      - sonarcloud/scan:
-          organization: $SONAR_ORG
-          project-key: $SONAR_PROJECT_KEY
+      - sonarcloud/scan
     resource_class: large
 
 workflows:
-  test_my_app:
+  main:
     jobs:
-      - build_and_test
+      - build:
+          context: sonarcloud
