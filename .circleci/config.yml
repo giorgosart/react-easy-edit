@@ -8,6 +8,13 @@ jobs:
     executor: node/default
     steps:
       - checkout
+      - run:
+          name: Install Java 17
+          command: |
+            sudo apt-get update
+            sudo apt-get install openjdk-17-jdk
+            echo 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64' >> $BASH_ENV
+            source $BASH_ENV
       - node/install-packages:
           pkg-manager: yarn
       - run:
