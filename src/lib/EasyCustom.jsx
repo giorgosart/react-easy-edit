@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const EasyCustom = ({ children, cssClassPrefix, onBlur, onFocus, setValue, value: initialValue }) => {
-  const [value, setValueState] = useState(initialValue);
+const EasyCustom = ({ children, cssClassPrefix, onBlur, onFocus, onSetValue, value: initialValue }) => {
+  const [value, setValue] = useState(initialValue);
 
   useEffect(() => {
-    setValueState(initialValue);
+    setValue(initialValue);
   }, [initialValue]);
 
   const handleSetValue = (newValue) => {
-    setValueState(newValue);
     setValue(newValue);
+    onSetValue(newValue);
   };
 
   const handleBlur = () => {
@@ -43,7 +43,7 @@ EasyCustom.propTypes = {
   cssClassPrefix: PropTypes.string,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
-  setValue: PropTypes.func,
+  onSetValue: PropTypes.func, // Renamed from setValue to onSetValue in propTypes
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,

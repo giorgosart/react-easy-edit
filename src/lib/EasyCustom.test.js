@@ -59,7 +59,7 @@ describe('EasyCustom Component', () => {
         cssClassPrefix="test-"
         onBlur={onBlurMock}
         onFocus={onFocusMock}
-        setValue={setValueMock}
+        onSetValue={setValueMock}
         value="Initial Value"
       >
         <MockChildComponent />

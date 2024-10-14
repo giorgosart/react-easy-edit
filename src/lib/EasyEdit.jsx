@@ -236,7 +236,7 @@ export default function EasyEdit(props) {
     if (React.isValidElement(editComponent)) {
       return (
         <EasyCustom
-          setValue={handleChange}
+          onSetValue={handleChange}
           onBlur={handleBlur}
           onFocus={handleFocus}
           value={tempValue}
