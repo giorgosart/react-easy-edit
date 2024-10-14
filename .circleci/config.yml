@@ -1,10 +1,9 @@
 version: 2.1
 orbs:
   node: circleci/node@5.0.2
-  sonarcloud: sonarsource/sonarcloud@2.0.0
 
 jobs:
-  build:
+  build_and_test:
     executor: node/default
     steps:
       - checkout
@@ -16,11 +15,9 @@ jobs:
       - run:
           command: yarn build
           name: Build app
-      - sonarcloud/scan
     resource_class: large
 
 workflows:
-  main:
+  test_my_app:
     jobs:
-      - build:
-          context: sonarcloud
+      - build_and_test
