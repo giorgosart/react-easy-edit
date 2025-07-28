@@ -67,4 +67,10 @@ describe('EasyDatalist Component', () => {
     const inputElement = screen.getByDisplayValue('Option 2');
     expect(inputElement).toBeInTheDocument();
   });
+
+  test('does not set autofocus attribute when autoFocus is false', () => {
+    render(<EasyDatalist {...defaultProps} attributes={{ autoFocus: false }} />);
+    const inputElement = screen.getByPlaceholderText('Enter value');
+    expect(inputElement).not.toHaveAttribute('autofocus');
+  });
 });
